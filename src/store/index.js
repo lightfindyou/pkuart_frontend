@@ -9,6 +9,8 @@ export default new Vuex.Store({
     routerDomIndex: 'home',
     searchText: '', // 搜索文本
     selectedEra: '', // 当前选中的按钮
+    assessA: '', // 评价文本A
+    assessB: '', // 评价文本B
     galleryImages: [
       {
           title: '缂丝山水图',
@@ -57,6 +59,12 @@ export default new Vuex.Store({
     setSearchText(state, text) {
       state.searchText = text
     },
+    setAssessA(state, value) {
+        state.assessA = value;
+    },
+    setAssessB(state, value) {
+        state.assessB = value;
+    }
   },
   
   actions: {  

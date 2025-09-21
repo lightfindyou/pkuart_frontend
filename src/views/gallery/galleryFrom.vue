@@ -5,7 +5,7 @@
                 <div class="select_box fs">
                     <span @click="showNotification = !showNotification">选择审美评估模型</span>
                     <img @click="showNotification = !showNotification" src="@/assets/home/bottom.png" alt="">
-                    <notification v-if="showNotification"></notification>
+                    <notification :battleItem = "showGalleryFromItem" v-if="showNotification"></notification>
 
                 </div>
                 <div class="del" @click="handleDel">
@@ -88,6 +88,7 @@ export default {
             show: false,
             showNotification: false,
             active: false,
+            battleItem: this.showGalleryFromItem,
         }
     },
     methods: {
@@ -98,7 +99,8 @@ export default {
             this.show = true
         },
         handleActive() {
-            this.active = !this.active
+            this.active = !this.active;
+
         }
     }
 }

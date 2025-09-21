@@ -40,7 +40,7 @@
                                     <img src="@/assets/homeFrom/zk.png" @click="handleZk(1)" alt="">
                                 </div>
                             </div>
-                            <div class="texter fs">{{ textA }}</div>
+                            <div class="texter fs">{{ $store.state.assessA }}</div>
                         </div>
                         <div class="AI_item" :class="getAIItemClass(2)">
                             <div class="AI_top ht">
@@ -55,7 +55,7 @@
                                     <img src="@/assets/homeFrom/zk.png" @click="handleZk(2)" alt="">
                                 </div>
                             </div>
-                            <div class="texter fs">{{ textB }}</div>
+                            <div class="texter fs">{{  $store.state.assessB }}</div>
                         </div>
                     </div>
                     <div class="select_box" v-if="feedbackShow">
@@ -181,7 +181,6 @@ export default {
         handleClose() {
             this.$router.go(-1)
         },
-
         //选择选项
         selectOption(option) {
             console.log(this.selectedOption, option, '-----');
