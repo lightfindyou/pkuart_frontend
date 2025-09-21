@@ -11,6 +11,7 @@ export default new Vuex.Store({
     selectedEra: '', // 当前选中的按钮
     assessA: '', // 评价文本A
     assessB: '', // 评价文本B
+    evaluationId: '', // 评价ID
     galleryImages: [
       {
           title: '缂丝山水图',
