@@ -118,6 +118,7 @@ export default {
         handleShow(item) {
             this.showGalleryFrom = true;
             this.showGalleryFromItem = item;
+            this.$store.commit('setShowItem', item);
         },
         prevSlide() {
             this.$refs.swiper.$swiper.slidePrev();

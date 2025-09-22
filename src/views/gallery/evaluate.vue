@@ -17,7 +17,8 @@
             </div>
             <div class="main">
                 <div class="main_img">
-                    <img src="@/assets/list/1.png" alt="">
+                    <!-- <img src="@/assets/list/1.png" alt=""> -->
+                    <img :src="this.$store.state.showItem.imgs" alt="">
                 </div>
                 <div class="mian_text">
                     <div class="main_title ht">
@@ -32,7 +33,7 @@
                                 <div class="AI_icon">
                                     <img src="@/assets/homeFrom/icon.png" alt="">
                                 </div>
-                                模型A
+                                {{ modelA_name }}
                                 <div class="copy" v-if="feedbackShow" @click="handleCopy(1)">
                                     <img src="@/assets/homeFrom/copy.png" alt="">
                                 </div>
@@ -47,7 +48,7 @@
                                 <div class="AI_icon">
                                     <img src="@/assets/homeFrom/icon.png" alt="">
                                 </div>
-                                模型B
+                                {{ modelB_name }}
                                 <div class="copy" v-if="feedbackShow" @click="handleCopy(2)">
                                     <img src="@/assets/homeFrom/copy.png" alt="">
                                 </div>
@@ -145,11 +146,17 @@
 <script>
 import notification from '@/components/notification.vue'
 import axios from 'axios'
+import { mapState } from 'vuex'
 
 export default {
     name: 'GalleryFrom',
     components: {
         notification,
+    },
+    computed: {
+        ...mapState(['modelA_name']),
+        ...mapState(['modelB_name']),
+        ...mapState(['showItem']),
     },
     data() {
         return {
@@ -163,10 +170,10 @@ export default {
         }
     },
     mounted() {
-
+        console.log(this.$store.state.showItem, 'showItem-----');
         setTimeout(() => {
             this.feedbackShow = true;
-        }, 100)
+        }, 100);
     },
     methods: {
         //删除

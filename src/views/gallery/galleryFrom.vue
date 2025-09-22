@@ -115,7 +115,7 @@ export default {
             // 发送 POST 请求
             try {
                 const url = `http://47.122.63.229:5055/api/addFavorite?artwork_id=${this.showGalleryFromItem.id}&user_id=1`
-                const res = await axios.get(url)
+                await axios.get(url)
             } catch (error) {
                 console.error('Error adding favorite:', error);
             }
@@ -124,7 +124,7 @@ export default {
             // 发送 POST 请求
             try {
                 const url = `http://47.122.63.229:5055/api/delFavorite?artwork_id=${this.showGalleryFromItem.id}&user_id=1`
-                const res = await axios.get(url)
+                await axios.get(url)
             } catch (error) {
                 console.error('Error deleting favorite:', error);
             }

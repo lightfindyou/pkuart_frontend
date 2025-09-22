@@ -13,10 +13,52 @@ const routes = [
   {
     path: '/about',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    component: () => import( '../views/about/about.vue')
+  },
+  {
+    path: '/gallery',
+    name: 'gallery',
+    component: () => import('../views/gallery/gallery.vue')
+  },
+  {
+    path: '/rankingList',
+    name: 'rankingList',
+    component: () => import('../views/rankingList/rankingList.vue')
+  },
+  {
+    path: '/reviewTeam',
+    name: 'reviewTeam',
+    component: () => import('../views/reviewTeam/reviewTeam.vue')
+  },
+  { 
+    path: '/evaluate',
+    name: 'evaluate',
+    component: () => import('../views/gallery/evaluate.vue')
+  },
+  {
+    path: '/user',
+    name: 'user',
+    component: () => import('../views/user/user.vue')
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/login.vue')
+  },
+  {
+    path: '/userLogin',
+    name: 'userLogin',
+    component: () => import('../views/login/userLogin.vue')
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import('../views/login/register.vue')
+  },
+  {
+    path: '/forget',
+    name: 'forget',
+    component: () => import('../views/login/forget.vue')
   }
 ]
 

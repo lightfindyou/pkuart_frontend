@@ -56,10 +56,8 @@
 					</div>
 				</div>
 				<div class="selector-content">
-					<div v-for="option in filteredOptions" :key="option.id" 
-						class="option-item"
-						:class="{ 'selected': isOptionSelected(option) }"
-						@click="selectOption(option)">
+					<div v-for="option in filteredOptions" :key="option.id" class="option-item"
+						:class="{ 'selected': isOptionSelected(option) }" @click="selectOption(option)">
 						<div class="option-img">
 							<img :src="option.image" alt="">
 						</div>
@@ -74,17 +72,17 @@
 	</div>
 </template>
 <script>
-import { showDebugDirtyRect } from 'zrender';
+// import { showDebugDirtyRect } from 'zrender';
 import axios from 'axios'
 
 export default {
 	name: 'notificationFrom',
 	props: {
-    	battleItem: {
-    		type: Object,
-    		required: true
-    	}
-    },
+		battleItem: {
+			type: Object,
+			required: true
+		}
+	},
 	data() {
 		return {
 			type: 0,
@@ -122,20 +120,22 @@ export default {
 			console.log('evaluate:' + this.battleItem.id);
 			this.evaluatePic(this.battleItem.id);
 		},
-		async evaluatePic(id){
- 			console.log('评价图片   ' + id);
- 			const url = `http://47.122.63.229:5055/api/artwork/evaluate`
+		async evaluatePic(id) {
+			console.log('评价图片   ' + id);
+			const url = `http://47.122.63.229:5055/api/artwork/evaluate`
 			const payload = {
-  			  artwork_id: id
-  			};
- 			const res = await axios.post(url, payload, {headers: { 'Content-Type': 'application/json' } });
- 			//处理返回结果
+				artwork_id: id
+			};
+			const res = await axios.post(url, payload, { headers: { 'Content-Type': 'application/json' } });
+			//处理返回结果
 			// console.log('评价结果   ' + res.data.task_id);
 			console.log('评价任务   ' + JSON.stringify(res.data, null, 2));
 			if (!res.data.task_id) {
 				this.$store.commit('setAssessA', '评价任务创建失败，请稍后重试');
 				this.$store.commit('setAssessB', '评价任务创建失败，请稍后重试');
-			}else{
+			} else {
+				this.$store.commit("setModelAName", res.data.model_name0);
+				this.$store.commit("setModelBName", res.data.model_name1);
 				this.$store.commit('setAssessA', '正在生成审美评估……');
 				this.$store.commit('setAssessB', '正在生成审美评估……');
 				this.startPolling(res.data.task_id);
@@ -148,14 +148,18 @@ export default {
 				const res = await this.getEvalucationText(task_id);
 				count++;
 				console.log('评价任务状态   ' + JSON.stringify(res.data, null, 2));
-				if(res.data.status === 'processing') {
+				if (res.data.status === 'processing') {
 					// 任务仍在处理中，继续轮询
 					console.log('评价任务处理中...');
+					this.$store.commit('setAssessA', res.data.progress);
+					this.$store.commit('setAssessB', res.data.progress);
 				} else if (res.data.status === 'completed') {
 					// 任务完成，处理结果并停止轮询
 					console.log('评价任务完成');
-					this.$store.commit('setAssessA', res.data.evaluations.openai/GPT5.response);
-					this.$store.commit('setAssessB', res.data.evaluations.stepfun-ai/step3.response);
+					// this.$store.commit('setAssessA', 'ret1');
+					// this.$store.commit('setAssessB', 'ret2');
+					this.$store.commit('setAssessA', res.data.evaluations[this.$store.state.modelA_name].response);
+					this.$store.commit('setAssessB', res.data.evaluations[this.$store.state.modelB_name].response);
 					clearInterval(this.pollingTimer);
 				} else if (res.data.status === 'error') {
 					// 任务失败，处理错误并停止轮询
@@ -169,13 +173,13 @@ export default {
 				}
 			}, 2000);
 		},
-        //获取评价文本
-        async getEvalucationText(task_id) {
- 			const url = `http://47.122.63.229:5055/api/task/`+task_id+`/status`
+		//获取评价文本
+		async getEvalucationText(task_id) {
+			const url = `http://47.122.63.229:5055/api/task/` + task_id + `/status`
 			console.log('获取评价任务状态   ' + url);
 			const res = await axios.get(url);
 			return res;
-        },
+		},
 		openSelector(side) {
 			this.showSelector = true;
 			this.searchText = ''; // Clear search text when opening
@@ -282,6 +286,7 @@ export default {
 				width: 11px;
 				height: 12px;
 				margin-top: -6px;
+
 				img {
 					width: 100%;
 					height: 100%;
@@ -416,6 +421,7 @@ export default {
 		// overflow-y: auto;
 		padding: 8px 4px 0 3px;
 		box-sizing: border-box;
+
 		&::-webkit-scrollbar {
 			width: 6px;
 		}
@@ -462,6 +468,7 @@ export default {
 		height: 15px;
 		margin-right: 12px;
 		margin-top: -15px;
+
 		img {
 			width: 100%;
 			height: 100%;

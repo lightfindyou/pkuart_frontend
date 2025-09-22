@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+// import { set } from 'core-js/core/dict'
 
 Vue.use(Vuex)
 
@@ -9,9 +10,12 @@ export default new Vuex.Store({
     routerDomIndex: 'home',
     searchText: '', // 搜索文本
     selectedEra: '', // 当前选中的按钮
+    modelA_name: '模型A',
+    modelB_name: '模型B',
     assessA: '', // 评价文本A
     assessB: '', // 评价文本B
     evaluationId: '', // 评价ID
+    showItem: {}, // 当前查看的艺术品详情
     galleryImages: [
       {
           title: '缂丝山水图',
@@ -60,11 +64,20 @@ export default new Vuex.Store({
     setSearchText(state, text) {
       state.searchText = text
     },
+    setModelAName(state, value) {
+      state.modelA_name = value;
+    },
+    setModelBName(state, value) {
+      state.modelB_name = value;
+    },
     setAssessA(state, value) {
         state.assessA = value;
     },
     setAssessB(state, value) {
         state.assessB = value;
+    },
+    setShowItem(state, item) {
+      state.showItem = item
     }
   },
   
