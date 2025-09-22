@@ -72,6 +72,7 @@
 </template>
 <script>
 import notification from '@/components/notification.vue'
+import axios from 'axios'
 export default {
     name: 'GalleryFrom',
     components: {
@@ -91,6 +92,9 @@ export default {
             battleItem: this.showGalleryFromItem,
         }
     },
+    mounted() {
+        this.checkFavorite();
+    },
     methods: {
         handleDel() {
             this.$emit('handleDel')
@@ -99,8 +103,47 @@ export default {
             this.show = true
         },
         handleActive() {
-            this.active = !this.active;
+            if(this.active) {
+                this.delFavorite()
+            } else {
+                this.addFavorite()
+            }
 
+            this.active = !this.active;
+        },
+        async addFavorite() {
+            // 发送 POST 请求
+            try {
+                const url = `http://47.122.63.229:5055/api/addFavorite?artwork_id=${this.showGalleryFromItem.id}&user_id=1`
+                const res = await axios.get(url)
+            } catch (error) {
+                console.error('Error adding favorite:', error);
+            }
+        },
+        async delFavorite() {
+            // 发送 POST 请求
+            try {
+                const url = `http://47.122.63.229:5055/api/delFavorite?artwork_id=${this.showGalleryFromItem.id}&user_id=1`
+                const res = await axios.get(url)
+            } catch (error) {
+                console.error('Error deleting favorite:', error);
+            }
+        },
+        async checkFavorite() {
+            console.log('检查是否收藏');
+            // 发送 POST 请求
+            try {
+                const url = `http://47.122.63.229:5055/api/inFavoriteList?artwork_id=${this.showGalleryFromItem.id}&user_id=1`
+                const res = await axios.get(url)
+                this.active = res.data.in_favorite_list;
+                // if(this.active) {
+                //     console.log('已收藏');
+                // } else {
+                //     console.log('未收藏');
+                // }
+            } catch (error) {
+                console.error('Error checking favorite:', error);
+            }
         }
     }
 }
