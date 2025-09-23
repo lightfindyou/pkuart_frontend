@@ -1,14 +1,17 @@
 <template>
     <div class="voteHistory">
-        <div class="vote_item" v-for="(item, index) in feedback" :key="index" :style="{ height: isExpanded ? 'auto' : '147px' }">
+        <div class="vote_item" v-for="item in votes" :key="item" :style="{ height: isExpanded ? 'auto' : '147px' }">
             <div class="vote_item_left">
-                <div class="left_title">Name of Model</div>
+                <div class="left_title"> {{ item.winner_name}} </div>
                 <div class="left_texter" :class="{ 'expanded': isExpanded }">
-                    {{ item}}
+                    {{ item.selected_response }}
                     <div class="gd" @click="toggleExpand">
                         {{ isExpanded ? '收起 ▲' : '……展开全文 ▼' }}
                     </div>
                 </div>
+            </div>
+            <div class="vote_item_right">
+                <img src="@/assets/list/1.png" alt="">
             </div>
         </div>
     </div>
@@ -22,22 +25,22 @@ export default {
     data() {
         return {
             isExpanded: false,
-            feedback: [],
+            votes: []
         }
     },
     mounted() {
         console.log('VoteHistoryView mounted');
-        this.fetchFeedback();
+        this.fetchRatings();
     },
     methods: {
         toggleExpand() {
             this.isExpanded = !this.isExpanded;
         },
-        async fetchFeedback() {
-            const res = await axios.get('http://47.122.63.229:5055/api/getFeedback?num=10')
+        async fetchRatings() {
+            const res = await axios.get('http://47.122.63.229:5055/api/getVote?num=10')
             console.log(res.data)
-            this.feedback = res.data.latest_feedback;
-            console.log(this.feedback, '===feedback');
+            this.votes = res.data;
+            console.log(this.votes, '===votes');
         }
     }
 }
@@ -62,13 +65,14 @@ export default {
         border-radius: 22px 22px 22px 22px;
         display: flex;
         justify-content: space-between;
-        padding:0 20px 20px 20px;
+        padding-left: 20px;
+        padding-bottom: 20px;
         box-sizing: border-box;
         transition: height 0.3s ease;
         margin-bottom: 20px;
 
         .vote_item_left {
-            // width: 634px;
+            width: 634px;
 
             .left_title {
                 margin-top: 8px;
