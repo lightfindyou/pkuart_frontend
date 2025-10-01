@@ -1,12 +1,12 @@
 <template>
     <div class="voteHistory">
-        <div class="vote_item" v-for="(item, index) in feedback" :key="index" :style="{ height: isExpanded ? 'auto' : '147px' }">
+        <div class="vote_item" v-for="(item, index) in feedback" :key="index" :style="{ height: isExpanded[index] ? 'auto' : '147px' }">
             <div class="vote_item_left">
                 <div class="left_title">Name of Model</div>
-                <div class="left_texter" :class="{ 'expanded': isExpanded }">
+                <div class="left_texter" :class="{ 'expanded': isExpanded[index] }">
                     {{ item}}
-                    <div class="gd" @click="toggleExpand">
-                        {{ isExpanded ? '收起 ▲' : '……展开全文 ▼' }}
+                    <div class="gd" @click="toggleExpand(index)">
+                        {{ isExpanded[index] ? '收起 ▲' : '……展开全文 ▼' }}
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@ export default {
     name: 'VoteHistoryView',
     data() {
         return {
-            isExpanded: false,
+            isExpanded: [],
             feedback: [],
         }
     },
@@ -30,14 +30,15 @@ export default {
         this.fetchFeedback();
     },
     methods: {
-        toggleExpand() {
-            this.isExpanded = !this.isExpanded;
+        toggleExpand(index) {
+            this.$set(this.isExpanded, index, !this.isExpanded[index]);
         },
         async fetchFeedback() {
             const res = await axios.get('http://47.122.63.229:5055/api/getFeedback?num=10')
             console.log(res.data)
             this.feedback = res.data.latest_feedback;
             console.log(this.feedback, '===feedback');
+            this.isExpanded = this.feedback.map(() => false);
         }
     }
 }

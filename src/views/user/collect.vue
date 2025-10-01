@@ -3,22 +3,27 @@
         <div class="item" v-for="(item, index) in list" :key="index" @click="handleShow(item)">
             <img :src="item.imgs" alt="">
             <div class="bottom">
-                <div class="titles">缂丝山水图</div>
-                <div class="titles_en ens">Kesi Landscape Painting</div>
-                <div class="name">作者：佚名</div>
+                <div class="titles">{{ item.title }}</div>
+                <div class="titles_en ens">{{ item.title_en }}</div>
+                <div class="name">{{ item.name }}</div>
                 <div class="icon">
                     <img v-if="item.type === 1" src="@/assets/home/icon1.png" alt="">
                     <img v-if="item.type === 2" src="@/assets/home/icon2.png" alt="">
                 </div>
             </div>
         </div>
+        <GalleryFrom :showGalleryFromItem="showGalleryFromItem" @handleDel="handleDel" v-if="showGalleryFrom"></GalleryFrom>
     </div>
 </template>
 <script>
 import axios from 'axios'
+import GalleryFrom from '@/views/gallery/galleryFrom.vue'
 
 export default {
     name: 'CollectView',
+    components: {
+        GalleryFrom
+    },
     data() {
         return {
             list: [
@@ -43,9 +48,9 @@ export default {
                     imgs: require('@/assets/list/2.png'),
                     type: 2,
                 },
-
-
-            ]
+            ],
+            showGalleryFrom: false,
+            showGalleryFromItem: {},
         }
     },
     mounted() {
@@ -55,6 +60,9 @@ export default {
         handleShow(item) {
             this.showGalleryFrom = true;
             this.showGalleryFromItem = item;
+        },
+        handleDel() {
+            this.showGalleryFrom = false;
         },
         async fetchCollect() {
             console.log('请求收藏列表');
@@ -84,11 +92,24 @@ export default {
 </script>
 <style lang="less" scoped>
 .tab_list {
+    display: grid;
     width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    //width: 1200px;
     height: 100%;
     columns: 3;
 
     .item {
+        //display: inline-block;   /* 让每个item在列中独立显示 */
+        //width: 270px;
+        //break-inside: avoid;
+        //margin-bottom: 40px;
+        //background-color: #ccc;
+        //border-radius: 22px 22px 22px 22px;
+        //position: relative;
+        //cursor: pointer;
+
+
         width: 270px;
         break-inside: avoid;
         margin-bottom: 40px;
@@ -96,13 +117,16 @@ export default {
         border-radius: 22px 22px 22px 22px;
         position: relative;
         cursor: pointer;
+        pointer-events: auto;
+
 
         &:nth-child(n) {
             height: 296px;
         }
 
         &:nth-child(2n) {
-            height: 435px;
+//            height: 435px;
+            height: 296px;
         }
 
         &:nth-child(3n) {
@@ -168,4 +192,5 @@ export default {
         }
     }
 }
+
 </style>

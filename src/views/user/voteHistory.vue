@@ -1,12 +1,12 @@
 <template>
     <div class="voteHistory">
-        <div class="vote_item" v-for="item in votes" :key="item" :style="{ height: isExpanded ? 'auto' : '147px' }">
+        <div class="vote_item" v-for="(item, index) in votes" :key="index" :style="{ height: expandedList[index] ? 'auto' : '147px' }">
             <div class="vote_item_left">
                 <div class="left_title"> {{ item.winner_name}} </div>
-                <div class="left_texter" :class="{ 'expanded': isExpanded }">
+                <div class="left_texter" :class="{ 'expanded': expandedList[index] }">
                     {{ item.selected_response }}
-                    <div class="gd" @click="toggleExpand">
-                        {{ isExpanded ? '收起 ▲' : '……展开全文 ▼' }}
+                    <div class="gd" @click="toggleExpand(index)">
+                        {{ expandedList[index] ? '收起 ▲' : '……展开全文 ▼' }}
                     </div>
                 </div>
             </div>
@@ -24,8 +24,8 @@ export default {
     name: 'VoteHistoryView',
     data() {
         return {
-            isExpanded: false,
-            votes: []
+            votes: [],
+            expandedList: [],
         }
     },
     mounted() {
@@ -33,14 +33,15 @@ export default {
         this.fetchRatings();
     },
     methods: {
-        toggleExpand() {
-            this.isExpanded = !this.isExpanded;
+            toggleExpand(index) {
+                this.$set(this.expandedList, index, !this.expandedList[index]);
         },
         async fetchRatings() {
             const res = await axios.get('http://47.122.63.229:5055/api/getVote?num=10')
             console.log(res.data)
             this.votes = res.data;
             console.log(this.votes, '===votes');
+            this.expandedList = this.votes.map(() => false);
         }
     }
 }
