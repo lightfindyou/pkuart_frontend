@@ -11,17 +11,18 @@
                 </div>
             </div>
             <div class="list">
-                <div class="list_item" v-for="item in 50" :key="item" @click.stop="handleItemIndex(item)">
+                <div class="list_item" v-for="item in reviewerList" :key="item" @click.stop="handleItemIndex(item)">
                     <div class="item_img">
-                        <img src="@/assets/list/img.png" alt="">
+                        <img :src="item.imgs" alt="">
                     </div>
-                    <div class="item_name">蔡孟璇</div>
+                    <div class="item_name">{{ item.name }}</div>
                     <div class="item_xq" v-if="itemIndex === item">
-                        <div class="xq_title fs">蔡孟璇</div>
-                        <div class="xq_type fs">▪ 清华大学建筑学院工学硕士</div>
-                        <div class="xq_type fs">▪ 文化遗产保护工程师</div>
+                        <div class="xq_title fs">{{ item.name }}</div>
+                        <div class="list_info" v-for="info in item.info" :key="info">
+                            <div class="xq_type fs">▪ {{ info }}</div>
+                        </div>
                         <div class="xq_texter fs">
-                            现为清华大学美术学院博士研究生，主要从事物质文化史视域下古代工艺与材料分析研究。
+                            {{ item.stat }}
                         </div>
                     </div>
                 </div>
@@ -31,12 +32,18 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     name: 'ReviewTeamView',
     data() {
         return {
             itemIndex: 0,
+            reviewerList: [],
         }
+    },
+    mounted() {
+        this.fetchReviewers();
     },
     methods: {
         handleItemIndex(index) {
@@ -50,7 +57,21 @@ export default {
         handleOutsideClick() {
             // 点击外部区域时隐藏详情
             this.itemIndex = 0;
-        }
+        },
+        async fetchReviewers() {
+            console.log('请求评审专家列表');
+            const url = `http://47.122.63.229:5055/api/getReviewers`
+            const res = await axios.get(url);
+            console.log(res.data, '===data');
+            // 处理返回结果
+                        const reviewers = res.data.reviewers;
+                        this.reviewerList = reviewers.map(item => ({
+                            imgs: 'http://47.122.63.229:5055/avatar/' + item.id + '.jpg', // 头像地址
+                            name: item.name,
+                            info: item.info,
+                            stat: item.stat ? item.stat : ''
+                        }));
+        },
     }
 }
 </script>
@@ -70,11 +91,11 @@ export default {
         z-index: 1;
     }
 
-            .content {
-            position: relative;
-            z-index: 2;
-            padding: 0 275px;
-            box-sizing: border-box;
+    .content {
+        position: relative;
+        z-index: 2;
+        padding: 0 275px;
+        box-sizing: border-box;
 
         .content_top {
             margin-top: 90px;
@@ -158,7 +179,8 @@ export default {
                     width: 108px;
                     height: 108px;
                     border-radius: 39px 39px 39px 39px;
-                    img{
+
+                    img {
                         width: 100%;
                         height: 100%;
                     }
