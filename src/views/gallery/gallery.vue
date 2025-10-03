@@ -325,24 +325,36 @@ export default {
             position: relative;
             cursor: pointer;
             pointer-events: auto;
+            object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
+            object-position: center; /* 可选：将图片居中显示 */
 
             &.item-bg {
                 background-image: url('@/assets/list/img.png');
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
+                object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
+                object-position: center; /* 可选：将图片居中显示 */
+//                max-height: 435px;
+//                min-height: 296px;
             }
 
             &:nth-child(n) {
                 height: 296px;
+                object-fit: cover;
+                object-position: center;
             }
 
             &:nth-child(2n) {
                 height: 435px;
+                object-fit: cover;
+                object-position: center;
             }
 
             &:nth-child(3n) {
                 height: 296px;
+                object-fit: cover;
+                object-position: center;
             }
 
             img {
