@@ -11,7 +11,11 @@
                 </div>
             </div>
             <div class="list">
-                <div class="list_item" v-for="item in reviewerList" :key="item" @click.stop="handleItemIndex(item)">
+                <div class="list_item"
+                     v-for="item in reviewerList"
+                     :key="item"
+                     @mouseenter.stop="handleItemIndex(item)"
+                     @mouseleave="handleOutsideClick">
                     <div class="item_img">
                         <img :src="item.imgs" alt="">
                     </div>
@@ -47,12 +51,13 @@ export default {
     },
     methods: {
         handleItemIndex(index) {
-            // 如果点击的是当前已显示的项，则隐藏；否则显示新项
-            if (this.itemIndex === index) {
-                this.itemIndex = 0;
-            } else {
-                this.itemIndex = index;
-            }
+            this.itemIndex = index;
+//            // 如果点击的是当前已显示的项，则隐藏；否则显示新项
+//            if (this.itemIndex === index) {
+//                this.itemIndex = 0;
+//            } else {
+//                this.itemIndex = index;
+//            }
         },
         handleOutsideClick() {
             // 点击外部区域时隐藏详情
