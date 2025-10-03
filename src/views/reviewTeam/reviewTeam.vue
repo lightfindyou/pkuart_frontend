@@ -142,11 +142,12 @@ export default {
                     left: -55%;
                     top: 100px;
                     width: 252px;
-                    height: 158px;
+                    height: fit-content;
+//                    height: 158px;
                     background: rgba(0, 0, 0, 0.8);
                     border-radius: 8px 8px 8px 8px;
                     z-index: 999;
-                    padding: 0 10px 0 20px;
+                    padding: 0 10px 7px 20px;
                     box-sizing: border-box;
 
                     .xq_title {
