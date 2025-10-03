@@ -118,24 +118,35 @@ export default {
         position: relative;
         cursor: pointer;
         pointer-events: auto;
+        object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
+        object-position: center; /* 可选：将图片居中显示 */
 
 
         &:nth-child(n) {
             height: 296px;
+            object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
+            object-position: center; /* 可选：将图片居中显示 */
         }
 
         &:nth-child(2n) {
 //            height: 435px;
             height: 296px;
+            object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
+            object-position: center; /* 可选：将图片居中显示 */
         }
 
         &:nth-child(3n) {
             height: 296px;
+            object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
+            object-position: center; /* 可选：将图片居中显示 */
         }
 
         img {
             width: 100%;
             height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
         }
 
         .bottom {

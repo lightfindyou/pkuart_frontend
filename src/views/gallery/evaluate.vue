@@ -351,8 +351,8 @@ export default {
         box-sizing: border-box;
 
         .main_img {
-            width: 490px;
-            height: 762px;
+            max-width: 490px;
+            max-height: 762px;
             cursor: pointer;
 
             img {
