@@ -41,7 +41,7 @@
                                     <img src="@/assets/homeFrom/zk.png" @click="handleZk(1)" alt="">
                                 </div>
                             </div>
-                            <div class="texter fs">{{ $store.state.assessA }}</div>
+                            <div class="texter fs" v-html="renderMarkdown($store.state.assessA)"></div>
                         </div>
                         <div class="AI_item" :class="getAIItemClass(2)">
                             <div class="AI_top ht">
@@ -56,7 +56,7 @@
                                     <img src="@/assets/homeFrom/zk.png" @click="handleZk(2)" alt="">
                                 </div>
                             </div>
-                            <div class="texter fs">{{  $store.state.assessB }}</div>
+                            <div class="texter fs" v-html="renderMarkdown($store.state.assessB)"></div>
                         </div>
                     </div>
                     <div class="select_box" v-if="feedbackShow">
@@ -144,9 +144,11 @@
 </template>
 
 <script>
+
 import notification from '@/components/notification.vue'
 import axios from 'axios'
 import { mapState } from 'vuex'
+import { marked } from 'marked'
 
 export default {
     name: 'GalleryFrom',
@@ -176,6 +178,9 @@ export default {
         }, 100);
     },
     methods: {
+        renderMarkdown(text) {
+            return marked(text || '');
+        },
         //删除
         handleDel() {
             this.$router.back()
@@ -494,6 +499,10 @@ export default {
                         line-height: 22px;
                         max-height: 432px;
                         overflow-y: auto;
+                        line-height: 1.6;
+                        word-break: break-all;
+                        overflow-wrap: break-word;
+//                        white-space: pre-line;
 
                         &::-webkit-scrollbar {
                             width: 3px;
