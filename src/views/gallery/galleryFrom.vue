@@ -240,11 +240,13 @@ export default {
         justify-content: space-between;
         padding: 0 440px 0 437px;
         box-sizing: border-box;
+//        gap: 48px; /* 新增：主图和文本区块间距 */
 
         .main_img {
             max-width: 554px;
             max-height: 862px;
             cursor: pointer;
+            margin-right: 53px; /* 可选：单独增加主图右侧间距 */
 
             img {
                 max-width: 554px;
