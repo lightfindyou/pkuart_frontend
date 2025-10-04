@@ -124,6 +124,9 @@
         <div class="dy_box" v-if="dyShow">
             <div class="dy_title">
                 📝调研
+                <div class="icon" @click="handleGo">
+                    <img src="@/assets/homeFrom/qx.png" alt="">
+                </div>
             </div>
             <div class="dy_text">
                 感谢您的投票！请留下您的宝贵反馈
@@ -841,6 +844,19 @@ export default {
         font-size: 24px;
         color: #000000;
         border-bottom: 1px solid rgba(180, 180, 180, 0.63);
+
+        .icon {
+            position: absolute;
+            right: 17px;
+            top: 26px;
+            width: 30px;
+            height: 30px;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
     }
 
     .dy_text {
