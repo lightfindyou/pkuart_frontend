@@ -7,15 +7,11 @@
             <div class="content_top">
                 <div class="title_top ht">评审专家团队</div>
                 <div class="texter fs">
-                    专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍专家来源介绍
+                    「智镜」项目首批评审专家团队由来自北京大学、清华大学、浙江大学、中央美术学院、中国美术学院、南京艺术学院、河北美术学院等国内顶尖高校艺术史专业学者和学生组成，深耕中国艺术史、传统美学领域，具备扎实的理论功底与专业的作品分析能力，为基础评测工作的专业性奠定核心支撑，并依据作品类型、风格流派、文化价值等关键维度，建立专业的评估指标。
                 </div>
             </div>
             <div class="list">
-                <div class="list_item"
-                     v-for="item in reviewerList"
-                     :key="item"
-                     @mouseenter.stop="handleItemIndex(item)"
-                     @mouseleave="handleOutsideClick">
+                <div class="list_item" v-for="item in reviewerList" :key="item" @mouseenter.stop="handleItemIndex(item)" @mouseleave="handleOutsideClick">
                     <div class="item_img">
                         <img :src="item.imgs" alt="">
                     </div>
@@ -187,8 +183,12 @@ export default {
                     border-radius: 39px 39px 39px 39px;
 
                     img {
-                        width: 100%;
-                        height: 100%;
+                        width: 100px; /* 根据实际调整 */
+                        height: 100px;
+                        object-fit: cover;
+                        /* 波浪圆形裁剪 */
+                        clip-path: path('M50,0 Q60,10 70,0 Q80,10 90,0 Q100,10 100,50 Q100,90 90,100 Q80,90 70,100 Q60,90 50,100 Q40,90 30,100 Q20,90 10,100 Q0,90 0,50 Q0,10 10,0 Q20,10 30,0 Q40,10 50,0 Z');
+                        background: #fff;
                     }
                 }
 
