@@ -80,7 +80,7 @@
                             {{ selectedOption === 'B' ? '确认提交' : '模型B更好' }}
                         </div>
                     </div>
-                    <div class="vote_box" v-if="feedbackShow" @click="handleShowDialog">投票是如何进行的?</div>
+                    <div class="vote_box" v-if="feedbackShow" @click="handleShowDialog" >投票是如何进行的?</div>
                 </div>
             </div>
 
@@ -527,6 +527,7 @@ export default {
                 line-height: 16px;
                 text-align: center;
                 cursor: pointer;
+                text-decoration: underline;
             }
 
             .select_box {
