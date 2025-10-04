@@ -7,15 +7,45 @@
         <div class="center">
             <div class="center_title">专家登录</div>
             <div class="center_input">
-                <input type="text" placeholder="请输入智镜邀请码">
+                <!--
+                <input type="text" v-model="inviteCode" placeholder="请输入智镜邀请码">
+                -->
+                <input type="text" v-model="inviteCode" placeholder="2KMOO5JIWRKB">
             </div>
-            <div class="btn">专家验证</div>
+            <div class="btn" @click="handleLogin">专家验证</div>
         </div>
     </div>
 </template>
 <script>
+import axios from 'axios'
+
 export default {
-    name: "loginFrom"
+    name: "loginFrom",
+    data() {
+        return {
+            inviteCode: ''
+        }
+    },
+    methods: {
+        async handleLogin() {
+
+            try {
+                const url = `http://47.122.63.229:5055/api/login?invite_code=${this.inviteCode}`
+                const res = await axios.get(url)
+                console.log(res.data, '===res');
+                if ( res.data.message && res.data.message === 'Login successful') {
+                    this.$router.push('/gallery')
+                } else if (res.data.error) {
+                    this.$message.error(res.data.error);
+                } else {
+                    this.$message.error('登录失败，请重试');
+                }
+            } catch (error) {
+                this.$message.error('登录失败，请重试');
+                console.error('Error login:', error);
+            }
+        }
+    }
 }
 </script>
 <style lang="less" scoped>

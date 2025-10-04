@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     btnClick() {
-      this.$router.push('/gallery')
+      this.$router.push('/login')
     }
   }
 }

@@ -131,7 +131,6 @@ export default {
         },
         async checkFavorite() {
             console.log('检查是否收藏');
-            // 发送 POST 请求
             try {
                 const url = `http://47.122.63.229:5055/api/inFavoriteList?artwork_id=${this.showGalleryFromItem.id}&user_id=1`
                 const res = await axios.get(url)
