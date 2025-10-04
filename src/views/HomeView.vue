@@ -126,7 +126,7 @@ export default {
   }
 
   .btn::after {
-    content: "ENTEY";
+    content: "ENTER";
     display: block;
     position: absolute;
     top: 50%;
