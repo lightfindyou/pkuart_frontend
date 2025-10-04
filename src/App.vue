@@ -117,13 +117,16 @@ export default {
   z-index: 2;
   
   .nav_left {
-    width: 294px;
+    width: 340px;
     height: 62px;
     border-radius: 0px 0px 0px 0px;
 
     img {
       width: 100%;
       height: 100%;
+      overflow: clip;
+      object-fit: cover;
+      object-position: center;
     }
   }
 
