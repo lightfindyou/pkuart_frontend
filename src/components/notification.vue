@@ -2,7 +2,7 @@
 	<div class="notification">
 		<div class="item" :class="{ 'item_active': type == 0 }" @click="getNotification(0)">
 			<div class="left">
-				<div class="tit ht">随机对战</div>
+				<div class="tit ht">选择两个模型匿名对战</div>
 				<div class="text fs">2个匿名模型对战</div>
 			</div>
 			<div class="icon">
@@ -11,7 +11,7 @@
 		</div>
 		<div class="item" :class="{ 'item_active': type == 1 }" @click="getNotification(1)">
 			<div class="left">
-				<div class="tit ht">选择对战</div>
+				<div class="tit ht">⽐较两个选定的模型</div>
 				<div class="text fs">并排比较你选择的两个模型</div>
 			</div>
 			<div class="icon">
@@ -90,17 +90,15 @@ export default {
 			showSelector: false,
 			currentSide: '', // 当前选择的是左侧还是右侧
 			searchText: '',
-			selectedLeft: { id: 1, name: 'gpt-5-high', image: require('@/assets/list/ai1.png') },
-			selectedRight: { id: 2, name: 'Gemini 2.5 pro', image: require('@/assets/list/ai2.png') },
+			selectedLeft: { id: 1, name: 'doubao-seed', image: require('@/assets/AIAvatar/doubao.png') },
+			selectedRight: { id: 2, name: 'openai-GPT5', image: require('@/assets/AIAvatar/openai.png') },
 			allOptions: [
-				{ id: 1, name: 'gpt-5-high', image: require('@/assets/list/ai1.png') },
-				{ id: 2, name: 'Gemini 2.5 pro', image: require('@/assets/list/ai2.png') },
-				{ id: 3, name: 'gpt-4-high', image: require('@/assets/list/ai1.png') },
-				{ id: 4, name: 'gpt-3.5-high', image: require('@/assets/list/ai2.png') },
-				{ id: 5, name: 'Claude-3-Opus', image: require('@/assets/list/ai1.png') },
-				{ id: 6, name: 'Claude-3-Sonnet', image: require('@/assets/list/ai2.png') },
-				{ id: 7, name: 'Llama-3-70B', image: require('@/assets/list/ai1.png') },
-				{ id: 8, name: 'Mistral-7B', image: require('@/assets/list/ai2.png') },
+				{ id: 1, name: 'doubao-seed', image: require('@/assets/AIAvatar/doubao.png') },
+				{ id: 2, name: 'openai-GPT5', image: require('@/assets/AIAvatar/openai.png') },
+				{ id: 3, name: 'tencent-hunyuan', image: require('@/assets/AIAvatar/hunyuan.png') },
+				{ id: 4, name: 'stepfun-ai', image: require('@/assets/AIAvatar/stepfun.png') },
+				{ id: 5, name: 'google/gemini-2.5-pro', image: require('@/assets/AIAvatar/gemini.png') },
+				{ id: 6, name: 'z-ai/glm-4.5v', image: require('@/assets/AIAvatar/z-ai.jpeg') },
 			]
 		}
 	},
@@ -370,7 +368,7 @@ export default {
 
 	.selector-modal {
 		width: 237px;
-		height: 274px;
+		height: fit-content;
 		background: #FFFFFF;
 		box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25), -4px 0px 4px 0px rgba(0, 0, 0, 0.25);
 		border-radius: 12px 12px 12px 12px;
