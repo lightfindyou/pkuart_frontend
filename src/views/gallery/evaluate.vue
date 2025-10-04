@@ -847,10 +847,10 @@ export default {
 
         .icon {
             position: absolute;
-            right: 17px;
-            top: 26px;
-            width: 30px;
-            height: 30px;
+            right: 26px;
+            top: 12px;
+            width: 37px;
+            height: 37px;
 
             img {
                 width: 100%;
