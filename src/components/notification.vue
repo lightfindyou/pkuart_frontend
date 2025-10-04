@@ -154,10 +154,11 @@ export default {
 				} else if (res.data.status === 'completed') {
 					// 任务完成，处理结果并停止轮询
 					console.log('评价任务完成');
-					// this.$store.commit('setAssessA', 'ret1');
-					// this.$store.commit('setAssessB', 'ret2');
-					this.$store.commit('setAssessA', res.data.evaluations[this.$store.state.modelA_name].response);
-					this.$store.commit('setAssessB', res.data.evaluations[this.$store.state.modelB_name].response);
+					// 判空处理，避免 undefined 取属性
+					const evalA = res.data.evaluations[this.$store.state.modelA_name];
+					const evalB = res.data.evaluations[this.$store.state.modelB_name];
+					this.$store.commit('setAssessA', evalA && evalA.response ? evalA.response : '未获取到模型A评估结果');
+					this.$store.commit('setAssessB', evalB && evalB.response ? evalB.response : '未获取到模型B评估结果');
 					clearInterval(this.pollingTimer);
 				} else if (res.data.status === 'error') {
 					// 任务失败，处理错误并停止轮询
