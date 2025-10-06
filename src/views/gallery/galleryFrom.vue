@@ -112,27 +112,32 @@ export default {
             this.active = !this.active;
         },
         async addFavorite() {
+            const id = this.$store.state.user_id;
+            console.log('添加收藏');
             // 发送 POST 请求
             try {
-                const url = `http://47.122.63.229:5055/api/addFavorite?artwork_id=${this.showGalleryFromItem.id}&user_id=1`
+                const url = `http://47.122.63.229:5055/api/addFavorite?artwork_id=${this.showGalleryFromItem.id}&user_id=${id}`
                 await axios.get(url)
             } catch (error) {
                 console.error('Error adding favorite:', error);
             }
         },
         async delFavorite() {
+            const id = this.$store.state.user_id;
+            console.log('删除收藏');
             // 发送 POST 请求
             try {
-                const url = `http://47.122.63.229:5055/api/delFavorite?artwork_id=${this.showGalleryFromItem.id}&user_id=1`
+                const url = `http://47.122.63.229:5055/api/delFavorite?artwork_id=${this.showGalleryFromItem.id}&user_id=${id}`
                 await axios.get(url)
             } catch (error) {
                 console.error('Error deleting favorite:', error);
             }
         },
         async checkFavorite() {
-            console.log('检查是否收藏');
+            const id = this.$store.state.user_id;
+            console.log('检查是否收藏, id:', id);
             try {
-                const url = `http://47.122.63.229:5055/api/inFavoriteList?artwork_id=${this.showGalleryFromItem.id}&user_id=1`
+                const url = `http://47.122.63.229:5055/api/inFavoriteList?artwork_id=${this.showGalleryFromItem.id}&user_id=${id}`
                 const res = await axios.get(url)
                 this.active = res.data.in_favorite_list;
                 // if(this.active) {

@@ -67,7 +67,7 @@ export default {
             // 处理返回结果
                         const reviewers = res.data.reviewers;
                         this.reviewerList = reviewers.map(item => ({
-                            imgs: 'http://47.122.63.229:5055/avatar/' + item.id + '.jpg', // 头像地址
+                            imgs: 'http://47.122.63.229:5055/avatar/' + item.id + '.png', // 头像地址
                             name: item.name,
                             info: item.info,
                             stat: item.stat ? item.stat : ''
@@ -187,8 +187,8 @@ export default {
                         height: 100px;
                         object-fit: cover;
                         /* 波浪圆形裁剪 */
-                        clip-path: path('M50,0 Q60,10 70,0 Q80,10 90,0 Q100,10 100,50 Q100,90 90,100 Q80,90 70,100 Q60,90 50,100 Q40,90 30,100 Q20,90 10,100 Q0,90 0,50 Q0,10 10,0 Q20,10 30,0 Q40,10 50,0 Z');
-                        background: #fff;
+                        //clip-path: path('M50,0 Q60,10 70,0 Q80,10 90,0 Q100,10 100,50 Q100,90 90,100 Q80,90 70,100 Q60,90 50,100 Q40,90 30,100 Q20,90 10,100 Q0,90 0,50 Q0,10 10,0 Q20,10 30,0 Q40,10 50,0 Z');
+//                        background: #fff;
                     }
                 }
 

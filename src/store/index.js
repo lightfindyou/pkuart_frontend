@@ -16,6 +16,7 @@ export default new Vuex.Store({
     assessB: '', // 评价文本B
     evaluationId: '', // 评价ID
     showItem: {}, // 当前查看的艺术品详情
+    user_id: '', // 用户ID
     galleryImages: [
       {
           title: '缂丝山水图',
@@ -78,6 +79,9 @@ export default new Vuex.Store({
     },
     setShowItem(state, item) {
       state.showItem = item
+    },
+    setUserId(state, id) {
+      state.user_id = id
     }
   },
   

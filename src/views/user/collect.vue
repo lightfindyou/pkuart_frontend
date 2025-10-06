@@ -65,8 +65,12 @@ export default {
             this.showGalleryFrom = false;
         },
         async fetchCollect() {
-            console.log('请求收藏列表');
-            const url = `http://47.122.63.229:5055/api/getFavorite`
+            const id = localStorage.getItem('user_id');
+            if (id) {
+                this.$store.commit('setUserId', id);
+            }
+            console.log('请求收藏列表, id:', id);
+            const url = `http://47.122.63.229:5055/api/getFavorite?user_id=${id}`
             const res = await axios.get(url)
             //// 处理返回结果
             this.list = res.data.artworks.map(item => ({
@@ -85,7 +89,7 @@ export default {
               labels: item.标签
               // 可添加其他需要的字段
             }));
-            console.log(this.list, '===收藏列表');
+            //console.log(this.list, '===收藏列表');
         },
     }
 }

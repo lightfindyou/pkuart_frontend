@@ -34,6 +34,8 @@ export default {
                 const res = await axios.get(url)
                 console.log(res.data, '===res');
                 if ( res.data.message && res.data.message === 'Login successful') {
+                    this.$store.commit('setUserId', res.data.user_id);
+                    localStorage.setItem('user_id', res.data.user_id);
                     this.$router.push('/gallery')
                 } else if (res.data.error) {
                     this.$message.error(res.data.error);
