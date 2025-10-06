@@ -37,7 +37,11 @@ export default {
                 this.$set(this.expandedList, index, !this.expandedList[index]);
         },
         async fetchRatings() {
-            const res = await axios.get('http://47.122.63.229:5055/api/getVote?num=10')
+            const id = localStorage.getItem('user_id');
+            if (id) {
+                this.$store.commit('setUserId', id);
+            }
+            const res = await axios.get('http://47.122.63.229:5055/api/getVote?num=10&user_id=' + id)
             console.log(res.data)
             this.votes = res.data;
             console.log(this.votes, '===votes');
