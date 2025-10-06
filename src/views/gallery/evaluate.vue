@@ -239,12 +239,18 @@ export default {
             this.$router.back();
         },
         handleSbm() {
+            //get user_id from localStorage
+            const id = localStorage.getItem('user_id');
+            if (id) {
+                this.$store.commit('setUserId', id);
+            }
             this.$router.back();
             console.log(this.textarea, '-----');
             const url = `http://47.122.63.229:5055/api/feedback`
             const payload = {
                 evaluation_id: "12345",
-                feedback: this.textarea
+                feedback: this.textarea,
+                id: id,
             };
             axios.post(url, payload, {headers: { 'Content-Type': 'application/json' } });
             console.log('commit feedback over', this.textarea);

@@ -34,7 +34,12 @@ export default {
             this.$set(this.isExpanded, index, !this.isExpanded[index]);
         },
         async fetchFeedback() {
-            const res = await axios.get('http://47.122.63.229:5055/api/getFeedback?num=10')
+            const id = localStorage.getItem('user_id');
+            if (id) {
+                this.$store.commit('setUserId', id);
+            }
+            const url = `http://47.122.63.229:5055/api/getFeedback?num=10&user_id=${id}`
+            const res = await axios.get(url)
             console.log(res.data)
             this.feedback = res.data.latest_feedback;
             console.log(this.feedback, '===feedback');
