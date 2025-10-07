@@ -117,17 +117,19 @@ export default {
   z-index: 2;
   
   .nav_left {
-    width: 340px;
-    height: 62px;
-    border-radius: 0px 0px 0px 0px;
+      width: 24rem; /* 使用rem单位自适应 */
+      height: auto;
+      border-radius: 0px;
+      display: flex;
+      align-items: center;
 
-    img {
-      width: 100%;
-      height: 100%;
-      overflow: clip;
-      object-fit: cover;
-      object-position: center;
-    }
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        object-fit: contain;
+        object-position: center;
+      }
   }
 
   .xian {
