@@ -241,32 +241,37 @@ export default {
         background: rgba(255, 255, 255, 0.8);
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        padding: 0 440px 0 437px;
+        justify-content: center;
+        padding: 0 8vw;
         box-sizing: border-box;
-//        gap: 48px; /* 新增：主图和文本区块间距 */
+        gap: 3vw;
 
         .main_img {
-            max-width: 554px;
-            max-height: 862px;
+            max-width: 36vw;
+            max-height: 70vh;
             cursor: pointer;
-            margin-right: 53px; /* 可选：单独增加主图右侧间距 */
+            /* 移除 margin-right，交由 gap 控制 */
 
             img {
-                max-width: 554px;
-                max-height: 862px;
-                width: 100%;
-                height: 100%;
+                max-width: 100%;
+                max-height: 70vh;
+                width: auto;
+                height: auto;
+                display: block;
+                margin: 0 auto;
+                object-fit: contain;
             }
         }
 
         .mian_text {
-            width: 430px;
-            height: 630px;
+            width: 26vw;
+            max-width: 430px;
+            height: 70vh;
+            max-height: 630px;
             background: rgba(255, 255, 255, 0.8);
-            border-radius: 20px 20px 20px 20px;
+            border-radius: 20px;
             border: 1px solid #F7E5E5;
-            padding: 0 30px;
+            padding: 0 2vw;
             box-sizing: border-box;
             position: relative;
 
