@@ -220,6 +220,10 @@ export default {
         text-align: center;
     }
 
+    .title_en.ens {
+        font-family: TimesNewerRoman, 'Times New Roman', Times, serif;
+    }
+
     .swiper_box {
         margin-top: 30px;
         width: 100%;

@@ -7,7 +7,7 @@
 
 
       <div class="es">
-        <img src="../assets/home/center.png" alt="">
+        <img src="../assets/home/center_newRomea.png" alt="">
       </div>
       <div class="btn" @click="btnClick()">
       </div>
