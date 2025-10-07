@@ -323,6 +323,7 @@ export default {
             display: flex;
             align-items: center;
             cursor: pointer;
+            padding: 0 4vw;
 
             img {
                 width: 24px;
@@ -354,28 +355,35 @@ export default {
         background: rgba(255, 255, 255, 0.8);
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        padding: 0 129px 0 129px;
+        justify-content: center;
+        padding: 0 6vw;
         box-sizing: border-box;
+        gap: 3vw;
 
         .main_img {
-            max-width: 490px;
-            max-height: 762px;
+            max-width: 28vw;
+            max-height: 70vh;
             cursor: pointer;
 
             img {
-                width: 100%;
-                height: 100%;
+                max-width: 100%;
+                max-height: 100%;
+                width: auto;
+                height: auto;
+                display: block;
+                object-fit: contain;
             }
         }
 
         .mian_text {
-            width: 1116px;
-            height: 849px;
+            width: 50vw;
+            max-width: 900px;
+            height: 70vh;
+            max-height: 849px;
             background: rgba(255, 255, 255, 0.8);
-            border-radius: 20px 20px 20px 20px;
+            border-radius: 20px;
             border: 1px solid rgba(0, 0, 0, 0.2);
-            padding: 0 17px 0 38px;
+            padding: 0 2vw;
             box-sizing: border-box;
 
             .main_title {
@@ -407,7 +415,8 @@ export default {
                 padding: 0 30px 0 4px;
                 box-sizing: border-box;
                 display: flex;
-                justify-content: space-between;
+                gap: 1vw;
+                justify-content: center;
                 margin-top: 35px;
 
                 .AI_item {
@@ -541,20 +550,22 @@ export default {
             .select_box {
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
-                padding: 0 314px;
+                justify-content: center;
+                gap: 1.5vw;
+                padding: 0 2vw;
                 box-sizing: border-box;
                 margin-top: 82px;
 
                 .select_A,
                 .select_B {
-                    width: 118px;
-                    height: 32px;
-                    line-height: 32px;
+                    min-width: 150px;
+                    height: 38px;
+                    line-height: 38px;
+                    padding: 0 18px;
                     text-align: center;
                     background: #FFFFFF;
                     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-                    border-radius: 18px 18px 18px 18px;
+                    border-radius: 18px;
                     font-weight: 400;
                     font-size: 20px;
                     color: #000000;
@@ -569,11 +580,11 @@ export default {
                 }
 
                 .select_All {
-                    width: 42px;
-                    height: 29px;
+                    min-width: 48px;
+                    height: 38px;
                     background: #FFFFFF;
                     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-                    border-radius: 18px 18px 18px 18px;
+                    border-radius: 18px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -592,11 +603,11 @@ export default {
                 }
 
                 .select_No {
-                    width: 42px;
-                    height: 29px;
+                    min-width: 48px;
+                    height: 38px;
                     background: #FFFFFF;
                     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-                    border-radius: 18px 18px 18px 18px;
+                    border-radius: 18px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
