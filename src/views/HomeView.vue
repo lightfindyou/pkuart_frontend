@@ -17,8 +17,7 @@
         <img src="@/assets/home/main.png" alt="">
       </div>
       <div class="texter fs">
-        北京大学计算艺术实验室「智镜」项目基于中国古代审美立场对大语言模型进行审美评估。本项目旨在构建一个从中国传统审美出发的多模态大模型（LLM）审美评测基准（Bench-mark），项目核心任务是设计一套兼具理论深度与实践效度的审美评测框架，用以量化评估现有主流
-        AI 大模型在理解、诠释及生成中式艺术作品方面的审美能力。研究成果将致力于为 AI 价值对齐、AIGC 内容质量控制等领域提供实证依据与学术参考。
+        北京大学计算艺术实验室「智镜」项目基于中国艺术风格对大语言模型进行审美评估，旨在构建一个从中国传统审美出发的多模态大模型(LLM)审美评测平台，设计一套兼具理论深度与实践效度的审美评测指标体系，用以量化评估现有主流AI大模型在理解、诠释及生成艺术作品方面的审美能力，研究成果将致力于为AI价值对齐、AIGC内容质量控制等领域提供实证依据与学术参考。
       </div>
     </div>
   </div>
@@ -166,7 +165,7 @@ export default {
     font-size: 24px;
     color: #424242;
     line-height: 40px;
-    text-align: justified;
+    text-align: justify;
     font-style: normal;
     text-transform: none;
     margin: 0 auto;

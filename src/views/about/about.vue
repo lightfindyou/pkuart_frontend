@@ -2,8 +2,7 @@
   <div class="about">
     <div class="title ht">关于我们</div>
     <div class="texter fs">
-      北京大学计算艺术实验室「智镜」项目基于中国古代审美立场对大语言模型进行审美评估。本项目旨在构建一个从中国传统审美出发的多模态大模型（LLM）审美评测基准（Bench-mark），项目核心任务是设计一套兼具理论深度与实践效度的审美评测框架，用以量化评估现有主流
-      AI 大模型在理解、诠释及生成中式艺术作品方面的审美能力。研究成果将致力于为 AI 价值对齐、AIGC 内容质量控制等领域提供实证依据与学术参考。
+      北京大学计算艺术实验室「智镜」项目基于中国艺术风格对大语言模型进行审美评估，旨在构建一个从中国传统审美出发的多模态大模型(LLM)审美评测平台，设计一套兼具理论深度与实践效度的审美评测指标体系，用以量化评估现有主流AI大模型在理解、诠释及生成艺术作品方面的审美能力，研究成果将致力于为AI价值对齐、AIGC内容质量控制等领域提供实证依据与学术参考。
     </div>
     <div class="item">
       <div class="item_img">
@@ -11,7 +10,9 @@
       </div>
       <div class="item_right">
         <div class="item_title ht">我们的使命</div>
-        <div class="item_texter fs">基于中国传统审美构建 AI 大模型审美评测体系，同时打造开放平台联结公众与 AI，推动技术透明化与价值对齐。（李老师请改）</div>
+        <div class="item_texter fs">
+          以中国审美为根基，构建 AI模型审美评测体系，打造开放平台，通过审美联结公众与 AI 技术，推动技术透明化和审美对齐。
+        </div>
       </div>
     </div>
     <div class="item item2">
@@ -20,7 +21,9 @@
       </div>
       <div class="item_right">
         <div class="item_title ht">我们的愿景</div>
-        <div class="item_texter fs">让 AI 深度理解中式审美，且其发展始终与公众需求和文化价值紧密相融，实现技术进步与人文关怀的共生。（李老师请改）</div>
+        <div class="item_texter fs">
+          促进全球范围内AI大语言模型的审美能力，促进AI技术发展始终与公众需求、文化价值深度契合。
+        </div>
       </div>
     </div>
     <div class="title ht">我们的团队</div>
@@ -84,6 +87,7 @@ export default {
     font-size: 24px;
     color: #000000;
     line-height: 35px;
+    text-align: justify;
   }
 
   .item {

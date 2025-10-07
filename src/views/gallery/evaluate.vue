@@ -95,8 +95,7 @@
                 </div>
                 <div class="pop_title ht">投票是如何进行的</div>
                 <div class="pop_text">
-                    我们会向您展示来自两个匿名模型的两条回复。请为您认为最佳的回复投票。之后我们会揭晓这些模型。如果您两条回复都喜欢，请使用 “两者差不多好” 按钮。如果您两条都不喜欢，请使用 “两者都不好”
-                    按钮。
+                    点击生成评价，我们将为您生成两条随机的AI评价，请选择您认为最佳的评价。若两条难分高下或您都不喜欢，请点击对应按钮。
                 </div>
                 <div class="pop_main">
                     <div class="main_top">
@@ -687,7 +686,7 @@ export default {
         margin: 0 auto;
         margin-top: 29px;
         width: 401px;
-        height: 90px;
+        height: auto;
         font-weight: 400;
         font-size: 16px;
         color: #000000;
@@ -703,7 +702,7 @@ export default {
         background: rgba(157, 0, 0, 0.8);
         border-radius: 12px 12px 12px 12px;
         margin: 0 auto;
-        margin-top: 28px;
+        margin-top: 18px;
         padding-top: 26px;
         box-sizing: border-box;
 
