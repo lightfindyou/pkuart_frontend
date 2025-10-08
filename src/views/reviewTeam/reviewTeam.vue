@@ -126,6 +126,7 @@ export default {
                 color: rgba(0, 0, 0, 0.69);
                 line-height: 25px;
                 pointer-events: all;
+                padding-bottom: 40px;
             }
         }
 
@@ -157,7 +158,7 @@ export default {
                     box-sizing: border-box;
 
                     .xq_title {
-                        margin-top: 10px;
+                        margin-top: 30px;
                         font-weight: 400;
                         font-size: 24px;
                         color: #FFFFFF;
@@ -191,14 +192,12 @@ export default {
                         width: 100px; /* 根据实际调整 */
                         height: 100px;
                         object-fit: cover;
-                        /* 波浪圆形裁剪 */
-                        //clip-path: path('M50,0 Q60,10 70,0 Q80,10 90,0 Q100,10 100,50 Q100,90 90,100 Q80,90 70,100 Q60,90 50,100 Q40,90 30,100 Q20,90 10,100 Q0,90 0,50 Q0,10 10,0 Q20,10 30,0 Q40,10 50,0 Z');
-//                        background: #fff;
                     }
                 }
 
                 .item_name {
-                    margin-top: 14px;
+                    margin-top: 2px;
+                    margin-bottom: 12px;
                     height: 18px;
                     font-weight: 400;
                     font-size: 16px;
