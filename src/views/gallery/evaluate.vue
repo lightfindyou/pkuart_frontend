@@ -4,83 +4,93 @@
             <iframe height="100%" width="100%" src="http://art.zslyoo.top/bg.html" frameborder="0"></iframe>
         </div>
         <div class="content">
-            <div class="header">
-                <div class="select_box fs">
-                    <span @click="showNotification = !showNotification">选择审美评估模型</span>
-                    <img @click="showNotification = !showNotification" src="@/assets/home/bottom.png" alt="">
-                    <notification v-if="showNotification"></notification>
+            <div v-if="!show">
+                <div class="header">
+                    <div class="select_box fs">
+                        <span @click="showNotification = !showNotification">选择审美评估模型</span>
+                        <img @click="showNotification = !showNotification" src="@/assets/home/bottom.png" alt="">
+                        <notification v-if="showNotification"></notification>
 
+                    </div>
+                    <div class="del" @click="handleDel">
+                        <img src="@/assets/home/gb.png" alt="">
+                    </div>
                 </div>
-                <div class="del" @click="handleDel">
-                    <img src="@/assets/home/gb.png" alt="">
+                <div class="main">
+                    <div class="main_img" @click="handleShow">
+                        <!-- <img src="@/assets/list/1.png" alt=""> -->
+                        <img :src="this.$store.state.showItem.imgs" alt="">
+                    </div>
+                    <div class="mian_text">
+                        <div class="main_title ht">
+                            您认为哪个模型的评价更好？
+                            <div class="icon" @click="handleClose">
+                                <img src="@/assets/homeFrom/qx.png" alt="">
+                            </div>
+                        </div>
+                        <div class="main_box">
+                            <div class="AI_item" :class="getAIItemClass(1)">
+                                <div class="AI_top ht">
+                                    <div class="AI_icon">
+                                        <img src="@/assets/homeFrom/icon.png" alt="">
+                                    </div>
+                                    {{ modelA_name }}
+                                    <div class="copy" v-if="feedbackShow" @click="handleCopy(1)">
+                                        <img src="@/assets/homeFrom/copy.png" alt="">
+                                    </div>
+                                    <div class="zk" v-if="feedbackShow">
+                                        <img src="@/assets/homeFrom/zk.png" @click="handleZk(1)" alt="">
+                                    </div>
+                                </div>
+                                <div class="texter fs" v-html="renderMarkdown($store.state.assessA)"></div>
+                            </div>
+                            <div class="AI_item" :class="getAIItemClass(2)">
+                                <div class="AI_top ht">
+                                    <div class="AI_icon">
+                                        <img src="@/assets/homeFrom/icon.png" alt="">
+                                    </div>
+                                    {{ modelB_name }}
+                                    <div class="copy" v-if="feedbackShow" @click="handleCopy(2)">
+                                        <img src="@/assets/homeFrom/copy.png" alt="">
+                                    </div>
+                                    <div class="zk" v-if="feedbackShow">
+                                        <img src="@/assets/homeFrom/zk.png" @click="handleZk(2)" alt="">
+                                    </div>
+                                </div>
+                                <div class="texter fs" v-html="renderMarkdown($store.state.assessB)"></div>
+                            </div>
+                        </div>
+                        <div class="select_box" v-if="feedbackShow">
+                            <div class="select_A fs" :class="{ 'selected': selectedOption === 'A' }"
+                                @click="selectOption('A')">
+                                {{ selectedOption === 'A' ? '确认提交' : '模型A更好' }}
+                            </div>
+                            <div class="select_All" :class="{ 'selected': selectedOption === 'All' }"
+                                @click="selectOption('All')">
+                                <img src="@/assets/evaluate/all.png" alt="" v-if="selectedOption !== 'All'">
+                                <img src="@/assets/evaluate/all_active.png" alt="" v-if="selectedOption === 'All'">
+
+                            </div>
+                            <div class="select_No" :class="{ 'selected': selectedOption === 'No' }"
+                                @click="selectOption('No')">
+                                <img src="@/assets/evaluate/no.png" alt="" v-if="selectedOption !== 'No'">
+                                <img src="@/assets/evaluate/no_active.png" alt="" v-if="selectedOption === 'No'">
+                            </div>
+                            <div class="select_B fs" :class="{ 'selected': selectedOption === 'B' }"
+                                @click="selectOption('B')">
+                                {{ selectedOption === 'B' ? '确认提交' : '模型B更好' }}
+                            </div>
+                        </div>
+                        <div class="vote_box" v-if="feedbackShow" @click="handleShowDialog" >投票是如何进行的?</div>
+                    </div>
                 </div>
             </div>
-            <div class="main">
-                <div class="main_img">
-                    <!-- <img src="@/assets/list/1.png" alt=""> -->
+            <div v-else class="imgFrom">
+                <div class="img">
+                    <div class="dels" @click="show = false">
+                        <img src="@/assets/home/gb.png" alt="">
+                    </div>
                     <img :src="this.$store.state.showItem.imgs" alt="">
-                </div>
-                <div class="mian_text">
-                    <div class="main_title ht">
-                        您认为哪个模型的评价更好？
-                        <div class="icon" @click="handleClose">
-                            <img src="@/assets/homeFrom/qx.png" alt="">
-                        </div>
-                    </div>
-                    <div class="main_box">
-                        <div class="AI_item" :class="getAIItemClass(1)">
-                            <div class="AI_top ht">
-                                <div class="AI_icon">
-                                    <img src="@/assets/homeFrom/icon.png" alt="">
-                                </div>
-                                {{ modelA_name }}
-                                <div class="copy" v-if="feedbackShow" @click="handleCopy(1)">
-                                    <img src="@/assets/homeFrom/copy.png" alt="">
-                                </div>
-                                <div class="zk" v-if="feedbackShow">
-                                    <img src="@/assets/homeFrom/zk.png" @click="handleZk(1)" alt="">
-                                </div>
-                            </div>
-                            <div class="texter fs" v-html="renderMarkdown($store.state.assessA)"></div>
-                        </div>
-                        <div class="AI_item" :class="getAIItemClass(2)">
-                            <div class="AI_top ht">
-                                <div class="AI_icon">
-                                    <img src="@/assets/homeFrom/icon.png" alt="">
-                                </div>
-                                {{ modelB_name }}
-                                <div class="copy" v-if="feedbackShow" @click="handleCopy(2)">
-                                    <img src="@/assets/homeFrom/copy.png" alt="">
-                                </div>
-                                <div class="zk" v-if="feedbackShow">
-                                    <img src="@/assets/homeFrom/zk.png" @click="handleZk(2)" alt="">
-                                </div>
-                            </div>
-                            <div class="texter fs" v-html="renderMarkdown($store.state.assessB)"></div>
-                        </div>
-                    </div>
-                    <div class="select_box" v-if="feedbackShow">
-                        <div class="select_A fs" :class="{ 'selected': selectedOption === 'A' }"
-                            @click="selectOption('A')">
-                            {{ selectedOption === 'A' ? '确认提交' : '模型A更好' }}
-                        </div>
-                        <div class="select_All" :class="{ 'selected': selectedOption === 'All' }"
-                            @click="selectOption('All')">
-                            <img src="@/assets/evaluate/all.png" alt="" v-if="selectedOption !== 'All'">
-                            <img src="@/assets/evaluate/all_active.png" alt="" v-if="selectedOption === 'All'">
-
-                        </div>
-                        <div class="select_No" :class="{ 'selected': selectedOption === 'No' }"
-                            @click="selectOption('No')">
-                            <img src="@/assets/evaluate/no.png" alt="" v-if="selectedOption !== 'No'">
-                            <img src="@/assets/evaluate/no_active.png" alt="" v-if="selectedOption === 'No'">
-                        </div>
-                        <div class="select_B fs" :class="{ 'selected': selectedOption === 'B' }"
-                            @click="selectOption('B')">
-                            {{ selectedOption === 'B' ? '确认提交' : '模型B更好' }}
-                        </div>
-                    </div>
-                    <div class="vote_box" v-if="feedbackShow" @click="handleShowDialog" >投票是如何进行的?</div>
                 </div>
             </div>
 
@@ -171,6 +181,7 @@ export default {
             textarea: '',//调研内容
             dyShow: false,//是否显示调研
             expandedItem: null, // 当前展开的item，null表示没有展开
+            show: false,
         }
     },
     mounted() {
@@ -182,6 +193,10 @@ export default {
     methods: {
         renderMarkdown(text) {
             return marked(text || '');
+        },
+        //显示大图
+        handleShow() {
+            this.show = true
         },
         //删除
         handleDel() {
@@ -300,6 +315,37 @@ export default {
     .content {
         position: relative;
         z-index: 99;
+
+        .imgFrom {
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+
+
+
+            .img {
+                height: 100%;
+                position: relative;
+
+                .dels {
+                    position: absolute;
+                    right: 29px;
+                    top: 33px;
+                    width: 50px;
+                    height: 50px;
+                    cursor: pointer;
+                }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
     }
 
     .header {

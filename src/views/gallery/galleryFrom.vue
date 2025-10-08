@@ -63,9 +63,7 @@
                 <div class="dels" @click="show = false">
                     <img src="@/assets/home/gb.png" alt="">
                 </div>
-                <!-- <img src="showGalleryFromItem.imgs" alt=""> -->
                 <img :src="showGalleryFromItem.imgs" alt="">
-                 <!-- <img src="@/assets/list/1.png" alt=""> -->
             </div>
         </div>
     </div>
