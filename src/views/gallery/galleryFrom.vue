@@ -12,7 +12,7 @@
                     <img src="@/assets/home/gb.png" alt="">
                 </div>
             </div>
-            <div class="main">
+            <div class="main" @click="showNotification = false">
                 <div class="main_img" @click="handleShow">
                     <img :src="showGalleryFromItem.imgs" alt="">
                 </div>
@@ -206,7 +206,7 @@ export default {
             height: 24px;
             line-height: 24px;
             font-weight: 400;
-            font-size: 24px;
+            font-size: 22px;
             color: #000000;
             display: flex;
             align-items: center;

@@ -323,26 +323,35 @@ export default {
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
+            position: fixed;
 
 
 
             .img {
-                height: 100%;
-                position: relative;
+                max-width: 90vw;
+                max-height: 90vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
 
                 .dels {
                     position: absolute;
-                    right: 29px;
-                    top: 33px;
-                    width: 50px;
-                    height: 50px;
+                    right: 5vw;
+                    top: 3vh;
+                    width: 20px;
+                    height: 20px;
                     cursor: pointer;
+                    
+                    .img {
+                        width: 20px;
+                        height: 20px;
+                    }
                 }
 
                 img {
-                    width: 100%;
-                    height: 100%;
+                    max-width: 100vw;
+                    max-height: 100vh;
+                    object-fit: contain;
                 }
             }
         }
@@ -364,7 +373,7 @@ export default {
             height: 24px;
             line-height: 24px;
             font-weight: 400;
-            font-size: 24px;
+            font-size: 22px;
             color: #000000;
             display: flex;
             align-items: center;
@@ -695,7 +704,7 @@ export default {
 
 /deep/.popup_content {
     width: 529px;
-    height: 433px;
+    height: 393px;
     background: #FFFFFF;
     border-radius: 20px 20px 20px 20px;
     padding-top: 27px 54px 0 74px;
@@ -751,7 +760,14 @@ export default {
         text-align: left;
         font-style: normal;
         text-transform: none;
+        font-family: 'FangSong', 'fs', serif;
     }
+
+@font-face {
+    font-family: 'fs';
+    src: url('@/assets/fonts/fs.ttf') format('truetype');
+    font-display: swap;
+}
 
     .pop_main {
         width: 401px;
