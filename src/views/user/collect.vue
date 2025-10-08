@@ -151,6 +151,7 @@ export default {
             object-fit: cover;
             object-position: center;
             display: block;
+            border-radius: 22px 22px 22px 22px;
         }
 
         .bottom {
