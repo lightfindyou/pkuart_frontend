@@ -85,6 +85,8 @@ export default {
     width: 100%;
     min-height: 100vh;
     display: flex;
+    justify-content: center;
+    align-items: flex-start;
     position: relative;
 }
 
@@ -101,7 +103,7 @@ export default {
     width: 199px;
     height: 725px;
     margin-top: 47px;
-    margin-left: 385px;
+    /* margin-left: 385px; */
     position: relative;
     z-index: 2;
 
