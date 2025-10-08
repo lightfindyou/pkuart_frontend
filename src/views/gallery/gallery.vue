@@ -13,13 +13,16 @@
             <div class="swiper_box">
                 <swiper ref="swiper" :options="swiperOption">
                     <swiper-slide >
-                        <img src="@/assets/list/sw.png" alt="">
+                        <img src="@/assets/list/carusel1.png" alt="">
                     </swiper-slide>
                     <swiper-slide >
-                        <img src="@/assets/list/sw1.png" alt="">
+                        <img src="@/assets/list/carusel2.png" alt="">
                     </swiper-slide>
                     <swiper-slide >
-                        <img src="@/assets/list/sw2.png" alt="">
+                        <img src="@/assets/list/carusel3.png" alt="">
+                    </swiper-slide>
+                    <swiper-slide >
+                        <img src="@/assets/list/carusel4.png" alt="">
                     </swiper-slide>
                 </swiper>
                 <div class="swiper_navigation">
