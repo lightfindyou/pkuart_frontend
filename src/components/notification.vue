@@ -180,6 +180,11 @@ export default {
 			return res;
 		},
 		openSelector(side) {
+			if(this.currentSide === side && this.showSelector) {
+				// 如果点击的是当前已显示的选择框，则隐藏
+				this.showSelector = false;
+				return;
+			}
 			this.showSelector = true;
 			this.searchText = ''; // Clear search text when opening
 			this.currentSide = side; // Track which side is being selected
