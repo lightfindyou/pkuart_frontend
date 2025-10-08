@@ -224,14 +224,14 @@ export default {
 .routerDom {
   text-decoration: none;
   font-weight: 300;
-  font-size: 1rem;
+  font-size: .9rem;
   color: #777E90;
 }
 
 .routerDom_active {
   text-decoration: none;
   font-weight: 400;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   color: #B53334;
 }
 
