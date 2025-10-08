@@ -141,7 +141,7 @@
                 感谢您的投票！请留下您的宝贵反馈
             </div>
             <div class="dy_btn_box">
-                <div class="dy_btn" v-for="item in 6" :key="item">预填选项</div>
+                <div class="dy_btn" v-for="item in voteOptions" :key="item">{{ item }}</div>
             </div>
             <div class="dy_texter">
                 <el-input type="textarea" class="textarea" placeholder="请输入内容" v-model="textarea" maxlength="50"
@@ -182,6 +182,15 @@ export default {
             dyShow: false,//是否显示调研
             expandedItem: null, // 当前展开的item，null表示没有展开
             show: false,
+            voteOptions: ["作品信息准确",
+                         "内容描述准确",
+                          "社会功能",
+                          "构图分析准确",
+                          "风格分析",
+                          "细节分析",
+                          "笔墨分析", 
+                          "意境分析",   
+                          "媒介材料分析"]
         }
     },
     directives: {
@@ -966,7 +975,7 @@ export default {
 
 .dy_box {
     width: 582px;
-    height: 612px;
+    height: 712px;
     background: linear-gradient(180deg, #EBA6A6 0%, #FCDFDF 50%, #FFFFFF 100%);
     border-radius: 23px 23px 23px 23px;
     padding: 0 24px;
@@ -1011,6 +1020,7 @@ export default {
         display: flex;
         flex-wrap: wrap;
         gap: 24px;
+        justify-content: center;
 
         .dy_btn {
             width: 133px;
