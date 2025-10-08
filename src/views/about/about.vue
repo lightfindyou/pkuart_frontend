@@ -148,6 +148,7 @@ export default {
   .title_box {
     margin: 0 auto;
     margin-top: 29px;
+    margin-bottom: 63px;
     width: 1042px;
     display: flex;
     justify-content: space-between;
