@@ -78,17 +78,19 @@ export default {
 </script>
 
 <style lang="less" scoped>
+
 .reviewTeam {
     width: 100%;
-    min-height: 1100px;
+    min-height: unset;
+    height: auto;
     position: relative;
 
     .bg {
         position: absolute;
         left: 0;
         top: 0;
-        height: 100%;
         width: 100%;
+        height: 100%; /* 保持背景覆盖，但不影响内容自适应 */
         z-index: 1;
     }
 
@@ -97,6 +99,7 @@ export default {
         z-index: 2;
         padding: 0 275px;
         box-sizing: border-box;
+        height: auto;
 
         .content_top {
             margin-top: 90px;
@@ -132,6 +135,7 @@ export default {
             gap: 3vx;
             justify-items: center;
             align-items: center;
+            padding-bottom: 63px;
 
             .list_item {
                 width: 108px;
