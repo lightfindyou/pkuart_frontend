@@ -127,10 +127,11 @@ export default {
         }
 
         .list {
-            margin-top: 30px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 29px;
+            display: grid;
+            grid-template-columns: repeat(7, 1fr); /* 8列，可根据实际头像数量调整 */
+            gap: 3vx;
+            justify-items: center;
+            align-items: center;
 
             .list_item {
                 width: 108px;
