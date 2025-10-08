@@ -130,29 +130,27 @@
                 </div>
             </div>
         </el-dialog>
-        <div class="dy_box" v-if="dyShow">
-            <div class="my_dialog_box" id="my_dialog_box" v-drag >
-                <div class="dy_title">
-                    📝调研
-                    <div class="icon" @click="dyClose">
-                        <img src="@/assets/homeFrom/qx.png" alt="">
-                    </div>
+        <div class="dy_box" v-if="dyShow" id="dy_box_id" v-drag >
+            <div class="dy_title">
+                📝调研
+                <div class="icon" @click="dyClose">
+                    <img src="@/assets/homeFrom/qx.png" alt="">
                 </div>
-                <div class="dy_text">
-                    感谢您的投票！请留下您的宝贵反馈
+            </div>
+            <div class="dy_text">
+                感谢您的投票！请留下您的宝贵反馈
+            </div>
+            <div class="dy_btn_box">
+                <div class="dy_btn" v-for="item in 6" :key="item">预填选项</div>
+            </div>
+            <div class="dy_texter">
+                <el-input type="textarea" class="textarea" placeholder="请输入内容" v-model="textarea" maxlength="50"
+                    show-word-limit></el-input>
+                <div class="dy_sbm" @click="handleSbm">提交反馈
+                    <img src="@/assets/evaluate/sbm.png" alt="">
                 </div>
-                <div class="dy_btn_box">
-                    <div class="dy_btn" v-for="item in 6" :key="item">预填选项</div>
-                </div>
-                <div class="dy_texter">
-                    <el-input type="textarea" class="textarea" placeholder="请输入内容" v-model="textarea" maxlength="50"
-                        show-word-limit></el-input>
-                    <div class="dy_sbm" @click="handleSbm">提交反馈
-                        <img src="@/assets/evaluate/sbm.png" alt="">
-                    </div>
-                </div>
-                <div class="go_btn" @click="handleGo">跳过并返回</div>
-            </div> 
+            </div>
+            <div class="go_btn" @click="handleGo">跳过并返回</div>
         </div>
     </div>
 </template>
@@ -186,6 +184,63 @@ export default {
             show: false,
         }
     },
+    directives: {
+        drag: {
+            inserted: function (el, binding, vnode) {
+                console.log('drag inserted-----');
+                vnode = vnode.elm
+
+                el.onmousedown = ((event) => {
+                    if (event.target.className !== "dy_title") {
+                        return
+                    }
+
+                    // 获取鼠标在弹窗中的位置
+                    let mouseX = event.clientX - vnode.offsetLeft
+                    let mouseY = event.clientY - vnode.offsetTop
+
+                    // 绑定移动和停止函数
+                    document.onmousemove = ((event) => {
+                        let left, top
+
+                        // 获取新的鼠标位置(event.clientX, event.clientY)
+                        // 弹窗应该在的位置(left, top)
+                        left = event.clientX - mouseX
+                        top = event.clientY - mouseY
+
+
+                        // 获取弹窗在页面中距X轴的最小、最大 位置
+                        let minX = 0
+                        let maxX = window.innerWidth
+                        if (left <= minX) {
+                            left = minX
+                        } else if (left >= maxX) {
+                            left = maxX
+                        }
+
+                        // 获取弹窗在页面中距Y轴的最小、最大 位置
+                        let minY = 0
+                        let maxY =window.innerHeight
+                        if (top <= minY) {
+                            top = minY
+                        } else if (top >= maxY) {
+                            top = maxY
+                        }
+                        // 赋值移动
+                        vnode.style.left = left + 'px'
+                        vnode.style.top = top + 'px'
+                    })
+                    document.onmouseup = (() => {
+                        document.onmousemove = document.onmouseup = null
+                    })
+                })
+                window.onresize = (() => {
+                    vnode.style.left = "50%"
+                    vnode.style.top = "50%"
+                })
+            }
+        },
+    },         
     mounted() {
         console.log(this.$store.state.showItem, 'showItem-----');
         setTimeout(() => {
