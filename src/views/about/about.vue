@@ -34,6 +34,8 @@
         <div class="type_zw fs">北京大学艺术学院教授</div>
         <div class="type_name ht">张航宇</div>
         <div class="type_zw fs">北京大学博士、 福建农林大学副教授</div>
+        <div class="type_name ht">靳晓忠</div>
+        <div class="type_zw fs">华中科技大学博士、 莆田学院副教授</div>
       </div>
       <div class="type_item">
         <div class="type_title ht">管理团队</div>
