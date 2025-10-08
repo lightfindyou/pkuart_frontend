@@ -18,7 +18,6 @@
                 </div>
                 <div class="main">
                     <div class="main_img" @click="handleShow">
-                        <!-- <img src="@/assets/list/1.png" alt=""> -->
                         <img :src="this.$store.state.showItem.imgs" alt="">
                     </div>
                     <div class="mian_text">
@@ -411,22 +410,27 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0 6vw;
+        padding: 0vh 6vh 6vh 6vw;
         box-sizing: border-box;
         gap: 3vw;
 
         .main_img {
             max-width: 28vw;
-            max-height: 70vh;
+            max-height: calc(70vh - 40px);
             cursor: pointer;
+            margin-bottom: 20px; /* 距离下边界 */
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
 
             img {
-                max-width: 100%;
-                max-height: 100%;
+                max-width: 100vw;
+                max-height: 60vh;
                 width: auto;
                 height: auto;
                 display: block;
                 object-fit: contain;
+                margin: 0 auto;
             }
         }
 
