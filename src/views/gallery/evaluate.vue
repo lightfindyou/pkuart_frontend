@@ -16,7 +16,7 @@
                         <img src="@/assets/home/gb.png" alt="">
                     </div>
                 </div>
-                <div class="main">
+                <div class="main" @click="showNotification = false">
                     <div class="main_img" @click="handleShow">
                         <img :src="this.$store.state.showItem.imgs" alt="">
                     </div>
@@ -94,7 +94,10 @@
             </div>
 
         </div>
-        <el-dialog :visible.sync="dialogVisible" :show-close="false" :append-to-body="true">
+        <el-dialog :visible.sync="dialogVisible" :show-close="false" :append-to-body="true" class="draggable-dialog" >
+            <template #title>
+                <span class="ht draggable-dialog-header">投票是如何进行的</span>
+            </template>
             <div class="popup_content">
                 <div class="del" @click="handleCloseDialog">
                     <img src="@/assets/evaluate/del.png" alt="">
@@ -102,7 +105,6 @@
                 <div class="pop_icon">
                     <img src="@/assets/evaluate/ts.png" mode="scaleToFill" />
                 </div>
-                <div class="pop_title ht">投票是如何进行的</div>
                 <div class="pop_text">
                     点击生成评价，我们将为您生成两条随机的AI评价，请选择您认为最佳的评价。若两条难分高下或您都不喜欢，请点击对应按钮。
                 </div>
@@ -126,30 +128,31 @@
                         <div class="btnB">模型B更好</div>
                     </div>
                 </div>
-
             </div>
         </el-dialog>
         <div class="dy_box" v-if="dyShow">
-            <div class="dy_title">
-                📝调研
-                <div class="icon" @click="handleGo">
-                    <img src="@/assets/homeFrom/qx.png" alt="">
+            <div class="my_dialog_box" id="my_dialog_box" v-drag >
+                <div class="dy_title">
+                    📝调研
+                    <div class="icon" @click="dyClose">
+                        <img src="@/assets/homeFrom/qx.png" alt="">
+                    </div>
                 </div>
-            </div>
-            <div class="dy_text">
-                感谢您的投票！请留下您的宝贵反馈
-            </div>
-            <div class="dy_btn_box">
-                <div class="dy_btn" v-for="item in 6" :key="item">预填选项</div>
-            </div>
-            <div class="dy_texter">
-                <el-input type="textarea" class="textarea" placeholder="请输入内容" v-model="textarea" maxlength="50"
-                    show-word-limit></el-input>
-                <div class="dy_sbm" @click="handleSbm">提交反馈
-                    <img src="@/assets/evaluate/sbm.png" alt="">
+                <div class="dy_text">
+                    感谢您的投票！请留下您的宝贵反馈
                 </div>
-            </div>
-            <div class="go_btn" @click="handleGo">跳过并返回</div>
+                <div class="dy_btn_box">
+                    <div class="dy_btn" v-for="item in 6" :key="item">预填选项</div>
+                </div>
+                <div class="dy_texter">
+                    <el-input type="textarea" class="textarea" placeholder="请输入内容" v-model="textarea" maxlength="50"
+                        show-word-limit></el-input>
+                    <div class="dy_sbm" @click="handleSbm">提交反馈
+                        <img src="@/assets/evaluate/sbm.png" alt="">
+                    </div>
+                </div>
+                <div class="go_btn" @click="handleGo">跳过并返回</div>
+            </div> 
         </div>
     </div>
 </template>
@@ -195,6 +198,7 @@ export default {
         },
         //显示大图
         handleShow() {
+            console.log('show image in evaluate-----');
             this.show = true
         },
         //删除
@@ -205,6 +209,9 @@ export default {
         handleClose() {
             this.$router.go(-1)
         },
+        dyClose() {
+            this.dyShow = false;
+        },
         //选择选项
         selectOption(option) {
             console.log(this.selectedOption, option, '-----');
@@ -213,10 +220,7 @@ export default {
                 this.dyShow = true;
             }
             this.selectedOption = option;
-
         },
-
-        //获取选项类名
         getAIItemClass(itemIndex) {
             let classes = [];
 
@@ -424,7 +428,7 @@ export default {
             justify-content: center;
 
             img {
-                max-width: 100vw;
+                max-width: 30vw;
                 max-height: 60vh;
                 width: auto;
                 height: auto;
@@ -691,9 +695,7 @@ export default {
 
 }
 
-/deep/.el-dialog__header {
-    display: none;
-}
+
 
 /deep/.el-dialog {
     width: 529px;
