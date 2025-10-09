@@ -20,7 +20,7 @@
         <img src="@/assets/home/select.png" alt="">
         <el-input v-model="searchText" @keyup.native.enter="handleSearch" placeholder="请输入内容" />
       </div>
-      <router-link v-if="login" to="/user" class="logo" @click="handleSelect('user')">
+      <router-link v-if="login" class="logo" to="/user" @click="handleSelect('user')">
         <div class="imgs">
           <img src="@/assets/user/tx.png" alt="">
         </div>
@@ -108,16 +108,23 @@ export default {
 </script>
 <style lang="less" scoped>
 
-.nav {
-  height: 5.63rem;
-  display: flex;
-  align-items: center;
-  padding: 0 4rem;
-  border-bottom: 1px solid #CECECE;
-  z-index: 2;
-  
-  .nav_left {
-      width: 24rem; /* 使用rem单位自适应 */
+  .nav {
+    height: 5.63rem;
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    min-width: 0;
+    margin: 0;
+    padding: 0 4rem;
+    border-bottom: 1px solid #CECECE;
+    z-index: 2;
+    box-sizing: border-box;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-50%);
+    .nav_left {
+        max-width: 15vw; /* 使用vw单位自适应 */
       height: auto;
       border-radius: 0px;
       display: flex;
@@ -141,12 +148,12 @@ export default {
   }
 
   .select {
-    width: 25.94rem;
+    width: 40rem;
     height: 2.5rem;
     background: rgba(255, 255, 255, 0.25);
     border-radius: 2.69rem 2.69rem 2.69rem 2.69rem;
     border: 0.04rem solid #CECECE;
-    margin: 0 16rem 0 9rem;
+    margin: 0 9rem 0 6rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -162,6 +169,12 @@ export default {
       border: none;
       background: transparent;
     }
+  }
+
+  .logo {
+    margin-left: auto;
+    margin-right: 2rem;
+    text-decoration: none;
   }
 
   .login {
@@ -207,7 +220,7 @@ export default {
   }
 
   .nav_right {
-    width: 35rem;
+    max-width: 65rem;
     height: 2.5rem;
     background: rgba(255, 255, 255, 0.25);
     border-radius: 1.25rem 1.25rem 1.25rem 1.25rem;
@@ -216,7 +229,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    padding: 0 40px;
+    padding: 0 2.5rem;
     box-sizing: border-box;
   }
 }
@@ -226,6 +239,9 @@ export default {
   font-weight: 300;
   font-size: .9rem;
   color: #777E90;
+  white-space: nowrap;
+  margin-left: .5rem;
+  margin-right: .5rem;
 }
 
 .routerDom_active {
@@ -233,6 +249,9 @@ export default {
   font-weight: 400;
   font-size: 1.15rem;
   color: #B53334;
+  white-space: nowrap;
+  margin-left: .2rem;
+  margin-right: .2rem;
 }
 
 #app {
