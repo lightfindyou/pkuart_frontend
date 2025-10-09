@@ -2,7 +2,12 @@
     <div class="tab_list">
         <div class="item" v-for="(item, index) in list" :key="index" @click="handleShow(item)">
             <img :src="item.imgs" alt="">
-            <div class="bottom">
+            <div class="titles">{{ item.title }}</div>
+            <div class="model_box">
+                <div class="model_title">
+                    <img src="@/assets/user/cup.png" alt="">
+                    <div class="fixed_title">胜出大模型评估</div>
+                </div>>
                 <div class="titles">{{ item.title }}</div>
                 <div class="titles_en ens">{{ item.title_en }}</div>
                 <div class="name">{{ item.name }}</div>
@@ -149,7 +154,17 @@ export default {
             border-radius: 22px 22px 22px 22px;
         }
 
-        .bottom {
+        .titles {
+            font-family: 'STFangsong', SimSun, sans-serif;
+            margin-top: 15px;
+            height: 22px;
+            font-weight: 400;
+            font-size: 16px;
+            color: #FFFFFF;
+            line-height: 22px;
+        }
+
+        .model_box {
             position: absolute;
             bottom: 0;
             left: 0;
@@ -160,6 +175,23 @@ export default {
             border-radius: 22px 22px 22px 22px;
             padding: 0 20px 0 15px;
             box-sizing: border-box;
+
+            .model_title {
+                display: flex;
+                align-items: center;
+                margin-top: 15px;
+                img {
+                    width: 18px;
+                    height: 18px;
+                    margin-right: 8px;
+                }
+                .fixed_title {
+                    font-family: "STHeiti", "Hiragino Sans GB", "Arial", sans-serif;
+                    font-size: 10px;
+                    color: #fff;
+                    font-weight: 500;
+                }
+            }
 
             .titles {
                 margin-top: 15px;
