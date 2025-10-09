@@ -28,6 +28,7 @@
                 <collect v-if="itemIndex === 0"></collect>
                 <voteHistory v-if="itemIndex === 1"></voteHistory>
                 <feedback v-if="itemIndex === 2"></feedback>
+                <voteAndFeedback v-if="itemIndex === 3"></voteAndFeedback>
             </div>
         </div>
     </div>
@@ -36,6 +37,8 @@
 import collect from './collect.vue'
 import voteHistory from './voteHistory.vue'
 import feedback from './feedback.vue'
+import voteAndFeedback from './voteAndFeedback.vue'
+
 export default {
     name: 'UserView',
     data() {
@@ -60,15 +63,21 @@ export default {
                     name: '我的反馈/评论',  
                     title: '反馈',
                     icon: require('@/assets/user/icon.png'),
-                }
+                },
+                {
+                    name: '历史投票与反馈',
+                    title: '历史投票与反馈',
+                    icon: require('@/assets/user/icon.png'),
+                },
             ],
-            itemIndex: 0,
+            itemIndex: 3,
         }
     },
     components: {
         collect,
         voteHistory,
         feedback,
+        voteAndFeedback,
     },
     methods: {
         handleItemIndex(index) {

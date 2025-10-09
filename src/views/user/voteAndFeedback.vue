@@ -105,11 +105,13 @@ export default {
 
     .item {
 
-        width: 270px;
+        width: 18vw;
+        height: 36vh;
         break-inside: avoid;
         margin-bottom: 40px;
-        background-color: #ccc;
+        background-color: #fff;
         border-radius: 22px 22px 22px 22px;
+        opacity: 1;
         position: relative;
         cursor: pointer;
         pointer-events: auto;
@@ -117,28 +119,30 @@ export default {
         object-position: center; /* 可选：将图片居中显示 */
 
 
-        &:nth-child(n) {
-            height: 296px;
-            object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
-            object-position: center; /* 可选：将图片居中显示 */
-        }
-
-        &:nth-child(2n) {
-//            height: 435px;
-            height: 296px;
-            object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
-            object-position: center; /* 可选：将图片居中显示 */
-        }
-
-        &:nth-child(3n) {
-            height: 296px;
-            object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
-            object-position: center; /* 可选：将图片居中显示 */
-        }
+//        &:nth-child(n) {
+//            height: 296px;
+//            object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
+//            object-position: center; /* 可选：将图片居中显示 */
+//        }
+//
+//        &:nth-child(2n) {
+////            height: 435px;
+//            height: 296px;
+//            object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
+//            object-position: center; /* 可选：将图片居中显示 */
+//        }
+//
+//        &:nth-child(3n) {
+//            height: 296px;
+//            object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
+//            object-position: center; /* 可选：将图片居中显示 */
+//        }
 
         img {
-            width: 100%;
-            height: 100%;
+            margin: 1rem 1rem 1rem 1rem;
+            max-width: 16vw;
+            width: 16vw;
+            height: 20vh;
             object-fit: cover;
             object-position: center;
             display: block;
