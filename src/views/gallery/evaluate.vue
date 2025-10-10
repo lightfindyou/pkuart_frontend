@@ -643,6 +643,7 @@ export default {
                         font-weight: 400;
                         font-size: 16px;
                         line-height: 22px;
+                        height:39vh;
                         max-height: 432px;
                         overflow-y: auto;
                         line-height: 1.6;
