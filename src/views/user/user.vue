@@ -207,7 +207,9 @@ export default {
     margin-top: 47px;
     margin-left: 55px;
     width: 921px;
-    height: 725px;
+    //height: 725px;
+    height: auto;
+    max-height: 944px;
     background: rgba(255, 255, 255, 0.8);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     border-radius: 20px 20px 20px 20px;

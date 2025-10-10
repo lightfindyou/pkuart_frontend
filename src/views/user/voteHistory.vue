@@ -41,7 +41,7 @@ export default {
             if (id) {
                 this.$store.commit('setUserId', id);
             }
-            const res = await axios.get('http://47.122.63.229:5055/api/getVote?num=10&user_id=' + id)
+            const res = await axios.get('http://47.122.63.229:5055/api/getVote?num=4&user_id=' + id)
             console.log(res.data)
             this.votes = res.data;
             console.log(this.votes, '===votes');

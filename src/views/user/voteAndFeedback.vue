@@ -3,11 +3,23 @@
         <div class="item" v-for="(item, index) in list" :key="index" @click="handleShow(item)">
             <img :src="item.imgs" alt="">
             <div class="titles">{{ item.title }}</div>
-            <div class="model_box">
                 <div class="model_title">
                     <img src="@/assets/user/cup.png" alt="">
                     <div class="fixed_title">胜出大模型评估</div>
-                </div>>
+                </div>
+                <div class="model_context">
+                    <div class="model_name">doubao_1.5</div>
+                    <div class="model_output">这里是胜出模型的文本。这里是胜出模型的文本这里是胜出模型
+                        的文本这里是胜出模型的文本这里是胜出模型的文本……（仿宋胜出大模型评估)
+                    </div>
+                </div>
+                <div class="feedback_box">
+                    <div class="feedback">这里是专家反馈（字体：仿宋）这里是专家反馈（字体：仿宋）
+                        这里是专家反馈（字体：仿宋）这里是专家反馈（字体：仿宋）…… 最多三行
+                    </div>
+                    <div class="date">2025.09.04</div>
+                </div>
+                <!--
                 <div class="titles">{{ item.title }}</div>
                 <div class="titles_en ens">{{ item.title_en }}</div>
                 <div class="name">{{ item.name }}</div>
@@ -15,7 +27,9 @@
                     <img v-if="item.type === 1" src="@/assets/home/icon1.png" alt="">
                     <img v-if="item.type === 2" src="@/assets/home/icon2.png" alt="">
                 </div>
+            <div class="model_box">
             </div>
+                -->
         </div>
         <GalleryFrom :showGalleryFromItem="showGalleryFromItem" @handleDel="handleDel" v-if="showGalleryFrom"></GalleryFrom>
     </div>
@@ -109,11 +123,9 @@ export default {
     columns: 3;
 
     .item {
-
-        width: 18vw;
-        height: 36vh;
+        width: 265px;
+        height: 355px;
         break-inside: avoid;
-        margin-bottom: 40px;
         background-color: #fff;
         border-radius: 22px 22px 22px 22px;
         opacity: 1;
@@ -122,32 +134,21 @@ export default {
         pointer-events: auto;
         object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
         object-position: center; /* 可选：将图片居中显示 */
+        margin-bottom: 15px;
 
 
 //        &:nth-child(n) {
-//            height: 296px;
-//            object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
-//            object-position: center; /* 可选：将图片居中显示 */
+//            height: 355px;
 //        }
 //
 //        &:nth-child(2n) {
-////            height: 435px;
-//            height: 296px;
-//            object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
-//            object-position: center; /* 可选：将图片居中显示 */
-//        }
-//
-//        &:nth-child(3n) {
-//            height: 296px;
-//            object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
-//            object-position: center; /* 可选：将图片居中显示 */
+//            height: 495px;
 //        }
 
         img {
             margin: 1rem 1rem 1rem 1rem;
-            max-width: 16vw;
-            width: 16vw;
-            height: 20vh;
+            width: 237px;
+            height: 170px;
             object-fit: cover;
             object-position: center;
             display: block;
@@ -160,79 +161,133 @@ export default {
             height: 22px;
             font-weight: 400;
             font-size: 16px;
-            color: #FFFFFF;
             line-height: 22px;
+            margin-left: 16px;
         }
 
-        .model_box {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 270px;
-            height: 142px;
-            background: rgba(0, 0, 0, 0.6);
-            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-            border-radius: 22px 22px 22px 22px;
-            padding: 0 20px 0 15px;
-            box-sizing: border-box;
+        .model_title {
+            display: flex;
+            align-items: center;
+            margin-top: 6px;
+            height: 10px;
+            img {
+                width: 18px;
+                height: 18px;
+                margin-right: 8px;
+            }
+            .fixed_title {
+                font-family: "STHeiti", "Hiragino Sans GB", "Arial", sans-serif;
+                font-size: 10px;
+                font-weight: 500;
+                margin-top: 2px;
+                height: 15px;
+                font-size: 10px;
+            }
+        }
 
-            .model_title {
-                display: flex;
+        .model_context {
+            display: flex;
+            align-items: center;
+            margin: 15px auto 0 auto; // 居中
+            margin-top: 15px;
+            background-color: #f1f1f1;
+            width: 235px;
+            height: 46px;
+            border-radius: 4px;
+            .model_name{
+                width: 51px;
+                height: 13px;
+                border-radius: 6.5px;
+                margin-right: 8px;
+                margin-left: 8px;
+                font-size: 8px;
+                background-color: #22c55e;
                 align-items: center;
-                margin-top: 15px;
-                img {
-                    width: 18px;
-                    height: 18px;
-                    margin-right: 8px;
-                }
-                .fixed_title {
-                    font-family: "STHeiti", "Hiragino Sans GB", "Arial", sans-serif;
-                    font-size: 10px;
-                    color: #fff;
-                    font-weight: 500;
-                }
+                justify-content: center;
+                margin-bottom: 14px;
             }
-
-            .titles {
-                margin-top: 15px;
-                height: 22px;
-                font-weight: 400;
-                font-size: 16px;
-                color: #FFFFFF;
-                line-height: 22px;
-            }
-
-            .titles_en {
-                height: 22px;
-                font-weight: 400;
-                font-size: 12px;
-                color: #B4B4B4;
-                line-height: 22px;
-                margin-top: 5px;
-            }
-
-            .name {
-                margin-top: 30px;
-                height: 22px;
-                font-weight: 400;
-                font-size: 12px;
-                color: #D9D9D9;
-                line-height: 22px;
-            }
-
-            .icon {
-                width: 38px;
-                height: 38px;
-                position: absolute;
-                right: 20px;
-                bottom: 20px;
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                }
+            .model_output{
+                font-family: "STHeiti", "Hiragino Sans GB", "Arial", sans-serif;
+                font-size: 8px;
+                font-weight: 500;
             }
         }
+
+        .feedback_box {
+            display: flex;
+            align-items: center;
+            margin-top: 9px;
+            .feedback{
+                width: 195px;
+                height: 39px;
+                border-radius: 14px;
+                font-size: 8px;
+                font-family: "FangSong", "仿宋", serif;
+                margin-left: 17px;
+                margin-right: 15px;
+            }
+            .date{
+                font-family: "FangSong", "仿宋", serif;
+                font-size: 8px;
+                font-weight: 500;
+                margin-right: 12px;
+                margin-bottom: 13px;
+            }
+        }
+
+//        .model_box {
+//            position: absolute;
+//            bottom: 0;
+//            left: 0;
+//            width: 270px;
+//            height: 142px;
+////            background: rgba(0, 0, 0, 0.6);
+////            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+//            border-radius: 22px 22px 22px 22px;
+//            padding: 0 20px 0 15px;
+//            box-sizing: border-box;
+//
+//
+//            .titles {
+//                margin-top: 15px;
+//                height: 22px;
+//                font-weight: 400;
+//                font-size: 16px;
+//                color: #FFFFFF;
+//                line-height: 22px;
+//            }
+//
+//            .titles_en {
+//                height: 22px;
+//                font-weight: 400;
+//                font-size: 12px;
+//                color: #B4B4B4;
+//                line-height: 22px;
+//                margin-top: 5px;
+//            }
+//
+//            .name {
+//                margin-top: 30px;
+//                height: 22px;
+//                font-weight: 400;
+//                font-size: 12px;
+//                color: #D9D9D9;
+//                line-height: 22px;
+//            }
+//
+//            .icon {
+//                width: 38px;
+//                height: 38px;
+//                position: absolute;
+//                right: 20px;
+//                bottom: 20px;
+//
+//                img {
+//                    width: 100%;
+//                    height: 100%;
+//                }
+//            }
+//        }
     }
 }
 

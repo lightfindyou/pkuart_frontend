@@ -38,7 +38,7 @@ export default {
             if (id) {
                 this.$store.commit('setUserId', id);
             }
-            const url = `http://47.122.63.229:5055/api/getFeedback?num=10&user_id=${id}`
+            const url = `http://47.122.63.229:5055/api/getFeedback?num=4&user_id=${id}`
             const res = await axios.get(url)
             console.log(res.data)
             this.feedback = res.data.latest_feedback;
