@@ -514,8 +514,8 @@ export default {
             box-sizing: border-box;
 
             .main_title {
-                height: 89px;
-                line-height: 89px;
+                height: 8.9vh;
+                line-height: 8.9vh;
                 display: flex;
                 align-items: center;
                 position: relative;
@@ -526,10 +526,10 @@ export default {
 
                 .icon {
                     position: absolute;
-                    right: 7px;
-                    top: 26px;
-                    width: 39px;
-                    height: 39px;
+                    right: 0vw;
+                    top: 2.6vh;
+                    width: 3.9vh;
+                    height: 3.9vh;
 
                     img {
                         width: 100%;
@@ -544,12 +544,14 @@ export default {
                 display: flex;
                 gap: 1vw;
                 justify-content: center;
-                margin-top: 35px;
+                margin-top: 2.5vh;
 
                 .AI_item {
                     width: 490px;
                     min-height: 104px;
                     max-height: 519px;
+                    //height: 336px;
+                    height: 47vh;
                     background: #FFFFFF;
                     border-radius: 12px 12px 12px 12px;
                     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
@@ -662,8 +664,8 @@ export default {
             }
 
             .vote_box {
-                margin-top: 22px;
-                height: 16px;
+                margin-top: 1.5vh;
+                height: 1.6vh;
                 line-height: 16px;
                 font-weight: 300;
                 font-size: 16px;
@@ -681,12 +683,12 @@ export default {
                 gap: 1.5vw;
                 padding: 0 2vw;
                 box-sizing: border-box;
-                margin-top: 82px;
+                margin-top: 1.5vh;
 
                 .select_A,
                 .select_B {
                     min-width: 150px;
-                    height: 38px;
+                    height: 4.2vh;
                     line-height: 38px;
                     padding: 0 18px;
                     text-align: center;
@@ -708,7 +710,7 @@ export default {
 
                 .select_All {
                     min-width: 48px;
-                    height: 38px;
+                    height: 4.2vh;
                     background: #FFFFFF;
                     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
                     border-radius: 18px;
@@ -731,7 +733,7 @@ export default {
 
                 .select_No {
                     min-width: 48px;
-                    height: 38px;
+                    height: 4.2vh;
                     background: #FFFFFF;
                     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
                     border-radius: 18px;
