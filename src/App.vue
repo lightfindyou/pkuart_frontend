@@ -264,7 +264,7 @@ export default {
   // position: absolute;
   // bottom: 0;
   width: 100%;
-  height: 9rem;
+  height: 100px;
   display: flex;
   justify-content: right;
   padding: 0 2rem;
@@ -274,24 +274,24 @@ export default {
 
   .img1 {
     margin-top: 30px;
-    width: 298px;
-    height: 82px;
+    width: 238px;
+    height: 65px;
     border-radius: 0px 0px 0px 0px;
     margin-right: 27px;
   }
 
   .img2 {
     margin-top: 21px;
-    width: 420px;
-    height: 100px;
+    width: 336px;
+    height: 80px;
     border-radius: 0px 0px 0px 0px;
     margin-right: 27px;
   }
 
   .img3 {
     margin-top: 12px;
-    width: 345px;
-    height: 118px;
+    width: 276px;
+    height: 94px;
     border-radius: 0px 0px 0px 0px;
   }
 
