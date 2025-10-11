@@ -27,8 +27,10 @@
             <div class="content">
                 <collect v-if="itemIndex === 0"></collect>
                 <voteAndFeedback v-if="itemIndex === 1"></voteAndFeedback>
+                <!--
                 <voteHistory v-if="itemIndex === 2"></voteHistory>
                 <feedback v-if="itemIndex === 3"></feedback>
+                -->
             </div>
         </div>
     </div>
@@ -59,16 +61,16 @@ export default {
                     title: '历史投票与反馈',
                     icon: require('@/assets/user/icon.png'),
                 },
-                {
-                    name: '投票历史',
-                    title: '投票历史',
-                    icon: require('@/assets/user/icon.png'),
-                },
-                {
-                    name: '我的反馈/评论',  
-                    title: '反馈',
-                    icon: require('@/assets/user/icon.png'),
-                },
+//                {
+//                    name: '投票历史',
+//                    title: '投票历史',
+//                    icon: require('@/assets/user/icon.png'),
+//                },
+//                {
+//                    name: '我的反馈/评论',  
+//                    title: '反馈',
+//                    icon: require('@/assets/user/icon.png'),
+//                },
             ],
             itemIndex: 1,
         }
