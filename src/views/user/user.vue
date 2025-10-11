@@ -37,8 +37,8 @@
 </template>
 <script>
 import collect from './collect.vue'
-import voteHistory from './voteHistory.vue'
-import feedback from './feedback.vue'
+//import voteHistory from './voteHistory.vue'
+//import feedback from './feedback.vue'
 import voteAndFeedback from './voteAndFeedback.vue'
 
 export default {
@@ -77,8 +77,8 @@ export default {
     },
     components: {
         collect,
-        voteHistory,
-        feedback,
+//        voteHistory,
+//        feedback,
         voteAndFeedback,
     },
     methods: {
