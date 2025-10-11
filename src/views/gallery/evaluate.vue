@@ -33,7 +33,10 @@
                                     <div class="AI_icon">
                                         <img src="@/assets/homeFrom/icon.png" alt="">
                                     </div>
+                                    <!--
                                     {{ modelA_name }}
+                                    -->
+                                    模型A
                                     <div class="copy" v-if="feedbackShow" @click="handleCopy(1)">
                                         <img src="@/assets/homeFrom/copy.png" alt="">
                                     </div>
@@ -48,7 +51,10 @@
                                     <div class="AI_icon">
                                         <img src="@/assets/homeFrom/icon.png" alt="">
                                     </div>
+                                    <!--
                                     {{ modelB_name }}
+                                    -->
+                                    模型B
                                     <div class="copy" v-if="feedbackShow" @click="handleCopy(2)">
                                         <img src="@/assets/homeFrom/copy.png" alt="">
                                     </div>
