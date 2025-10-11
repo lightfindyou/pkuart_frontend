@@ -1,35 +1,22 @@
 <template>
     <div class="tab_list">
-        <div class="item" v-for="(item, index) in list" :key="index" @click="handleShow(item)">
+        <div class="item" v-for="(item, index) in rates" :key="index" @click="handleShow(item)">
             <img :src="item.imgs" alt="">
-            <div class="titles">{{ item.title }}</div>
+            <div class="titles">{{ item.artwork_name }}</div>
                 <div class="model_title">
                     <img src="@/assets/user/cup.png" alt="">
                     <div class="fixed_title">胜出大模型评估</div>
                 </div>
                 <div class="model_context">
-                    <div class="model_name">doubao_1.5</div>
-                    <div class="model_output">这里是胜出模型的文本。这里是胜出模型的文本这里是胜出模型
-                        的文本这里是胜出模型的文本这里是胜出模型的文本……（仿宋胜出大模型评估)
-                    </div>
+                    <div class="model_name">{{ item.winner_name }}</div>
+                    <div class="model_output">{{ item.selected_response }} </div>
                 </div>
                 <div class="feedback_box">
-                    <div class="feedback">这里是专家反馈（字体：仿宋）这里是专家反馈（字体：仿宋）
-                        这里是专家反馈（字体：仿宋）这里是专家反馈（字体：仿宋）…… 最多三行
+                    <div class="feedback">
+                        {{ item.feedback }}
                     </div>
                     <div class="date">2025.09.04</div>
                 </div>
-                <!--
-                <div class="titles">{{ item.title }}</div>
-                <div class="titles_en ens">{{ item.title_en }}</div>
-                <div class="name">{{ item.name }}</div>
-                <div class="icon">
-                    <img v-if="item.type === 1" src="@/assets/home/icon1.png" alt="">
-                    <img v-if="item.type === 2" src="@/assets/home/icon2.png" alt="">
-                </div>
-            <div class="model_box">
-            </div>
-                -->
         </div>
         <GalleryFrom :showGalleryFromItem="showGalleryFromItem" @handleDel="handleDel" v-if="showGalleryFrom"></GalleryFrom>
     </div>
@@ -70,10 +57,11 @@ export default {
             ],
             showGalleryFrom: false,
             showGalleryFromItem: {},
+            rates: [],
         }
     },
     mounted() {
-        this.fetchCollect();
+        this.fetchRatings();
     },
     methods: {
         handleShow(item) {
@@ -83,32 +71,25 @@ export default {
         handleDel() {
             this.showGalleryFrom = false;
         },
-        async fetchCollect() {
+        async fetchRatings() {
             const id = localStorage.getItem('user_id');
             if (id) {
                 this.$store.commit('setUserId', id);
             }
-            console.log('请求收藏列表, id:', id);
-            const url = `http://47.122.63.229:5055/api/getFavorite?user_id=${id}`
-            const res = await axios.get(url)
-            //// 处理返回结果
-            this.list = res.data.artworks.map(item => ({
-              imgs: 'http://47.122.63.229:5055/' + item.path, // 图片地址
-              type: 1,         // 可根据 item 或业务逻辑设置
-              title: item.名称,
-              title_en: item.名称,
-              name: item.作者,
-              era: item.年代,
-              id: item.id,
-              era_group: item.era_group,
-              format: item.形制,
-              location: item.收藏地,
-              materials: item.材料,
-              texture: item.材质,
-              labels: item.标签
-              // 可添加其他需要的字段
-            }));
-            //console.log(this.list, '===收藏列表');
+            const res = await axios.get('http://47.122.63.229:5055/api/getVote?num=6&user_id=' + id)
+            this.rates = res.data.map(
+                item => ({
+                    evaluation_id: item.evaluation_id,
+                    artwork_id: item.artwork_id,
+                    artwork_name: item.artwork_name,
+                    winner: item.winner,
+                    winner_name: item.winner_name,
+                    selected_response: item.selected_response,
+                    imgs: 'http://47.122.63.229:5055/' + item.path, // 图片地址
+                    feedback: item.feedback,
+                })
+            );
+            console.log(this.rates, '===rates');
         },
     }
 }
@@ -210,6 +191,11 @@ export default {
                 font-family: "STHeiti", "Hiragino Sans GB", "Arial", sans-serif;
                 font-size: 8px;
                 font-weight: 500;
+                display: -webkit-box;
+                -webkit-line-clamp: 3; /* 最多显示3行 */
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
 
@@ -219,12 +205,16 @@ export default {
             margin-top: 9px;
             .feedback{
                 width: 195px;
-                height: 39px;
-                border-radius: 14px;
+                height: 34px;
                 font-size: 8px;
                 font-family: "FangSong", "仿宋", serif;
                 margin-left: 17px;
                 margin-right: 15px;
+                display: -webkit-box;
+                -webkit-line-clamp: 3; /* 最多显示3行 */
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             .date{
                 font-family: "FangSong", "仿宋", serif;

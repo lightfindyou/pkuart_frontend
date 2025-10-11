@@ -26,9 +26,9 @@
             </div>
             <div class="content">
                 <collect v-if="itemIndex === 0"></collect>
-                <voteHistory v-if="itemIndex === 1"></voteHistory>
-                <feedback v-if="itemIndex === 2"></feedback>
-                <voteAndFeedback v-if="itemIndex === 3"></voteAndFeedback>
+                <voteAndFeedback v-if="itemIndex === 1"></voteAndFeedback>
+                <voteHistory v-if="itemIndex === 2"></voteHistory>
+                <feedback v-if="itemIndex === 3"></feedback>
             </div>
         </div>
     </div>
@@ -55,6 +55,11 @@ export default {
                     icon: require('@/assets/user/icon.png'),
                 },
                 {
+                    name: '历史投票与反馈',
+                    title: '历史投票与反馈',
+                    icon: require('@/assets/user/icon.png'),
+                },
+                {
                     name: '投票历史',
                     title: '投票历史',
                     icon: require('@/assets/user/icon.png'),
@@ -64,13 +69,8 @@ export default {
                     title: '反馈',
                     icon: require('@/assets/user/icon.png'),
                 },
-                {
-                    name: '历史投票与反馈',
-                    title: '历史投票与反馈',
-                    icon: require('@/assets/user/icon.png'),
-                },
             ],
-            itemIndex: 3,
+            itemIndex: 1,
         }
     },
     components: {

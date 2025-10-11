@@ -74,6 +74,7 @@
 <script>
 // import { showDebugDirtyRect } from 'zrender';
 import axios from 'axios'
+import { mapState } from 'vuex'
 
 export default {
 	name: 'notificationFrom',
@@ -92,22 +93,17 @@ export default {
 			searchText: '',
 			selectedLeft: { id: 1, name: 'doubao-seed', image: require('@/assets/AIAvatar/doubao.png') },
 			selectedRight: { id: 2, name: 'openai-GPT5', image: require('@/assets/AIAvatar/openai.png') },
-			allOptions: [
-				{ id: 1, name: 'doubao-seed', image: require('@/assets/AIAvatar/doubao.png') },
-				{ id: 2, name: 'openai-GPT5', image: require('@/assets/AIAvatar/openai.png') },
-				{ id: 3, name: 'tencent-hunyuan', image: require('@/assets/AIAvatar/hunyuan.png') },
-				{ id: 4, name: 'stepfun-ai', image: require('@/assets/AIAvatar/stepfun.png') },
-				{ id: 5, name: 'google/gemini-2.5-pro', image: require('@/assets/AIAvatar/gemini.png') },
-				{ id: 6, name: 'z-ai/glm-4.5v', image: require('@/assets/AIAvatar/z-ai.jpeg') },
-			]
 		}
 	},
 	computed: {
 		filteredOptions() {
-			return this.allOptions.filter(option =>
+			return this.allModelOptions.filter(option =>
 				option.name.toLowerCase().includes(this.searchText.toLowerCase())
 			);
-		}
+		},
+		...mapState({
+			allModelOptions: state => state.modelOptions,
+		}),
 	},
 	methods: {
 		getNotification(index) {

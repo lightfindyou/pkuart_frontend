@@ -48,7 +48,15 @@ export default new Vuex.Store({
           type: 1,
       },
 
-    ]
+    ],
+		modelOptions: [
+			{ id: 0, name: 'doubao-seed', image: require('@/assets/AIAvatar/doubao.png') },
+			{ id: 1, name: 'openai-GPT5', image: require('@/assets/AIAvatar/openai.png') },
+			{ id: 2, name: 'tencent-hunyuan', image: require('@/assets/AIAvatar/hunyuan.png') },
+			{ id: 3, name: 'stepfun-ai', image: require('@/assets/AIAvatar/stepfun.png') },
+			{ id: 4, name: 'google/gemini-2.5-pro', image: require('@/assets/AIAvatar/gemini.png') },
+			{ id: 5, name: 'z-ai/glm-4.5v', image: require('@/assets/AIAvatar/z-ai.jpeg') },
+		]
   },
  
   mutations: {
