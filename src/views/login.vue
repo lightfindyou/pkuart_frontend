@@ -31,7 +31,7 @@ export default {
 
             try {
                 const url = `http://47.122.63.229:5055/api/login?invite_code=${this.inviteCode}`
-                const res = await axios.get(url)
+                const res = await axios.get(url, { withCredentials: true })
                 console.log(res.data, '===res');
                 if ( res.data.message && res.data.message === 'Login successful') {
                     this.$store.commit('setUserId', res.data.user_id);

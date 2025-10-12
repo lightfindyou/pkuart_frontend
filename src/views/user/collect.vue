@@ -72,7 +72,7 @@ export default {
             console.log('请求收藏列表, id:', id);
             try{
                 const url = `http://47.122.63.229:5055/api/getFavorite?user_id=${id}`
-                const res = await axios.get(url)
+                const res = await axios.get(url, { withCredentials: true })
                 //// 处理返回结果
                 this.list = res.data.artworks.map(item => ({
                   imgs: 'http://47.122.63.229:5055/' + item.path, // 图片地址
@@ -91,6 +91,11 @@ export default {
                   // 可添加其他需要的字段
                 }));
 			} catch (error) {
+                if(error.response && error.response.status === 401) {
+                    alert('用户未登录，请先登录');
+                    this.$router.push('/login');
+                    return;
+                }
 				alert('网络异常或服务器错误，请稍后重试');
 				console.error('请求收藏列表异常:', error);
 			}

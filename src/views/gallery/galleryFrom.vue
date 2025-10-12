@@ -115,8 +115,13 @@ export default {
             // 发送 POST 请求
             try {
                 const url = `http://47.122.63.229:5055/api/addFavorite?artwork_id=${this.showGalleryFromItem.id}&user_id=${id}`
-                await axios.get(url)
+                await axios.get(url, { withCredentials: true })
             } catch (error) {
+                if(error.response && error.response.status === 401) {
+                    alert('用户未登录，请先登录');
+                    this.$router.push('/login');
+                    return;
+                }
                 console.error('Error adding favorite:', error);
             }
         },
@@ -126,8 +131,13 @@ export default {
             // 发送 POST 请求
             try {
                 const url = `http://47.122.63.229:5055/api/delFavorite?artwork_id=${this.showGalleryFromItem.id}&user_id=${id}`
-                await axios.get(url)
+                await axios.get(url, { withCredentials: true })
             } catch (error) {
+                if(error.response && error.response.status === 401) {
+                    alert('用户未登录，请先登录');
+                    this.$router.push('/login');
+                    return;
+                }
                 console.error('Error deleting favorite:', error);
             }
         },
@@ -136,7 +146,7 @@ export default {
             console.log('检查是否收藏, id:', id);
             try {
                 const url = `http://47.122.63.229:5055/api/inFavoriteList?artwork_id=${this.showGalleryFromItem.id}&user_id=${id}`
-                const res = await axios.get(url)
+                const res = await axios.get(url, { withCredentials: true })
                 this.active = res.data.in_favorite_list;
                 // if(this.active) {
                 //     console.log('已收藏');

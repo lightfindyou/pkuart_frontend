@@ -102,7 +102,7 @@ export default new Vuex.Store({
       console.log('提交查询请求   ' + selectedEra + '  ' + searchText);
       const url = `http://47.122.63.229:5055/?format=json&era=${selectedEra}&search=${searchText}`
       try {
-        const res = await axios.get(url)
+        const res = await axios.get(url, { withCredentials: true })
         //// 处理返回结果
         const artworks = res.data.artworks.map(item => ({
           imgs: 'http://47.122.63.229:5055/' + item.path, // 图片地址
@@ -123,6 +123,11 @@ export default new Vuex.Store({
         // 传递到 Vuex
         commit('setGalleryImages', artworks)
 			} catch (error) {
+        if(error.response && error.response.status === 401) {
+            alert('用户未登录，请先登录');
+            this.$router.push('/login');
+            return;
+        }
 				alert('网络异常或服务器错误，请稍后重试');
         console.error('查询图片异常:', error);
 			}

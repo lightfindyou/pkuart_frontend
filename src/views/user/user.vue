@@ -40,6 +40,7 @@ import collect from './collect.vue'
 //import voteHistory from './voteHistory.vue'
 //import feedback from './feedback.vue'
 import voteAndFeedback from './voteAndFeedback.vue'
+import axios from 'axios'
 
 export default {
     name: 'UserView',
@@ -72,7 +73,7 @@ export default {
 //                    icon: require('@/assets/user/icon.png'),
 //                },
             ],
-            itemIndex: 1,
+            itemIndex: 0,
         }
     },
     components: {
@@ -86,7 +87,19 @@ export default {
             this.itemIndex = index;
         },
         handleLogout() {
-            this.$router.push('/');
+            try{
+                const url = 'http://47.122.63.229:5055/api/logout';
+                axios.get(url, { withCredentials: true })
+                this.$router.push('/');
+			} catch (error) {
+                if(error.response && error.response.status === 401) {
+                    alert('用户未登录，请先登录');
+                    this.$router.push('/login');
+                    return;
+                }
+				alert('网络异常或服务器错误，请稍后重试');
+				console.error('获取评价异常:', error);
+			}
         }
     }
 }

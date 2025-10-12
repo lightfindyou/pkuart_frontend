@@ -77,7 +77,9 @@ export default {
                 this.$store.commit('setUserId', id);
             }
             try{
-                const res = await axios.get('http://47.122.63.229:5055/api/getVote?num=6&user_id=' + id)
+                const url = 'http://47.122.63.229:5055/api/getVote?num=6&user_id=' + id;
+                const res = await axios.get(url, { withCredentials: true })
+                console.log(res.data)
                 this.rates = res.data.map(
                     item => ({
                         evaluation_id: item.evaluation_id,
@@ -92,6 +94,11 @@ export default {
                 );
                 console.log(this.rates, '===rates');
 			} catch (error) {
+                if(error.response && error.response.status === 401) {
+                    alert('用户未登录，请先登录');
+                    this.$router.push('/login');
+                    return;
+                }
 				alert('网络异常或服务器错误，请稍后重试');
 				console.error('获取评价异常:', error);
 			}

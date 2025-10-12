@@ -121,7 +121,7 @@ export default {
 				artwork_id: id
 			};
 			try {
-				const res = await axios.post(url, payload, { headers: { 'Content-Type': 'application/json' } });
+				const res = await axios.post(url, payload, { headers: { 'Content-Type': 'application/json' }, withCredentials: true  });
 				//处理返回结果
 				// console.log('评价结果   ' + res.data.task_id);
 				console.log('评价任务   ' + JSON.stringify(res.data, null, 2));
@@ -136,6 +136,11 @@ export default {
 					this.startPolling(res.data.task_id);
 				}
 			} catch (error) {
+                if(error.response && error.response.status === 401) {
+                    alert('用户未登录，请先登录');
+                    this.$router.push('/login');
+                    return;
+                }
 				alert('网络异常或服务器错误，请稍后重试');
 				console.error('评价任务请求异常:', error);
 				this.$store.commit('setAssessA', '网络异常或服务器错误，请稍后重试');
@@ -183,7 +188,7 @@ export default {
 		async getEvalucationText(task_id) {
 			const url = `http://47.122.63.229:5055/api/task/` + task_id + `/status`
 			console.log('获取评价任务状态   ' + url);
-			const res = await axios.get(url);
+			const res = await axios.get(url, { withCredentials: true });
 			return res;
 		},
 		openSelector(side) {

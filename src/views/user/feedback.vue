@@ -40,12 +40,17 @@ export default {
             }
             const url = `http://47.122.63.229:5055/api/getFeedback?num=4&user_id=${id}`
             try{
-                const res = await axios.get(url)
+                const res = await axios.get(url, { withCredentials: true })
                 console.log(res.data)
                 this.feedback = res.data.latest_feedback;
                 console.log(this.feedback, '===feedback');
                 this.isExpanded = this.feedback.map(() => false);
 			} catch (error) {
+                if(error.response && error.response.status === 401) {
+                    alert('用户未登录，请先登录');
+                    this.$router.push('/login');
+                    return;
+                }
 				alert('网络异常或服务器错误，请稍后重试');
 				console.error('获取反馈异常:', error);
 			}
