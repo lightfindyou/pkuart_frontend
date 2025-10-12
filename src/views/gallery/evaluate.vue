@@ -325,7 +325,7 @@ export default {
         handleGo() {
             this.$router.back();
         },
-        handleSbm() {
+        async handleSbm() {
             //get user_id from localStorage
             const id = localStorage.getItem('user_id');
             if (id) {
@@ -340,7 +340,7 @@ export default {
                     feedback: this.textarea,
                     id: id,
                 };
-                axios.post(url, payload, {headers: { 'Content-Type': 'application/json' }, withCredentials: true });
+                await axios.post(url, payload, {headers: { 'Content-Type': 'application/json' }, withCredentials: true });
                 console.log('commit feedback over', this.textarea);
 			} catch (error) {
                 if(error.response && error.response.status === 401) {

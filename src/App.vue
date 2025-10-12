@@ -32,19 +32,21 @@
     </div>
     <router-view />
     <div class="footer" v-if="showFooter">
-      <div class="img1">
-        <img src="@/assets/logo/1.png" alt=""></img>
+      <div class="footer-row">
+        <div class="img1">
+          <img src="@/assets/logo/1.png" alt=""></img>
+        </div>
+        <div class="img2">
+          <img src="@/assets/logo/2.png" alt=""></img>
+        </div>
+        <div class="img3">
+          <img src="@/assets/logo/3.png" alt=""></img>
+        </div>
       </div>
-      <div class="img2">
-        <img src="@/assets/logo/2.png" alt=""></img>
-      </div>
-      <div class="img3">
-        <img src="@/assets/logo/3.png" alt=""></img>
-      </div>
-    </div>
-      <div class="contact" v-if="showFooter">
+      <div class="contact">
         <img src="@/assets/logo/contact.png" alt="" />
       </div>
+    </div>
   </div>
 </template>
 <script>
@@ -271,43 +273,53 @@ export default {
   // bottom: 0;
   width: 100%;
   height: 100px;
-  display: flex;
-  justify-content: right;
   padding: 0 2rem;
   box-sizing: border-box;
   border-top: 1px solid #CECECE;
   box-sizing: border-box;
 
-  .img1 {
-    margin-top: 20px;
-    width: 280px;
-    height: 60px;
-    border-radius: 0px 0px 0px 0px;
-    margin-right: 27px;
-  }
-
-  .img2 {
-    margin-top: 33px;
-    width: 269px;
-    height: 44px;
-    border-radius: 0px 0px 0px 0px;
-    margin-right: 27px;
-  }
-
-  .img3 {
-    margin-top: 12px;
-    width: 276px;
-    height: 94px;
-    border-radius: 0px 0px 0px 0px;
-  }
-
-  img {
+  .footer-row {
     width: 100%;
-    height: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: right;
+    padding: 0 2rem;
+    box-sizing: border-box;
+    border-top: 1px solid #CECECE;
+    box-sizing: border-box;
+
+    .img1 {
+      margin-top: 20px;
+      width: 280px;
+      height: auto;
+      border-radius: 0px 0px 0px 0px;
+      margin-right: 27px;
+      margin-bottom: 16px;
+    }
+
+    .img2 {
+      margin-top: 33px;
+      width: 269px;
+      height: auto;
+      border-radius: 0px 0px 0px 0px;
+      margin-right: 27px;
+      margin-bottom: 22px;
+    }
+
+    .img3 {
+      margin-top: 12px;
+      width: 276px;
+      height: 94px;
+      border-radius: 0px 0px 0px 0px;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
-}
-</style>
-<style scoped>
+
   .contact {
     position: relative;
     left: 0;
@@ -327,8 +339,10 @@ export default {
     max-width: 90vw;
     pointer-events: auto;
     margin-bottom: 14px; 
-    margin-right: 30px; 
+    margin-right: 95px; 
   }
+}
+
 </style>
 <style>
 /*每个页面公共css */

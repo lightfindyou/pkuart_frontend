@@ -111,37 +111,37 @@ export default {
         }
     },
     async mounted() {
-        try{
+        try {
             const url = `http://47.122.63.229:5055/api/checkLogin`
             await axios.get(url, { withCredentials: true })
-    	} catch (error) {
-            if(error.response && error.response.status === 401) {
+        } catch (error) {
+            if (error.response && error.response.status === 401) {
                 alert('用户未登录，请先登录');
                 this.$router.push('/login');
                 return;
             }
-    		alert('网络异常或服务器错误，请稍后重试');
-    		console.error('检查登录异常:', error);
-		}
+            alert('网络异常或服务器错误，请稍后重试');
+            console.error('检查登录异常:', error);
+        }
     },
     methods: {
         checklogin() {
-            try{
+            try {
                 const url = `http://47.122.63.229:5055/api/checkLogin`
                 axios.get(url, { withCredentials: true })
-    		} catch (error) {
-                if(error.response && error.response.status === 401) {
+            } catch (error) {
+                if (error.response && error.response.status === 401) {
                     alert('用户未登录，请先登录');
                     this.$router.push('/login');
                     return;
                 }
-    			alert('网络异常或服务器错误，请稍后重试');
-    			console.error('请求收藏列表异常:', error);
-		    }
+                alert('网络异常或服务器错误，请稍后重试');
+                console.error('请求收藏列表异常:', error);
+            }
         },
         handleClick(tab, event) {
             console.log(tab, event);
-            this.$store.commit('setSelectedEra',  tab.label === '全部' ? '' : tab.label);
+            this.$store.commit('setSelectedEra', tab.label === '全部' ? '' : tab.label);
             this.$store.dispatch('search', { selectedEra: this.selectedEra, searchText: this.searchText });
         },
         handleDel() {

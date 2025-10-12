@@ -180,7 +180,7 @@ export default {
 						clearInterval(this.pollingTimer);
 					}
 				} catch (error) {
-     		   		console.error('轮询图片评价异常:', error);
+					console.error('轮询图片评价异常:', error);
 				}
 			}, 2000);
 		},
