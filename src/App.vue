@@ -43,8 +43,10 @@
           <img src="@/assets/logo/3.png" alt=""></img>
         </div>
       </div>
-      <div class="contact">
-        <img src="@/assets/logo/contact.png" alt="" />
+      <div class="contact" v-if="showFooter">
+        <div class="contact_img">
+          <img src="@/assets/logo/contact.png" alt=""></img>
+        </div>
       </div>
     </div>
   </div>
@@ -321,25 +323,30 @@ export default {
   }
 
   .contact {
-    position: relative;
-    left: 0;
-    bottom: 0;
-    width: 100vw;
+    width: 100%;
+    height: 48px;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
     align-items: flex-end;
-    z-index: 10;
     justify-content: right;
-    pointer-events: none;
-    padding-bottom: 20px;
-  }
-  .contact img {
-    width: 1000px;
-    height: auto;  /* 保持比例 */
-    max-width: 90vw;
-    pointer-events: auto;
-    margin-bottom: 14px; 
-    margin-right: 95px; 
+    padding: 0 2rem;
+    box-sizing: border-box;
+      .contact_img {
+        width: 1000px;
+        height: auto;  /* 保持比例 */
+        max-width: 90vw;
+        pointer-events: auto;
+        margin-bottom: 14px; 
+        margin-right: 0; 
+      }
+
+      img {
+        width: 1000px;      /* 你想要的宽度 */
+        max-width: 90vw;   /* 保持响应式 */
+        height: auto;      /* 保持比例 */
+        margin-bottom: 14px; 
+        margin-right: 0; 
+      }
   }
 }
 
