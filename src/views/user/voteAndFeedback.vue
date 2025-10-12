@@ -76,20 +76,25 @@ export default {
             if (id) {
                 this.$store.commit('setUserId', id);
             }
-            const res = await axios.get('http://47.122.63.229:5055/api/getVote?num=6&user_id=' + id)
-            this.rates = res.data.map(
-                item => ({
-                    evaluation_id: item.evaluation_id,
-                    artwork_id: item.artwork_id,
-                    artwork_name: item.artwork_name,
-                    winner: item.winner,
-                    winner_name: item.winner_name,
-                    selected_response: item.selected_response,
-                    imgs: 'http://47.122.63.229:5055/' + item.path, // 图片地址
-                    feedback: item.feedback,
-                })
-            );
-            console.log(this.rates, '===rates');
+            try{
+                const res = await axios.get('http://47.122.63.229:5055/api/getVote?num=6&user_id=' + id)
+                this.rates = res.data.map(
+                    item => ({
+                        evaluation_id: item.evaluation_id,
+                        artwork_id: item.artwork_id,
+                        artwork_name: item.artwork_name,
+                        winner: item.winner,
+                        winner_name: item.winner_name,
+                        selected_response: item.selected_response,
+                        imgs: 'http://47.122.63.229:5055/' + item.path, // 图片地址
+                        feedback: item.feedback,
+                    })
+                );
+                console.log(this.rates, '===rates');
+			} catch (error) {
+				alert('网络异常或服务器错误，请稍后重试');
+				console.error('获取评价异常:', error);
+			}
         },
     }
 }

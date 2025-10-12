@@ -70,25 +70,30 @@ export default {
                 this.$store.commit('setUserId', id);
             }
             console.log('请求收藏列表, id:', id);
-            const url = `http://47.122.63.229:5055/api/getFavorite?user_id=${id}`
-            const res = await axios.get(url)
-            //// 处理返回结果
-            this.list = res.data.artworks.map(item => ({
-              imgs: 'http://47.122.63.229:5055/' + item.path, // 图片地址
-              type: 1,         // 可根据 item 或业务逻辑设置
-              title: item.名称,
-              title_en: item.名称,
-              name: item.作者,
-              era: item.年代,
-              id: item.id,
-              era_group: item.era_group,
-              format: item.形制,
-              location: item.收藏地,
-              materials: item.材料,
-              texture: item.材质,
-              labels: item.标签
-              // 可添加其他需要的字段
-            }));
+            try{
+                const url = `http://47.122.63.229:5055/api/getFavorite?user_id=${id}`
+                const res = await axios.get(url)
+                //// 处理返回结果
+                this.list = res.data.artworks.map(item => ({
+                  imgs: 'http://47.122.63.229:5055/' + item.path, // 图片地址
+                  type: 1,         // 可根据 item 或业务逻辑设置
+                  title: item.名称,
+                  title_en: item.名称,
+                  name: item.作者,
+                  era: item.年代,
+                  id: item.id,
+                  era_group: item.era_group,
+                  format: item.形制,
+                  location: item.收藏地,
+                  materials: item.材料,
+                  texture: item.材质,
+                  labels: item.标签
+                  // 可添加其他需要的字段
+                }));
+			} catch (error) {
+				alert('网络异常或服务器错误，请稍后重试');
+				console.error('请求收藏列表异常:', error);
+			}
             //console.log(this.list, '===收藏列表');
         },
     }

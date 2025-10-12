@@ -101,27 +101,32 @@ export default new Vuex.Store({
     async search({ commit }, { selectedEra, searchText }){
       console.log('提交查询请求   ' + selectedEra + '  ' + searchText);
       const url = `http://47.122.63.229:5055/?format=json&era=${selectedEra}&search=${searchText}`
-      const res = await axios.get(url)
-      //// 处理返回结果
-      const artworks = res.data.artworks.map(item => ({
-        imgs: 'http://47.122.63.229:5055/' + item.path, // 图片地址
-        type: 1,         // 可根据 item 或业务逻辑设置
-        title: item.名称,
-        title_en: item.名称,
-        name: item.作者,
-        era: item.年代,
-        id: item.id,
-        era_group: item.era_group,
-        format: item.形制,
-        location: item.收藏地,
-        materials: item.材料,
-        texture: item.材质,
-        labels: item.标签
-        // 可添加其他需要的字段
-      }))
-      // 传递到 Vuex
-      commit('setGalleryImages', artworks)
-    }
+      try {
+        const res = await axios.get(url)
+        //// 处理返回结果
+        const artworks = res.data.artworks.map(item => ({
+          imgs: 'http://47.122.63.229:5055/' + item.path, // 图片地址
+          type: 1,         // 可根据 item 或业务逻辑设置
+          title: item.名称,
+          title_en: item.名称,
+          name: item.作者,
+          era: item.年代,
+          id: item.id,
+          era_group: item.era_group,
+          format: item.形制,
+          location: item.收藏地,
+          materials: item.材料,
+          texture: item.材质,
+          labels: item.标签
+          // 可添加其他需要的字段
+        }))
+        // 传递到 Vuex
+        commit('setGalleryImages', artworks)
+			} catch (error) {
+				alert('网络异常或服务器错误，请稍后重试');
+        console.error('查询图片异常:', error);
+			}
+    },
   },
   modules: {
   },

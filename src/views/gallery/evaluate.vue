@@ -333,14 +333,19 @@ export default {
             }
             this.$router.back();
             console.log(this.textarea, '-----');
-            const url = `http://47.122.63.229:5055/api/feedback`
-            const payload = {
-                evaluation_id: "12345",
-                feedback: this.textarea,
-                id: id,
-            };
-            axios.post(url, payload, {headers: { 'Content-Type': 'application/json' } });
-            console.log('commit feedback over', this.textarea);
+            try{
+                const url = `http://47.122.63.229:5055/api/feedback`
+                const payload = {
+                    evaluation_id: "12345",
+                    feedback: this.textarea,
+                    id: id,
+                };
+                axios.post(url, payload, {headers: { 'Content-Type': 'application/json' } });
+                console.log('commit feedback over', this.textarea);
+			} catch (error) {
+				alert('网络异常或服务器错误，请稍后重试');
+				console.error('提交反馈异常:', error);
+			}
         },
         handleZk(index) {
             // 如果当前点击的是已展开的item，则还原

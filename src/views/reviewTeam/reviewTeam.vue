@@ -61,17 +61,22 @@ export default {
         },
         async fetchReviewers() {
             console.log('请求评审专家列表');
-            const url = `http://47.122.63.229:5055/api/getReviewers`
-            const res = await axios.get(url);
-            console.log(res.data, '===data');
-            // 处理返回结果
-                        const reviewers = res.data.reviewers;
-                        this.reviewerList = reviewers.map(item => ({
-                            imgs: 'http://47.122.63.229:5055/avatar/' + item.id + '.png', // 头像地址
-                            name: item.name,
-                            info: item.info,
-                            stat: item.stat ? item.stat : ''
-                        }));
+            try{
+                const url = `http://47.122.63.229:5055/api/getReviewers`
+                const res = await axios.get(url);
+                console.log(res.data, '===data');
+                // 处理返回结果
+                const reviewers = res.data.reviewers;
+                this.reviewerList = reviewers.map(item => ({
+                    imgs: 'http://47.122.63.229:5055/avatar/' + item.id + '.png', // 头像地址
+                    name: item.name,
+                    info: item.info,
+                    stat: item.stat ? item.stat : ''
+                }));
+			} catch (error) {
+				alert('网络异常或服务器错误，请稍后重试');
+				console.error('获取专家列表异常:', error);
+			}
         },
     }
 }

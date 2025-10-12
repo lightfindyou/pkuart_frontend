@@ -39,11 +39,16 @@ export default {
                 this.$store.commit('setUserId', id);
             }
             const url = `http://47.122.63.229:5055/api/getFeedback?num=4&user_id=${id}`
-            const res = await axios.get(url)
-            console.log(res.data)
-            this.feedback = res.data.latest_feedback;
-            console.log(this.feedback, '===feedback');
-            this.isExpanded = this.feedback.map(() => false);
+            try{
+                const res = await axios.get(url)
+                console.log(res.data)
+                this.feedback = res.data.latest_feedback;
+                console.log(this.feedback, '===feedback');
+                this.isExpanded = this.feedback.map(() => false);
+			} catch (error) {
+				alert('网络异常或服务器错误，请稍后重试');
+				console.error('获取反馈异常:', error);
+			}
         }
     }
 }

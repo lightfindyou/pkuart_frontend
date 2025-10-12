@@ -120,51 +120,62 @@ export default {
 			const payload = {
 				artwork_id: id
 			};
-			const res = await axios.post(url, payload, { headers: { 'Content-Type': 'application/json' } });
-			//处理返回结果
-			// console.log('评价结果   ' + res.data.task_id);
-			console.log('评价任务   ' + JSON.stringify(res.data, null, 2));
-			if (!res.data.task_id) {
-				this.$store.commit('setAssessA', '评价任务创建失败，请稍后重试');
-				this.$store.commit('setAssessB', '评价任务创建失败，请稍后重试');
-			} else {
-				this.$store.commit("setModelAName", res.data.model_name0);
-				this.$store.commit("setModelBName", res.data.model_name1);
-				this.$store.commit('setAssessA', '正在生成审美评估……');
-				this.$store.commit('setAssessB', '正在生成审美评估……');
-				this.startPolling(res.data.task_id);
+			try {
+				const res = await axios.post(url, payload, { headers: { 'Content-Type': 'application/json' } });
+				//处理返回结果
+				// console.log('评价结果   ' + res.data.task_id);
+				console.log('评价任务   ' + JSON.stringify(res.data, null, 2));
+				if (!res.data.task_id) {
+					this.$store.commit('setAssessA', '评价任务创建失败，请稍后重试');
+					this.$store.commit('setAssessB', '评价任务创建失败，请稍后重试');
+				} else {
+					this.$store.commit("setModelAName", res.data.model_name0);
+					this.$store.commit("setModelBName", res.data.model_name1);
+					this.$store.commit('setAssessA', '正在生成审美评估……');
+					this.$store.commit('setAssessB', '正在生成审美评估……');
+					this.startPolling(res.data.task_id);
+				}
+			} catch (error) {
+				alert('网络异常或服务器错误，请稍后重试');
+				console.error('评价任务请求异常:', error);
+				this.$store.commit('setAssessA', '网络异常或服务器错误，请稍后重试');
+				this.$store.commit('setAssessB', '网络异常或服务器错误，请稍后重试');
 			}
 		},
 		startPolling(task_id) {
 			let count = 0;
 			const maxCount = 10 * 60 / 2; // 10分钟，每2秒一次
 			this.pollingTimer = setInterval(async () => {
-				const res = await this.getEvalucationText(task_id);
-				count++;
-				console.log('评价任务状态   ' + JSON.stringify(res.data, null, 2));
-				if (res.data.status === 'processing') {
-					// 任务仍在处理中，继续轮询
-					console.log('评价任务处理中...');
-					this.$store.commit('setAssessA', res.data.progress);
-					this.$store.commit('setAssessB', res.data.progress);
-				} else if (res.data.status === 'completed') {
-					// 任务完成，处理结果并停止轮询
-					console.log('评价任务完成');
-					// 判空处理，避免 undefined 取属性
-					const evalA = res.data.evaluations[this.$store.state.modelA_name];
-					const evalB = res.data.evaluations[this.$store.state.modelB_name];
-					this.$store.commit('setAssessA', evalA && evalA.response ? evalA.response : '未获取到模型A评估结果');
-					this.$store.commit('setAssessB', evalB && evalB.response ? evalB.response : '未获取到模型B评估结果');
-					clearInterval(this.pollingTimer);
-				} else if (res.data.status === 'error') {
-					// 任务失败，处理错误并停止轮询
-					console.log('评价任务失败');
-					this.$store.commit('setAssessA', '评价任务失败，请稍后重试');
-					this.$store.commit('setAssessB', '评价任务失败，请稍后重试');
-					clearInterval(this.pollingTimer);
-				}
-				if (count >= maxCount) {
-					clearInterval(this.pollingTimer);
+				try{
+					const res = await this.getEvalucationText(task_id);
+					count++;
+					console.log('评价任务状态   ' + JSON.stringify(res.data, null, 2));
+					if (res.data.status === 'processing') {
+						// 任务仍在处理中，继续轮询
+						console.log('评价任务处理中...');
+						this.$store.commit('setAssessA', res.data.progress);
+						this.$store.commit('setAssessB', res.data.progress);
+					} else if (res.data.status === 'completed') {
+						// 任务完成，处理结果并停止轮询
+						console.log('评价任务完成');
+						// 判空处理，避免 undefined 取属性
+						const evalA = res.data.evaluations[this.$store.state.modelA_name];
+						const evalB = res.data.evaluations[this.$store.state.modelB_name];
+						this.$store.commit('setAssessA', evalA && evalA.response ? evalA.response : '未获取到模型A评估结果');
+						this.$store.commit('setAssessB', evalB && evalB.response ? evalB.response : '未获取到模型B评估结果');
+						clearInterval(this.pollingTimer);
+					} else if (res.data.status === 'error') {
+						// 任务失败，处理错误并停止轮询
+						console.log('评价任务失败');
+						this.$store.commit('setAssessA', '评价任务失败，请稍后重试');
+						this.$store.commit('setAssessB', '评价任务失败，请稍后重试');
+						clearInterval(this.pollingTimer);
+					}
+					if (count >= maxCount) {
+						clearInterval(this.pollingTimer);
+					}
+				} catch (error) {
+     		   		console.error('轮询图片评价异常:', error);
 				}
 			}, 2000);
 		},
