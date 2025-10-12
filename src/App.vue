@@ -42,6 +42,9 @@
         <img src="@/assets/logo/3.png" alt=""></img>
       </div>
     </div>
+      <div class="contact">
+        <img src="@/assets/logo/contact.png" alt="" />
+      </div>
   </div>
 </template>
 <script>
@@ -273,17 +276,17 @@ export default {
   box-sizing: border-box;
 
   .img1 {
-    margin-top: 30px;
-    width: 238px;
-    height: 65px;
+    margin-top: 20px;
+    width: 280px;
+    height: 60px;
     border-radius: 0px 0px 0px 0px;
     margin-right: 27px;
   }
 
   .img2 {
-    margin-top: 21px;
-    width: 336px;
-    height: 80px;
+    margin-top: 33px;
+    width: 269px;
+    height: 44px;
     border-radius: 0px 0px 0px 0px;
     margin-right: 27px;
   }
@@ -299,6 +302,26 @@ export default {
     width: 100%;
     height: 100%;
   }
+}
+</style>
+<style scoped>
+.contact {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 10;
+  justify-content: right;
+  pointer-events: none;
+}
+.contact img {
+  width: 1200px;
+  height: auto;  /* 保持比例 */
+  max-width: 90vw;
+  pointer-events: auto;
 }
 </style>
 <style>
