@@ -2,7 +2,7 @@
   <div id="app">
     <div class="nav">
       <div class="nav_left">
-        <img src="@/assets/logo/top.png" alt="">
+        <img src="@/assets/logo/top.png" alt="" @click="goToIndexPage">
       </div>
       <div class="xian"></div>
       <router-link to="/"></router-link>
@@ -42,7 +42,7 @@
         <img src="@/assets/logo/3.png" alt=""></img>
       </div>
     </div>
-      <div class="contact">
+      <div class="contact" v-if="showFooter">
         <img src="@/assets/logo/contact.png" alt="" />
       </div>
   </div>
@@ -96,6 +96,9 @@ export default {
     handleSelect(select) {
       this.$store.dispatch('setRouterDomIndex', select)
     },
+    goToIndexPage() {
+      this.$router.push('/')
+    },  
     updateActiveState() {
       const routeName = this.$route.name
       if (routeName && ['home', 'gallery', 'rankingList', 'about', 'reviewTeam', 'user'].includes(routeName)) {
@@ -305,24 +308,27 @@ export default {
 }
 </style>
 <style scoped>
-.contact {
-  position: relative;
-  left: 0;
-  bottom: 0;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  z-index: 10;
-  justify-content: right;
-  pointer-events: none;
-}
-.contact img {
-  width: 1200px;
-  height: auto;  /* 保持比例 */
-  max-width: 90vw;
-  pointer-events: auto;
-}
+  .contact {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 10;
+    justify-content: right;
+    pointer-events: none;
+    padding-bottom: 20px;
+  }
+  .contact img {
+    width: 1000px;
+    height: auto;  /* 保持比例 */
+    max-width: 90vw;
+    pointer-events: auto;
+    margin-bottom: 14px; 
+    margin-right: 30px; 
+  }
 </style>
 <style>
 /*每个页面公共css */
