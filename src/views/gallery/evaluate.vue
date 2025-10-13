@@ -183,6 +183,7 @@ export default {
             showNotification: false,//是否显示通知  
             feedbackShow: false,//是否显示反馈
             selectedOption: '', // 当前选中的选项
+            selectedModel: '', // 选中的模型
             dialogVisible: false,//是否显示投票
             textarea: '',//调研内容
             dyShow: false,//是否显示调研
@@ -297,12 +298,16 @@ export default {
             // 原有的选择状态类名
             if (this.selectedOption === 'A' && itemIndex === 1) {
                 classes.push('ai-selected');
+                this.selectedModel = 'model_a';
             } else if (this.selectedOption === 'B' && itemIndex === 2) {
                 classes.push('ai-selected');
+                this.selectedModel = 'model_b';
             } else if (this.selectedOption === 'No') {
                 classes.push('ai-no');
+                this.selectedModel = 'none';
             } else if (this.selectedOption === 'All') {
                 classes.push('ai-all');
+                this.selectedModel = 'all';
             }
 
             // 展开状态类名
@@ -331,14 +336,45 @@ export default {
             if (id) {
                 this.$store.commit('setUserId', id);
             }
-            this.$router.back();
             console.log(this.textarea, '-----');
+            this.submitEval(id);
+            this.submitFeedback(id);
+            this.$router.back();
+        },
+        async submitEval(id){
+            try{
+                const url = `http://47.122.63.229:5055/api/vote`
+                const payload = {
+                    user_id: id,
+					evaluation_id: this.$store.state.evalId,
+                    winner: this.selectedModel,
+                    artwork_id: this.$store.state.artworkId,
+                    artwork_name: this.$store.state.evalArtworkName,
+                    model_a: this.modelA_name,
+                    model_b: this.modelB_name,
+                    response_a: this.$store.state.assessA,
+                    response_b: this.$store.state.assessB,
+
+                };
+                await axios.post(url, payload, {headers: { 'Content-Type': 'application/json' }, withCredentials: true });
+                console.log('commit feedback over', this.textarea);
+			} catch (error) {
+                if(error.response && error.response.status === 401) {
+                    alert('用户未登录，请先登录');
+                    this.$router.push('/login');
+                    return;
+                }
+				alert('网络异常或服务器错误，请稍后重试');
+				console.error('提交AI评价异常:', error);
+			}
+        },
+        async submitFeedback(id){
             try{
                 const url = `http://47.122.63.229:5055/api/feedback`
                 const payload = {
-                    evaluation_id: "12345",
+					evaluation_id: this.$store.state.evalId,
                     feedback: this.textarea,
-                    id: id,
+                    user_id: id,
                 };
                 await axios.post(url, payload, {headers: { 'Content-Type': 'application/json' }, withCredentials: true });
                 console.log('commit feedback over', this.textarea);

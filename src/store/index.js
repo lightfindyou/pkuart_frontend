@@ -17,6 +17,9 @@ export default new Vuex.Store({
     evaluationId: '', // 评价ID
     showItem: {}, // 当前查看的艺术品详情
     user_id: '', // 用户ID
+		evalId: '',
+		artworkId: '',
+		evalArtworkName: '',
     galleryImages: [
       {
           title: '缂丝山水图',
@@ -90,6 +93,15 @@ export default new Vuex.Store({
     },
     setUserId(state, id) {
       state.user_id = id
+    },
+    setEvaluationId(state, id) {
+      state.evalId = id
+    },
+    setArtworkId(state, id) {
+      state.artworkId = id
+    },
+    setEvalArtworkName(state, name) {
+      state.evalArtworkName = name
     }
   },
   
