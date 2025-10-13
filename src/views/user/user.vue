@@ -36,6 +36,7 @@
     </div>
 </template>
 <script>
+import { onMounted } from 'vue';
 import collect from './collect.vue'
 //import voteHistory from './voteHistory.vue'
 //import feedback from './feedback.vue'
@@ -82,6 +83,15 @@ export default {
 //        feedback,
         voteAndFeedback,
     },
+    mounted() {
+        console.log('mounted of user.user.vue');
+        const id = localStorage.getItem('user_id');
+        if (id) {
+            this.$store.commit('setUserId', id);
+        }
+        this.userInfo.img = 'http://47.122.63.229:5055/avatar/' + id + '.png', // 头像地址
+        this.fetchUserInfo();
+    },
     methods: {
         handleItemIndex(index) {
             this.itemIndex = index;
@@ -100,7 +110,26 @@ export default {
 				alert('网络异常或服务器错误，请稍后重试');
 				console.error('获取评价异常:', error);
 			}
-        }
+        },
+        async fetchUserInfo() {
+            const id = localStorage.getItem('user_id');
+            try{
+                const url = `http://47.122.63.229:5055/api/getReviewersByID?id=${id}`
+                const res = await axios.get(url, { withCredentials: true });
+                console.log(res.data, '===data');
+                // 处理返回结果
+                const reviewer = res.data.reviewers;
+                this.userInfo.name = reviewer[0].name;
+			} catch (error) {
+                if(error.response && error.response.status === 401) {
+                    alert('用户未登录，请先登录');
+                    this.$router.push('/login');
+                    return;
+                }
+				alert('网络异常或服务器错误，请稍后重试');
+				console.error('获取用户信息异常:', error);
+			}
+        },
     }
 }
 </script>

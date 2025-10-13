@@ -20,6 +20,7 @@ export default new Vuex.Store({
 		evalId: '',
 		artworkId: '',
 		evalArtworkName: '',
+    userAvatar: require('@/assets/user/tx.png'),
     galleryImages: [
       {
           title: '缂丝山水图',
@@ -102,6 +103,9 @@ export default new Vuex.Store({
     },
     setEvalArtworkName(state, name) {
       state.evalArtworkName = name
+    },
+    setUserAvatar(state, id) {
+      state.userAvatar= 'http://47.122.63.229:5055/avatar/' + id + '.png' // 头像地址
     }
   },
   

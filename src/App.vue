@@ -22,7 +22,7 @@
       </div>
       <router-link v-if="login" class="logo" to="/user" @click="handleSelect('user')">
         <div class="imgs">
-          <img src="@/assets/user/tx.png" alt="">
+          <img :src="this.$store.state.userAvatar" alt="">
         </div>
       </router-link>
       <div class="login" v-else>
@@ -223,7 +223,8 @@ export default {
     width: 3.13rem;
     height: 3.13rem;
     border-radius: 2.41rem 2.41rem 2.41rem 2.41rem;
-    background: #CECECE;
+//    background: #CECECE;
+    background: #FFFFFF;
     img {
       width: 100%;
       height: 100%;
