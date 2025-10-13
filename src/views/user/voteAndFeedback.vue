@@ -15,7 +15,7 @@
                     <div class="feedback">
                         {{ item.feedback }}
                     </div>
-                    <div class="date">2025.09.04</div>
+                    <div class="date">{{ item.date }}</div>
                 </div>
         </div>
         <GalleryFrom :showGalleryFromItem="showGalleryFromItem" @handleDel="handleDel" v-if="showGalleryFrom"></GalleryFrom>
@@ -76,7 +76,7 @@ export default {
             if (id) {
                 this.$store.commit('setUserId', id);
             }
-            try{
+            try {
                 const url = 'http://47.122.63.229:5055/api/getVote?num=6&user_id=' + id;
                 const res = await axios.get(url, { withCredentials: true })
                 console.log(res.data)
@@ -90,19 +90,24 @@ export default {
                         selected_response: item.selected_response,
                         imgs: 'http://47.122.63.229:5055/' + item.path, // 图片地址
                         feedback: item.feedback,
+                        date: this.formatDate(item.timestamp),
                     })
                 );
                 console.log(this.rates, '===rates');
-			} catch (error) {
-                if(error.response && error.response.status === 401) {
+            } catch (error) {
+                if (error.response && error.response.status === 401) {
                     alert('用户未登录，请先登录');
                     this.$router.push('/login');
                     return;
                 }
-				alert('网络异常或服务器错误，请稍后重试');
-				console.error('获取评价异常:', error);
-			}
+                alert('网络异常或服务器错误，请稍后重试');
+                console.error('获取评价异常:', error);
+            }
         },
+        formatDate(ts) {
+            const date = new Date(ts);
+            return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
+        }
     }
 }
 </script>

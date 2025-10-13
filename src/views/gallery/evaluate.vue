@@ -330,7 +330,7 @@ export default {
         handleGo() {
             this.$router.back();
         },
-        async handleSbm() {
+        handleSbm() {
             //get user_id from localStorage
             const id = localStorage.getItem('user_id');
             if (id) {

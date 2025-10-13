@@ -154,7 +154,7 @@ export default {
 				try{
 					const res = await this.getEvalucationText(task_id);
 					count++;
-					console.log('评价任务状态   ' + JSON.stringify(res.data, null, 2));
+//					console.log('评价任务状态   ' + JSON.stringify(res.data, null, 2));
 					if (res.data.status === 'processing') {
 						// 任务仍在处理中，继续轮询
 						console.log('评价任务处理中...');
