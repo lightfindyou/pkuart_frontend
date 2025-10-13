@@ -18,6 +18,12 @@
                     <img :src="item.icon" alt="">
                 </div>
             </div>
+            <div class="share" @click="openSharePage()">
+                <button class="share_btn">
+                    <img class="shareIcon" src="@/assets/logo/share.png" alt="">
+                    分享智镜
+                </button>
+            </div>
             <div class="btn" @click="handleLogout">退出登录</div>
         </div>
         <div class="user_right">
@@ -33,15 +39,14 @@
                 -->
             </div>
         </div>
+        <ShareMirror v-if="showSharePage" @closeSharePage="closeSharePage"></ShareMirror>
     </div>
 </template>
 <script>
-import { onMounted } from 'vue';
 import collect from './collect.vue'
-//import voteHistory from './voteHistory.vue'
-//import feedback from './feedback.vue'
 import voteAndFeedback from './voteAndFeedback.vue'
 import axios from 'axios'
+import ShareMirror from './shareMirror.vue';
 
 export default {
     name: 'UserView',
@@ -75,13 +80,13 @@ export default {
 //                },
             ],
             itemIndex: 0,
+            showSharePage: false,
         }
     },
     components: {
         collect,
-//        voteHistory,
-//        feedback,
         voteAndFeedback,
+        ShareMirror,
     },
     mounted() {
         console.log('mounted of user.user.vue');
@@ -130,6 +135,14 @@ export default {
 				console.error('获取用户信息异常:', error);
 			}
         },
+        openSharePage() {
+            console.log('set showSharePage true');
+            this.showSharePage = true;
+        },
+        closeSharePage() {
+            console.log('set showSharePage false');
+            this.showSharePage = false;
+        }
     }
 }
 </script>
@@ -232,6 +245,27 @@ export default {
 
     .user_item_active {
         background: #EEEEEE;
+    }
+
+    .share {
+
+        .share_btn {
+            height: 43px;
+            width: 199px;
+            border-radius: 21.5px;
+            text-align: center;
+            font-weight: 400;
+            font-size: 16px;
+            background: linear-gradient(90deg, #C6A1D5 0%, #FDC472 52.04%, #CF6769 100%);
+            border: none;
+            margin-top: 22px;
+            color: #ffffff;
+
+            .shareIcon {
+                height: 15px;
+                width: 13.5px;
+            }
+        }
     }
 
     .btn {
