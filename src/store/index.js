@@ -104,8 +104,8 @@ export default new Vuex.Store({
     setEvalArtworkName(state, name) {
       state.evalArtworkName = name
     },
-    setUserAvatar(state, id) {
-      state.userAvatar= 'http://47.122.63.229:5055/avatar/' + id + '.png' // 头像地址
+    setUserAvatar(state, url) {
+      state.userAvatar= url;
     }
   },
   

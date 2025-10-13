@@ -66,6 +66,12 @@ export default {
       return !hideFooterRoutes.includes(this.$route.name)
     }
   },
+  mounted(){
+      const avatar = localStorage.getItem('userAvatar');
+      if (avatar) {
+        this.$store.commit('setUserAvatar', avatar);
+      }
+  },
   data() {
     return {
       login: true,

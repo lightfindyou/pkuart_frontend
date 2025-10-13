@@ -2,7 +2,7 @@
     <div class="shareMirror">
         <div v-if="!show">
             <div class="main" @click="showNotification = false">
-                <div class="del" @click="handleDel">
+                <div class="del" v-if="showCloseIcon" @click="handleDel">
                     <img src="@/assets/home/gb.png" alt="">
                 </div>
                 <div class="main_text">
@@ -82,6 +82,7 @@ export default {
     name: 'ShareMirror',
     data() {
         return {
+            showCloseIcon: false,
             show: false,
             showNotification: false,
             active: false,
@@ -143,7 +144,7 @@ export default {
                 this.$store.commit('setUserId', id);
             }
             try {
-                const url = 'http://47.122.63.229:5055/api/getVote?num=6&user_id=' + id;
+                const url = 'http://47.122.63.229:5055/api/getVote?num=20&user_id=' + id;
                 const res = await axios.get(url, { withCredentials: true })
                 console.log(res.data)
                 this.rates = res.data.map(

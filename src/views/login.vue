@@ -35,8 +35,10 @@ export default {
                 console.log(res.data, '===res');
                 if ( res.data.message && res.data.message === 'Login successful') {
                     this.$store.commit('setUserId', res.data.user_id);
-                    this.$store.commit('setUserAvatar', res.data.user_id);
+                    const avatar = 'http://47.122.63.229:5055/avatar/' + res.data.user_id + '.png' 
+                    this.$store.commit('setUserAvatar', avatar);
                     localStorage.setItem('user_id', res.data.user_id);
+                    localStorage.setItem('userAvatar', avatar);
                     this.$router.push('/gallery')
                 } else if (res.data.error) {
                     this.$message.error(res.data.error);
