@@ -47,7 +47,30 @@
                             </div> 
                         </div>
                     </div>
+
+                    <div class="bottomText">
+                        <div class="bottomHead">
+                            <div class="title">分享文案：</div>
+                            <img class="copy" src="@/assets/homeFrom/copy.png" alt="">
+
+                        </div>
+                        <div class="bottomContent">
+                            我正在使用智镜——大语言模型审美评估平台！ 智镜计划通过传统审美视角评估AI大模型的艺术理解能力，非常有意思！ https://pkumi.chat
+                        </div>
+                    </div>
+
+                    <div class="buttonDiv">
+                        <button class="changeButton">
+                            <img class="changeIcon" src="@/assets/logo/refresh.png" alt="">
+                            换一张
+                        </button>
+                        <button class="downloadButton">
+                            <img class="downloadIcon" src="@/assets/logo/download.png" alt="">
+                            下载图片
+                        </button>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -153,80 +176,6 @@ export default {
     z-index: 9999;
     background: rgba(0,0,0,0.5); /* 可选，半透明遮罩 */
 
-    .imgFrom {
-        width: 100%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.8);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-
-
-
-        .img {
-            height: 100%;
-            position: relative;
-
-            .dels {
-                position: absolute;
-                right: 29px;
-                top: 33px;
-                width: 50px;
-                height: 50px;
-                cursor: pointer;
-            }
-
-            img {
-                width: 100%;
-                height: 100%;
-            }
-        }
-    }
-
-    .header {
-        width: 100%;
-        height: 90px;
-        line-height: 90px;
-        background: #FFFFFF;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0 440px 0 437px;
-        box-sizing: border-box;
-        position: relative;
-
-        .select_box {
-            height: 24px;
-            line-height: 24px;
-            font-weight: 400;
-            font-size: 22px;
-            color: #000000;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-
-            img {
-                width: 24px;
-                height: 24px;
-            }
-        }
-
-        .del {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            right: 35px;
-            top: 20px;
-
-            img {
-                width: 100%;
-                height: 100%;
-            }
-        }
-    }
-
     .main {
         width: 100%;
         height: 100vh;
@@ -237,6 +186,7 @@ export default {
         padding: 0 8vw;
         box-sizing: border-box;
         gap: 3vw;
+        flex-direction: column;
 
         .del {
             position: absolute;
@@ -279,7 +229,7 @@ export default {
             }
 
             .main_text_title {
-                margin-top: 40px;
+                margin-top: 34px;
                 height: 16px;
                 font-weight: 400;
                 color: #212121;
@@ -294,7 +244,7 @@ export default {
                 align-self: center;
                 width: 308px;
                 height: 397px;
-                margin-top: 20px;
+                margin-top: 15px;
                 border: 0.2px solid #000000;
                 background: #a62525;
                 border-radius: 22px;
@@ -452,8 +402,95 @@ export default {
 
             }
 
+            .bottomText{
+                width: 308px;
+                height: 96px;
+                opacity: 1;
+                border-radius: 13px;
+                margin-top: 14px;
+                position: relative;
+                justify-content: center;
+                margin-left: auto;
+                margin-right: auto;
+                object-position: center; /* 可选：将图片居中显示 */
+                background: #D9D9D942;
+                .bottomHead{
+                    width: 100%;
+                    height: 20px;
+                    .title{
+                        font-size: 12px;
+                        font-family: "STHeiti", "黑体", sans-serif;
+                        padding-top: 17px;
+                        padding-left: 13px;
+                    }
 
+                    .copy{
+                        width: 14px;
+                        height: 14px;
+                        position: absolute;
+                        right: 13px;
+                        top: 14px;
+                        cursor: pointer;    
+                    }
+                }
+
+                .bottomContent{
+                    font-size: 10px;
+                    padding-top: 14px;
+                    padding-left: 13px;
+                    padding-right: 13px;
+                }
+            }
+
+            .buttonDiv{
+                width: 408px;
+                height: 40px;
+                opacity: 1;
+                border-radius: 13px;
+                margin-top: 8px;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-left: auto;
+                margin-right: auto;
+                object-position: center; 
+
+                .changeButton{
+                    width: 140px;
+                    height: 33px;
+                    border-radius: 16.5px;
+                    background: #B4B4B4;
+                    font-family: "STHeiti", "黑体", sans-serif;
+                    font-size: 14px;
+                    margin-right: 8px;
+                    border: none;
+
+                    .changeIcon{
+                        width: 14px;
+                        height: 14px;
+                    }
+                }
+
+                .downloadButton{
+                    width: 140px;
+                    height: 33px;
+                    border-radius: 16.5px;
+                    background: #007AFF;
+                    font-family: "STHeiti", "黑体", sans-serif;
+                    font-size: 14px;
+                    margin-left: 8px;
+                    border: none;
+
+                    .downloadIcon{
+                        width: 17px;
+                        height: 17px;
+                    }
+                }
+
+            }
         }
+
     }
 }
 </style>
