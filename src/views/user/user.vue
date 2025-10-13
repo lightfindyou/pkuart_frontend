@@ -89,7 +89,6 @@ export default {
         ShareMirror,
     },
     mounted() {
-        console.log('mounted of user.user.vue');
         const id = localStorage.getItem('user_id');
         if (id) {
             this.$store.commit('setUserId', id);
@@ -136,11 +135,9 @@ export default {
 			}
         },
         openSharePage() {
-            console.log('set showSharePage true');
             this.showSharePage = true;
         },
         closeSharePage() {
-            console.log('set showSharePage false');
             this.showSharePage = false;
         }
     }

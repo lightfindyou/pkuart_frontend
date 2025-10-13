@@ -210,6 +210,7 @@ export default {
                 font-weight: 500;
                 display: -webkit-box;
                 -webkit-line-clamp: 3; /* 最多显示3行 */
+                line-clamp: 3; /* 标准属性，增强兼容性 */
                 -webkit-box-orient: vertical;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -229,6 +230,7 @@ export default {
                 margin-right: 15px;
                 display: -webkit-box;
                 -webkit-line-clamp: 3; /* 最多显示3行 */
+                line-clamp: 3; /* 标准属性，增强兼容性 */
                 -webkit-box-orient: vertical;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -242,59 +244,6 @@ export default {
             }
         }
 
-//        .model_box {
-//            position: absolute;
-//            bottom: 0;
-//            left: 0;
-//            width: 270px;
-//            height: 142px;
-////            background: rgba(0, 0, 0, 0.6);
-////            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-//            border-radius: 22px 22px 22px 22px;
-//            padding: 0 20px 0 15px;
-//            box-sizing: border-box;
-//
-//
-//            .titles {
-//                margin-top: 15px;
-//                height: 22px;
-//                font-weight: 400;
-//                font-size: 16px;
-//                color: #FFFFFF;
-//                line-height: 22px;
-//            }
-//
-//            .titles_en {
-//                height: 22px;
-//                font-weight: 400;
-//                font-size: 12px;
-//                color: #B4B4B4;
-//                line-height: 22px;
-//                margin-top: 5px;
-//            }
-//
-//            .name {
-//                margin-top: 30px;
-//                height: 22px;
-//                font-weight: 400;
-//                font-size: 12px;
-//                color: #D9D9D9;
-//                line-height: 22px;
-//            }
-//
-//            .icon {
-//                width: 38px;
-//                height: 38px;
-//                position: absolute;
-//                right: 20px;
-//                bottom: 20px;
-//
-//                img {
-//                    width: 100%;
-//                    height: 100%;
-//                }
-//            }
-//        }
     }
 }
 
