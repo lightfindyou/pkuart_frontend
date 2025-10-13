@@ -5,37 +5,48 @@
                 <div class="del" @click="handleDel">
                     <img src="@/assets/home/gb.png" alt="">
                 </div>
-                <div class="mian_text">
-                    <div class="main_icon" @click="handleDel">
+                <div class="main_text">
+                    <div class="close_icon" @click="handleDel">
                         <img src="@/assets/home/gb.png" alt="">
                     </div>
-                    <div class="mian_text_title fs">分享智镜</div>
+                    <div class="main_text_title fs">分享智镜</div>
                     <div class="image_div">
-                        <img class="main_img" src="@/assets/home/icon1.png" alt="">
+                        <img class="main_img" src="@/assets/list/1.png" alt="">
+                        <div class="model_title">
+                            <img src="@/assets/user/cup.png" alt="">
+                            <div class="fixed_title">胜出大模型评估</div>
+                        </div>
+
+                        <div class="model_context">
+                            <div class="model_name">123123</div>
+                            <div class="model_output">12312312 </div>
+                        </div>
+
+                        <div class="sharerInfo">
+                            <div class="user_img">
+                                <img class="reviewerImg" :src="require('@/assets/list/img.png')" alt="">
+                            </div>
+                            <div class="userText">
+                                <div class="user_name">曹操</div>
+                                <div class="user_type"> 
+                                    <img class="userStar" src="@/assets/user/star.png" alt="">
+                                    专家
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <div class="footer-left">
+                                <img class="footerLogo" src="@/assets/logo/top.png" alt="">
+                                <div class="footerLogoText">
+                                    诚邀你一起加入“智镜计划”，一同为AI校准东方美学罗盘。
+                                </div>
+
+                            </div>
+                            <div class="footer-right">
+                                <img class="QRCode" src="@/assets/logo/QRCode.png" alt="">
+                            </div> 
+                        </div>
                     </div>
-                    <!--
-                        <div class="type_item">
-                            <div class="type_item_title fs">材质</div>
-                            <div class="type_item_name fs">{{ showGalleryFromItem.texture }}</div>
-                        </div>
-                        <div class="type_item">
-                            <div class="type_item_title fs">形制</div>
-                            <div class="type_item_name fs">{{ showGalleryFromItem.format }}</div>
-                        </div>
-                        <div class="type_item">
-                            <div class="type_item_title fs">材料</div>
-                            <div class="type_item_name fs">{{ showGalleryFromItem.materials }}</div>
-                        </div>
-                        <div class="type_item">
-                            <div class="type_item_title fs">收藏地</div>
-                            <div class="type_item_name fs">{{ showGalleryFromItem.location }}</div>
-                        </div>
-                    </div>
-                    <div class="main_title1 fs">作品简介</div>
-                    <div class="main_texter fs">
-                        画中有蜡梅一枝，自右下方向左上方挺生，枝细瘦，却用双线勾成，并略加晕染，勾出结节。蜡梅花用勾线填色法画成，疏朗地缀于枝头。一对白头翁安逸地栖于枝上，形态各异，用笔精炼准确，形象生动。
-                    </div>
-                     -->
                 </div>
             </div>
         </div>
@@ -242,7 +253,7 @@ export default {
         }
 
 
-        .mian_text {
+        .main_text {
             width: 394px;
             height: 639px;
             background: rgba(255, 255, 255, 0.8);
@@ -253,7 +264,7 @@ export default {
 //            display: flex;
             justify-content: center;
 
-            .main_icon {
+            .close_icon {
                 width: 28px;
                 height: 28px;
                 position: absolute;
@@ -267,7 +278,7 @@ export default {
                 }
             }
 
-            .mian_text_title {
+            .main_text_title {
                 margin-top: 40px;
                 height: 16px;
                 font-weight: 400;
@@ -290,13 +301,153 @@ export default {
                 margin-left: auto;
                 margin-right: auto;
                 background: linear-gradient(211.37deg, #DDC3DD -2.72%, #F1E5D9 49.89%, #E6B0B2 101.69%);
-                display: flex;
+                object-position: center; /* 可选：将图片居中显示 */
+                position: relative;
 
                 .main_img {
                     width: 278px;
                     height: 170px;
+                    display: block;
                     margin-left: auto;
                     margin-right: auto;
+                    margin-top: 20px;
+                }
+
+                .model_title {
+                    display: flex;
+                    align-items: center;
+                    margin-top: 6px;
+                    height: 10px;
+                    img {
+                        width: 10.82px;
+                        height: 15px;
+                        margin-right: 8px;
+                        margin-left: 20px;
+                    }
+                    .fixed_title {
+                        font-family: "STHeiti", "Hiragino Sans GB", "Arial", sans-serif;
+                        font-size: 10px;
+                        font-weight: 500;
+                        margin-top: 2px;
+                        height: 6px;
+                        font-size: 10px;
+                    }
+                }
+
+                .model_context {
+                    display: flex;
+                    align-items: center;
+                    margin: 15px auto 0 auto; // 居中
+                    margin-top: 15px;
+                    height: 46px;
+                    border-radius: 4px;
+                    width: 276px;
+                    opacity: 1;
+                    background: #F0FDF480;
+
+                    .model_name{
+                        width: 51px;
+                        height: 13px;
+                        border-radius: 6.5px;
+                        margin-right: 8px;
+                        margin-left: 8px;
+                        font-size: 8px;
+                        background-color: #22c55e;
+                        align-items: center;
+                        justify-content: center;
+                        margin-bottom: 14px;
+                        display: flex;
+                    }
+                    .model_output{
+                        font-family: "STHeiti", "Hiragino Sans GB", "Arial", sans-serif;
+                        font-size: 8px;
+                        font-weight: 500;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 3; /* 最多显示3行 */
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
+
+                .sharerInfo{
+                    display: flex;
+                    align-items: center;
+                    margin: 15px auto 0 13px;
+                    margin-top: 15px;
+                    width: 235px;
+                    height: 46px;
+                    border-radius: 4px;
+
+                    .user_img {
+                        .reviewerImg{ 
+                            width: 30px;
+                            height: 33px;
+                            margin-left: 8px;
+                            margin-right: 8px;
+                        }
+                    }
+
+                    .userText{
+                        height: 33px;
+                        .user_name{
+                            font-size: 8px;
+                        }
+
+                        .user_type{
+                            font-size: 8px;
+                            display: flex;
+                            align-items: center;
+                            margin-top: 4px;
+
+                            .userStar{
+                                width: 10px;
+                                height: 10px;
+                                margin-right: 3px;
+                            }   
+                        }
+                    }
+                }
+
+                .footer{
+                    width: 100%;
+                    position: absolute;
+                    bottom: 0;
+                    background: #FFFFFF;
+                    border-bottom-left-radius: 23px;
+                    border-bottom-right-radius: 23px;
+                    height: 57px;
+                    opacity: 1;
+                    
+                    .footer-left{
+                        height: 100%;
+                        .footerLogo{
+                            width: 154px;
+                            height: auto;
+                            margin-left: 9px;
+                            margin-top: 5px;
+                        }
+                        .footerLogoText{
+                            font-size: 6px;
+                            margin-left: 20px;
+                            margin-top: 0;
+                            color: #B4B4B4;
+                        }
+                    }
+
+                    .footer-right{
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                        height: 100%;
+
+                        .QRCode{
+                            width: 36px;
+                            height: auto;
+                            margin-right: 9px;
+                            margin-top: 9px;
+                        }
+                    }
                 }
 
             }
