@@ -191,13 +191,14 @@ export default {
             height: 46px;
             border-radius: 4px;
             .model_name{
-                width: 51px;
+                width: 45px;
                 height: 13px;
                 border-radius: 6.5px;
                 margin-right: 8px;
                 margin-left: 8px;
                 font-size: 8px;
                 background-color: #22c55e;
+                display: flex;
                 align-items: center;
                 justify-content: center;
                 margin-bottom: 14px;
@@ -212,6 +213,7 @@ export default {
                 -webkit-box-orient: vertical;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                width:153px
             }
         }
 

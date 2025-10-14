@@ -169,7 +169,7 @@ export default {
     background: rgba(255, 255, 255, 0.25);
     border-radius: 2.69rem 2.69rem 2.69rem 2.69rem;
     border: 0.04rem solid #CECECE;
-    margin: 0 10rem 0 6rem;
+    margin: 0 5rem 0 6rem;
     display: flex;
     align-items: center;
     justify-content: center;

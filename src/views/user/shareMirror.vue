@@ -353,6 +353,7 @@ export default {
                         margin-right: 8px;
                         text-align: justify;
                         height: auto;
+                        width: 198px
                     }
                 }
 
