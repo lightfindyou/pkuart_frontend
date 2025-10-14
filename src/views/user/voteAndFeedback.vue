@@ -1,6 +1,6 @@
 <template>
     <div class="tab_list">
-        <div class="item" v-for="(item, index) in rates" :key="index" @click="handleShow(item)" :style="{ height: ((index % 6 === 0 || index % 6 === 3 || index % 6 === 4) ? 355 : 495) + 'px' }">
+        <div class="item" v-for="(item, index) in rates" :key="index" @click="handleShow(item)" >
             <img :src="item.imgs" alt="">
             <div class="titles">{{ item.artwork_name }}</div>
                 <div class="model_title">
@@ -111,10 +111,24 @@ export default {
 </script>
 <style lang="less" scoped>
 .tab_list {
-    width: 100%;
-    height: 100%;
-    margin: 0px auto;
-    column-count: 3;
+    width: 860px;
+    height: 890px;
+    display: flex;
+    flex-flow: column wrap;
+    align-content: space-between;
+    
+    .item:nth-child(3n+1) { order: 1; }
+    .item:nth-child(3n+2) { order: 2; }
+    .item:nth-child(3n)   { order: 3; }
+
+    .break {
+        flex-basis: 100%;
+        width: 0;
+        border: 1px solid #ddd;
+        margin: 0;
+        content: "";
+        padding: 0;
+    }
 
     .item {
         width: 265px;
@@ -129,21 +143,28 @@ export default {
         object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
         object-position: center; /* 可选：将图片居中显示 */
         margin-bottom: 15px;
+        padding: 15px;
+        box-sizing: border-box;
+        break-inside: avoid-column;
 
+        &:nth-child(n) {
+            height: 355px;
+            img{
+                height: 170px;
+            }
+        }
 
-//        &:nth-child(n) {
-//            height: 355px;
-//        }
-//
-//        &:nth-child(2n) {
-//            height: 495px;
-//        }
+        &:nth-child(2n) {
+            height: 495px;
+            img{
+                height: 310px;
+            }
+        }
 
         img {
-            margin: 0rem 1rem 1rem 1rem;
+            margin: 0 auto 1rem auto;
             padding-top: 1rem;
             width: 237px;
-            height: 170px;
             object-fit: cover;
             object-position: center;
             display: block;
@@ -244,6 +265,19 @@ export default {
         }
 
     }
+}
+    
+.item:nth-child(3n+1) { order: 1; }
+.item:nth-child(3n+2) { order: 2; }
+.item:nth-child(3n)   { order: 3; }
+
+.break {
+  flex-basis: 100%;
+  width: 0;
+  border: 1px solid #ddd;
+  margin: 0;
+  content: "";
+  padding: 0;
 }
 
 </style>

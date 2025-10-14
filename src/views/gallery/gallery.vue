@@ -110,17 +110,18 @@ export default {
             showGalleryFromItem: {},
         }
     },
-    async mounted() {
+    mounted() {
         this.checklogin();
     },
     methods: {
-        checklogin() {
+        async checklogin() {
             try {
                 const url = `http://47.122.63.229:5055/api/checkLogin`
-                axios.get(url, { withCredentials: true })
+                await axios.get(url, { withCredentials: true })
             } catch (error) {
                 if (error.response && error.response.status === 401) {
                     alert('用户未登录，请先登录');
+                    this.$store.commit('resetRouterDomIndex');
                     this.$router.push('/login');
                     return;
                 }

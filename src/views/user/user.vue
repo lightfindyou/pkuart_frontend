@@ -104,6 +104,8 @@ export default {
             try{
                 const url = 'http://47.122.63.229:5055/api/logout';
                 axios.get(url, { withCredentials: true })
+                localStorage.clear()
+                this.$store.commit('resetUserAvatar');
                 this.$router.push('/');
 			} catch (error) {
                 if(error.response && error.response.status === 401) {
@@ -127,6 +129,7 @@ export default {
 			} catch (error) {
                 if(error.response && error.response.status === 401) {
                     alert('用户未登录，请先登录');
+                    this.$store.commit('resetRouterDomIndex');
                     this.$router.push('/login');
                     return;
                 }
@@ -285,7 +288,6 @@ export default {
     width: 921px;
     //height: 725px;
     height: auto;
-    max-height: 944px;
     background: rgba(255, 255, 255, 0.8);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     border-radius: 20px 20px 20px 20px;

@@ -106,6 +106,12 @@ export default new Vuex.Store({
     },
     setUserAvatar(state, url) {
       state.userAvatar= url;
+    },
+    resetUserAvatar(state) {
+      state.userAvatar= require('@/assets/user/tx.png');
+    },
+    resetRouterDomIndex(state) {
+      state.routerDomIndex = 'home';
     }
   },
   
