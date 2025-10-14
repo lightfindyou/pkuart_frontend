@@ -10,7 +10,7 @@
                         <img src="@/assets/home/gb.png" alt="">
                     </div>
                     <div class="main_text_title fs">分享智镜</div>
-                    <div class="image_div">
+                    <div class="image_div" ref="captureArea">
                         <img class="main_img" :src="this.rate.imgs" alt="">
                         <div class="model_title">
                             <img src="@/assets/user/cup.png" alt="">
@@ -65,19 +65,19 @@
                             <img class="changeIcon" src="@/assets/logo/refresh.png" alt="">
                             换一张
                         </button>
-                        <button class="downloadButton">
+                        <button class="downloadButton" @click="downloadImage">
                             <img class="downloadIcon" src="@/assets/logo/download.png" alt="">
                             下载图片
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </template>
 <script>
 import axios from 'axios'
+import html2canvas from 'html2canvas';
 export default {
     name: 'ShareMirror',
     data() {
@@ -120,6 +120,18 @@ export default {
         },
         handleShow() {
             this.show = true
+        },
+        downloadImage() {
+            // 截取 main_text 区域
+            const captureArea = this.$refs.captureArea;
+            if (captureArea) {
+                html2canvas(captureArea, {useCORS: true, backgroundColor: null}).then((canvas) => {
+                    const link = document.createElement('a');
+                    link.href = canvas.toDataURL('image/png');
+                    link.download = '分享图片.png';
+                    link.click();
+                });
+            }
         },
         async fetchUserInfo() {
             const id = localStorage.getItem('user_id');
@@ -279,6 +291,8 @@ export default {
                     margin-left: auto;
                     margin-right: auto;
                     margin-top: 20px;
+                    object-fit: cover;
+                    object-position: center;
                 }
 
                 .model_title {
@@ -338,6 +352,7 @@ export default {
                         text-overflow: ellipsis;
                         margin-right: 8px;
                         text-align: justify;
+                        height: auto;
                     }
                 }
 
