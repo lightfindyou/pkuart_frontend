@@ -111,18 +111,7 @@ export default {
         }
     },
     async mounted() {
-        try {
-            const url = `http://47.122.63.229:5055/api/checkLogin`
-            await axios.get(url, { withCredentials: true })
-        } catch (error) {
-            if (error.response && error.response.status === 401) {
-                alert('用户未登录，请先登录');
-                this.$router.push('/login');
-                return;
-            }
-            alert('网络异常或服务器错误，请稍后重试');
-            console.error('检查登录异常:', error);
-        }
+        this.checklogin();
     },
     methods: {
         checklogin() {

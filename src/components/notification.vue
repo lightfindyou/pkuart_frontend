@@ -137,8 +137,6 @@ export default {
 				}
 			} catch (error) {
                 if(error.response && error.response.status === 401) {
-                    alert('用户未登录，请先登录');
-                    this.$router.push('/login');
                     return;
                 }
 				alert('网络异常或服务器错误，请稍后重试');

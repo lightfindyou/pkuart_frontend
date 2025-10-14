@@ -118,7 +118,6 @@ export default {
                 await axios.get(url, { withCredentials: true })
             } catch (error) {
                 if(error.response && error.response.status === 401) {
-                    alert('用户未登录，请先登录');
                     this.$router.push('/login');
                     return;
                 }
@@ -135,7 +134,6 @@ export default {
             } catch (error) {
                 if(error.response && error.response.status === 401) {
                     alert('用户未登录，请先登录');
-                    this.$router.push('/login');
                     return;
                 }
                 console.error('Error deleting favorite:', error);
