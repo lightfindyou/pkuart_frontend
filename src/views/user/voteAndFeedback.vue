@@ -1,6 +1,6 @@
 <template>
     <div class="tab_list">
-        <div class="item" v-for="(item, index) in rates" :key="index" @click="handleShow(item)">
+        <div class="item" v-for="(item, index) in rates" :key="index" @click="handleShow(item)" :style="{ height: ((index % 6 === 0 || index % 6 === 3 || index % 6 === 4) ? 355 : 495) + 'px' }">
             <img :src="item.imgs" alt="">
             <div class="titles">{{ item.artwork_name }}</div>
                 <div class="model_title">
@@ -111,12 +111,10 @@ export default {
 </script>
 <style lang="less" scoped>
 .tab_list {
-    display: grid;
     width: 100%;
-    grid-template-columns: repeat(3, 1fr);
-    //width: 1200px;
     height: 100%;
-    columns: 3;
+    margin: 0px auto;
+    column-count: 3;
 
     .item {
         width: 265px;
@@ -142,7 +140,8 @@ export default {
 //        }
 
         img {
-            margin: 1rem 1rem 1rem 1rem;
+            margin: 0rem 1rem 1rem 1rem;
+            padding-top: 1rem;
             width: 237px;
             height: 170px;
             object-fit: cover;
