@@ -85,20 +85,42 @@ export default {
     methods: {
         initEcharts() {
             var chartDom = this.$refs.echarts_box;
-            var myChart = echarts.init(chartDom);
             var option;
+            // 每一行（一个 category）期望的高度（px），可根据需要调整
+            var rowHeight = 60; // 例如 40px 每行
+            // 最小/最大高度保护，避免过小或过大
+            var minHeight = 200;
+            var maxHeight = 1600;
             //var data = [70, 60, 50, 40, 30, 30, 20, 10, 10, 20];
             //var className = ['Human Expert', 'DeepSeek-R1 0528', 'Doubao-Seed 1.6-Thinking', 'GPT-4.1', 'Gemini-2.0-Flash Thinking', 'Claude-4 Sonnet-Thinking', 'QwQ-32B', 'Doubao-Seed 1.6-Thinking', 'GPT-4.1'];
-            var data = [ 80.05, 76.27, 74.93, 74.30, 72.69, 62.94, 62.79, 60.35, 60.34]
-                        //, 58.83, 58.69, 57.34, 57.03, 56.94, 53.68, 51.07,
-                        //36.07];
             
-            var className = ['doubao-seed-1-6-thinking-250615',  'google gemini-2.5-flash', 'step-1o-vision-32k', 'google gemini-2.5-pro', 'openai o3',
-                            'Doubao-1.5-vision-pro-32k', 'claude-3.7-sonnet:thinking', 'claude-opus-4', 'claude-sonnet-4']
-                            // 'claude-opus-4-20250514-thinking', 'qvq-max-2025-03-25',
-                            //'claude-sonnet-4-20250514-thinking', 'openai gpt-4.1', 'glm-4.1v-9b-thinking', 'qwen2.5-vl-72b-instruct', 'x-ai grok-4', 'meta-llama llama-4-maverick',
+            var className = [ 'doubao-seed-1-6-thinking-250615', 'tencent hunyuan-t1-vision-20250619', 'google gemini-2.5-flash', 'step-1o-vision-32k',
+                'google gemini-2.5-pro', 'openai o3', 'openai o4-mini-high', 'Doubao-1.5-vision-pro-32k', 'claude-3.7-sonnet:thinking',
+                'claude-opus-4', 'claude-sonnet-4', 'claude-opus-4-20250514-thinking', 'qvq-max-2025-03-25', 'claude-sonnet-4-20250514-thinking',
+                'gpt-4.1', 'glm-4.1v-9b-thinking', 'qwen2.5-vl-72b-instruct', 'x-ai grok-4', 'llama-4-maverick'];
 
-            var colorList = ['#E8C469', '#F4A362', '#E76E50', '#284754', '#299D90', '#299D90', '#299D90', '#F4A362', '#E76E50',];
+            var data = [ 80.05, 77.49, 76.27, 74.93, 74.3, 72.69, 64.14, 62.94,
+                    62.79, 60.35, 60.34, 58.83, 58.69, 57.34, 57.03, 56.94,
+                    53.68, 51.07, 36.07];
+
+            var colorList = ['#E8C469', '#F4A362', '#E76E50', '#284754', '#299D90', '#299D90', '#299D90', '#F4A362', '#E76E50',
+            '#E8C469', '#F4A362', '#E76E50', '#284754', '#299D90', '#299D90', '#299D90', '#F4A362', '#E76E50', '#E8C469',];
+
+            // 根据类别数量动态计算容器高度：每行 rowHeight，高度还预留一点上下 padding
+            var calcHeight = className.length * rowHeight + 60; // 60px 额外间距
+            if (calcHeight < minHeight) calcHeight = minHeight;
+            if (calcHeight > maxHeight) calcHeight = maxHeight;
+            // 设置容器高度（如果使用了固定高度的 CSS，这里会覆盖）
+            if (chartDom && chartDom.style) {
+                chartDom.style.height = calcHeight + 'px';
+            }
+
+            // 初始化图表（在设置高度之后初始化以确保尺寸正确）
+            var myChart = echarts.init(chartDom);
+
+            // 将 barWidth 设置为行高的一部分，使得每行看起来像期望的高度
+            var barW = Math.max(6, Math.round(rowHeight * 0.6));
+
             option = {
                 grid: {
                     left: '5%',
@@ -148,12 +170,19 @@ export default {
                             }
                         },
                     },
-                    barWidth: 29,
+                    // 使用动态计算的 barWidth
+                    barWidth: barW,
+                    // 控制类目间距（可用百分比或像素）
+                    // barCategoryGap: '20%',
                     data: data
                 }
                 ]
             };
             option && myChart.setOption(option);
+            // 在修改容器高度之后，确保图表 resize
+            setTimeout(() => {
+                try { myChart.resize(); } catch (e) { /* ignore */ }
+            }, 0);
         },
         handleTabClick(value) {
             this.activeName = value;
@@ -170,7 +199,7 @@ export default {
 <style lang="less" scoped>
 .rankingList {
     width: 100%;
-    height: 100%;
+    height: 1220px;
 
     .content {
         width: 1200px;
