@@ -125,7 +125,10 @@ export default {
             // 截取 main_text 区域
             const captureArea = this.$refs.captureArea;
             if (captureArea) {
-                html2canvas(captureArea, {useCORS: true, backgroundColor: null}).then((canvas) => {
+                html2canvas(captureArea, {useCORS: true,
+                                         dpi:900,
+                                         scale: 3,
+                                         backgroundColor: null}).then((canvas) => {
                     const link = document.createElement('a');
                     link.href = canvas.toDataURL('image/png');
                     link.download = '分享图片.png';
@@ -352,7 +355,7 @@ export default {
                         text-overflow: ellipsis;
                         margin-right: 8px;
                         text-align: justify;
-                        height: auto;
+                        height: 24px;
                         width: 198px
                     }
                 }
@@ -396,7 +399,7 @@ export default {
                     }
 
                     .date{
-                        font-family: "FangSong", "仿宋", serif;
+                        font-family: "FangSong", "仿宋", "宋体", serif;
                         font-size: 8px;
                         font-weight: 500;
                         margin-right: 19px;

@@ -163,7 +163,7 @@ export default {
 
         img {
             margin: 0 auto 1rem auto;
-            padding-top: 1rem;
+            padding-top: 0;
             width: 237px;
             object-fit: cover;
             object-position: center;
@@ -173,7 +173,7 @@ export default {
 
         .titles {
             font-family: 'STFangsong', SimSun, sans-serif;
-            margin-top: 15px;
+            margin-top: 5px;
             height: 22px;
             font-weight: 400;
             font-size: 16px;
@@ -184,20 +184,21 @@ export default {
         .model_title {
             display: flex;
             align-items: center;
-            margin-top: 6px;
+            margin-top: 13px;
             height: 10px;
             img {
                 width: 18px;
                 height: 18px;
-                margin-right: 8px;
+                margin: 0 8px 4px 3px;
             }
             .fixed_title {
+                align-self: flex-start;
                 font-family: "STHeiti", "Hiragino Sans GB", "Arial", sans-serif;
                 font-size: 10px;
                 font-weight: 500;
-                margin-top: 2px;
                 height: 15px;
                 font-size: 10px;
+                text-align: left;
             }
         }
 
@@ -245,7 +246,7 @@ export default {
                 width: 195px;
                 height: 34px;
                 font-size: 8px;
-                font-family: "FangSong", "仿宋", serif;
+                font-family: "FangSong", "仿宋", "宋体", serif;
                 margin-left: 17px;
                 margin-right: 15px;
                 display: -webkit-box;
@@ -256,7 +257,7 @@ export default {
                 text-overflow: ellipsis;
             }
             .date{
-                font-family: "FangSong", "仿宋", serif;
+                font-family: "FangSong", "仿宋", "宋体", serif;
                 font-size: 8px;
                 font-weight: 500;
                 margin-right: 12px;
