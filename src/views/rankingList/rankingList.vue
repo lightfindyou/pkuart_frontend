@@ -87,8 +87,17 @@ export default {
             var chartDom = this.$refs.echarts_box;
             var myChart = echarts.init(chartDom);
             var option;
-            var data = [70, 60, 50, 40, 30, 30, 20, 10, 10, 20];
-            var className = ['Human Expert', 'DeepSeek-R1 0528', 'Doubao-Seed 1.6-Thinking', 'GPT-4.1', 'Gemini-2.0-Flash Thinking', 'Claude-4 Sonnet-Thinking', 'QwQ-32B', 'Doubao-Seed 1.6-Thinking', 'GPT-4.1'];
+            //var data = [70, 60, 50, 40, 30, 30, 20, 10, 10, 20];
+            //var className = ['Human Expert', 'DeepSeek-R1 0528', 'Doubao-Seed 1.6-Thinking', 'GPT-4.1', 'Gemini-2.0-Flash Thinking', 'Claude-4 Sonnet-Thinking', 'QwQ-32B', 'Doubao-Seed 1.6-Thinking', 'GPT-4.1'];
+            var data = [ 80.05, 76.27, 74.93, 74.30, 72.69, 62.94, 62.79, 60.35, 60.34]
+                        //, 58.83, 58.69, 57.34, 57.03, 56.94, 53.68, 51.07,
+                        //36.07];
+            
+            var className = ['doubao-seed-1-6-thinking-250615',  'google gemini-2.5-flash', 'step-1o-vision-32k', 'google gemini-2.5-pro', 'openai o3',
+                            'Doubao-1.5-vision-pro-32k', 'claude-3.7-sonnet:thinking', 'claude-opus-4', 'claude-sonnet-4']
+                            // 'claude-opus-4-20250514-thinking', 'qvq-max-2025-03-25',
+                            //'claude-sonnet-4-20250514-thinking', 'openai gpt-4.1', 'glm-4.1v-9b-thinking', 'qwen2.5-vl-72b-instruct', 'x-ai grok-4', 'meta-llama llama-4-maverick',
+
             var colorList = ['#E8C469', '#F4A362', '#E76E50', '#284754', '#299D90', '#299D90', '#299D90', '#F4A362', '#E76E50',];
             option = {
                 grid: {
