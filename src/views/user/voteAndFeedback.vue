@@ -65,8 +65,17 @@ export default {
     },
     methods: {
         handleShow(item) {
-            this.showGalleryFrom = true;
-            this.showGalleryFromItem = item;
+            //this.showGalleryFrom = true;
+            //this.showGalleryFromItem = item;
+            //$store.state.assessB
+            //this.$store.state.showItem.imgs
+            this.$store.commit('setShowItem', item);
+			this.$store.commit('setAssessA', item.selected_response);
+			this.$store.commit('setAssessB', item.loser_response);
+            console.log('item:' + item);
+            console.log('assessB:' + item.loser_response);
+			this.$router.push('/evaluate');
+			console.log('goto evaluate');
         },
         handleDel() {
             this.showGalleryFrom = false;
@@ -91,6 +100,8 @@ export default {
                         imgs: 'http://47.122.63.229:5055/' + item.path, // 图片地址
                         feedback: item.feedback,
                         date: this.formatDate(item.timestamp),
+                        loser_response: item.loser_response,
+                        loser_name: item.loser_name,
                     })
                 );
                 console.log(this.rates, '===rates');
