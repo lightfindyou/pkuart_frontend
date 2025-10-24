@@ -71,7 +71,6 @@ export default {
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 alert('用户未登录，请先登录');
-                this.$store.commit('resetRouterDomIndex');
                 this.$router.push('/login');
                 return;
             }
@@ -122,6 +121,10 @@ export default {
             var barW = Math.max(6, Math.round(rowHeight * 0.6));
 
             option = {
+                // 全局动画配置，确保初次渲染有增长动画
+                animation: true,
+                animationDuration: 1000,
+                animationEasing: 'cubicOut',
                 grid: {
                     left: '5%',
                     right: '0%',
@@ -162,6 +165,13 @@ export default {
                     name: '完成率',
                     type: 'bar',
                     zlevel: 1,
+                    // 单条 series 的动画控制
+                    animationDuration: 1000,
+                    animationEasing: 'cubicOut',
+                    // stagger 动画：每个柱子延迟一点，制造逐个增长的效果
+                    animationDelay: function (idx) {
+                        return idx * 80;
+                    },
                     itemStyle: {
                         normal: {
                             barBorderRadius: [8, 8],
@@ -179,10 +189,6 @@ export default {
                 ]
             };
             option && myChart.setOption(option);
-            // 在修改容器高度之后，确保图表 resize
-            setTimeout(() => {
-                try { myChart.resize(); } catch (e) { /* ignore */ }
-            }, 0);
         },
         handleTabClick(value) {
             this.activeName = value;
