@@ -147,7 +147,9 @@
                 感谢您的投票！请留下您的宝贵反馈
             </div>
             <div class="dy_btn_box">
-                <div class="dy_btn" v-for="item in voteOptions" :key="item">{{ item }}</div>
+                <!-- 可选中的按钮（多选） -->
+                <button type="button" class="dy_btn" v-for="item in voteOptions" :key="item"
+                    :class="{ 'selected': selectedVoteOptions.includes(item) }" @click="selectVote(item)">{{ item }}</button>
             </div>
             <div class="dy_texter">
                 <el-input type="textarea" class="textarea" placeholder="请输入内容" v-model="textarea" maxlength="50"
@@ -183,6 +185,7 @@ export default {
             showNotification: false,//是否显示通知  
             feedbackShow: false,//是否显示反馈
             selectedOption: '', // 当前选中的选项
+            selectedVoteOptions: [], // 当前在调研弹窗中选中的投票项（多选）
             selectedModel: '', // 选中的模型
             dialogVisible: false,//是否显示投票
             textarea: '',//调研内容
@@ -340,6 +343,17 @@ export default {
             this.submitEval(id);
             this.submitFeedback(id);
             this.$router.back();
+        },
+        // 在调研弹窗中多选/取消选择一项
+        selectVote(item) {
+            const idx = this.selectedVoteOptions.indexOf(item);
+            if (idx === -1) {
+                // 未选择则加入
+                this.selectedVoteOptions.push(item);
+            } else {
+                // 已选择则移除
+                this.selectedVoteOptions.splice(idx, 1);
+            }
         },
         async submitEval(id){
             try{
@@ -1080,14 +1094,24 @@ export default {
         .dy_btn {
             width: 133px;
             height: 42px;
-            line-height: 42px;
-            text-align: center;
+            /* use flexbox to guarantee vertical centering */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 12px;
             background: #FFFFFF;
             border-radius: 8px 8px 8px 8px;
             border: 1px solid #D9D9D9;
             font-weight: 300;
             font-size: 14px;
             color: #000000;
+            cursor: pointer;
+
+            &.selected {
+                background: #22C55E;
+                color: #FFFFFF;
+                border-color: transparent;
+            }
         }
     }
 
