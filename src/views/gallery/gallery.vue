@@ -12,16 +12,16 @@
             </div>
             <div class="swiper_box">
                 <swiper ref="swiper" :options="swiperOption">
-                    <swiper-slide >
+                    <swiper-slide>
                         <img src="@/assets/list/carusel1.png" alt="">
                     </swiper-slide>
-                    <swiper-slide >
+                    <swiper-slide>
                         <img src="@/assets/list/carusel2.png" alt="">
                     </swiper-slide>
-                    <swiper-slide >
+                    <swiper-slide>
                         <img src="@/assets/list/carusel3.png" alt="">
                     </swiper-slide>
-                    <swiper-slide >
+                    <swiper-slide>
                         <img src="@/assets/list/carusel4.png" alt="">
                     </swiper-slide>
                 </swiper>
@@ -51,10 +51,11 @@
                 </el-tabs>
             </div>
             <div class="tab_list">
-                <div class="item" :class="{ 'item-bg': index < 3 }" v-for="(item, index) in list" :key="index" @click="handleShow(item)">
+                <div class="item" :class="{ 'item-bg': index < 3 }" v-for="(item, index) in list" :key="index"
+                    @click="handleShow(item)">
                     <img :src="item.imgs" alt="">
                     <div class="bottom">
-                        <div class="titles">{{ item.title}}</div>
+                        <div class="titles">{{ item.title }}</div>
                         <div class="titles_en ens">{{ item.title_en }}</div>
                         <div class="name">作者：{{ item.name }}</div>
                         <div class="icon">
@@ -65,7 +66,8 @@
                 </div>
             </div>
         </div>
-        <GalleryFrom :showGalleryFromItem = "showGalleryFromItem" @handleDel="handleDel" v-if="showGalleryFrom"></GalleryFrom>
+        <GalleryFrom :showGalleryFromItem="showGalleryFromItem" @handleDel="handleDel" v-if="showGalleryFrom">
+        </GalleryFrom>
     </div>
 </template>
 <script>
@@ -74,6 +76,7 @@ import 'swiper/css/swiper.css'
 import GalleryFrom from './galleryFrom.vue'
 import { mapState } from 'vuex'
 import axios from 'axios'
+import { API_BASE } from '@/config'
 
 export default {
     name: 'GalleryView',
@@ -116,7 +119,7 @@ export default {
     methods: {
         async checklogin() {
             try {
-                const url = `http://47.122.63.229:5055/api/checkLogin`
+                const url = `${API_BASE}/checkLogin`
                 await axios.get(url, { withCredentials: true })
             } catch (error) {
                 if (error.response && error.response.status === 401) {
@@ -256,6 +259,7 @@ export default {
         align-items: center;
         position: relative;
         overflow: hidden;
+
         .swiper_navigation {
             position: absolute;
             bottom: 20px;
@@ -269,6 +273,7 @@ export default {
                 height: 72px;
                 transition: all 0.3s ease;
                 cursor: pointer;
+
                 &:hover {
                     transform: scale(1.1);
                 }
@@ -278,7 +283,7 @@ export default {
                 }
 
                 img {
-                   
+
                     width: 100%;
                     height: 100%;
                 }
@@ -351,18 +356,22 @@ export default {
             position: relative;
             cursor: pointer;
             pointer-events: auto;
-            object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
-            object-position: center; /* 可选：将图片居中显示 */
+            object-fit: cover;
+            /* 关键属性：保持图片纵横比，裁剪以填充容器 */
+            object-position: center;
+            /* 可选：将图片居中显示 */
 
             &.item-bg {
                 background-image: url('@/assets/list/img.png');
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
-                object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
-                object-position: center; /* 可选：将图片居中显示 */
-//                max-height: 435px;
-//                min-height: 296px;
+                object-fit: cover;
+                /* 关键属性：保持图片纵横比，裁剪以填充容器 */
+                object-position: center;
+                /* 可选：将图片居中显示 */
+                //                max-height: 435px;
+                //                min-height: 296px;
             }
 
             &:nth-child(n) {

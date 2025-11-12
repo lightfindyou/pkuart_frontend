@@ -56,6 +56,7 @@
 <script>
 import * as echarts from 'echarts';
 import axios from 'axios';
+import { API_BASE } from '@/config'
 
 export default {
     name: 'RankingListdiv',
@@ -66,7 +67,7 @@ export default {
     },
     async mounted() {
         try{
-            const url = `http://47.122.63.229:5055/api/checkLogin`
+            const url = `${API_BASE}/checkLogin`
             await axios.get(url, { withCredentials: true })
         } catch (error) {
             if (error.response && error.response.status === 401) {

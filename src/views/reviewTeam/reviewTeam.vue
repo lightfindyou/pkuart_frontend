@@ -11,7 +11,8 @@
                 </div>
             </div>
             <div class="list">
-                <div class="list_item" v-for="item in reviewerList" :key="item" @mouseenter.stop="handleItemIndex(item)" @mouseleave="handleOutsideClick">
+                <div class="list_item" v-for="item in reviewerList" :key="item" @mouseenter.stop="handleItemIndex(item)"
+                    @mouseleave="handleOutsideClick">
                     <div class="item_img">
                         <img :src="item.imgs" alt="">
                     </div>
@@ -33,6 +34,7 @@
 
 <script>
 import axios from 'axios'
+import { API_BASE } from '@/config'
 
 export default {
     name: 'ReviewTeamView',
@@ -44,7 +46,7 @@ export default {
     },
     async mounted() {
         try {
-            const url = `http://47.122.63.229:5055/api/checkLogin`
+            const url = `${API_BASE}/checkLogin`
             await axios.get(url, { withCredentials: true })
         } catch (error) {
             if (error.response && error.response.status === 401) {
@@ -61,12 +63,12 @@ export default {
     methods: {
         handleItemIndex(index) {
             this.itemIndex = index;
-//            // 如果点击的是当前已显示的项，则隐藏；否则显示新项
-//            if (this.itemIndex === index) {
-//                this.itemIndex = 0;
-//            } else {
-//                this.itemIndex = index;
-//            }
+            //            // 如果点击的是当前已显示的项，则隐藏；否则显示新项
+            //            if (this.itemIndex === index) {
+            //                this.itemIndex = 0;
+            //            } else {
+            //                this.itemIndex = index;
+            //            }
         },
         handleOutsideClick() {
             // 点击外部区域时隐藏详情
@@ -74,32 +76,31 @@ export default {
         },
         async fetchReviewers() {
             console.log('请求评审专家列表');
-            try{
-                const url = `http://47.122.63.229:5055/api/getReviewers`
+            try {
+                const url = `${API_BASE}/getReviewers`
                 const res = await axios.get(url, { withCredentials: true });
                 console.log(res.data, '===data');
                 // 处理返回结果
                 const reviewers = res.data.reviewers;
                 this.reviewerList = reviewers.map(item => ({
-                    imgs: 'http://47.122.63.229:5055/avatar/' + item.id + '.png', // 头像地址
+                    imgs: `${API_BASE}/avatar/${item.id}.png`, // 头像地址
                     name: item.name,
                     info: item.info,
                     stat: item.stat ? item.stat : ''
                 }));
-			} catch (error) {
-                if(error.response && error.response.status === 401) {
+            } catch (error) {
+                if (error.response && error.response.status === 401) {
                     return;
                 }
-				alert('网络异常或服务器错误，请稍后重试');
-				console.error('获取专家列表异常:', error);
-			}
+                alert('网络异常或服务器错误，请稍后重试');
+                console.error('获取专家列表异常:', error);
+            }
         },
     }
 }
 </script>
 
 <style lang="less" scoped>
-
 .reviewTeam {
     width: 100%;
     min-height: unset;
@@ -111,7 +112,8 @@ export default {
         left: 0;
         top: 0;
         width: 100%;
-        height: 100%; /* 保持背景覆盖，但不影响内容自适应 */
+        height: 100%;
+        /* 保持背景覆盖，但不影响内容自适应 */
         z-index: 1;
     }
 
@@ -153,7 +155,8 @@ export default {
 
         .list {
             display: grid;
-            grid-template-columns: repeat(7, 1fr); /* 8列，可根据实际头像数量调整 */
+            grid-template-columns: repeat(7, 1fr);
+            /* 8列，可根据实际头像数量调整 */
             gap: 3vx;
             justify-items: center;
             align-items: center;
@@ -171,7 +174,7 @@ export default {
                     top: 100px;
                     width: 252px;
                     height: fit-content;
-//                    height: 158px;
+                    //                    height: 158px;
                     background: rgba(0, 0, 0, 0.8);
                     border-radius: 8px 8px 8px 8px;
                     z-index: 999;
@@ -210,7 +213,8 @@ export default {
                     border-radius: 39px 39px 39px 39px;
 
                     img {
-                        width: 100px; /* 根据实际调整 */
+                        width: 100px;
+                        /* 根据实际调整 */
                         height: 100px;
                         object-fit: cover;
                     }

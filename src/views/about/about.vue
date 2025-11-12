@@ -59,13 +59,14 @@
 
 <script>
 import axios from 'axios';
+import { API_BASE } from '@/config'
 
 export default {
   name: 'AboutView',
   async mounted() {
     try {
-      const url = `http://47.122.63.229:5055/api/checkLogin`
-      await axios.get(url, { withCredentials: true })
+  const url = `${API_BASE}/checkLogin`
+  await axios.get(url, { withCredentials: true })
     } catch (error) {
       if (error.response && error.response.status === 401) {
         alert('用户未登录，请先登录');

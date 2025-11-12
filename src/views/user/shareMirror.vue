@@ -77,6 +77,7 @@
 </template>
 <script>
 import axios from 'axios'
+import { API_BASE } from '@/config'
 import html2canvas from 'html2canvas';
 export default {
     name: 'ShareMirror',
@@ -110,7 +111,7 @@ export default {
     mounted() {
         const id = localStorage.getItem('user_id');
         this.fetchRatings();
-        this.userInfo.img = 'http://47.122.63.229:5055/avatar/' + id + '.png', // 头像地址
+    this.userInfo.img = `${API_BASE}/avatar/${id}.png`, // 头像地址
         this.fetchUserInfo();
     },
     methods: {
@@ -139,7 +140,7 @@ export default {
         async fetchUserInfo() {
             const id = localStorage.getItem('user_id');
             try{
-                const url = `http://47.122.63.229:5055/api/getReviewersByID?id=${id}`
+                const url = `${API_BASE}/getReviewersByID?id=${id}`
                 const res = await axios.get(url, { withCredentials: true });
                 console.log(res.data, '===data');
                 // 处理返回结果
@@ -159,7 +160,7 @@ export default {
                 this.$store.commit('setUserId', id);
             }
             try {
-                const url = 'http://47.122.63.229:5055/api/getVote?num=20&user_id=' + id;
+                const url = `${API_BASE}/getVote?num=20&user_id=${id}`;
                 const res = await axios.get(url, { withCredentials: true })
                 console.log(res.data)
                 this.rates = res.data.map(
@@ -170,7 +171,7 @@ export default {
                         winner: item.winner,
                         winner_name: item.winner_name,
                         selected_response: item.selected_response,
-                        imgs: 'http://47.122.63.229:5055/' + item.path, // 图片地址
+                        imgs: `${API_BASE}/${item.path}`, // 图片地址
                         feedback: item.feedback,
                         date: this.formatDate(item.timestamp),
                     })

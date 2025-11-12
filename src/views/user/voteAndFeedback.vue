@@ -1,29 +1,31 @@
 <template>
     <div class="tab_list">
-        <div class="item" v-for="(item, index) in rates" :key="index" @click="handleShow(item)" >
+        <div class="item" v-for="(item, index) in rates" :key="index" @click="handleShow(item)">
             <img :src="item.imgs" alt="">
             <div class="titles">{{ item.artwork_name }}</div>
-                <div class="model_title">
-                    <img src="@/assets/user/cup.png" alt="">
-                    <div class="fixed_title">胜出大模型评估</div>
+            <div class="model_title">
+                <img src="@/assets/user/cup.png" alt="">
+                <div class="fixed_title">胜出大模型评估</div>
+            </div>
+            <div class="model_context">
+                <div class="model_name">{{ item.winner_name }}</div>
+                <div class="model_output">{{ item.selected_response }} </div>
+            </div>
+            <div class="feedback_box">
+                <div class="feedback">
+                    {{ item.feedback }}
                 </div>
-                <div class="model_context">
-                    <div class="model_name">{{ item.winner_name }}</div>
-                    <div class="model_output">{{ item.selected_response }} </div>
-                </div>
-                <div class="feedback_box">
-                    <div class="feedback">
-                        {{ item.feedback }}
-                    </div>
-                    <div class="date">{{ item.date }}</div>
-                </div>
+                <div class="date">{{ item.date }}</div>
+            </div>
         </div>
-        <GalleryFrom :showGalleryFromItem="showGalleryFromItem" @handleDel="handleDel" v-if="showGalleryFrom"></GalleryFrom>
+        <GalleryFrom :showGalleryFromItem="showGalleryFromItem" @handleDel="handleDel" v-if="showGalleryFrom">
+        </GalleryFrom>
     </div>
 </template>
 <script>
 import axios from 'axios'
 import GalleryFrom from '@/views/gallery/galleryFrom.vue'
+import { API_BASE } from '@/config'
 
 export default {
     name: 'CollectView',
@@ -70,12 +72,12 @@ export default {
             //$store.state.assessB
             //this.$store.state.showItem.imgs
             this.$store.commit('setShowItem', item);
-			this.$store.commit('setAssessA', item.selected_response);
-			this.$store.commit('setAssessB', item.loser_response);
+            this.$store.commit('setAssessA', item.selected_response);
+            this.$store.commit('setAssessB', item.loser_response);
             console.log('item:' + item);
             console.log('assessB:' + item.loser_response);
-			this.$router.push('/evaluate');
-			console.log('goto evaluate');
+            this.$router.push('/evaluate');
+            console.log('goto evaluate');
         },
         handleDel() {
             this.showGalleryFrom = false;
@@ -86,7 +88,7 @@ export default {
                 this.$store.commit('setUserId', id);
             }
             try {
-                const url = 'http://47.122.63.229:5055/api/getVote?num=6&user_id=' + id;
+                const url = `${API_BASE}/getVote?num=6&user_id=${id}`;
                 const res = await axios.get(url, { withCredentials: true })
                 console.log(res.data)
                 this.rates = res.data.map(
@@ -97,7 +99,7 @@ export default {
                         winner: item.winner,
                         winner_name: item.winner_name,
                         selected_response: item.selected_response,
-                        imgs: 'http://47.122.63.229:5055/' + item.path, // 图片地址
+                        imgs: `${API_BASE}/${item.path}`, // 图片地址
                         feedback: item.feedback,
                         date: this.formatDate(item.timestamp),
                         loser_response: item.loser_response,
@@ -127,10 +129,18 @@ export default {
     display: flex;
     flex-flow: column wrap;
     align-content: space-between;
-    
-    .item:nth-child(3n+1) { order: 1; }
-    .item:nth-child(3n+2) { order: 2; }
-    .item:nth-child(3n)   { order: 3; }
+
+    .item:nth-child(3n+1) {
+        order: 1;
+    }
+
+    .item:nth-child(3n+2) {
+        order: 2;
+    }
+
+    .item:nth-child(3n) {
+        order: 3;
+    }
 
     .break {
         flex-basis: 100%;
@@ -151,8 +161,10 @@ export default {
         position: relative;
         cursor: pointer;
         pointer-events: auto;
-        object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
-        object-position: center; /* 可选：将图片居中显示 */
+        object-fit: cover;
+        /* 关键属性：保持图片纵横比，裁剪以填充容器 */
+        object-position: center;
+        /* 可选：将图片居中显示 */
         margin-bottom: 15px;
         padding: 15px;
         box-sizing: border-box;
@@ -160,14 +172,16 @@ export default {
 
         &:nth-child(n) {
             height: 355px;
-            img{
+
+            img {
                 height: 170px;
             }
         }
 
         &:nth-child(2n) {
             height: 495px;
-            img{
+
+            img {
                 height: 310px;
             }
         }
@@ -197,11 +211,13 @@ export default {
             align-items: center;
             margin-top: 13px;
             height: 10px;
+
             img {
                 width: 18px;
                 height: 18px;
                 margin: 0 8px 4px 3px;
             }
+
             .fixed_title {
                 align-self: flex-start;
                 font-family: "STHeiti", "Hiragino Sans GB", "Arial", sans-serif;
@@ -222,7 +238,8 @@ export default {
             width: 235px;
             height: 46px;
             border-radius: 4px;
-            .model_name{
+
+            .model_name {
                 width: 45px;
                 height: 13px;
                 border-radius: 6.5px;
@@ -235,17 +252,20 @@ export default {
                 justify-content: center;
                 margin-bottom: 14px;
             }
-            .model_output{
+
+            .model_output {
                 font-family: "STHeiti", "Hiragino Sans GB", "Arial", sans-serif;
                 font-size: 8px;
                 font-weight: 500;
                 display: -webkit-box;
-                -webkit-line-clamp: 3; /* 最多显示3行 */
-                line-clamp: 3; /* 标准属性，增强兼容性 */
+                -webkit-line-clamp: 3;
+                /* 最多显示3行 */
+                line-clamp: 3;
+                /* 标准属性，增强兼容性 */
                 -webkit-box-orient: vertical;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                width:153px
+                width: 153px
             }
         }
 
@@ -253,7 +273,8 @@ export default {
             display: flex;
             align-items: center;
             margin-top: 9px;
-            .feedback{
+
+            .feedback {
                 width: 195px;
                 height: 34px;
                 font-size: 8px;
@@ -261,13 +282,16 @@ export default {
                 margin-left: 17px;
                 margin-right: 15px;
                 display: -webkit-box;
-                -webkit-line-clamp: 3; /* 最多显示3行 */
-                line-clamp: 3; /* 标准属性，增强兼容性 */
+                -webkit-line-clamp: 3;
+                /* 最多显示3行 */
+                line-clamp: 3;
+                /* 标准属性，增强兼容性 */
                 -webkit-box-orient: vertical;
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
-            .date{
+
+            .date {
                 font-family: "FangSong", "仿宋", "宋体", serif;
                 font-size: 8px;
                 font-weight: 500;
@@ -278,18 +302,25 @@ export default {
 
     }
 }
-    
-.item:nth-child(3n+1) { order: 1; }
-.item:nth-child(3n+2) { order: 2; }
-.item:nth-child(3n)   { order: 3; }
 
-.break {
-  flex-basis: 100%;
-  width: 0;
-  border: 1px solid #ddd;
-  margin: 0;
-  content: "";
-  padding: 0;
+.item:nth-child(3n+1) {
+    order: 1;
 }
 
+.item:nth-child(3n+2) {
+    order: 2;
+}
+
+.item:nth-child(3n) {
+    order: 3;
+}
+
+.break {
+    flex-basis: 100%;
+    width: 0;
+    border: 1px solid #ddd;
+    margin: 0;
+    content: "";
+    padding: 0;
+}
 </style>

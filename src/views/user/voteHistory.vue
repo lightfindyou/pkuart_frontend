@@ -1,8 +1,9 @@
 <template>
     <div class="voteHistory">
-        <div class="vote_item" v-for="(item, index) in votes" :key="index" :style="{ height: expandedList[index] ? 'auto' : '147px' }">
+        <div class="vote_item" v-for="(item, index) in votes" :key="index"
+            :style="{ height: expandedList[index] ? 'auto' : '147px' }">
             <div class="vote_item_left">
-                <div class="left_title"> {{ item.winner_name}} </div>
+                <div class="left_title"> {{ item.winner_name }} </div>
                 <div class="left_texter" :class="{ 'expanded': expandedList[index] }">
                     {{ item.selected_response }}
                     <div class="gd" @click="toggleExpand(index)">
@@ -19,6 +20,7 @@
 
 <script>
 import axios from 'axios'
+import { API_BASE } from '@/config'
 
 export default {
     name: 'VoteHistoryView',
@@ -33,28 +35,28 @@ export default {
         this.fetchRatings();
     },
     methods: {
-            toggleExpand(index) {
-                this.$set(this.expandedList, index, !this.expandedList[index]);
+        toggleExpand(index) {
+            this.$set(this.expandedList, index, !this.expandedList[index]);
         },
         async fetchRatings() {
             const id = localStorage.getItem('user_id');
             if (id) {
                 this.$store.commit('setUserId', id);
             }
-            try{
-                const url = 'http://47.122.63.229:5055/api/getVote?num=4&user_id=' + id;
+            try {
+                const url = `${API_BASE}/getVote?num=4&user_id=${id}`;
                 const res = await axios.get(url, { withCredentials: true })
                 console.log(res.data)
                 this.votes = res.data;
                 console.log(this.votes, '===votes');
                 this.expandedList = this.votes.map(() => false);
-			} catch (error) {
-                if(error.response && error.response.status === 401) {
+            } catch (error) {
+                if (error.response && error.response.status === 401) {
                     return;
                 }
-				alert('网络异常或服务器错误，请稍后重试');
-				console.error('获取投票历史异常:', error);
-			}
+                alert('网络异常或服务器错误，请稍后重试');
+                console.error('获取投票历史异常:', error);
+            }
         }
     }
 }
@@ -64,13 +66,18 @@ export default {
 .voteHistory {
     width: 100%;
     height: 100%;
-    overflow-y: auto;   
+    overflow-y: auto;
+
     /* 隐藏滚动条 */
     &::-webkit-scrollbar {
         display: none;
     }
-    -ms-overflow-style: none; /* IE和Edge */
-    scrollbar-width: none; /* Firefox */
+
+    -ms-overflow-style: none;
+    /* IE和Edge */
+    scrollbar-width: none;
+
+    /* Firefox */
     .vote_item {
         width: 861px;
         min-height: 147px;
