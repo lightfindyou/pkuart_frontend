@@ -114,7 +114,6 @@ export default {
         }
     },
     mounted() {
-        this.checklogin();
     },
     methods: {
         async checklogin() {
@@ -141,6 +140,7 @@ export default {
             this.showGalleryFrom = false;
         },
         handleShow(item) {
+            this.checklogin();
             this.showGalleryFrom = true;
             this.showGalleryFromItem = item;
             this.$store.commit('setShowItem', item);
