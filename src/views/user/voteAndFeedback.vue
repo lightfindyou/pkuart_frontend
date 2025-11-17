@@ -1,6 +1,12 @@
 <template>
-    <div class="tab_list">
-        <div class="item" v-for="(item, index) in rates" :key="index" @click="handleShow(item)">
+    <div class="tab_list" ref="waterfall" :style="{ height: waterfallHeight + 'px' }">
+        <div 
+            class="item" 
+            v-for="(item, index) in rates" 
+            :key="index" 
+            :style="itemStyles[index]"
+            @click="handleShow(item)"
+        >
             <img :src="item.imgs" alt="">
             <div class="titles">{{ item.artwork_name }}</div>
             <div class="model_title">
@@ -22,6 +28,7 @@
         </GalleryFrom>
     </div>
 </template>
+
 <script>
 import axios from 'axios'
 import GalleryFrom from '@/views/gallery/galleryFrom.vue'
@@ -60,17 +67,30 @@ export default {
             showGalleryFrom: false,
             showGalleryFromItem: {},
             rates: [],
+            itemStyles: [],
+            waterfallHeight: 0,
+            itemHeights: [355, 495, 355, 495, 355, 495], // 高度循环：355, 495
+            gap: 15,
+            columns: 3,
+            itemWidth: 267, // (860 - 15*2) / 3 = 276.67，这里使用固定宽度
         }
     },
     mounted() {
         this.fetchRatings();
+        window.addEventListener('resize', this.calculateLayout);
+    },
+    beforeUnmount() {
+        window.removeEventListener('resize', this.calculateLayout);
+    },
+    watch: {
+        rates() {
+            this.$nextTick(() => {
+                this.calculateLayout();
+            });
+        }
     },
     methods: {
         handleShow(item) {
-            //this.showGalleryFrom = true;
-            //this.showGalleryFromItem = item;
-            //$store.state.assessB
-            //this.$store.state.showItem.imgs
             this.$store.commit('setShowItem', item);
             this.$store.commit('setAssessA', item.selected_response);
             this.$store.commit('setAssessB', item.loser_response);
@@ -99,7 +119,7 @@ export default {
                         winner: item.winner,
                         winner_name: item.winner_name,
                         selected_response: item.selected_response,
-                        imgs: `${API_BASE}/${item.path}`, // 图片地址
+                        imgs: `${API_BASE}/${item.path}`,
                         feedback: item.feedback,
                         date: this.formatDate(item.timestamp),
                         loser_response: item.loser_response,
@@ -118,72 +138,89 @@ export default {
         formatDate(ts) {
             const date = new Date(ts);
             return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
+        },
+        calculateLayout() {
+            if (!this.rates.length) return;
+
+            const waterfall = this.$refs.waterfall;
+            if (!waterfall) return;
+
+            // 计算列宽
+            const containerWidth = 860; // 固定容器宽度
+            const columnWidth = (containerWidth - this.gap * (this.columns - 1)) / this.columns;
+            
+            // 记录每列的当前高度
+            const columnHeights = new Array(this.columns).fill(0);
+            
+            // 生成每个项目的样式
+            const newItemStyles = [];
+            
+            for (let i = 0; i < this.rates.length; i++) {
+                const itemHeight = this.itemHeights[i % 6];
+                
+                /*
+                 // 找到最矮的列
+                let minColumnIndex = 0;
+                let minHeight = columnHeights[0];
+                for (let j = 1; j < this.columns; j++) {
+                    if (columnHeights[j] < minHeight) {
+                        minHeight = columnHeights[j];
+                        minColumnIndex = j;
+                    }
+                }
+                
+                // 计算位置
+                const left = minColumnIndex * (columnWidth + this.gap);
+                const top = columnHeights[minColumnIndex];
+                */
+
+
+                let columnIndex = i%this.columns;
+                const left = columnIndex * (columnWidth + this.gap);
+                const top = columnHeights[columnIndex];
+                
+                // 创建样式对象
+                newItemStyles.push({
+                    width: columnWidth + 'px',
+                    height: itemHeight + 'px',
+                    left: left + 'px',
+                    top: top + 'px',
+                    position: 'absolute'
+                });
+                
+                // 更新列高度
+                columnHeights[columnIndex] += itemHeight + this.gap;
+            }
+            
+            this.itemStyles = newItemStyles;
+            
+            // 设置容器高度
+            const maxHeight = Math.max(...columnHeights);
+            this.waterfallHeight = maxHeight - this.gap;
         }
     }
 }
 </script>
+
 <style lang="less" scoped>
 .tab_list {
     width: 860px;
-    height: 890px;
-    display: flex;
-    flex-flow: column wrap;
-    align-content: space-between;
-
-    .item:nth-child(3n+1) {
-        order: 1;
-    }
-
-    .item:nth-child(3n+2) {
-        order: 2;
-    }
-
-    .item:nth-child(3n) {
-        order: 3;
-    }
-
-    .break {
-        flex-basis: 100%;
-        width: 0;
-        border: 1px solid #ddd;
-        margin: 0;
-        content: "";
-        padding: 0;
-    }
+    position: relative;
+    margin-bottom: 4px;
 
     .item {
-        width: 265px;
-        height: 355px;
-        break-inside: avoid;
         background-color: #fff;
         border-radius: 22px 22px 22px 22px;
         opacity: 1;
-        position: relative;
         cursor: pointer;
         pointer-events: auto;
-        object-fit: cover;
-        /* 关键属性：保持图片纵横比，裁剪以填充容器 */
-        object-position: center;
-        /* 可选：将图片居中显示 */
-        margin-bottom: 15px;
         padding: 15px;
         box-sizing: border-box;
-        break-inside: avoid-column;
+        transition: transform 0.3s, box-shadow 0.3s;
 
-        &:nth-child(n) {
-            height: 355px;
-
-            img {
-                height: 170px;
-            }
-        }
-
-        &:nth-child(2n) {
-            height: 495px;
-
-            img {
-                height: 310px;
-            }
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
         }
 
         img {
@@ -194,6 +231,23 @@ export default {
             object-position: center;
             display: block;
             border-radius: 22px 22px 22px 22px;
+        }
+
+        // 根据高度调整图片高度
+        &:nth-child(6n+1),
+        &:nth-child(6n+3),
+        &:nth-child(6n+5) {
+            img {
+                height: 170px;
+            }
+        }
+
+        &:nth-child(6n+2),
+        &:nth-child(6n+4),
+        &:nth-child(6n+6) {
+            img {
+                height: 310px;
+            }
         }
 
         .titles {
@@ -232,7 +286,7 @@ export default {
         .model_context {
             display: flex;
             align-items: center;
-            margin: 15px auto 0 auto; // 居中
+            margin: 15px auto 0 auto;
             margin-top: 15px;
             background-color: #f1f1f1;
             width: 235px;
@@ -259,9 +313,7 @@ export default {
                 font-weight: 500;
                 display: -webkit-box;
                 -webkit-line-clamp: 3;
-                /* 最多显示3行 */
                 line-clamp: 3;
-                /* 标准属性，增强兼容性 */
                 -webkit-box-orient: vertical;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -283,9 +335,7 @@ export default {
                 margin-right: 15px;
                 display: -webkit-box;
                 -webkit-line-clamp: 3;
-                /* 最多显示3行 */
                 line-clamp: 3;
-                /* 标准属性，增强兼容性 */
                 -webkit-box-orient: vertical;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -299,28 +349,6 @@ export default {
                 margin-bottom: 13px;
             }
         }
-
     }
-}
-
-.item:nth-child(3n+1) {
-    order: 1;
-}
-
-.item:nth-child(3n+2) {
-    order: 2;
-}
-
-.item:nth-child(3n) {
-    order: 3;
-}
-
-.break {
-    flex-basis: 100%;
-    width: 0;
-    border: 1px solid #ddd;
-    margin: 0;
-    content: "";
-    padding: 0;
 }
 </style>
