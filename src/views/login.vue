@@ -10,7 +10,7 @@
                 <!--
                 <input type="text" v-model="inviteCode" placeholder="请输入智镜邀请码">
                 -->
-                <input type="text" v-model="inviteCode" placeholder="2KMOO5JIWRKB">
+                <input type="text" v-model="inviteCode" >
             </div>
             <div class="btn" @click="handleLogin">专家验证</div>
         </div>
