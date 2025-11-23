@@ -1,9 +1,6 @@
 <template>
     <div class="loginFrom">
-        <div class="bg">
-            <iframe height="100%" width="100%" src="http://art.zslyoo.top/bg.html" frameborder="0"></iframe>
-        </div>
-
+        <BackgroundComponent />
         <div class="center">
             <div class="center_title">专家登录</div>
             <div class="center_input">
@@ -19,9 +16,13 @@
 <script>
 import axios from 'axios'
 import { API_BASE } from '@/config'
+import BackgroundComponent from '@/components/BackgroundComponent.vue';
 
 export default {
     name: "loginFrom",
+    components: {
+        BackgroundComponent,
+    },
     data() {
         return {
             inviteCode: ''
@@ -59,16 +60,6 @@ export default {
     height: 100vh;
     width: 100vw;
     overflow: hidden;
-
-    .bg {
-        position: absolute;
-        left: 0;
-        right: 0;
-        height: 100%;
-        width: 100%;
-        z-index: 1;
-        overflow: hidden;
-    }
 
     .center {
         position: absolute;
