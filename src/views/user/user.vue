@@ -1,8 +1,7 @@
 <template>
     <div class="user">
         <div class="bg">
-            <!-- <iframe height="100%" width="100%" src="http://art.zslyoo.top/bg.html" frameborder="0"></iframe> -->
-            <iframe height="100%" width="100%" src="@/assets/background/bg.html" frameborder="0"></iframe>
+            <iframe height="100%" width="100%" src="/bg.html" frameborder="0"></iframe>
         </div>
         <div class="user_left">
             <div class="user_name"> {{ userInfo.name }}</div>

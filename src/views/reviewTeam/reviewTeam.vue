@@ -1,7 +1,7 @@
 <template>
     <div class="reviewTeam" @click="handleOutsideClick">
         <div class="bg">
-            <iframe height="100%" width="100%" src="http://art.zslyoo.top/bg.html" frameborder="0"></iframe>
+            <iframe height="100%" width="100%" src="/bg.html" frameborder="0"></iframe>
         </div>
         <div class="content">
             <div class="content_top">

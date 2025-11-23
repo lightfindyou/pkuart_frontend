@@ -1,7 +1,7 @@
 <template>
     <div class="gallery">
         <div class="bg">
-            <iframe height="100%" width="100%" src="http://art.zslyoo.top/bg.html" frameborder="0"></iframe>
+            <iframe height="100%" width="100%" src="/bg.html" frameborder="0"></iframe>
         </div>
         <div class="content" :class="{ 'content-blur': showGalleryFrom }">
             <div class="title ht">
