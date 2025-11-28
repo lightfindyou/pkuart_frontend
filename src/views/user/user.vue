@@ -1,13 +1,14 @@
 <template>
     <div class="user">
         <div class="bg">
-            <iframe height="100%" width="100%" src="http://art.zslyoo.top/bg.html" frameborder="0"></iframe>
+            <iframe height="100%" width="100%" src="/bg.html" frameborder="0"></iframe>
         </div>
         <div class="user_left">
             <div class="user_name"> {{ userInfo.name }}</div>
-            <div class="user_type"> 
+            <div class="user_type">
                 <img src="@/assets/user/star.png" alt="">
-                {{ userInfo.type }}</div>
+                {{ userInfo.type }}
+            </div>
             <div class="user_img">
                 <img :src="userInfo.img" alt="">
             </div>
@@ -46,6 +47,7 @@
 import collect from './collect.vue'
 import voteAndFeedback from './voteAndFeedback.vue'
 import axios from 'axios'
+import { API_BASE } from '@/config'
 import ShareMirror from './shareMirror.vue';
 
 export default {
@@ -68,16 +70,16 @@ export default {
                     title: '历史投票与反馈',
                     icon: require('@/assets/user/icon.png'),
                 },
-//                {
-//                    name: '投票历史',
-//                    title: '投票历史',
-//                    icon: require('@/assets/user/icon.png'),
-//                },
-//                {
-//                    name: '我的反馈/评论',  
-//                    title: '反馈',
-//                    icon: require('@/assets/user/icon.png'),
-//                },
+                //                {
+                //                    name: '投票历史',
+                //                    title: '投票历史',
+                //                    icon: require('@/assets/user/icon.png'),
+                //                },
+                //                {
+                //                    name: '我的反馈/评论',  
+                //                    title: '反馈',
+                //                    icon: require('@/assets/user/icon.png'),
+                //                },
             ],
             itemIndex: 0,
             showSharePage: false,
@@ -93,49 +95,49 @@ export default {
         if (id) {
             this.$store.commit('setUserId', id);
         }
-        this.userInfo.img = 'http://47.122.63.229:5055/avatar/' + id + '.png', // 头像地址
-        this.fetchUserInfo();
+        this.userInfo.img = `${API_BASE}/avatar/${id}.png`, // 头像地址
+            this.fetchUserInfo();
     },
     methods: {
         handleItemIndex(index) {
             this.itemIndex = index;
         },
         handleLogout() {
-            try{
-                const url = 'http://47.122.63.229:5055/api/logout';
+            try {
+                const url = `${API_BASE}/logout`;
                 axios.get(url, { withCredentials: true })
                 localStorage.clear()
                 this.$store.commit('resetUserAvatar');
                 this.$router.push('/');
-			} catch (error) {
-                if(error.response && error.response.status === 401) {
+            } catch (error) {
+                if (error.response && error.response.status === 401) {
                     alert('用户未登录，请先登录');
                     this.$router.push('/login');
                     return;
                 }
-				alert('网络异常或服务器错误，请稍后重试');
-				console.error('获取评价异常:', error);
-			}
+                alert('网络异常或服务器错误，请稍后重试');
+                console.error('获取评价异常:', error);
+            }
         },
         async fetchUserInfo() {
             const id = localStorage.getItem('user_id');
-            try{
-                const url = `http://47.122.63.229:5055/api/getReviewersByID?id=${id}`
+            try {
+                const url = `${API_BASE}/getReviewersByID?id=${id}`
                 const res = await axios.get(url, { withCredentials: true });
                 console.log(res.data, '===data');
                 // 处理返回结果
                 const reviewer = res.data.reviewers;
                 this.userInfo.name = reviewer[0].name;
-			} catch (error) {
-                if(error.response && error.response.status === 401) {
+            } catch (error) {
+                if (error.response && error.response.status === 401) {
                     alert('用户未登录，请先登录');
                     this.$store.commit('resetRouterDomIndex');
                     this.$router.push('/login');
                     return;
                 }
-				alert('网络异常或服务器错误，请稍后重试');
-				console.error('获取用户信息异常:', error);
-			}
+                alert('网络异常或服务器错误，请稍后重试');
+                console.error('获取用户信息异常:', error);
+            }
         },
         openSharePage() {
             this.showSharePage = true;
@@ -193,6 +195,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
+
         img {
             width: 16px;
             height: 16px;

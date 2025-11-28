@@ -12,12 +12,14 @@
                 </div>
             </div>
         </div>
-        <GalleryFrom :showGalleryFromItem="showGalleryFromItem" @handleDel="handleDel" v-if="showGalleryFrom"></GalleryFrom>
+        <GalleryFrom :showGalleryFromItem="showGalleryFromItem" @handleDel="handleDel" v-if="showGalleryFrom">
+        </GalleryFrom>
     </div>
 </template>
 <script>
 import axios from 'axios'
 import GalleryFrom from '@/views/gallery/galleryFrom.vue'
+import { API_BASE } from '@/config'
 
 export default {
     name: 'CollectView',
@@ -70,33 +72,33 @@ export default {
                 this.$store.commit('setUserId', id);
             }
             console.log('请求收藏列表, id:', id);
-            try{
-                const url = `http://47.122.63.229:5055/api/getFavorite?user_id=${id}`
+            try {
+                const url = `${API_BASE}/getFavorite?user_id=${id}`
                 const res = await axios.get(url, { withCredentials: true })
                 //// 处理返回结果
                 this.list = res.data.artworks.map(item => ({
-                  imgs: 'http://47.122.63.229:5055/' + item.path, // 图片地址
-                  type: 1,         // 可根据 item 或业务逻辑设置
-                  title: item.名称,
-                  title_en: item.名称,
-                  name: item.作者,
-                  era: item.年代,
-                  id: item.id,
-                  era_group: item.era_group,
-                  format: item.形制,
-                  location: item.收藏地,
-                  materials: item.材料,
-                  texture: item.材质,
-                  labels: item.标签
-                  // 可添加其他需要的字段
+                    imgs: `${API_BASE}/${item.path}`, // 图片地址
+                    type: 1,         // 可根据 item 或业务逻辑设置
+                    title: item.名称,
+                    title_en: item.名称,
+                    name: item.作者,
+                    era: item.年代,
+                    id: item.id,
+                    era_group: item.era_group,
+                    format: item.形制,
+                    location: item.收藏地,
+                    materials: item.材料,
+                    texture: item.材质,
+                    labels: item.标签
+                    // 可添加其他需要的字段
                 }));
-			} catch (error) {
-                if(error.response && error.response.status === 401) {
+            } catch (error) {
+                if (error.response && error.response.status === 401) {
                     return;
                 }
-				alert('网络异常或服务器错误，请稍后重试');
-				console.error('请求收藏列表异常:', error);
-			}
+                alert('网络异常或服务器错误，请稍后重试');
+                console.error('请求收藏列表异常:', error);
+            }
             //console.log(this.list, '===收藏列表');
         },
     }
@@ -121,27 +123,35 @@ export default {
         position: relative;
         cursor: pointer;
         pointer-events: auto;
-        object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
-        object-position: center; /* 可选：将图片居中显示 */
+        object-fit: cover;
+        /* 关键属性：保持图片纵横比，裁剪以填充容器 */
+        object-position: center;
+        /* 可选：将图片居中显示 */
 
 
         &:nth-child(n) {
             height: 296px;
-            object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
-            object-position: center; /* 可选：将图片居中显示 */
+            object-fit: cover;
+            /* 关键属性：保持图片纵横比，裁剪以填充容器 */
+            object-position: center;
+            /* 可选：将图片居中显示 */
         }
 
         &:nth-child(2n) {
-//            height: 435px;
+            //            height: 435px;
             height: 296px;
-            object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
-            object-position: center; /* 可选：将图片居中显示 */
+            object-fit: cover;
+            /* 关键属性：保持图片纵横比，裁剪以填充容器 */
+            object-position: center;
+            /* 可选：将图片居中显示 */
         }
 
         &:nth-child(3n) {
             height: 296px;
-            object-fit: cover; /* 关键属性：保持图片纵横比，裁剪以填充容器 */
-            object-position: center; /* 可选：将图片居中显示 */
+            object-fit: cover;
+            /* 关键属性：保持图片纵横比，裁剪以填充容器 */
+            object-position: center;
+            /* 可选：将图片居中显示 */
         }
 
         img {
@@ -207,5 +217,4 @@ export default {
         }
     }
 }
-
 </style>

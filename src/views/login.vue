@@ -1,16 +1,15 @@
 <template>
     <div class="loginFrom">
         <div class="bg">
-            <iframe height="100%" width="100%" src="http://art.zslyoo.top/bg.html" frameborder="0"></iframe>
+            <iframe height="100%" width="100%" src="/bg.html" frameborder="0"></iframe>
         </div>
-
         <div class="center">
             <div class="center_title">专家登录</div>
             <div class="center_input">
                 <!--
                 <input type="text" v-model="inviteCode" placeholder="请输入智镜邀请码">
                 -->
-                <input type="text" v-model="inviteCode" placeholder="2KMOO5JIWRKB">
+                <input type="text" v-model="inviteCode" >
             </div>
             <div class="btn" @click="handleLogin">专家验证</div>
         </div>
@@ -18,9 +17,12 @@
 </template>
 <script>
 import axios from 'axios'
+import { API_BASE } from '@/config'
 
 export default {
     name: "loginFrom",
+    components: {
+    },
     data() {
         return {
             inviteCode: ''
@@ -30,12 +32,12 @@ export default {
         async handleLogin() {
 
             try {
-                const url = `http://47.122.63.229:5055/api/login?invite_code=${this.inviteCode}`
+                const url = `${API_BASE}/login?invite_code=${this.inviteCode}`
                 const res = await axios.get(url, { withCredentials: true })
                 console.log(res.data, '===res');
-                if ( res.data.message && res.data.message === 'Login successful') {
+                if (res.data.message && res.data.message === 'Login successful') {
                     this.$store.commit('setUserId', res.data.user_id);
-                    const avatar = 'http://47.122.63.229:5055/avatar/' + res.data.user_id + '.png' 
+                    const avatar = `${API_BASE}/avatar/${res.data.user_id}.png`
                     this.$store.commit('setUserAvatar', avatar);
                     localStorage.setItem('user_id', res.data.user_id);
                     localStorage.setItem('userAvatar', avatar);
@@ -58,15 +60,15 @@ export default {
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+    position: relative;
 
     .bg {
         position: absolute;
         left: 0;
-        right: 0;
+        top: 0;
         height: 100%;
         width: 100%;
         z-index: 1;
-        overflow: hidden;
     }
 
     .center {

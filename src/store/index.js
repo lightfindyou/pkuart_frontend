@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import { API_BASE } from '@/config'
 // import { set } from 'core-js/core/dict'
 
 Vue.use(Vuex)
@@ -122,12 +123,12 @@ export default new Vuex.Store({
     },
     async search({ commit }, { selectedEra, searchText }){
       console.log('提交查询请求   ' + selectedEra + '  ' + searchText);
-      const url = `http://47.122.63.229:5055/?format=json&era=${selectedEra}&search=${searchText}`
+  const url = `${API_BASE}/?format=json&era=${selectedEra}&search=${searchText}`
       try {
         const res = await axios.get(url, { withCredentials: true })
         //// 处理返回结果
         const artworks = res.data.artworks.map(item => ({
-          imgs: 'http://47.122.63.229:5055/' + item.path, // 图片地址
+          imgs: `${API_BASE}/${item.path}`, // 图片地址
           type: 1,         // 可根据 item 或业务逻辑设置
           title: item.名称,
           title_en: item.名称,

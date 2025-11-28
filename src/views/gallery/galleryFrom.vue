@@ -5,7 +5,7 @@
                 <div class="select_box fs">
                     <span @click="showNotification = !showNotification">选择审美评估模型</span>
                     <img @click="showNotification = !showNotification" src="@/assets/home/bottom.png" alt="">
-                    <notification :battleItem = "showGalleryFromItem" v-if="showNotification"></notification>
+                    <notification :battleItem="showGalleryFromItem" v-if="showNotification"></notification>
 
                 </div>
                 <div class="del" @click="handleDel">
@@ -71,16 +71,17 @@
 <script>
 import notification from '@/components/notification.vue'
 import axios from 'axios'
+import { API_BASE } from '@/config'
 export default {
     name: 'GalleryFrom',
     components: {
         notification,
     },
     props: {
-      showGalleryFromItem: {
-        type: Object,
-        required: true
-      }
+        showGalleryFromItem: {
+            type: Object,
+            required: true
+        }
     },
     data() {
         return {
@@ -101,7 +102,7 @@ export default {
             this.show = true
         },
         handleActive() {
-            if(this.active) {
+            if (this.active) {
                 this.delFavorite()
             } else {
                 this.addFavorite()
@@ -114,10 +115,10 @@ export default {
             console.log('添加收藏');
             // 发送 POST 请求
             try {
-                const url = `http://47.122.63.229:5055/api/addFavorite?artwork_id=${this.showGalleryFromItem.id}&user_id=${id}`
+                const url = `${API_BASE}/addFavorite?artwork_id=${this.showGalleryFromItem.id}&user_id=${id}`
                 await axios.get(url, { withCredentials: true })
             } catch (error) {
-                if(error.response && error.response.status === 401) {
+                if (error.response && error.response.status === 401) {
                     this.$router.push('/login');
                     return;
                 }
@@ -129,10 +130,10 @@ export default {
             console.log('删除收藏');
             // 发送 POST 请求
             try {
-                const url = `http://47.122.63.229:5055/api/delFavorite?artwork_id=${this.showGalleryFromItem.id}&user_id=${id}`
+                const url = `${API_BASE}/delFavorite?artwork_id=${this.showGalleryFromItem.id}&user_id=${id}`
                 await axios.get(url, { withCredentials: true })
             } catch (error) {
-                if(error.response && error.response.status === 401) {
+                if (error.response && error.response.status === 401) {
                     alert('用户未登录，请先登录');
                     return;
                 }
@@ -143,7 +144,7 @@ export default {
             const id = this.$store.state.user_id;
             console.log('检查是否收藏, id:', id);
             try {
-                const url = `http://47.122.63.229:5055/api/inFavoriteList?artwork_id=${this.showGalleryFromItem.id}&user_id=${id}`
+                const url = `${API_BASE}/inFavoriteList?artwork_id=${this.showGalleryFromItem.id}&user_id=${id}`
                 const res = await axios.get(url, { withCredentials: true })
                 this.active = res.data.in_favorite_list;
                 // if(this.active) {

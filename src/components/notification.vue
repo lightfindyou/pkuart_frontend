@@ -74,6 +74,7 @@
 <script>
 // import { showDebugDirtyRect } from 'zrender';
 import axios from 'axios'
+import { API_BASE } from '@/config'
 import { mapState } from 'vuex'
 
 export default {
@@ -116,7 +117,7 @@ export default {
 		},
 		async evaluatePic(id) {
 			console.log('评价图片   ' + id);
-			const url = `http://47.122.63.229:5055/api/artwork/evaluate`
+			const url = `${API_BASE}/artwork/evaluate`
 			const payload = {
 				artwork_id: id
 			};
@@ -193,7 +194,7 @@ export default {
 		},
 		//获取评价文本
 		async getEvalucationText(task_id) {
-			const url = `http://47.122.63.229:5055/api/task/` + task_id + `/status`
+			const url = `${API_BASE}/task/${task_id}/status`
 			console.log('获取评价任务状态   ' + url);
 			const res = await axios.get(url, { withCredentials: true });
 			return res;

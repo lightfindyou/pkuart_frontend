@@ -1,7 +1,7 @@
 <template>
     <div class="galleryFrom">
         <div class="bg">
-            <iframe height="100%" width="100%" src="http://art.zslyoo.top/bg.html" frameborder="0"></iframe>
+            <iframe height="100%" width="100%" src="/bg.html" frameborder="0"></iframe>
         </div>
         <div class="content">
             <div v-if="!show">
@@ -86,7 +86,7 @@
                                 {{ selectedOption === 'B' ? '确认提交' : '模型B更好' }}
                             </div>
                         </div>
-                        <div class="vote_box" v-if="feedbackShow" @click="handleShowDialog" >投票是如何进行的?</div>
+                        <div class="vote_box" v-if="feedbackShow" @click="handleShowDialog">投票是如何进行的?</div>
                     </div>
                 </div>
             </div>
@@ -100,7 +100,7 @@
             </div>
 
         </div>
-        <el-dialog :visible.sync="dialogVisible" :show-close="false" :append-to-body="true" class="draggable-dialog" >
+        <el-dialog :visible.sync="dialogVisible" :show-close="false" :append-to-body="true" class="draggable-dialog">
             <template #title>
                 <span class="ht draggable-dialog-header">投票是如何进行的</span>
             </template>
@@ -136,7 +136,7 @@
                 </div>
             </div>
         </el-dialog>
-        <div class="dy_box" v-if="dyShow" id="dy_box_id" v-drag >
+        <div class="dy_box" v-if="dyShow" id="dy_box_id" v-drag>
             <div class="dy_title">
                 📝调研
                 <div class="icon" @click="dyClose">
@@ -149,10 +149,11 @@
             <div class="dy_btn_box">
                 <!-- 可选中的按钮（多选） -->
                 <button type="button" class="dy_btn" v-for="item in voteOptions" :key="item"
-                    :class="{ 'selected': selectedVoteOptions.includes(item) }" @click="selectVote(item)">{{ item }}</button>
+                    :class="{ 'selected': selectedVoteOptions.includes(item) }" @click="selectVote(item)">{{ item
+                    }}</button>
             </div>
             <div class="dy_texter">
-                <el-input type="textarea" class="textarea" placeholder="请输入内容" v-model="textarea" maxlength="50"
+                <el-input type="textarea" class="textarea" placeholder="请输入内容" v-model="textarea" maxlength="500"
                     show-word-limit></el-input>
                 <div class="dy_sbm" @click="handleSbm">提交反馈
                     <img src="@/assets/evaluate/sbm.png" alt="">
@@ -167,6 +168,7 @@
 
 import notification from '@/components/notification.vue'
 import axios from 'axios'
+import { API_BASE } from '@/config'
 import { mapState } from 'vuex'
 import { marked } from 'marked'
 
@@ -193,14 +195,14 @@ export default {
             expandedItem: null, // 当前展开的item，null表示没有展开
             show: false,
             voteOptions: ["作品信息准确",
-                         "内容描述准确",
-                          "社会功能",
-                          "构图分析准确",
-                          "风格分析",
-                          "细节分析",
-                          "笔墨分析", 
-                          "意境分析",   
-                          "媒介材料分析"]
+                "内容描述准确",
+                "社会功能",
+                "构图分析准确",
+                "风格分析",
+                "细节分析",
+                "笔墨分析",
+                "意境分析",
+                "媒介材料分析"]
         }
     },
     directives: {
@@ -239,7 +241,7 @@ export default {
 
                         // 获取弹窗在页面中距Y轴的最小、最大 位置
                         let minY = 0
-                        let maxY =window.innerHeight
+                        let maxY = window.innerHeight
                         if (top <= minY) {
                             top = minY
                         } else if (top >= maxY) {
@@ -259,7 +261,7 @@ export default {
                 })
             }
         },
-    },         
+    },
     mounted() {
         console.log(this.$store.state.showItem, 'showItem-----');
         setTimeout(() => {
@@ -355,12 +357,12 @@ export default {
                 this.selectedVoteOptions.splice(idx, 1);
             }
         },
-        async submitEval(id){
-            try{
-                const url = `http://47.122.63.229:5055/api/vote`
+        async submitEval(id) {
+            try {
+                const url = `${API_BASE}/vote`
                 const payload = {
                     user_id: id,
-					evaluation_id: this.$store.state.evalId,
+                    evaluation_id: this.$store.state.evalId,
                     winner: this.selectedModel,
                     artwork_id: this.$store.state.artworkId,
                     artwork_name: this.$store.state.evalArtworkName,
@@ -370,37 +372,37 @@ export default {
                     response_b: this.$store.state.assessB,
 
                 };
-                await axios.post(url, payload, {headers: { 'Content-Type': 'application/json' }, withCredentials: true });
+                await axios.post(url, payload, { headers: { 'Content-Type': 'application/json' }, withCredentials: true });
                 console.log('commit feedback over', this.textarea);
-			} catch (error) {
-                if(error.response && error.response.status === 401) {
+            } catch (error) {
+                if (error.response && error.response.status === 401) {
                     alert('用户未登录，请先登录');
                     this.$router.push('/login');
                     return;
                 }
-				alert('网络异常或服务器错误，请稍后重试');
-				console.error('提交AI评价异常:', error);
-			}
+                alert('网络异常或服务器错误，请稍后重试');
+                console.error('提交AI评价异常:', error);
+            }
         },
-        async submitFeedback(id){
-            try{
-                const url = `http://47.122.63.229:5055/api/feedback`
+        async submitFeedback(id) {
+            try {
+                const url = `${API_BASE}/feedback`
                 const payload = {
-					evaluation_id: this.$store.state.evalId,
+                    evaluation_id: this.$store.state.evalId,
                     feedback: this.textarea,
                     user_id: id,
                 };
-                await axios.post(url, payload, {headers: { 'Content-Type': 'application/json' }, withCredentials: true });
+                await axios.post(url, payload, { headers: { 'Content-Type': 'application/json' }, withCredentials: true });
                 console.log('commit feedback over', this.textarea);
-			} catch (error) {
-                if(error.response && error.response.status === 401) {
+            } catch (error) {
+                if (error.response && error.response.status === 401) {
                     alert('用户未登录，请先登录');
                     this.$router.push('/login');
                     return;
                 }
-				alert('网络异常或服务器错误，请稍后重试');
-				console.error('提交反馈异常:', error);
-			}
+                alert('网络异常或服务器错误，请稍后重试');
+                console.error('提交反馈异常:', error);
+            }
         },
         handleZk(index) {
             // 如果当前点击的是已展开的item，则还原
@@ -416,7 +418,7 @@ export default {
 
             this.textarea = this.textA;
             // this.$copyText(this.textarea);
-          
+
             this.$message({
                 message: '复制成功',
                 type: 'success'
@@ -474,7 +476,7 @@ export default {
                     width: 20px;
                     height: 20px;
                     cursor: pointer;
-                    
+
                     .img {
                         width: 20px;
                         height: 20px;
@@ -552,7 +554,8 @@ export default {
             max-width: 28vw;
             max-height: calc(70vh - 40px);
             cursor: pointer;
-            margin-bottom: 20px; /* 距离下边界 */
+            margin-bottom: 20px;
+            /* 距离下边界 */
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -709,13 +712,13 @@ export default {
                         font-weight: 400;
                         font-size: 16px;
                         line-height: 22px;
-                        height:39vh;
+                        height: 39vh;
                         max-height: 432px;
                         overflow-y: auto;
                         line-height: 1.6;
                         word-break: break-all;
                         overflow-wrap: break-word;
-//                        white-space: pre-line;
+                        //                        white-space: pre-line;
 
                         &::-webkit-scrollbar {
                             width: 3px;
@@ -902,11 +905,11 @@ export default {
         font-family: 'FangSong', 'fs', serif;
     }
 
-@font-face {
-    font-family: 'fs';
-    src: url('@/assets/fonts/fs.ttf') format('truetype');
-    font-display: swap;
-}
+    @font-face {
+        font-family: 'fs';
+        src: url('@/assets/fonts/fs.ttf') format('truetype');
+        font-display: swap;
+    }
 
     .pop_main {
         width: 401px;

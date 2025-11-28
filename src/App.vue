@@ -33,14 +33,8 @@
     <router-view />
     <div class="footer" v-if="showFooter">
       <div class="footer-row">
-        <div class="img1">
-          <img src="@/assets/logo/1.png" alt=""></img>
-        </div>
-        <div class="img2">
-          <img src="@/assets/logo/2.png" alt=""></img>
-        </div>
-        <div class="img3">
-          <img src="@/assets/logo/3.png" alt=""></img>
+        <div class="img">
+          <img src="@/assets/logo/bottomLogo.png" alt=""></img>
         </div>
       </div>
       <div class="contact" v-if="showFooter">
@@ -293,66 +287,48 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
-    justify-content: right;
+    justify-content: center; /* 居中底部 LOGO */
     padding: 0 2rem;
     box-sizing: border-box;
     border-top: 1px solid #CECECE;
     box-sizing: border-box;
 
-    .img1 {
-      margin-top: 20px;
-      width: 280px;
-      height: auto;
-      border-radius: 0px 0px 0px 0px;
-      margin-right: 27px;
-      margin-bottom: 16px;
+    .img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0px 0 0 0 ;
+
+      img {
+        width: 900px;
+        height: auto;
+        display: block;
+      }
     }
 
-    .img2 {
-      margin-top: 33px;
-      width: 269px;
-      height: auto;
-      border-radius: 0px 0px 0px 0px;
-      margin-right: 27px;
-      margin-bottom: 22px;
-    }
-
-    .img3 {
-      margin-top: 12px;
-      width: 276px;
-      height: 94px;
-      border-radius: 0px 0px 0px 0px;
-    }
-    img {
-      width: 100%;
-      height: 100%;
-    }
   }
 
   .contact {
     width: 100%;
-    height: 48px;
+    height: auto; /* 由图片内容撑开高度 */
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
-    justify-content: right;
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
     padding: 0 2rem;
     box-sizing: border-box;
       .contact_img {
-        width: 1000px;
+        width: 100%;
+        max-width: 1000px; /* 最大宽度限制 */
         height: auto;  /* 保持比例 */
-        max-width: 90vw;
         pointer-events: auto;
-        margin-bottom: 14px; 
-        margin-right: 0; 
+        margin: 14px auto; /* 居中并留出下边距 */
       }
 
       img {
-        width: 1000px;      /* 你想要的宽度 */
-        max-width: 90vw;   /* 保持响应式 */
-        height: auto;      /* 保持比例 */
-        margin-bottom: 14px; 
-        margin-right: 0; 
+        width: 100%;        /* 占满容器宽度 */
+        height: auto;       /* 保持比例 */
+        display: block;     /* 去除行内空隙 */
       }
   }
 }

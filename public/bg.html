@@ -1,0 +1,705 @@
+<!-- saved from url=(0029)http://art.zslyoo.top/bg.html -->
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>DAVV Parallax</title>
+    <link rel="icon" type="image/x-icon" href="https://davv.store/assets/favicon.ico">
+    <style>
+        html {
+            color-scheme: light dark;
+            background-color: transparent
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden
+        }
+
+        .scrollwrapper_overlay {
+            position: absolute;
+            width: 100%;
+            overflow-y: scroll
+        }
+
+        .scrollwrapper_overlay_content {
+            width: 100%
+        }
+
+        .scrollwrapper>svg {
+            width: 100%;
+            height: auto
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        (() => {
+            var M = {
+                5224: (M, D, N) => {
+                    "use strict";
+                    function j(M) {
+                        return M.reduce(((M, D) => {
+                            const N = Math.floor(255 * D).toString(16);
+                            return M + (2 == N.length ? N : "0" + N)
+                        }), "#")
+                    } N.d(D, { up: () => j }), new Set(["black", "silver", "gray", "white", "maroon", "red", "purple", "fuchsia", "green", "lime", "olive", "yellow", "navy", "blue", "teal", "aqua", "aliceblue", "antiquewhite", "aqua", "aquamarine", "azure", "beige", "bisque", "black", "blanchedalmond", "blue", "blueviolet", "brown", "burlywood", "cadetblue", "chartreuse", "chocolate", "coral", "cornflowerblue", "cornsilk", "crimson", "darkblue", "darkcyan", "darkgoldenrod", "darkgray", "darkgreen", "darkgrey", "darkkhaki", "darkmagenta", "darkolivegreen", "darkorange", "darkorchid", "darkred", "darksalmon", "darkseagreen", "darkslateblue", "darkslategray", "darkslategrey", "darkturquoise", "darkviolet", "deeppink", "deepskyblue", "dimgray", "dimgrey", "dodgerblue", "firebrick", "floralwhite", "forestgreen", "fuchsia", "gainsboro", "ghostwhite", "gold", "goldenrod", "gray", "green", "greenyellow", "grey", "honeydew", "hotpink", "indianred", "indigo", "ivory", "khaki", "lavender", "lavenderblush", "lawngreen", "lemonchiffon", "lightblue", "lightcoral", "lightcyan", "lightgoldenrodyellow", "lightgray", "lightgreen", "lightgrey", "lightpink", "lightsalmon", "lightseagreen", "lightskyblue", "lightslategray", "lightslategrey", "lightsteelblue", "lightyellow", "lime", "limegreen", "linen", "maroon", "mediumaquamarine", "mediumblue", "mediumorchid", "mediumpurple", "mediumseagreen", "mediumslateblue", "mediumspringgreen", "mediumturquoise", "mediumvioletred", "midnightblue", "mintcream", "mistyrose", "moccasin", "navajowhite", "navy", "oldlace", "olive", "olivedrab", "orange", "orangered", "orchid", "palegoldenrod", "palegreen", "paleturquoise", "palevioletred", "papayawhip", "peachpuff", "peru", "pink", "plum", "powderblue", "purple", "rebeccapurple", "red", "rosybrown", "royalblue", "saddlebrown", "salmon", "sandybrown", "seagreen", "seashell", "sienna", "silver", "skyblue", "slateblue", "slategray", "slategrey", "snow", "springgreen", "steelblue", "tan", "teal", "thistle", "tomato", "turquoise", "violet", "wheat", "white", "whitesmoke", "yellow", "yellowgreen"])
+                }, 455: (M, D, N) => {
+                    "use strict";
+                    N.d(D, { rT: () => g, yv: () => j });
+                    const j = ["x", "x1", "x2", "x0", "rx", "xAxisRotation"], g = ["y", "y1", "y2", "y0", "ry"]
+                }, 970: (M, D, N) => {
+                    "use strict";
+                    N.d(D, { y6: () => I });
+                    const { PI: j, sin: g, cos: e } = Math;
+                    function I(M) {
+                        const D = [], N = 2 * j / (.024 * M);
+                        for (let I = 0;
+                            I < 2 * j;
+                            I += N)D.push({ timeline: I * M * .024 / (2 * j) * 40, x: .5 * e(I + 5 * j / 4) + .5, y: .5 * g(I + 5 * j / 4) + .5 });
+                        return D
+                    }
+                }, 993: M => {
+                    M.exports = "data:image/svg+xml; base64, PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMzgiIHZpZXdCb3g9IjAgMCAyNCAzOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj5cIDxwYXRoCiAgICAgICAgZD0iTTEuMDAxNDMgMEMwLjY3ODAwNiAwIDAuMzU1NTYgMS45NTg3OWUtMDcgMC4wMzE5ODQ3IDAuMDAzMjEwMjdDLTAuMDE0MjQwMyA3LjQwMDUgMC4wMTMzODIyIDE0LjgwMDQgMC4wMDMwODkzOCAyMi4xOTc2QzAuMDE3MjQ0NSAyNi4xMjE2IC0wLjAyNTExODYgMzAuMDQ2MyAwLjAyODc2OTYgMzMuOTY5QzEuMzYwMzUgMzMuOTY3NyAyLjY5MTg2IDMzLjk3OTMgNC4wMjIxIDMzLjk2OUM0LjA1NzcyIDMzLjM5ODIgNC4wNjY3OCAzMi44MjIgNC4wNjcwNSAzMi4yNDUyVjMxLjk4NTJMNC4zMjcwNiAzMS45ODg0QzQuODkzMjkgMzEuOTkyMSA1LjQ1ODM1IDMxLjk4ODYgNi4wMjE5OCAzMS45ODE5QzYuMDM1NTggMzEuNDAyMyA2LjA3NjM5IDMwLjgxODkgNi4wMTIzNSAzMC4yMzg5TDUuOTc3MDQgMjkuOTE0N0w2LjMwMTI3IDI5Ljk1NjRDNi44ODQ1MSAzMC4wMzA3IDcuNDc0MTYgMjkuOTgxNyA4LjA1NzE3IDI5Ljk2OTJDOC4wNjgyOSAyOS40MTA2IDguMDgwODUgMjguODUxNiA4LjA4NjA3IDI4LjI5MzZMOC4wODkyOCAyOC4wMzY4TDguMzQ2MDggMjguMDRDOC43ODY3OCAyOC4wNDM0IDkuMjI4NzEgMjguMDM4NSA5LjY3MTg0IDI4LjAxNDNMOS45NjM5NiAyNy45OTgyTDkuOTQxNDggMjguMjkwNEM5Ljg0OTg0IDI5LjUxMjEgMTAuMDU2MyAzMC43MzQ3IDkuOTg5NjQgMzEuOTU2M0MxMC41NjYxIDMxLjk3NTMgMTEuMTQyNiAzMS45ODMgMTEuNzE5OSAzMS45ODg0TDExLjk3MDIgMzEuOTkxNkwxMS45NzM1IDMyLjI0MkMxMS45ODQ3IDMzLjQ3OTggMTEuOTgxOSAzNC43MTcxIDEyLjAwMjQgMzUuOTU2QzEyLjU3MiAzNS45NjcyIDEzLjE0MTggMzUuOTczOCAxMy43MTMzIDM1Ljk3NTNIMTMuOTY2OUwxMy45NzAxIDM2LjIyODlDMTMuOTgwNCAzNi44MDYyIDEzLjk4NTIgMzcuMzgwMSAxMy45ODMgMzcuOTU5MUMxNS4zMjM1IDM3Ljk3NzEgMTYuNjY0NyAzNy45NzMyIDE4LjAwNTIgMzcuOTY1NUMxOC4wNTM1IDM3LjM5NjkgMTguMDc0NyAzNi44MjA0IDE4LjAzNDEgMzYuMjQxN0wxOC4wMTQ4IDM1Ljk1OTJMMTguMjk3MyAzNS45NjU2QzE4Ljg2NjEgMzUuOTgxNSAxOS40MzY0IDM1Ljk3NjcgMTkuOTk4NiAzNS45NjI0QzIwLjAxNzkgMzQuNjI4MyAyMC4wMTA4IDMzLjI5MzYgMTkuOTk1NCAzMS45NTk1QzE5LjQyMjcgMzEuOTQzOCAxOC44NTEgMzEuOTM2NiAxOC4yNzgxIDMxLjkzMDZMMTguMDI3NyAzMS45Mjc0TDE4LjAyNDUgMzEuNjc3QzE4LjAwNTEgMzAuNDM2NiAxOC4wMTQ0IDI5LjIwMDQgMTguMDA4NCAyNy45NTk3QzE3LjQzNDcgMjcuOTM4NyAxNi44NTU1IDI3LjkyNzkgMTYuMjc4MiAyNy45NDM3TDE2LjAwNTMgMjcuOTUwMUwxNi4wMTQ5IDI3LjY3NzJDMTYuMDM0NSAyNy4xOTkzIDE2LjA0MjMgMjYuNzIzIDE2LjA0MDYgMjYuMjQ4OFYyNS45OTJIMTYuMjk3NEMxOC44NjA0IDI1Ljk4NzQgMjEuNDIxMSAyNS45ODg0IDIzLjk4NTYgMjUuOTU5OEMyNC4wMDIzIDI0LjYzMDkgMjQuMDA2NyAyMy4zMDE5IDIzLjk4MjMgMjEuOTcyOUMyMy40MDU4IDIxLjk3MjkgMjIuODMwMiAyMS45Njg3IDIyLjI1NTMgMjEuOTYwMUwyMi4wMDQ5IDIxLjk1NjlMMjIuMDAxNyAyMS43MDY1QzIxLjk5MzQgMjEuMTMwMiAyMS45ODg4IDIwLjU1MyAyMS45OTIxIDE5Ljk3NjNDMjEuNDE4NiAxOS45NjE3IDIwLjg0NjQgMTkuOTU4NCAyMC4yNzE1IDE5Ljk1N0gyMC4wMTc5TDIwLjAxNDcgMTkuNzAzNEMyMC4wMDg0IDE5LjEzMTggMjAuMDAzNCAxOC41NjA3IDE5Ljk5MjIgMTcuOTg5MkMxOS40MjAyIDE3Ljk2MzcgMTguODQ0NSAxNy45NDg0IDE4LjI2NTIgMTcuOTUzOUwxOC4wMDUyIDE3Ljk1NzFWMTcuNjk3MUMxOC4wMDM5IDE3LjExODMgMTguMDAxMiAxNi41NDA3IDE3Ljk5NTUgMTUuOTYzN0MxNy40MTg3IDE1Ljk2NzEgMTYuODQwOSAxNS45NjI1IDE2LjI2NTMgMTUuOTUwOEwxNi4wMTQ5IDE1Ljk0NDRWMTUuNjk0QzE2LjAxMzQgMTUuMTI3MiAxNi4wMDkyIDE0LjU2MzcgMTUuOTkyNSAxMy45OTkxQzE1LjQyMzEgMTMuOTY3OSAxNC44NTI1IDEzLjk2MjkgMTQuMjc4MyAxMy45NjA2SDE0LjAyNDdMMTQuMDIxNSAxMy43MDdDMTQuMDEyNCAxMy4xMzAyIDE0LjAwNjQgMTIuNTU1MiAxNC4wMDg2IDExLjk3NjhDMTMuNDMxMSAxMS45NzQ1IDEyLjg1NDggMTEuOTcwMSAxMi4yNzg0IDExLjk2MDdMMTIuMDM0NCAxMS45NTc1TDEyLjAyNDggMTEuNzEzNkMxMi4wMDQyIDExLjEzNyAxMS45ODEgMTAuNTU3OSAxMS45Nzk5IDkuOTgwMTFDMTEuNDE2NyA5Ljk2NjczIDEwLjg1NCA5Ljk2NDQ1IDEwLjI4ODIgOS45NjQwNkgxMC4wMzc4TDEwLjAzMTMgOS43MTM2OEMxMC4wMTc0IDkuMTM5NjUgMTAuMDA5NyA4LjU2MjQyIDEwLjAxNTMgNy45ODY2NkM5LjQzODUyIDcuOTc5OTMgOC44NjE1MiA3Ljk3NTgyIDguMjg1MDYgNy45Njc0TDguMDQxMSA3Ljk2NDE5TDguMDMxNDcgNy43MjAyMkM4LjAwODg4IDcuMTQzNzEgOC4wMDA1MyA2LjU2NzEyIDcuOTk5MzcgNS45ODY3OEM3LjQyNTY1IDUuOTczMzcgNi44NTM0MSA1Ljk3MDMyIDYuMjc4NzcgNS45Njc1Mkg2LjAyNTE3TDYuMDIxOTYgNS43MTM5M0M2LjAxODM0IDUuMTQwNTYgNi4wMTQ5OCA0LjU2NTkyIDYuMDAyNyAzLjk5MzMzQzUuNDI2MjMgMy45ODk5NyA0Ljg0Njg3IDMuOTg4NTEgNC4yNjkyNiAzLjk4MzdMNC4wMTg4NyAzLjk4MDQ5TDQuMDE1NjcgMy43MzAxQzQuMDEwMzkgMy4xNTQ5NCA0LjAwNzE5IDIuNTc3MDcgNC4wMDYwMyAxLjk5OTg3QzMuNDI4OTcgMS45ODMxIDIuODQ3MyAxLjk4NjgzIDIuMjY2MTcgMS45OTAyNEgyLjAxMjU4TDIuMDA5MzcgMS43MzY2NUMyLjAwNTcyIDEuMTU3NzggMS45OTU0MyAwLjU3ODY0NiAxLjk3MDg1IDAuMDAzMjEwMjdDMS42NDc5MiAwLjAwMTI4NDIyIDEuMzI0ODEgMCAxLjAwMTQgMEgxLjAwMTQzWiIKICAgICAgICBmaWxsPSJ3aGl0ZSIgLz4KICAgIDxwYXRoCiAgICAgICAgZD0iTTAuMDMxNjgwNCAwLjAwNDQ5NDI0QzAuNjc4ODMxIC0wLjAwMTkyNTkxIDEuMzI1OTggLTAuMDAwNjQyMTUyIDEuOTcxODUgMC4wMDMyMDk5M0MyLjAwMDEgMC42NjQ0ODUgMi4wMTU1IDEuMzI1NzYgMi4wMTU1IDEuOTg3MDNDMi42NzkzNSAxLjk4MTkgMy4zNDMxOSAxLjk4MTkgNC4wMDU3NSAyLjAwMTE2QzQuMDA3MDMgMi42NjExNSA0LjAwODMyIDMuMzIxMTQgNC4wMTYwMiAzLjk3OTg1QzMuMzQ3MDQgMy45NzYgMi42NzgwNiAzLjk3NzI4IDIuMDA5MDkgMy45ODExM0MyLjAwMzk1IDEzLjMwMTkgMi4wMjgzNCAyMi42MjE0IDIuMDIwNjQgMzEuOTQwOUMyLjY4MTkyIDMxLjk0ODYgMy4zNDE5MSAzMS45NDk4IDQuMDAzMTggMzEuOTM1N0MzLjk5Njc2IDMxLjI3NyAzLjk5OTMzIDMwLjYxOTYgNC4wMDU3NSAyOS45NjA5QzQuNjY3MDIgMjkuOTQ5MyA1LjMzNDcyIDI5Ljg5MjggNS45ODk1NyAzMC4wMTFDNi4wOTc0MyAzMC42NjMzIDYuMDM1OCAzMS4zMjU4IDYuMDIwMzkgMzEuOTgzMkM1LjM3MTk2IDMxLjk5MDkgNC43MjIyNCAzMS45OTc0IDQuMDcyNTIgMzEuOTg5N0M0LjA3NzY2IDMyLjY0OTYgNC4wNjIyNSAzMy4zMTA5IDQuMDIxMTYgMzMuOTY5NkMyLjY5MDkgMzMuOTc5OSAxLjM1OTM3IDMzLjk2NzEgMC4wMjc4Mjg0IDMzLjk2ODNDLTAuMDI2MTAwOCAzMC4wNDU2IDAuMDE3NTU1OSAyNi4xMjE2IDAuMDAzNDMxNTYgMjIuMTk3NkMwLjAxMzcwMzggMTQuODAwNCAtMC4wMTQ1NDQ3IDcuNDAxNzggMC4wMzE2ODA0IDAuMDA0NDk0MjRaIgogICAgICAgIGZpbGw9IiMxQzFDMUMiIC8 + CiAgICA8cGF0aAogICAgICAgIGQ9Ik00LjAxNTg3IDMuOTc5ODlDNC42NzcxNSAzLjk4NjMxIDUuMzM5NzEgMy45ODg4OCA2LjAwMDk4IDMuOTkyNzNDNi4wMTUxIDQuNjUwMTUgNi4wMjAyNCA1LjMwNzU3IDYuMDI0MDkgNS45NjVDNi42ODI4IDUuOTY3NTYgNy4zNDE1MSA1Ljk3MTQyIDguMDAwMjEgNS45ODY4M0M4LjAwMTUgNi42NDU1MyA4LjAwMTUgNy4zMDU1MiA4LjAzNDg4IDcuOTY1NTFDOC42OTQ4NyA3Ljk3NzA3IDkuMzU0ODYgNy45Nzk2NCAxMC4wMTQ5IDcuOTg3MzRDMTAuMDA4NCA4LjY0NDc2IDEwLjAxMzYgOS4zMDM0NyAxMC4wMzI4IDkuOTYwODlDMTAuNjgyNSA5Ljk1OTYxIDExLjMzMjMgOS45NjYwMyAxMS45ODA3IDkuOTgxNDRDMTEuOTgyIDEwLjY0MDEgMTIuMDA5IDExLjI5ODkgMTIuMDMyMSAxMS45NTc2QzEyLjY4OTUgMTEuOTcwNCAxMy4zNDgyIDExLjk3MyAxNC4wMDY5IDExLjk3NTVDMTQuMDA0MyAxMi42MzQyIDE0LjAwODIgMTMuMjkyOSAxNC4wMjEgMTMuOTUyOUMxNC42Nzg0IDEzLjk1MjkgMTUuMzM3MiAxMy45NjE5IDE1Ljk5MzMgMTMuOTk3OUMxNi4wMTI2IDE0LjY0NzYgMTYuMDE5IDE1LjI5NzMgMTYuMDE5IDE1Ljk0ODNDMTYuNjc3NyAxNS45NjUgMTcuMzM2NCAxNS45Njg5IDE3Ljk5NTEgMTUuOTY1QzE4LjAwMTUgMTYuNjI2MyAxOC4wMDY3IDE3LjI4NzYgMTguMDA2NyAxNy45NDg4QzE3LjMzOSAxNy45ODIyIDE2LjY3MTMgMTcuOTc3MSAxNi4wMDM2IDE3Ljk1OTFDMTYuMDAzNiAxNy4yOTkxIDE2LjAwNjEgMTYuNjM3OCAxNi4wMDYxIDE1Ljk3NjZDMTUuMzM1OSAxNS45Njc2IDE0LjY2NTYgMTUuOTY4OSAxMy45OTY2IDE1Ljk3MjdDMTQuMDA1NiAxNS4zMDM3IDE0LjAwNjkgMTQuNjM2IDEzLjk5NTMgMTMuOTY4M0MxMy4zMzQxIDEzLjk2OTYgMTIuNjcxNSAxMy45NzA5IDEyLjAxMDIgMTMuOTcyMkMxMi4wMTAyIDEzLjMwODQgMTIuMDEyOCAxMi42NDU4IDEyLjAxNDEgMTEuOTgzMkMxMS4zNDM4IDExLjk2NzggMTAuNjc0OCAxMS45NjkxIDEwLjAwNTkgMTEuOTc5NEMxMC4wMDcxIDExLjMxMDQgMTAuMDA5NyAxMC42NDE0IDEwLjAwMiA5Ljk3MjQ1QzkuMzQwNzQgOS45NzI0NSA4LjY3ODE4IDkuOTczNzMgOC4wMTY5MSA5Ljk3NTAyQzguMDA3OTIgOS4zMDg2MSA4LjAxMDQ5IDguNjQyMiA4LjAwMjc4IDcuOTc1NzlDNy4zMzc2NSA3Ljk3NTc5IDYuNjcyNTMgNy45NzcwNyA2LjAwODY5IDcuOTYxNjZDNi4wMTI1NCA3LjMwMTY3IDYuMDEzODIgNi42NDE2OCA2LjAwNzQgNS45ODE2OUM1LjM0ODY5IDUuOTczOTkgNC42ODk5OSA1Ljk3NTI3IDQuMDMxMjggNS45NzkxMkM0LjAxMDc0IDUuMzEyNzEgNC4wMTMzIDQuNjQ2MyA0LjAxNTg3IDMuOTc5ODlWMy45Nzk4OVoiCiAgICAgICAgZmlsbD0iIzFDMUMxQyIgLz4KICAgIDxwYXRoCiAgICAgICAgZD0iTTE4LjAwNzMgMTcuOTQ4N0MxOC42Njk5IDE3LjkzMDcgMTkuMzMxMSAxNy45NjAzIDE5Ljk5MjQgMTcuOTg5OEMyMC4wMDUzIDE4LjY0NDcgMjAuMDEwNCAxOS4yOTk1IDIwLjAxODEgMTkuOTU0NEMyMC42NzY4IDE5Ljk1NDQgMjEuMzM0MiAxOS45NTk1IDIxLjk5MjkgMTkuOTc2MkMyMS45ODkxIDIwLjYzNjIgMjEuOTkyOSAyMS4yOTc1IDIyLjAwNDUgMjEuOTU3NUMyMi42NjMyIDIxLjk2OSAyMy4zMjMyIDIxLjk3MjkgMjMuOTgzMiAyMS45NzI5QzI0LjAwNzYgMjMuMzAxOCAyNC4wMDM3IDI0LjYyOTUgMjMuOTg3IDI1Ljk1ODVDMjEuMzM4MSAyNS45ODggMTguNjkwNCAyNS45ODggMTYuMDQyNyAyNS45OTMyQzE2LjA0NjYgMjYuNjQ0MiAxNi4wNDkyIDI3LjI5NjQgMTYuMDEzMiAyNy45NDc0QzE1LjM0NTUgMjcuOTgwOCAxNC42NzY1IDI3Ljk3MzEgMTQuMDA4OCAyNy45NjhDMTMuOTg5NiAyNi42MzUyIDEzLjk5MDkgMjUuMzAyMyAxNC4wMDg4IDIzLjk3MDhDMTYuNjcwNiAyMy45NTQxIDE5LjMzMzcgMjMuOTc4NSAyMS45OTU1IDIzLjk2N0MyMi4wMDQ1IDIzLjMwMDUgMjIuMDA0NSAyMi42MzI5IDIxLjk5NDIgMjEuOTY2NEMyMS4zMjkxIDIxLjk2MjYgMjAuNjYyNyAyMS45NjM5IDE5Ljk5NzYgMjEuOTUzNkMxOS45OTg4IDIxLjI5MjMgMjAuMDAxNCAyMC42MzExIDE5Ljk5NjMgMTkuOTY5OEMxOS4zMzc2IDE5Ljk2MzQgMTguNjc3NiAxOS45NjQ2IDE4LjAxODkgMTkuOTcxMUMxNy45OTQ1IDE5LjI5NjkgMTcuOTk0NSAxOC42MjI4IDE4LjAwNzMgMTcuOTQ4N1YxNy45NDg3WiIKICAgICAgICBmaWxsPSIjMUMxQzFDIiAvPgogICAgPHBhdGgKICAgICAgICBkPSJNOC4wMDkyNCAyNS45NTA4QzguNjcwNTIgMjUuOTQ3IDkuMzMxNzkgMjUuOTQ4MyA5Ljk5MzA3IDI1Ljk1MjFDMTAuMDE3NSAyNi42MzUyIDEwLjA0ODMgMjcuMzIzNSA5Ljk1NDU1IDI4LjAwMjdDOS4zMzMwOCAyOC4wNTE1IDguNzEwMzIgMjguMDQ1MSA4LjA4ODg1IDI4LjAzODdDOC4wODYyOSAyOC42ODIgOC4wNzA4OCAyOS4zMjUzIDguMDU4MDQgMjkuOTY5OUM3LjM5Njc2IDI5Ljk4NCA2LjcyNjUgMzAuMDUyIDYuMDcxNjQgMjkuOTI3NUM1LjkzMjk3IDI5LjI3OSA1Ljk5OTc0IDI4LjYxMTMgNi4wMTEyOSAyNy45NTUyQzYuNjczODUgMjcuOTUxNCA3LjMzNjQxIDI3Ljk1MTQgNy45OTg5NyAyNy45NTE0QzcuOTk2NCAyNy4yODQ5IDcuOTk2NCAyNi42MTczIDguMDA5MjQgMjUuOTUwOFYyNS45NTA4WiIKICAgICAgICBmaWxsPSIjMUMxQzFDIiAvPgogICAgPHBhdGgKICAgICAgICBkPSJNOS45NTQ3MSAyOC4wMDI3QzEwLjYzNjUgMjcuOTI4MiAxMS4zMjIyIDI3Ljk1IDEyLjAwNTMgMjcuOTYyOUMxMi4wMTk0IDI5LjI5MDYgMTIuMDA2NiAzMC42MTk1IDEyLjAxNDMgMzEuOTQ3MkMxMi42ODA3IDMxLjk0NTkgMTMuMzQ1OCAzMS45NDU5IDE0LjAxMjIgMzEuOTZDMTQuMDE2MSAzMy4yODI2IDE0LjAwMDcgMzQuNjA1MSAxNC4wMjEyIDM1LjkyOUMxNS4zNTUzIDM1Ljk0OTUgMTYuNjkyIDM1Ljg4NjYgMTguMDI0OCAzNS45NjQ5QzE4LjEwMTkgMzYuNjMwMSAxOC4wNjA4IDM3LjMwMDMgMTguMDA0MyAzNy45NjU0QzE2LjY2MzggMzcuOTczMiAxNS4zMjQ1IDM3Ljk3ODMgMTMuOTg0IDM3Ljk2MDNDMTMuOTg2NiAzNy4yOTkgMTMuOTgxNCAzNi42MzkgMTMuOTY3MyAzNS45Nzc4QzEzLjMxMjQgMzUuOTc5MSAxMi42NTYzIDM1Ljk3MDEgMTIuMDAxNSAzNS45NTcyQzExLjk3OTYgMzQuNjM0NyAxMS45ODQ4IDMzLjMxMjEgMTEuOTcwNiAzMS45OTA5QzExLjMxMDYgMzEuOTg1NyAxMC42NTA3IDMxLjk3NjcgOS45OTA2NiAzMS45NTQ5QzEwLjA2MjYgMzAuNjM2MiA5LjgwMDYzIDI5LjMxNzUgOS45NTQ3MSAyOC4wMDI3VjI4LjAwMjdaIgogICAgICAgIGZpbGw9IiMxQzFDMUMiIC8 + CiAgICA8cGF0aAogICAgICAgIGQ9Ik0xNi4wMTMyIDI3Ljk0NzRDMTYuNjc3IDI3LjkxNjYgMTcuMzQyMSAyNy45MzQ2IDE4LjAwNzMgMjcuOTU5QzE4LjAxMzcgMjkuMjgxNSAxNy45OTgzIDMwLjYwNDEgMTguMDI0IDMxLjkyNzlDMTguNjgxNCAzMS45MzQ0IDE5LjMzNzUgMzEuOTQyMSAxOS45OTQ5IDMxLjk2QzIwLjAxMDQgMzMuMjk0MSAyMC4wMTgxIDM0LjYyODIgMTkuOTk4OCAzNS45NjIzQzE5LjM0MTQgMzUuOTc5IDE4LjY4MjcgMzUuOTk1NyAxOC4wMjUyIDM1Ljk2NDlDMTcuOTUwOCAzNC42MzU5IDE4LjAxMjQgMzMuMzAzMSAxNy45OTk2IDMxLjk3MjlDMTcuMzMwNiAzMS45NTg3IDE2LjY2MTYgMzEuOTYxMyAxNS45OTM5IDMxLjk1NjJDMTUuOTkyNiAzMC42MjA4IDE1Ljk3ODUgMjkuMjgyOCAxNi4wMTMyIDI3Ljk0NzRaIgogICAgICAgIGZpbGw9IiMxQzFDMUMiIC8 + Cjwvc3ZnPg == "
+                }
+            },
+                D = {};
+            function N(j) {
+                var g = D[j];
+                if (void 0 !== g) return g.exports;
+                var e = D[j] = { exports: {} };
+                return M[j](e, e.exports, N), e.exports
+            } N.n = M => {
+                var D = M && M.__esModule ? () => M.default : () => M;
+                return N.d(D, { a: D }), D
+            }, N.d = (M, D) => { for (var j in D) N.o(D, j) && !N.o(M, j) && Object.defineProperty(M, j, { enumerable: !0, get: D[j] }) }, N.o = (M, D) => Object.prototype.hasOwnProperty.call(M, D), (() => {
+                "use strict";
+                var M = N(5224), D = N(455), j = N(970), g = N(993);
+                const e = atob(N.n(g)().replace("data:image/svg+xml; base64,", "")), I = (M, D) => (M.x - D.x) * (M.x - D.x) + (M.y - D.y) * (M.y - D.y), u = [...D.yv, ...D.rT];
+                class A {
+                    constructor(M, D, N) { this.polinomeSorce = this.build_around_grid(M, D), this.lnm = this.buildLnm(N) } build_around_grid(M, D) {
+                        const N = new Set, j = new Set;
+                        M.forEach((({ x: M, y: D }) => { N.add(M), j.add(D) }));
+                        const g = Array.from(N.values()).sort(((M, D) => M - D)), e = Array.from(j.values()).sort(((M, D) => M - D)), I = g.findIndex((M => M == D.x)), u = e.findIndex((M => M == D.y));
+                        let A = [];
+                        A = g.length < 4 ? g : 0 == I ? g.slice(0, 3) : I == g.length - 1 ? g.slice(g.length - 4, g.length) : g.slice(I - 1, I + 2);
+                        let T = [];
+                        T = e.length < 4 ? e : 0 == u ? e.slice(0, 3) : u == e.length - 1 ? e.slice(e.length - 4, e.length) : e.slice(u - 1, u + 2), this.xtable = A, this.ytable = T;
+                        const t = { x: {}, y: {} };
+                        return A.forEach((M => { t.x[M] || (t.x[M] = {}), T.forEach((D => { t.y[D] || (t.y[D] = {}), t.x[M][D] = 0, t.y[D][M] = 0 })) })), t
+                    } buildLnm(M) {
+                        const D = [];
+                        return this.xtable.forEach(((N, j) => {
+                            D.push([]), this.ytable.forEach(((N, g) => {
+                                let e = 1;
+                                for (let D = 0;
+                                    D < this.xtable.length;
+                                    D++)D != j && (e = e * (M.x - this.xtable[D]) / (this.xtable[j] - this.xtable[D]));
+                                for (let D = 0;
+                                    D < this.ytable.length;
+                                    D++)D != g && (e = e * (M.y - this.ytable[D]) / (this.ytable[g] - this.ytable[D]));
+                                D[j][g] = e
+                            }))
+                        })), D
+                    } calculate(M) {
+                        let D = 0;
+                        return this.xtable.forEach(((N, j) => { this.ytable.forEach(((g, e) => { D += M.x[N][g] * this.lnm[j][e] })) })), D
+                    } calculateColor(D) {
+                        const N = [0, 0, 0];
+                        for (let M = 0;
+                            M < 3;
+                            M++)this.xtable.forEach(((j, g) => { this.ytable.forEach(((e, I) => { N[M] = N[M] + D.x[j][e][M] * this.lnm[g][I] })) }));
+                        return (0, M.up)(N)
+                    } calculateStyle(D) {
+                        const N = Object.keys(D.x)[0], j = D.x[+N][+Object.keys(D.x[N])[0]], g = t(j);
+                        Object.keys(j).forEach((M => {
+                            Object.keys(j[M].value.aproxi_args).forEach(((N, j) => {
+                                const e = g[M].value.aproxi_args;
+                                e[j] = 0, this.xtable.forEach(((N, g) => { this.ytable.forEach(((I, u) => { e[j] = e[j] + D.x[N][I][M].value.aproxi_args[j] * this.lnm[g][u] })) }))
+                            }))
+                        }));
+                        let e = "";
+                        return Object.keys(g).forEach((D => {
+                            const N = g[D];
+                            switch (N.type) {
+                                case "fill": case "stop-color": "color" == N.value.fn && (e += N.type + ":color(" + N.value.additional_args.join(" ") + " " + N.value.aproxi_args.map((M => M.toFixed(4))).join(" ") + "); "), "hex" == N.value.fn && (e += N.type + ": " + (0, M.up)(N.value.aproxi_args) + "; ");
+                                    break;
+                                case "fill-opacity": case "stop-opacity": e += N.type + ":" + N.value.aproxi_args[0].toFixed(3) + "; "
+                            }
+                        })), e
+                    } calculateTransform(M) {
+                        const D = Object.keys(M.x)[0], N = M.x[+D][+Object.keys(M.x[D])[0]], j = t(N);
+                        Object.keys(N).forEach((D => {
+                            Object.keys(N[D].aproxi_args).forEach(((N, g) => {
+                                const e = j[D].aproxi_args;
+                                e[g] = 0, this.xtable.forEach(((N, j) => { this.ytable.forEach(((I, u) => { e[g] = e[g] + M.x[N][I][D].aproxi_args[g] * this.lnm[j][u] })) }))
+                            }))
+                        }));
+                        let g = "";
+                        return Object.keys(j).forEach((M => {
+                            const D = j[M];
+                            switch (D.id) { case "rotate": case "translate": case "scale": g += " " + D.id + "(" + D.aproxi_args.map((M => M.toFixed(3))).join(" ") + ")" }
+                        })), g
+                    } calculatePath(M) {
+                        const N = Object.keys(M.x)[0], j = Object.keys(M.x[N])[0], g = M.x[+N][+j].commands, e = { grad: 0, cx: 0, cy: 0 };
+                        ["grad", "cx", "cy"].forEach((D => { this.xtable.forEach(((N, j) => { this.ytable.forEach(((g, I) => { e[D] = e[D] + M.x[N][g].rotation[D] * this.lnm[j][I] })) })) }));
+                        const { grad: I, cx: A, cy: T } = e, t = Math.sin(I), y = Math.cos(I);
+                        return function (M) {
+                            let D = "";
+                            const N = (...M) => M.map((M => M.toFixed(3))).join(" ");
+                            for (const j of M) switch (j.code) {
+                                case "M": case "L": case "T": D += j.code + N(j.x, j.y);
+                                    break;
+                                case "V": case "H": D += "L" + N(j.x, j.y);
+                                    break;
+                                case "C": D += j.code + N(j.x1, j.y1, j.x2, j.y2, j.x, j.y);
+                                    break;
+                                case "S": D += j.code + N(j.x2, j.y2, j.x, j.y);
+                                    break;
+                                case "Q": D += j.code + N(j.x1, j.y1, j.x, j.y);
+                                    break;
+                                case "A": D += j.code + N(j.rx, j.ry, j.xAxisRotation, +j.largeArc, +j.sweep, j.x, j.y);
+                                    break;
+                                case "Z": D += "Z"
+                            }return D
+                        }(g.map(((N, j) => {
+                            const g = Object.assign({}, N);
+                            return u.filter((M => void 0 !== N[M])).forEach((D => {
+                                let N = 0;
+                                this.xtable.forEach(((g, e) => { this.ytable.forEach(((I, u) => { N += M.x[g][I].commands[j][D] * this.lnm[e][u] })) })), g[D] = N
+                            })), D.rT.filter((M => void 0 !== N[M])).forEach(((M, N) => {
+                                const j = D.yv[N], e = g[M], I = g[j];
+                                g[M] = e * y - t * I + T, g[j] = I * y + t * e + A
+                            })), g
+                        })))
+                    }
+                } function T(M, D, N) {
+                    const j = D, g = N;
+                    if (!(0 <= j && j <= 1 && 0 <= g && g <= 1 || Number.isFinite(j) && Number.isFinite(g))) return void console.log("wrong coordinates", { x: j, y: g });
+                    const e = M.frame_positions.map((M => I({ x: M.x, y: 0 }, { x: j, y: 0 }))), u = M.frame_positions.map((M => I({ y: M.y, x: 0 }, { x: 0, y: g })));
+                    let T = e[0], t = u[0], y = 0;
+                    e.forEach(((M, D) => { M < T && (T = M, y = D) }));
+                    let i = 0;
+                    u.forEach(((M, D) => { M < t && (t = M, i = D) }));
+                    const z = M.frame_positions[y].x, O = M.frame_positions[i].y, a = new A(M.frame_positions, { x: z, y: O }, { x: j, y: g }), r = [];
+                    return Object.keys(M.shapes).forEach((D => {
+                        M.shapes[D] && M.shapes[D].attributes.forEach((M => {
+                            if ("number" == M.type) {
+                                const { val_position: N, attributeName: j } = M, g = a.calculate(N);
+                                r.push({ tagId: D, attributeName: j, val: g.toString() })
+                            } if ("command" == M.type) {
+                                const { val_position: N, attributeName: j } = M, g = a.calculatePath(N);
+                                r.push({ tagId: D, attributeName: j, val: g.toString() })
+                            } if ("color" == M.type) {
+                                if (M.ignore) return;
+                                const { val_position: N, attributeName: j } = M, g = a.calculateColor(N);
+                                r.push({ tagId: D, attributeName: j, val: g.toString() })
+                            } if ("style" == M.type) {
+                                if (M.ignore) return;
+                                const { val_position: N, attributeName: j } = M, g = a.calculateStyle(N);
+                                r.push({ tagId: D, attributeName: j, val: g.toString() })
+                            } if ("transform" == M.type) {
+                                if (M.ignore) return;
+                                const { val_position: N, attributeName: j } = M, g = a.calculateTransform(N);
+                                r.push({ tagId: D, attributeName: j, val: g.toString() })
+                            }
+                        }))
+                    })), r
+                } function t(M) {
+                    if (null == M || "object" != typeof M) return M;
+                    if (M instanceof Date) { const D = new Date; return D.setTime(M.getTime()), D } if (M instanceof Array) { const D = []; for (let N = 0, j = M.length; N < j; N++)D[N] = t(M[N]); return D } if (M instanceof Object) { const D = Object.assign({}, M); for (const N in M) Object.prototype.hasOwnProperty.call(M, N) && (D[N] = t(M[N])); return D } throw new Error("Unable to copy obj! Its type is not supported.")
+                } function y(M) { try { const D = {}; M.forEach((({ tagId: M, attributeName: N, val: j }) => { var g; D[M] || (D[M] = document.getElementById(M)), null === (g = D[M]) || void 0 === g || g.setAttribute(N, j) })) } catch (M) { } } const i = {}, z = { cur_pos: { xs: 0, ys: 0 }, speed: { xs: 0, ys: 0 }, prTime: 0 }; requestAnimationFrame((function M(D) { try { !function (M) { const D = function (M, D, N) { const j = M - D.prTime; if (D.prTime = M, !Number.isFinite(j) || j > 3e3) return; if (!N) return; const g = N; if (g.pause) return; const e = D.cur_pos.xs - g.pos.xs, I = D.cur_pos.ys - g.pos.ys, { speed: { xs: u, ys: A }, cur_pos: { xs: T, ys: t } } = D, { settings: { smoothp_spring: y } } = g, i = u + e - y * u * Math.abs(u), z = A + I - y * A * Math.abs(A), O = T - i * j / g.settings.smooth_interval, a = t - z * j / g.settings.smooth_interval; return Number.isFinite(O) && Number.isFinite(a) && Number.isFinite(i) && Number.isFinite(z) ? (D.cur_pos = { xs: O, ys: a }, D.speed = { xs: i, ys: z }, { rxs: O, rys: a, tsk: g }) : void 0 }(M, z, i.ptr); if (!D) return; const { rxs: N, rys: j, tsk: g } = D; y(T(g.info, N, j)) }(D) } finally { requestAnimationFrame(M) } })), window._placeObjcets = T, window._smoothMove = function (M, D, N, j, g) { Number.isFinite(M) && Number.isFinite(D) && (i.ptr = { pos: { xs: M, ys: D }, info: j, settings: N, pause: g }) }, window._moveObjects = y, window._buildCirclePreset = j.y6, window._cursor_svg = e
+            })()
+        })();
+    </script>
+    <div class="scrollwrapper">
+        <div class="scrollwrapper_overlay" style="height: 1229px; overflow: hidden;">
+            <div class="scrollwrapper_overlay_content" style="height: 6239px;"></div>
+        </div> <svg width="1440" height="1024" viewBox="0 0 1440 1024" fill="none" xmlns="http://www.w3.org/2000/svg"
+            id="svg_root">
+            <g id="g_1__svg_root" clip-path="url(#clip0_22_257)" opacity="0.9999999999999998">
+                <rect width="1440" height="1023.9999999999998" fill="#fefefe" id="rect_1__g_1__svg_root" x="0" y="0"
+                    rx="0" fill-opacity="0.9999999999999998" stroke-width="0" stroke="#fefefe"
+                    opacity="0.9999999999999998">
+                </rect>
+                <g id="g_3__g_1__svg_root" filter="url(#filter_1__defs_3__svg_root)" opacity="0.9999999999999998">
+                    <path
+                        d="M336.824 419.967C318.837 284.414 413.266 159.883 547.735 141.819C682.205 123.755 805.795 218.999 823.783 354.552C841.769 490.105 601.704 836.029 467.234 854.094C332.765 872.157 354.811 555.520 336.824 419.967Z"
+                        fill="url(#lineargradient_5__defs_3__svg_root)" id="path_1__g_3__g_1__svg_root"
+                        fill-opacity="0.9999999999999998" opacity="0.9999999999999998">
+                    </path>
+                </g>
+                <g id="g_5__g_1__svg_root" filter="url(#filter_3__defs_3__svg_root)" opacity="0.9999999999999998">
+                    <path
+                        d="M788.908 716.887C655.369 691.555 567.469 562.399 592.575 428.410C617.683 294.421 746.291 206.338 879.829 231.671C1013.368 257.005 1264.515 594.551 1239.400 728.540C1214.295 862.529 922.447 742.220 788.908 716.887Z"
+                        fill="url(#lineargradient_7__defs_3__svg_root)" id="path_1__g_5__g_1__svg_root"
+                        fill-opacity="0.9999999999999998" opacity="0.9999999999999998">
+                    </path>
+                </g>
+            </g>
+            <defs id="defs_3__svg_root">
+                <filter id="filter_1__defs_3__svg_root" x="114.076" y="-12.6836" width="890.02" height="1110.69"
+                    filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feflood flood-opacity="0" result="BackgroundImageFix" id="feflood_1__filter_1__defs_3__svg_root">
+                    </feflood>
+                    <feblend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"
+                        id="feblend_3__filter_1__defs_3__svg_root"></feblend>
+                    <fegaussianblur stdDeviation="100" result="effect1_foregroundBlur_22_257"
+                        id="fegaussianblur_5__filter_1__defs_3__svg_root"></fegaussianblur>
+                </filter>
+                <filter id="filter_3__defs_3__svg_root" x="367.696" y="74.4697" width="1052.74" height="959.866"
+                    filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feflood flood-opacity="0" result="BackgroundImageFix" id="feflood_1__filter_3__defs_3__svg_root">
+                    </feflood>
+                    <feblend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"
+                        id="feblend_3__filter_3__defs_3__svg_root"></feblend>
+                    <fegaussianblur stdDeviation="100" result="effect1_foregroundBlur_22_257"
+                        id="fegaussianblur_5__filter_3__defs_3__svg_root"></fegaussianblur>
+                </filter>
+                <lineargradient id="lineargradient_5__defs_3__svg_root" x1="540.3785808692005" y1="142.80735055671437"
+                    x2="584.4208005284225" y2="715.5585490199128" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#8049fe" id="stop_1__lineargradient_5__defs_3__svg_root" offset="0"></stop>
+                    <stop offset="0.9999999999999998" stop-color="#fef38c"
+                        id="stop_3__lineargradient_5__defs_3__svg_root"></stop>
+                </lineargradient>
+                <lineargradient id="lineargradient_7__defs_3__svg_root" x1="591.2020749203975" y1="435.74081514049413"
+                    x2="1145.3402921074248" y2="573.9616731146991" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#9d0000" id="stop_1__lineargradient_7__defs_3__svg_root" offset="0"></stop>
+                    <stop offset="0.9999999999999998" stop-color="#feafaf"
+                        id="stop_3__lineargradient_7__defs_3__svg_root"></stop>
+                </lineargradient>
+                <clippath id="clip0_22_257">
+                    <rect width="1440" height="1023.9999999999998" fill="#fefefe"
+                        id="rect_1__clippath_9__defs_3__svg_root" x="0" y="0" rx="0" fill-opacity="0.9999999999999998"
+                        stroke-width="0" stroke="#fefefe" opacity="0.9999999999999998"></rect>
+                </clippath>
+            </defs>
+            <g id="cur_id_animation_display6996" style="display: none;"><svg width="24" height="38" viewBox="0 0 24 38"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">\ <path
+                        d="M1.00143 0C0.678006 0 0.35556 1.95879e-07 0.0319847 0.00321027C-0.0142403 7.4005 0.0133822 14.8004 0.00308938 22.1976C0.0172445 26.1216 -0.0251186 30.0463 0.0287696 33.969C1.36035 33.9677 2.69186 33.9793 4.0221 33.969C4.05772 33.3982 4.06678 32.822 4.06705 32.2452V31.9852L4.32706 31.9884C4.89329 31.9921 5.45835 31.9886 6.02198 31.9819C6.03558 31.4023 6.07639 30.8189 6.01235 30.2389L5.97704 29.9147L6.30127 29.9564C6.88451 30.0307 7.47416 29.9817 8.05717 29.9692C8.06829 29.4106 8.08085 28.8516 8.08607 28.2936L8.08928 28.0368L8.34608 28.04C8.78678 28.0434 9.22871 28.0385 9.67184 28.0143L9.96396 27.9982L9.94148 28.2904C9.84984 29.5121 10.0563 30.7347 9.98964 31.9563C10.5661 31.9753 11.1426 31.983 11.7199 31.9884L11.9702 31.9916L11.9735 32.242C11.9847 33.4798 11.9819 34.7171 12.0024 35.956C12.572 35.9672 13.1418 35.9738 13.7133 35.9753H13.9669L13.9701 36.2289C13.9804 36.8062 13.9852 37.3801 13.983 37.9591C15.3235 37.9771 16.6647 37.9732 18.0052 37.9655C18.0535 37.3969 18.0747 36.8204 18.0341 36.2417L18.0148 35.9592L18.2973 35.9656C18.8661 35.9815 19.4364 35.9767 19.9986 35.9624C20.0179 34.6283 20.0108 33.2936 19.9954 31.9595C19.4227 31.9438 18.851 31.9366 18.2781 31.9306L18.0277 31.9274L18.0245 31.677C18.0051 30.4366 18.0144 29.2004 18.0084 27.9597C17.4347 27.9387 16.8555 27.9279 16.2782 27.9437L16.0053 27.9501L16.0149 27.6772C16.0345 27.1993 16.0423 26.723 16.0406 26.2488V25.992H16.2974C18.8604 25.9874 21.4211 25.9884 23.9856 25.9598C24.0023 24.6309 24.0067 23.3019 23.9823 21.9729C23.4058 21.9729 22.8302 21.9687 22.2553 21.9601L22.0049 21.9569L22.0017 21.7065C21.9934 21.1302 21.9888 20.553 21.9921 19.9763C21.4186 19.9617 20.8464 19.9584 20.2715 19.957H20.0179L20.0147 19.7034C20.0084 19.1318 20.0034 18.5607 19.9922 17.9892C19.4202 17.9637 18.8445 17.9484 18.2652 17.9539L18.0052 17.9571V17.6971C18.0039 17.1183 18.0012 16.5407 17.9955 15.9637C17.4187 15.9671 16.8409 15.9625 16.2653 15.9508L16.0149 15.9444V15.694C16.0134 15.1272 16.0092 14.5637 15.9925 13.9991C15.4231 13.9679 14.8525 13.9629 14.2783 13.9606H14.0247L14.0215 13.707C14.0124 13.1302 14.0064 12.5552 14.0086 11.9768C13.4311 11.9745 12.8548 11.9701 12.2784 11.9607L12.0344 11.9575L12.0248 11.7136C12.0042 11.137 11.981 10.5579 11.9799 9.98011C11.4167 9.96673 10.854 9.96445 10.2882 9.96406H10.0378L10.0313 9.71368C10.0174 9.13965 10.0097 8.56242 10.0153 7.98666C9.43852 7.97993 8.86152 7.97582 8.28506 7.9674L8.0411 7.96419L8.03147 7.72022C8.00888 7.14371 8.00053 6.56712 7.99937 5.98678C7.42565 5.97337 6.85341 5.97032 6.27877 5.96752H6.02517L6.02196 5.71393C6.01834 5.14056 6.01498 4.56592 6.0027 3.99333C5.42623 3.98997 4.84687 3.98851 4.26926 3.9837L4.01887 3.98049L4.01567 3.7301C4.01039 3.15494 4.00719 2.57707 4.00603 1.99987C3.42897 1.9831 2.8473 1.98683 2.26617 1.99024H2.01258L2.00937 1.73665C2.00572 1.15778 1.99543 0.578646 1.97085 0.00321027C1.64792 0.00128422 1.32481 0 1.0014 0H1.00143Z"
+                        fill="white"></path>
+                    <path
+                        d="M0.0316804 0.00449424C0.678831 -0.00192591 1.32598 -0.000642152 1.97185 0.00320993C2.0001 0.664485 2.0155 1.32576 2.0155 1.98703C2.67935 1.9819 3.34319 1.9819 4.00575 2.00116C4.00703 2.66115 4.00832 3.32114 4.01602 3.97985C3.34704 3.976 2.67806 3.97728 2.00909 3.98113C2.00395 13.3019 2.02834 22.6214 2.02064 31.9409C2.68192 31.9486 3.34191 31.9498 4.00318 31.9357C3.99676 31.277 3.99933 30.6196 4.00575 29.9609C4.66702 29.9493 5.33472 29.8928 5.98957 30.011C6.09743 30.6633 6.0358 31.3258 6.02039 31.9832C5.37196 31.9909 4.72224 31.9974 4.07252 31.9897C4.07766 32.6496 4.06225 33.3109 4.02116 33.9696C2.6909 33.9799 1.35937 33.9671 0.0278284 33.9683C-0.0261008 30.0456 0.0175559 26.1216 0.00343156 22.1976C0.0137038 14.8004 -0.0145447 7.40178 0.0316804 0.00449424Z"
+                        fill="#1C1C1C"></path>
+                    <path
+                        d="M4.01587 3.97989C4.67715 3.98631 5.33971 3.98888 6.00098 3.99273C6.0151 4.65015 6.02024 5.30757 6.02409 5.965C6.6828 5.96756 7.34151 5.97142 8.00021 5.98683C8.0015 6.64553 8.0015 7.30552 8.03488 7.96551C8.69487 7.97707 9.35486 7.97964 10.0149 7.98734C10.0084 8.64476 10.0136 9.30347 10.0328 9.96089C10.6825 9.95961 11.3323 9.96603 11.9807 9.98144C11.982 10.6401 12.009 11.2989 12.0321 11.9576C12.6895 11.9704 13.3482 11.973 14.0069 11.9755C14.0043 12.6342 14.0082 13.2929 14.021 13.9529C14.6784 13.9529 15.3372 13.9619 15.9933 13.9979C16.0126 14.6476 16.019 15.2973 16.019 15.9483C16.6777 15.965 17.3364 15.9689 17.9951 15.965C18.0015 16.6263 18.0067 17.2876 18.0067 17.9488C17.339 17.9822 16.6713 17.9771 16.0036 17.9591C16.0036 17.2991 16.0061 16.6378 16.0061 15.9766C15.3359 15.9676 14.6656 15.9689 13.9966 15.9727C14.0056 15.3037 14.0069 14.636 13.9953 13.9683C13.3341 13.9696 12.6715 13.9709 12.0102 13.9722C12.0102 13.3084 12.0128 12.6458 12.0141 11.9832C11.3438 11.9678 10.6748 11.9691 10.0059 11.9794C10.0071 11.3104 10.0097 10.6414 10.002 9.97245C9.34074 9.97245 8.67818 9.97373 8.01691 9.97502C8.00792 9.30861 8.01049 8.6422 8.00278 7.97579C7.33765 7.97579 6.67253 7.97707 6.00869 7.96166C6.01254 7.30167 6.01382 6.64168 6.0074 5.98169C5.34869 5.97399 4.68999 5.97527 4.03128 5.97912C4.01074 5.31271 4.0133 4.6463 4.01587 3.97989V3.97989Z"
+                        fill="#1C1C1C"></path>
+                    <path
+                        d="M18.0073 17.9487C18.6699 17.9307 19.3311 17.9603 19.9924 17.9898C20.0053 18.6447 20.0104 19.2995 20.0181 19.9544C20.6768 19.9544 21.3342 19.9595 21.9929 19.9762C21.9891 20.6362 21.9929 21.2975 22.0045 21.9575C22.6632 21.969 23.3232 21.9729 23.9832 21.9729C24.0076 23.3018 24.0037 24.6295 23.987 25.9585C21.3381 25.988 18.6904 25.988 16.0427 25.9932C16.0466 26.6442 16.0492 27.2964 16.0132 27.9474C15.3455 27.9808 14.6765 27.9731 14.0088 27.968C13.9896 26.6352 13.9909 25.3023 14.0088 23.9708C16.6706 23.9541 19.3337 23.9785 21.9955 23.967C22.0045 23.3005 22.0045 22.6329 21.9942 21.9664C21.3291 21.9626 20.6627 21.9639 19.9976 21.9536C19.9988 21.2923 20.0014 20.6311 19.9963 19.9698C19.3376 19.9634 18.6776 19.9646 18.0189 19.9711C17.9945 19.2969 17.9945 18.6228 18.0073 17.9487V17.9487Z"
+                        fill="#1C1C1C"></path>
+                    <path
+                        d="M8.00924 25.9508C8.67052 25.947 9.33179 25.9483 9.99307 25.9521C10.0175 26.6352 10.0483 27.3235 9.95455 28.0027C9.33308 28.0515 8.71032 28.0451 8.08885 28.0387C8.08629 28.682 8.07088 29.3253 8.05804 29.9699C7.39676 29.984 6.7265 30.052 6.07164 29.9275C5.93297 29.279 5.99974 28.6113 6.01129 27.9552C6.67385 27.9514 7.33641 27.9514 7.99897 27.9514C7.9964 27.2849 7.9964 26.6173 8.00924 25.9508V25.9508Z"
+                        fill="#1C1C1C"></path>
+                    <path
+                        d="M9.95471 28.0027C10.6365 27.9282 11.3222 27.95 12.0053 27.9629C12.0194 29.2906 12.0066 30.6195 12.0143 31.9472C12.6807 31.9459 13.3458 31.9459 14.0122 31.96C14.0161 33.2826 14.0007 34.6051 14.0212 35.929C15.3553 35.9495 16.692 35.8866 18.0248 35.9649C18.1019 36.6301 18.0608 37.3003 18.0043 37.9654C16.6638 37.9732 15.3245 37.9783 13.984 37.9603C13.9866 37.299 13.9814 36.639 13.9673 35.9778C13.3124 35.9791 12.6563 35.9701 12.0015 35.9572C11.9796 34.6347 11.9848 33.3121 11.9706 31.9909C11.3106 31.9857 10.6507 31.9767 9.99066 31.9549C10.0626 30.6362 9.80063 29.3175 9.95471 28.0027V28.0027Z"
+                        fill="#1C1C1C"></path>
+                    <path
+                        d="M16.0132 27.9474C16.677 27.9166 17.3421 27.9346 18.0073 27.959C18.0137 29.2815 17.9983 30.6041 18.024 31.9279C18.6814 31.9344 19.3375 31.9421 19.9949 31.96C20.0104 33.2941 20.0181 34.6282 19.9988 35.9623C19.3414 35.979 18.6827 35.9957 18.0252 35.9649C17.9508 34.6359 18.0124 33.3031 17.9996 31.9729C17.3306 31.9587 16.6616 31.9613 15.9939 31.9562C15.9926 30.6208 15.9785 29.2828 16.0132 27.9474Z"
+                        fill="#1C1C1C"></path>
+                </svg></g>
+        </svg>
+    </div>
+    <script>var animation_info = {
+            "frame_positions": [{ "x": 0.5, "y": 0.4643610291016449 }, { "x": 1, "y": 0 }, { "x": 0, "y": 1 }],
+            "shapes": {
+                "g_1__svg_root":
+                {
+                    "attributes":
+                        [{
+                            "type": "number",
+                            "attributeName": "opacity",
+                            "val_position": {
+                                "x": {
+                                    "0": {
+                                        "0": 1,
+                                        "1": 1,
+                                        "0.4643610291016449": 1
+                                    },
+                                    "1": {
+                                        "0": 1, "1": 1, "0.4643610291016449": 1
+                                    },
+                                    "0.5": {
+                                        "0": 1, "1": 1, "0.4643610291016449": 1
+                                    }
+                                },
+                                "y": {
+                                    "0": { "0": 1, "1": 1, "0.5": 1 }, "1": { "0": 1, "1": 1, "0.5": 1 }, "0.4643610291016449": { "0": 1, "1": 1, "0.5": 1 }
+                                }
+                            }
+                        }
+                        ]
+                },
+                "rect_1__g_1__svg_root": {
+                    "attributes": [{ "type": "number", "attributeName": "x", "val_position": { "x": { "0": { "0": 0, "1": 0, "0.4643610291016449": 0 }, "1": { "0": 0, "1": 0, "0.4643610291016449": 0 }, "0.5": { "0": 0, "1": 0, "0.4643610291016449": 0 } }, "y": { "0": { "0": 0, "1": 0, "0.5": 0 }, "1": { "0": 0, "1": 0, "0.5": 0 }, "0.4643610291016449": { "0": 0, "1": 0, "0.5": 0 } } } }, { "type": "number", "attributeName": "y", "val_position": { "x": { "0": { "0": 0, "1": 0, "0.4643610291016449": 0 }, "1": { "0": 0, "1": 0, "0.4643610291016449": 0 }, "0.5": { "0": 0, "1": 0, "0.4643610291016449": 0 } }, "y": { "0": { "0": 0, "1": 0, "0.5": 0 }, "1": { "0": 0, "1": 0, "0.5": 0 }, "0.4643610291016449": { "0": 0, "1": 0, "0.5": 0 } } } }, { "type": "number", "attributeName": "rx", "val_position": { "x": { "0": { "0": 0, "1": 0, "0.4643610291016449": 0 }, "1": { "0": 0, "1": 0, "0.4643610291016449": 0 }, "0.5": { "0": 0, "1": 0, "0.4643610291016449": 0 } }, "y": { "0": { "0": 0, "1": 0, "0.5": 0 }, "1": { "0": 0, "1": 0, "0.5": 0 }, "0.4643610291016449": { "0": 0, "1": 0, "0.5": 0 } } } }, { "type": "number", "attributeName": "width", "val_position": { "x": { "0": { "0": 1440, "1": 1440, "0.4643610291016449": 1440 }, "1": { "0": 1440, "1": 1440, "0.4643610291016449": 1440 }, "0.5": { "0": 1440, "1": 1440, "0.4643610291016449": 1440 } }, "y": { "0": { "0": 1440, "1": 1440, "0.5": 1440 }, "1": { "0": 1440, "1": 1440, "0.5": 1440 }, "0.4643610291016449": { "0": 1440, "1": 1440, "0.5": 1440 } } } }, { "type": "number", "attributeName": "height", "val_position": { "x": { "0": { "0": 1024, "1": 1024, "0.4643610291016449": 1024 }, "1": { "0": 1024, "1": 1024, "0.4643610291016449": 1024 }, "0.5": { "0": 1024, "1": 1024, "0.4643610291016449": 1024 } }, "y": { "0": { "0": 1024, "1": 1024, "0.5": 1024 }, "1": { "0": 1024, "1": 1024, "0.5": 1024 }, "0.4643610291016449": { "0": 1024, "1": 1024, "0.5": 1024 } } } }, { "type": "number", "attributeName": "fill-opacity", "val_position": { "x": { "0": { "0": 1, "1": 1, "0.4643610291016449": 1 }, "1": { "0": 1, "1": 1, "0.4643610291016449": 1 }, "0.5": { "0": 1, "1": 1, "0.4643610291016449": 1 } }, "y": { "0": { "0": 1, "1": 1, "0.5": 1 }, "1": { "0": 1, "1": 1, "0.5": 1 }, "0.4643610291016449": { "0": 1, "1": 1, "0.5": 1 } } } }, { "type": "number", "attributeName": "stroke-width", "val_position": { "x": { "0": { "0": 0, "1": 0, "0.4643610291016449": 0 }, "1": { "0": 0, "1": 0, "0.4643610291016449": 0 }, "0.5": { "0": 0, "1": 0, "0.4643610291016449": 0 } }, "y": { "0": { "0": 0, "1": 0, "0.5": 0 }, "1": { "0": 0, "1": 0, "0.5": 0 }, "0.4643610291016449": { "0": 0, "1": 0, "0.5": 0 } } } }, { "type": "color", "attributeName": "fill", "val_position": { "x": { "0": { "0": [1, 1, 1], "1": [1, 1, 1], "0.4643610291016449": [1, 1, 1] }, "1": { "0": [1, 1, 1], "1": [1, 1, 1], "0.4643610291016449": [1, 1, 1] }, "0.5": { "0": [1, 1, 1], "1": [1, 1, 1], "0.4643610291016449": [1, 1, 1] } }, "y": { "0": { "0": [1, 1, 1], "1": [1, 1, 1], "0.5": [1, 1, 1] }, "1": { "0": [1, 1, 1], "1": [1, 1, 1], "0.5": [1, 1, 1] }, "0.4643610291016449": { "0": [1, 1, 1], "1": [1, 1, 1], "0.5": [1, 1, 1] } } } }, { "type": "color", "attributeName": "stroke", "val_position": { "x": { "0": { "0": [1, 1, 1], "1": [1, 1, 1], "0.4643610291016449": [1, 1, 1] }, "1": { "0": [1, 1, 1], "1": [1, 1, 1], "0.4643610291016449": [1, 1, 1] }, "0.5": { "0": [1, 1, 1], "1": [1, 1, 1], "0.4643610291016449": [1, 1, 1] } }, "y": { "0": { "0": [1, 1, 1], "1": [1, 1, 1], "0.5": [1, 1, 1] }, "1": { "0": [1, 1, 1], "1": [1, 1, 1], "0.5": [1, 1, 1] }, "0.4643610291016449": { "0": [1, 1, 1], "1": [1, 1, 1], "0.5": [1, 1, 1] } } } }, { "type": "style", "attributeName": "style", "val_position": { "x": { "0": { "1": {} }, "1": { "0": {} }, "0.5": { "0.4643610291016449": {} } }, "y": { "0": { "1": {} }, "1": { "0": {} }, "0.4643610291016449": { "0.5": {} } } }, "ignore": true }, { "type": "transform", "attributeName": "transform", "val_position": { "x": { "0": { "1": {} }, "1": { "0": {} }, "0.5": { "0.4643610291016449": {} } }, "y": { "0": { "1": {} }, "1": { "0": {} }, "0.4643610291016449": { "0.5": {} } } }, "ignore": true }, { "type": "number", "attributeName": "opacity", "val_position": { "x": { "0": { "0": 1, "1": 1, "0.4643610291016449": 1 }, "1": { "0": 1, "1": 1, "0.4643610291016449": 1 }, "0.5": { "0": 1, "1": 1, "0.4643610291016449": 1 } }, "y": { "0": { "0": 1, "1": 1, "0.5": 1 }, "1": { "0": 1, "1": 1, "0.5": 1 }, "0.4643610291016449": { "0": 1, "1": 1, "0.5": 1 } } } }]
+                },
+                "g_3__g_1__svg_root": {
+                    "attributes": [{ "type": "number", "attributeName": "opacity", "val_position": { "x": { "0": { "0": 1, "1": 1, "0.4643610291016449": 1 }, "1": { "0": 1, "1": 1, "0.4643610291016449": 1 }, "0.5": { "0": 1, "1": 1, "0.4643610291016449": 1 } }, "y": { "0": { "0": 1, "1": 1, "0.5": 1 }, "1": { "0": 1, "1": 1, "0.5": 1 }, "0.4643610291016449": { "0": 1, "1": 1, "0.5": 1 } } } }]
+                },
+                "path_1__g_3__g_1__svg_root": { "attributes": [{ "type": "command", "attributeName": "d", "val_position": { "x": { "0": { "0": { "commands": [{ "code": "M", "command": "moveto", "x": -12.02, "y": 242.282 }, { "code": "C", "command": "curveto", "x1": -32.555, "y1": 90.409, "x2": 75.253, "y2": -49.115, "x": 228.775, "y": -69.354 }, { "code": "C", "command": "curveto", "x1": 382.298, "y1": -89.593, "x2": 523.4, "y2": 17.118, "x": 543.935, "y": 168.991 }, { "code": "C", "command": "curveto", "x1": 564.47, "y1": 320.864, "x2": 290.391, "y2": 708.436, "x": 136.868, "y": 728.675 }, { "code": "C", "command": "curveto", "x1": -16.654, "y1": 748.914, "x2": 8.515, "y2": 394.156, "x": -12.02, "y": 242.282 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "1": { "commands": [{ "code": "M", "command": "moveto", "x": -12.02, "y": 621.181 }, { "code": "C", "command": "curveto", "x1": -32.555, "y1": 461.939, "x2": 75.253, "y2": 315.645, "x": 228.775, "y": 294.424 }, { "code": "C", "command": "curveto", "x1": 382.298, "y1": 273.203, "x2": 523.4, "y2": 385.091, "x": 543.935, "y": 544.333 }, { "code": "C", "command": "curveto", "x1": 564.47, "y1": 703.575, "x2": 290.391, "y2": 1109.95, "x": 136.868, "y": 1131.17 }, { "code": "C", "command": "curveto", "x1": -16.654, "y1": 1152.39, "x2": 8.515, "y2": 780.423, "x": -12.02, "y": 621.181 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "0.4643610291016449": { "commands": [{ "code": "M", "command": "moveto", "x": -12.02, "y": 465.89 }, { "code": "C", "command": "curveto", "x1": -32.555, "y1": 331.194, "x2": 75.253, "y2": 207.451, "x": 228.775, "y": 189.501 }, { "code": "C", "command": "curveto", "x1": 382.298, "y1": 171.551, "x2": 523.4, "y2": 266.193, "x": 543.935, "y": 400.889 }, { "code": "C", "command": "curveto", "x1": 564.47, "y1": 535.584, "x2": 290.391, "y2": 879.321, "x": 136.868, "y": 897.271 }, { "code": "C", "command": "curveto", "x1": -16.654, "y1": 915.22, "x2": 8.515, "y2": 600.586, "x": -12.02, "y": 465.89 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } } }, "1": { "0": { "commands": [{ "code": "M", "command": "moveto", "x": 561.301, "y": 242.282 }, { "code": "C", "command": "curveto", "x1": 541.024, "y1": 90.409, "x2": 647.475, "y2": -49.115, "x": 799.065, "y": -69.354 }, { "code": "C", "command": "curveto", "x1": 950.655, "y1": -89.593, "x2": 1089.98, "y2": 17.118, "x": 1110.26, "y": 168.991 }, { "code": "C", "command": "curveto", "x1": 1130.53, "y1": 320.864, "x2": 859.905, "y2": 708.436, "x": 708.314, "y": 728.675 }, { "code": "C", "command": "curveto", "x1": 556.724, "y1": 748.914, "x2": 581.577, "y2": 394.156, "x": 561.301, "y": 242.282 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "1": { "commands": [{ "code": "M", "command": "moveto", "x": 561.301, "y": 621.181 }, { "code": "C", "command": "curveto", "x1": 541.024, "y1": 461.939, "x2": 647.475, "y2": 315.645, "x": 799.065, "y": 294.424 }, { "code": "C", "command": "curveto", "x1": 950.655, "y1": 273.203, "x2": 1089.98, "y2": 385.091, "x": 1110.26, "y": 544.333 }, { "code": "C", "command": "curveto", "x1": 1130.53, "y1": 703.575, "x2": 859.905, "y2": 1109.95, "x": 708.314, "y": 1131.17 }, { "code": "C", "command": "curveto", "x1": 556.724, "y1": 1152.39, "x2": 581.577, "y2": 780.423, "x": 561.301, "y": 621.181 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "0.4643610291016449": { "commands": [{ "code": "M", "command": "moveto", "x": 561.301, "y": 465.89 }, { "code": "C", "command": "curveto", "x1": 541.024, "y1": 331.194, "x2": 647.475, "y2": 207.451, "x": 799.065, "y": 189.501 }, { "code": "C", "command": "curveto", "x1": 950.655, "y1": 171.551, "x2": 1089.98, "y2": 266.193, "x": 1110.26, "y": 400.889 }, { "code": "C", "command": "curveto", "x1": 1130.53, "y1": 535.584, "x2": 859.905, "y2": 879.321, "x": 708.314, "y": 897.271 }, { "code": "C", "command": "curveto", "x1": 556.724, "y1": 915.22, "x2": 581.577, "y2": 600.586, "x": 561.301, "y": 465.89 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } } }, "0.5": { "0": { "commands": [{ "code": "M", "command": "moveto", "x": 316.272, "y": 242.282 }, { "code": "C", "command": "curveto", "x1": 298.289, "y1": 90.409, "x2": 392.7, "y2": -49.115, "x": 527.144, "y": -69.354 }, { "code": "C", "command": "curveto", "x1": 661.589, "y1": -89.593, "x2": 785.156, "y2": 17.118, "x": 803.14, "y": 168.991 }, { "code": "C", "command": "curveto", "x1": 821.123, "y1": 320.864, "x2": 581.103, "y2": 708.436, "x": 446.658, "y": 728.675 }, { "code": "C", "command": "curveto", "x1": 312.214, "y1": 748.914, "x2": 334.256, "y2": 394.156, "x": 316.272, "y": 242.282 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "1": { "commands": [{ "code": "M", "command": "moveto", "x": 316.272, "y": 621.181 }, { "code": "C", "command": "curveto", "x1": 298.289, "y1": 461.939, "x2": 392.7, "y2": 315.645, "x": 527.144, "y": 294.424 }, { "code": "C", "command": "curveto", "x1": 661.589, "y1": 273.203, "x2": 785.156, "y2": 385.091, "x": 803.14, "y": 544.333 }, { "code": "C", "command": "curveto", "x1": 821.123, "y1": 703.575, "x2": 581.103, "y2": 1109.95, "x": 446.658, "y": 1131.17 }, { "code": "C", "command": "curveto", "x1": 312.214, "y1": 1152.39, "x2": 334.256, "y2": 780.423, "x": 316.272, "y": 621.181 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "0.4643610291016449": { "commands": [{ "code": "M", "command": "moveto", "x": 316.272, "y": 465.89 }, { "code": "C", "command": "curveto", "x1": 298.289, "y1": 331.194, "x2": 392.7, "y2": 207.451, "x": 527.144, "y": 189.501 }, { "code": "C", "command": "curveto", "x1": 661.589, "y1": 171.551, "x2": 785.156, "y2": 266.193, "x": 803.14, "y": 400.889 }, { "code": "C", "command": "curveto", "x1": 821.123, "y1": 535.584, "x2": 581.103, "y2": 879.321, "x": 446.658, "y": 897.271 }, { "code": "C", "command": "curveto", "x1": 312.214, "y1": 915.22, "x2": 334.256, "y2": 600.586, "x": 316.272, "y": 465.89 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } } } }, "y": { "0": { "0": { "commands": [{ "code": "M", "command": "moveto", "x": -12.02, "y": 242.282 }, { "code": "C", "command": "curveto", "x1": -32.555, "y1": 90.409, "x2": 75.253, "y2": -49.115, "x": 228.775, "y": -69.354 }, { "code": "C", "command": "curveto", "x1": 382.298, "y1": -89.593, "x2": 523.4, "y2": 17.118, "x": 543.935, "y": 168.991 }, { "code": "C", "command": "curveto", "x1": 564.47, "y1": 320.864, "x2": 290.391, "y2": 708.436, "x": 136.868, "y": 728.675 }, { "code": "C", "command": "curveto", "x1": -16.654, "y1": 748.914, "x2": 8.515, "y2": 394.156, "x": -12.02, "y": 242.282 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "1": { "commands": [{ "code": "M", "command": "moveto", "x": 561.301, "y": 242.282 }, { "code": "C", "command": "curveto", "x1": 541.024, "y1": 90.409, "x2": 647.475, "y2": -49.115, "x": 799.065, "y": -69.354 }, { "code": "C", "command": "curveto", "x1": 950.655, "y1": -89.593, "x2": 1089.98, "y2": 17.118, "x": 1110.26, "y": 168.991 }, { "code": "C", "command": "curveto", "x1": 1130.53, "y1": 320.864, "x2": 859.905, "y2": 708.436, "x": 708.314, "y": 728.675 }, { "code": "C", "command": "curveto", "x1": 556.724, "y1": 748.914, "x2": 581.577, "y2": 394.156, "x": 561.301, "y": 242.282 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "0.5": { "commands": [{ "code": "M", "command": "moveto", "x": 316.272, "y": 242.282 }, { "code": "C", "command": "curveto", "x1": 298.289, "y1": 90.409, "x2": 392.7, "y2": -49.115, "x": 527.144, "y": -69.354 }, { "code": "C", "command": "curveto", "x1": 661.589, "y1": -89.593, "x2": 785.156, "y2": 17.118, "x": 803.14, "y": 168.991 }, { "code": "C", "command": "curveto", "x1": 821.123, "y1": 320.864, "x2": 581.103, "y2": 708.436, "x": 446.658, "y": 728.675 }, { "code": "C", "command": "curveto", "x1": 312.214, "y1": 748.914, "x2": 334.256, "y2": 394.156, "x": 316.272, "y": 242.282 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } } }, "1": { "0": { "commands": [{ "code": "M", "command": "moveto", "x": -12.02, "y": 621.181 }, { "code": "C", "command": "curveto", "x1": -32.555, "y1": 461.939, "x2": 75.253, "y2": 315.645, "x": 228.775, "y": 294.424 }, { "code": "C", "command": "curveto", "x1": 382.298, "y1": 273.203, "x2": 523.4, "y2": 385.091, "x": 543.935, "y": 544.333 }, { "code": "C", "command": "curveto", "x1": 564.47, "y1": 703.575, "x2": 290.391, "y2": 1109.95, "x": 136.868, "y": 1131.17 }, { "code": "C", "command": "curveto", "x1": -16.654, "y1": 1152.39, "x2": 8.515, "y2": 780.423, "x": -12.02, "y": 621.181 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "1": { "commands": [{ "code": "M", "command": "moveto", "x": 561.301, "y": 621.181 }, { "code": "C", "command": "curveto", "x1": 541.024, "y1": 461.939, "x2": 647.475, "y2": 315.645, "x": 799.065, "y": 294.424 }, { "code": "C", "command": "curveto", "x1": 950.655, "y1": 273.203, "x2": 1089.98, "y2": 385.091, "x": 1110.26, "y": 544.333 }, { "code": "C", "command": "curveto", "x1": 1130.53, "y1": 703.575, "x2": 859.905, "y2": 1109.95, "x": 708.314, "y": 1131.17 }, { "code": "C", "command": "curveto", "x1": 556.724, "y1": 1152.39, "x2": 581.577, "y2": 780.423, "x": 561.301, "y": 621.181 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "0.5": { "commands": [{ "code": "M", "command": "moveto", "x": 316.272, "y": 621.181 }, { "code": "C", "command": "curveto", "x1": 298.289, "y1": 461.939, "x2": 392.7, "y2": 315.645, "x": 527.144, "y": 294.424 }, { "code": "C", "command": "curveto", "x1": 661.589, "y1": 273.203, "x2": 785.156, "y2": 385.091, "x": 803.14, "y": 544.333 }, { "code": "C", "command": "curveto", "x1": 821.123, "y1": 703.575, "x2": 581.103, "y2": 1109.95, "x": 446.658, "y": 1131.17 }, { "code": "C", "command": "curveto", "x1": 312.214, "y1": 1152.39, "x2": 334.256, "y2": 780.423, "x": 316.272, "y": 621.181 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } } }, "0.4643610291016449": { "0": { "commands": [{ "code": "M", "command": "moveto", "x": -12.02, "y": 465.89 }, { "code": "C", "command": "curveto", "x1": -32.555, "y1": 331.194, "x2": 75.253, "y2": 207.451, "x": 228.775, "y": 189.501 }, { "code": "C", "command": "curveto", "x1": 382.298, "y1": 171.551, "x2": 523.4, "y2": 266.193, "x": 543.935, "y": 400.889 }, { "code": "C", "command": "curveto", "x1": 564.47, "y1": 535.584, "x2": 290.391, "y2": 879.321, "x": 136.868, "y": 897.271 }, { "code": "C", "command": "curveto", "x1": -16.654, "y1": 915.22, "x2": 8.515, "y2": 600.586, "x": -12.02, "y": 465.89 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "1": { "commands": [{ "code": "M", "command": "moveto", "x": 561.301, "y": 465.89 }, { "code": "C", "command": "curveto", "x1": 541.024, "y1": 331.194, "x2": 647.475, "y2": 207.451, "x": 799.065, "y": 189.501 }, { "code": "C", "command": "curveto", "x1": 950.655, "y1": 171.551, "x2": 1089.98, "y2": 266.193, "x": 1110.26, "y": 400.889 }, { "code": "C", "command": "curveto", "x1": 1130.53, "y1": 535.584, "x2": 859.905, "y2": 879.321, "x": 708.314, "y": 897.271 }, { "code": "C", "command": "curveto", "x1": 556.724, "y1": 915.22, "x2": 581.577, "y2": 600.586, "x": 561.301, "y": 465.89 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "0.5": { "commands": [{ "code": "M", "command": "moveto", "x": 316.272, "y": 465.89 }, { "code": "C", "command": "curveto", "x1": 298.289, "y1": 331.194, "x2": 392.7, "y2": 207.451, "x": 527.144, "y": 189.501 }, { "code": "C", "command": "curveto", "x1": 661.589, "y1": 171.551, "x2": 785.156, "y2": 266.193, "x": 803.14, "y": 400.889 }, { "code": "C", "command": "curveto", "x1": 821.123, "y1": 535.584, "x2": 581.103, "y2": 879.321, "x": 446.658, "y": 897.271 }, { "code": "C", "command": "curveto", "x1": 312.214, "y1": 915.22, "x2": 334.256, "y2": 600.586, "x": 316.272, "y": 465.89 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } } } } } }, { "type": "color", "attributeName": "fill", "val_position": { "x": { "0": { "1": [null, null, null] }, "1": { "0": [null, null, null] }, "0.5": { "0.4643610291016449": [null, null, null] } }, "y": { "0": { "1": [null, null, null] }, "1": { "0": [null, null, null] }, "0.4643610291016449": { "0.5": [null, null, null] } } }, "ignore": true }, { "type": "number", "attributeName": "fill-opacity", "val_position": { "x": { "0": { "0": 1, "1": 1, "0.4643610291016449": 1 }, "1": { "0": 1, "1": 1, "0.4643610291016449": 1 }, "0.5": { "0": 1, "1": 1, "0.4643610291016449": 1 } }, "y": { "0": { "0": 1, "1": 1, "0.5": 1 }, "1": { "0": 1, "1": 1, "0.5": 1 }, "0.4643610291016449": { "0": 1, "1": 1, "0.5": 1 } } } }, { "type": "number", "attributeName": "opacity", "val_position": { "x": { "0": { "0": 1, "1": 1, "0.4643610291016449": 1 }, "1": { "0": 1, "1": 1, "0.4643610291016449": 1 }, "0.5": { "0": 1, "1": 1, "0.4643610291016449": 1 } }, "y": { "0": { "0": 1, "1": 1, "0.5": 1 }, "1": { "0": 1, "1": 1, "0.5": 1 }, "0.4643610291016449": { "0": 1, "1": 1, "0.5": 1 } } } }, { "type": "style", "attributeName": "style", "val_position": { "x": { "0": { "1": {} }, "1": { "0": {} }, "0.5": { "0.4643610291016449": {} } }, "y": { "0": { "1": {} }, "1": { "0": {} }, "0.4643610291016449": { "0.5": {} } } }, "ignore": true }] },
+                "g_5__g_1__svg_root": { "attributes": [{ "type": "number", "attributeName": "opacity", "val_position": { "x": { "0": { "0": 1, "1": 1, "0.4643610291016449": 1 }, "1": { "0": 1, "1": 1, "0.4643610291016449": 1 }, "0.5": { "0": 1, "1": 1, "0.4643610291016449": 1 } }, "y": { "0": { "0": 1, "1": 1, "0.5": 1 }, "1": { "0": 1, "1": 1, "0.5": 1 }, "0.4643610291016449": { "0": 1, "1": 1, "0.5": 1 } } } }] },
+                "path_1__g_5__g_1__svg_root": { "attributes": [{ "type": "command", "attributeName": "d", "val_position": { "x": { "0": { "0": { "commands": [{ "code": "M", "command": "moveto", "x": 504.119, "y": 574.95 }, { "code": "C", "command": "curveto", "x1": 351.66, "y1": 546.567, "x2": 251.304, "y2": 401.861, "x": 279.969, "y": 251.741 }, { "code": "C", "command": "curveto", "x1": 308.634, "y1": 101.621, "x2": 455.464, "y2": 2.933, "x": 607.923, "y": 31.316 }, { "code": "C", "command": "curveto", "x1": 760.382, "y1": 59.699, "x2": 1047.11, "y2": 437.886, "x": 1018.44, "y": 588.006 }, { "code": "C", "command": "curveto", "x1": 989.78, "y1": 738.126, "x2": 656.578, "y2": 603.333, "x": 504.119, "y": 574.95 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "1": { "commands": [{ "code": "M", "command": "moveto", "x": 504.119, "y": 969.989 }, { "code": "C", "command": "curveto", "x1": 351.66, "y1": 940.229, "x2": 251.304, "y2": 788.503, "x": 279.969, "y": 631.099 }, { "code": "C", "command": "curveto", "x1": 308.634, "y1": 473.695, "x2": 455.464, "y2": 370.219, "x": 607.923, "y": 399.979 }, { "code": "C", "command": "curveto", "x1": 760.382, "y1": 429.739, "x2": 1047.11, "y2": 826.275, "x": 1018.44, "y": 983.679 }, { "code": "C", "command": "curveto", "x1": 989.78, "y1": 1141.08, "x2": 656.578, "y2": 999.749, "x": 504.119, "y": 969.989 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "0.4643610291016449": { "commands": [{ "code": "M", "command": "moveto", "x": 504.119, "y": 760.932 }, { "code": "C", "command": "curveto", "x1": 351.66, "y1": 735.76, "x2": 251.304, "y2": 607.421, "x": 279.969, "y": 474.28 }, { "code": "C", "command": "curveto", "x1": 308.634, "y1": 341.138, "x2": 455.464, "y2": 253.612, "x": 607.923, "y": 278.785 }, { "code": "C", "command": "curveto", "x1": 760.382, "y1": 303.958, "x2": 1047.11, "y2": 639.37, "x": 1018.44, "y": 772.512 }, { "code": "C", "command": "curveto", "x1": 989.78, "y1": 905.653, "x2": 656.578, "y2": 786.105, "x": 504.119, "y": 760.932 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } } }, "1": { "0": { "commands": [{ "code": "M", "command": "moveto", "x": 1070.94, "y": 574.95 }, { "code": "C", "command": "curveto", "x1": 920.402, "y1": 546.567, "x2": 821.31, "y2": 401.861, "x": 849.614, "y": 251.741 }, { "code": "C", "command": "curveto", "x1": 877.918, "y1": 101.621, "x2": 1022.9, "y2": 2.933, "x": 1173.44, "y": 31.316 }, { "code": "C", "command": "curveto", "x1": 1323.98, "y1": 59.699, "x2": 1607.1, "y2": 437.886, "x": 1578.79, "y": 588.006 }, { "code": "C", "command": "curveto", "x1": 1550.49, "y1": 738.126, "x2": 1221.48, "y2": 603.333, "x": 1070.94, "y": 574.95 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "1": { "commands": [{ "code": "M", "command": "moveto", "x": 1070.94, "y": 969.989 }, { "code": "C", "command": "curveto", "x1": 920.402, "y1": 940.229, "x2": 821.31, "y2": 788.503, "x": 849.614, "y": 631.099 }, { "code": "C", "command": "curveto", "x1": 877.918, "y1": 473.695, "x2": 1022.9, "y2": 370.219, "x": 1173.44, "y": 399.979 }, { "code": "C", "command": "curveto", "x1": 1323.98, "y1": 429.739, "x2": 1607.1, "y2": 826.275, "x": 1578.79, "y": 983.679 }, { "code": "C", "command": "curveto", "x1": 1550.49, "y1": 1141.08, "x2": 1221.48, "y2": 999.749, "x": 1070.94, "y": 969.989 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "0.4643610291016449": { "commands": [{ "code": "M", "command": "moveto", "x": 1070.94, "y": 760.932 }, { "code": "C", "command": "curveto", "x1": 920.402, "y1": 735.76, "x2": 821.31, "y2": 607.421, "x": 849.614, "y": 474.28 }, { "code": "C", "command": "curveto", "x1": 877.918, "y1": 341.138, "x2": 1022.9, "y2": 253.612, "x": 1173.44, "y": 278.785 }, { "code": "C", "command": "curveto", "x1": 1323.98, "y1": 303.958, "x2": 1607.1, "y2": 639.37, "x": 1578.79, "y": 772.512 }, { "code": "C", "command": "curveto", "x1": 1550.49, "y1": 905.653, "x2": 1221.48, "y2": 786.105, "x": 1070.94, "y": 760.932 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } } }, "0.5": { "0": { "commands": [{ "code": "M", "command": "moveto", "x": 768.272, "y": 574.95 }, { "code": "C", "command": "curveto", "x1": 634.758, "y1": 546.567, "x2": 546.874, "y2": 401.861, "x": 571.976, "y": 251.741 }, { "code": "C", "command": "curveto", "x1": 597.079, "y1": 101.621, "x2": 725.663, "y2": 2.933, "x": 859.176, "y": 31.316 }, { "code": "C", "command": "curveto", "x1": 992.69, "y1": 59.699, "x2": 1243.79, "y2": 437.886, "x": 1218.68, "y": 588.006 }, { "code": "C", "command": "curveto", "x1": 1193.58, "y1": 738.126, "x2": 901.786, "y2": 603.333, "x": 768.272, "y": 574.95 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "1": { "commands": [{ "code": "M", "command": "moveto", "x": 768.272, "y": 969.989 }, { "code": "C", "command": "curveto", "x1": 634.758, "y1": 940.229, "x2": 546.874, "y2": 788.503, "x": 571.976, "y": 631.099 }, { "code": "C", "command": "curveto", "x1": 597.079, "y1": 473.695, "x2": 725.663, "y2": 370.219, "x": 859.176, "y": 399.979 }, { "code": "C", "command": "curveto", "x1": 992.69, "y1": 429.739, "x2": 1243.79, "y2": 826.275, "x": 1218.68, "y": 983.679 }, { "code": "C", "command": "curveto", "x1": 1193.58, "y1": 1141.08, "x2": 901.786, "y2": 999.749, "x": 768.272, "y": 969.989 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "0.4643610291016449": { "commands": [{ "code": "M", "command": "moveto", "x": 768.272, "y": 760.932 }, { "code": "C", "command": "curveto", "x1": 634.758, "y1": 735.76, "x2": 546.874, "y2": 607.421, "x": 571.976, "y": 474.28 }, { "code": "C", "command": "curveto", "x1": 597.079, "y1": 341.138, "x2": 725.663, "y2": 253.612, "x": 859.176, "y": 278.785 }, { "code": "C", "command": "curveto", "x1": 992.69, "y1": 303.958, "x2": 1243.79, "y2": 639.37, "x": 1218.68, "y": 772.512 }, { "code": "C", "command": "curveto", "x1": 1193.58, "y1": 905.653, "x2": 901.786, "y2": 786.105, "x": 768.272, "y": 760.932 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } } } }, "y": { "0": { "0": { "commands": [{ "code": "M", "command": "moveto", "x": 504.119, "y": 574.95 }, { "code": "C", "command": "curveto", "x1": 351.66, "y1": 546.567, "x2": 251.304, "y2": 401.861, "x": 279.969, "y": 251.741 }, { "code": "C", "command": "curveto", "x1": 308.634, "y1": 101.621, "x2": 455.464, "y2": 2.933, "x": 607.923, "y": 31.316 }, { "code": "C", "command": "curveto", "x1": 760.382, "y1": 59.699, "x2": 1047.11, "y2": 437.886, "x": 1018.44, "y": 588.006 }, { "code": "C", "command": "curveto", "x1": 989.78, "y1": 738.126, "x2": 656.578, "y2": 603.333, "x": 504.119, "y": 574.95 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "1": { "commands": [{ "code": "M", "command": "moveto", "x": 1070.94, "y": 574.95 }, { "code": "C", "command": "curveto", "x1": 920.402, "y1": 546.567, "x2": 821.31, "y2": 401.861, "x": 849.614, "y": 251.741 }, { "code": "C", "command": "curveto", "x1": 877.918, "y1": 101.621, "x2": 1022.9, "y2": 2.933, "x": 1173.44, "y": 31.316 }, { "code": "C", "command": "curveto", "x1": 1323.98, "y1": 59.699, "x2": 1607.1, "y2": 437.886, "x": 1578.79, "y": 588.006 }, { "code": "C", "command": "curveto", "x1": 1550.49, "y1": 738.126, "x2": 1221.48, "y2": 603.333, "x": 1070.94, "y": 574.95 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "0.5": { "commands": [{ "code": "M", "command": "moveto", "x": 768.272, "y": 574.95 }, { "code": "C", "command": "curveto", "x1": 634.758, "y1": 546.567, "x2": 546.874, "y2": 401.861, "x": 571.976, "y": 251.741 }, { "code": "C", "command": "curveto", "x1": 597.079, "y1": 101.621, "x2": 725.663, "y2": 2.933, "x": 859.176, "y": 31.316 }, { "code": "C", "command": "curveto", "x1": 992.69, "y1": 59.699, "x2": 1243.79, "y2": 437.886, "x": 1218.68, "y": 588.006 }, { "code": "C", "command": "curveto", "x1": 1193.58, "y1": 738.126, "x2": 901.786, "y2": 603.333, "x": 768.272, "y": 574.95 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } } }, "1": { "0": { "commands": [{ "code": "M", "command": "moveto", "x": 504.119, "y": 969.989 }, { "code": "C", "command": "curveto", "x1": 351.66, "y1": 940.229, "x2": 251.304, "y2": 788.503, "x": 279.969, "y": 631.099 }, { "code": "C", "command": "curveto", "x1": 308.634, "y1": 473.695, "x2": 455.464, "y2": 370.219, "x": 607.923, "y": 399.979 }, { "code": "C", "command": "curveto", "x1": 760.382, "y1": 429.739, "x2": 1047.11, "y2": 826.275, "x": 1018.44, "y": 983.679 }, { "code": "C", "command": "curveto", "x1": 989.78, "y1": 1141.08, "x2": 656.578, "y2": 999.749, "x": 504.119, "y": 969.989 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "1": { "commands": [{ "code": "M", "command": "moveto", "x": 1070.94, "y": 969.989 }, { "code": "C", "command": "curveto", "x1": 920.402, "y1": 940.229, "x2": 821.31, "y2": 788.503, "x": 849.614, "y": 631.099 }, { "code": "C", "command": "curveto", "x1": 877.918, "y1": 473.695, "x2": 1022.9, "y2": 370.219, "x": 1173.44, "y": 399.979 }, { "code": "C", "command": "curveto", "x1": 1323.98, "y1": 429.739, "x2": 1607.1, "y2": 826.275, "x": 1578.79, "y": 983.679 }, { "code": "C", "command": "curveto", "x1": 1550.49, "y1": 1141.08, "x2": 1221.48, "y2": 999.749, "x": 1070.94, "y": 969.989 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "0.5": { "commands": [{ "code": "M", "command": "moveto", "x": 768.272, "y": 969.989 }, { "code": "C", "command": "curveto", "x1": 634.758, "y1": 940.229, "x2": 546.874, "y2": 788.503, "x": 571.976, "y": 631.099 }, { "code": "C", "command": "curveto", "x1": 597.079, "y1": 473.695, "x2": 725.663, "y2": 370.219, "x": 859.176, "y": 399.979 }, { "code": "C", "command": "curveto", "x1": 992.69, "y1": 429.739, "x2": 1243.79, "y2": 826.275, "x": 1218.68, "y": 983.679 }, { "code": "C", "command": "curveto", "x1": 1193.58, "y1": 1141.08, "x2": 901.786, "y2": 999.749, "x": 768.272, "y": 969.989 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } } }, "0.4643610291016449": { "0": { "commands": [{ "code": "M", "command": "moveto", "x": 504.119, "y": 760.932 }, { "code": "C", "command": "curveto", "x1": 351.66, "y1": 735.76, "x2": 251.304, "y2": 607.421, "x": 279.969, "y": 474.28 }, { "code": "C", "command": "curveto", "x1": 308.634, "y1": 341.138, "x2": 455.464, "y2": 253.612, "x": 607.923, "y": 278.785 }, { "code": "C", "command": "curveto", "x1": 760.382, "y1": 303.958, "x2": 1047.11, "y2": 639.37, "x": 1018.44, "y": 772.512 }, { "code": "C", "command": "curveto", "x1": 989.78, "y1": 905.653, "x2": 656.578, "y2": 786.105, "x": 504.119, "y": 760.932 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "1": { "commands": [{ "code": "M", "command": "moveto", "x": 1070.94, "y": 760.932 }, { "code": "C", "command": "curveto", "x1": 920.402, "y1": 735.76, "x2": 821.31, "y2": 607.421, "x": 849.614, "y": 474.28 }, { "code": "C", "command": "curveto", "x1": 877.918, "y1": 341.138, "x2": 1022.9, "y2": 253.612, "x": 1173.44, "y": 278.785 }, { "code": "C", "command": "curveto", "x1": 1323.98, "y1": 303.958, "x2": 1607.1, "y2": 639.37, "x": 1578.79, "y": 772.512 }, { "code": "C", "command": "curveto", "x1": 1550.49, "y1": 905.653, "x2": 1221.48, "y2": 786.105, "x": 1070.94, "y": 760.932 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } }, "0.5": { "commands": [{ "code": "M", "command": "moveto", "x": 768.272, "y": 760.932 }, { "code": "C", "command": "curveto", "x1": 634.758, "y1": 735.76, "x2": 546.874, "y2": 607.421, "x": 571.976, "y": 474.28 }, { "code": "C", "command": "curveto", "x1": 597.079, "y1": 341.138, "x2": 725.663, "y2": 253.612, "x": 859.176, "y": 278.785 }, { "code": "C", "command": "curveto", "x1": 992.69, "y1": 303.958, "x2": 1243.79, "y2": 639.37, "x": 1218.68, "y": 772.512 }, { "code": "C", "command": "curveto", "x1": 1193.58, "y1": 905.653, "x2": 901.786, "y2": 786.105, "x": 768.272, "y": 760.932 }, { "code": "Z", "command": "closepath" }], "rotation": { "grad": 0, "cx": 0, "cy": 0 } } } } } }, { "type": "color", "attributeName": "fill", "val_position": { "x": { "0": { "1": [null, null, null] }, "1": { "0": [null, null, null] }, "0.5": { "0.4643610291016449": [null, null, null] } }, "y": { "0": { "1": [null, null, null] }, "1": { "0": [null, null, null] }, "0.4643610291016449": { "0.5": [null, null, null] } } }, "ignore": true }, { "type": "number", "attributeName": "fill-opacity", "val_position": { "x": { "0": { "0": 1, "1": 1, "0.4643610291016449": 1 }, "1": { "0": 1, "1": 1, "0.4643610291016449": 1 }, "0.5": { "0": 1, "1": 1, "0.4643610291016449": 1 } }, "y": { "0": { "0": 1, "1": 1, "0.5": 1 }, "1": { "0": 1, "1": 1, "0.5": 1 }, "0.4643610291016449": { "0": 1, "1": 1, "0.5": 1 } } } }, { "type": "number", "attributeName": "opacity", "val_position": { "x": { "0": { "0": 1, "1": 1, "0.4643610291016449": 1 }, "1": { "0": 1, "1": 1, "0.4643610291016449": 1 }, "0.5": { "0": 1, "1": 1, "0.4643610291016449": 1 } }, "y": { "0": { "0": 1, "1": 1, "0.5": 1 }, "1": { "0": 1, "1": 1, "0.5": 1 }, "0.4643610291016449": { "0": 1, "1": 1, "0.5": 1 } } } }, { "type": "style", "attributeName": "style", "val_position": { "x": { "0": { "1": {} }, "1": { "0": {} }, "0.5": { "0.4643610291016449": {} } }, "y": { "0": { "1": {} }, "1": { "0": {} }, "0.4643610291016449": { "0.5": {} } } }, "ignore": true }] },
+                "lineargradient_5__defs_3__svg_root": { "attributes": [{ "type": "number", "attributeName": "x1", "val_position": { "x": { "0": { "0": 220.376, "1": 220.376, "0.4643610291016449": 220.376 }, "1": { "0": 790.771, "1": 790.771, "0.4643610291016449": 790.771 }, "0.5": { "0": 519.789, "1": 519.789, "0.4643610291016449": 519.789 } }, "y": { "0": { "0": 220.376, "1": 790.771, "0.5": 519.789 }, "1": { "0": 220.376, "1": 790.771, "0.5": 519.789 }, "0.4643610291016449": { "0": 220.376, "1": 790.771, "0.5": 519.789 } } } }, { "type": "number", "attributeName": "y1", "val_position": { "x": { "0": { "0": -68.2471, "1": 295.585, "0.4643610291016449": 190.483 }, "1": { "0": -68.2471, "1": 295.585, "0.4643610291016449": 190.483 }, "0.5": { "0": -68.2471, "1": 295.585, "0.4643610291016449": 190.483 } }, "y": { "0": { "0": -68.2471, "1": -68.2471, "0.5": -68.2471 }, "1": { "0": 295.585, "1": 295.585, "0.5": 295.585 }, "0.4643610291016449": { "0": 190.483, "1": 190.483, "0.5": 190.483 } } } }, { "type": "number", "attributeName": "x2", "val_position": { "x": { "0": { "0": 274.398, "1": 274.398, "0.4643610291016449": 274.398 }, "1": { "0": 840.557, "1": 840.557, "0.4643610291016449": 840.557 }, "0.5": { "0": 563.944, "1": 563.944, "0.4643610291016449": 563.944 } }, "y": { "0": { "0": 274.398, "1": 840.557, "0.5": 563.944 }, "1": { "0": 274.398, "1": 840.557, "0.5": 563.944 }, "0.4643610291016449": { "0": 274.398, "1": 840.557, "0.5": 563.944 } } } }, { "type": "transform", "attributeName": "gradientTransform", "val_position": { "x": { "0": { "1": {} }, "1": { "0": {} }, "0.5": { "0.4643610291016449": {} } }, "y": { "0": { "1": {} }, "1": { "0": {} }, "0.4643610291016449": { "0.5": {} } } }, "ignore": true }, { "type": "number", "attributeName": "y2", "val_position": { "x": { "0": { "0": 573.438, "1": 968.114, "0.4643610291016449": 759.591 }, "1": { "0": 573.438, "1": 968.114, "0.4643610291016449": 759.591 }, "0.5": { "0": 573.438, "1": 968.114, "0.4643610291016449": 759.591 } }, "y": { "0": { "0": 573.438, "1": 573.438, "0.5": 573.438 }, "1": { "0": 968.114, "1": 968.114, "0.5": 968.114 }, "0.4643610291016449": { "0": 759.591, "1": 759.591, "0.5": 759.591 } } } }] },
+                "stop_1__lineargradient_5__defs_3__svg_root": { "attributes": [{ "type": "number", "attributeName": "offset", "val_position": { "x": { "0": { "0": 0, "1": 0, "0.4643610291016449": 0 }, "1": { "0": 0, "1": 0, "0.4643610291016449": 0 }, "0.5": { "0": 0, "1": 0, "0.4643610291016449": 0 } }, "y": { "0": { "0": 0, "1": 0, "0.5": 0 }, "1": { "0": 0, "1": 0, "0.5": 0 }, "0.4643610291016449": { "0": 0, "1": 0, "0.5": 0 } } } }, { "type": "color", "attributeName": "stop-color", "val_position": { "x": { "0": { "0": [0.5019607843137255, 0.28627450980392155, 1], "1": [0.5019607843137255, 0.28627450980392155, 1], "0.4643610291016449": [0.5019607843137255, 0.28627450980392155, 1] }, "1": { "0": [0.5019607843137255, 0.28627450980392155, 1], "1": [0.5019607843137255, 0.28627450980392155, 1], "0.4643610291016449": [0.5019607843137255, 0.28627450980392155, 1] }, "0.5": { "0": [0.5019607843137255, 0.28627450980392155, 1], "1": [0.5019607843137255, 0.28627450980392155, 1], "0.4643610291016449": [0.5019607843137255, 0.28627450980392155, 1] } }, "y": { "0": { "0": [0.5019607843137255, 0.28627450980392155, 1], "1": [0.5019607843137255, 0.28627450980392155, 1], "0.5": [0.5019607843137255, 0.28627450980392155, 1] }, "1": { "0": [0.5019607843137255, 0.28627450980392155, 1], "1": [0.5019607843137255, 0.28627450980392155, 1], "0.5": [0.5019607843137255, 0.28627450980392155, 1] }, "0.4643610291016449": { "0": [0.5019607843137255, 0.28627450980392155, 1], "1": [0.5019607843137255, 0.28627450980392155, 1], "0.5": [0.5019607843137255, 0.28627450980392155, 1] } } } }, { "type": "style", "attributeName": "style", "val_position": { "x": { "0": { "1": {} }, "1": { "0": {} }, "0.5": { "0.4643610291016449": {} } }, "y": { "0": { "1": {} }, "1": { "0": {} }, "0.4643610291016449": { "0.5": {} } } }, "ignore": true }] },
+                "stop_3__lineargradient_5__defs_3__svg_root": {
+                    "attributes": [
+                        {
+                            "type": "number",
+                            "attributeName": "offset",
+                            "val_position": {
+                                "x": {
+                                    "0": {
+                                        "0": 1,
+                                        "1": 1,
+                                        "0.4643610291016449": 1
+                                    },
+                                    "1": {
+                                        "0": 1,
+                                        "1": 1,
+                                        "0.4643610291016449": 1
+                                    },
+                                    "0.5": {
+                                        "0": 1,
+                                        "1": 1,
+                                        "0.4643610291016449": 1
+                                    }
+                                },
+                                "y": {
+                                    "0": {
+                                        "0": 1,
+                                        "1": 1,
+                                        "0.5": 1
+                                    },
+                                    "1": {
+                                        "0": 1,
+                                        "1": 1,
+                                        "0.5": 1
+                                    },
+                                    "0.4643610291016449": {
+                                        "0": 1,
+                                        "1": 1,
+                                        "0.5": 1
+                                    }
+                                }
+                            }
+                        }, {
+                            "type": "color", "attributeName": "stop-color", "val_position": {
+                                "x": {
+                                    "0": {
+                                        "0": [1, 0.9568627450980393, 0.5529411764705883
+
+                                        ],
+                                        "1": [1, 0.9568627450980393, 0.5529411764705883],
+                                        "0.4643610291016449": [1, 0.9568627450980393, 0.5529411764705883]
+                                    },
+                                    "1": {
+                                        "0": [1, 0.9568627450980393, 0.5529411764705883],
+                                        "1": [1, 0.9568627450980393, 0.5529411764705883], "0.4643610291016449": [1, 0.9568627450980394, 0.5529411764705883]
+                                    },
+                                    "0.5": { "0": [1, 0.9568627450980393, 0.5529411764705883], "1": [1, 0.9568627450980393, 0.5529411764705883], "0.4643610291016449": [1, 0.9568627450980393, 0.5529411764705883] }
+                                },
+                                "y": {
+                                    "0": {
+                                        "0": [1, 0.9568627450980393, 0.5529411764705883],
+                                        "1": [1, 0.9568627450980393, 0.5529411764705883],
+                                        "0.5": [1, 0.9568627450980393, 0.5529411764705883]
+                                    },
+                                    "1": {
+                                        "0": [1, 0.9568627450980393, 0.5529411764705883],
+                                        "1": [1, 0.9568627450980393, 0.5529411764705883],
+                                        "0.5": [1, 0.9568627450980393, 0.5529411764705883]
+                                    },
+                                    "0.4643610291016449": {
+                                        "0": [1, 0.9568627450980393, 0.5529411764705883],
+                                        "1": [1, 0.9568627450980394, 0.5529411764705883],
+                                        "0.5": [1, 0.9568627450980393, 0.5529411764705883]
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "style",
+                            "attributeName": "style",
+                            "val_position": { "x": { "0": { "1": {} }, "1": { "0": {} }, "0.5": { "0.4643610291016449": {} } }, "y": { "0": { "1": {} }, "1": { "0": {} }, "0.4643610291016449": { "0.5": {} } } },
+                            "ignore": true
+                        }
+                    ]
+                },
+                "lineargradient_7__defs_3__svg_root": {
+                    "attributes": [
+                        {
+                            "type": "number",
+                            "attributeName": "x1",
+                            "val_position": { "x": { "0": { "0": 278.401, "1": 278.401, "0.4643610291016449": 278.401 }, "1": { "0": 848.066, "1": 848.066, "0.4643610291016449": 848.066 }, "0.5": { "0": 570.603, "1": 570.603, "0.4643610291016449": 570.603 } }, "y": { "0": { "0": 278.401, "1": 848.066, "0.5": 570.603 }, "1": { "0": 278.401, "1": 848.066, "0.5": 570.603 }, "0.4643610291016449": { "0": 278.401, "1": 848.066, "0.5": 570.603 } } }
+                        },
+                        {
+                            "type": "number",
+                            "attributeName": "y1",
+                            "val_position": { "x": { "0": { "0": 259.954, "1": 639.71, "0.4643610291016449": 481.564 }, "1": { "0": 259.954, "1": 639.71, "0.4643610291016449": 481.564 }, "0.5": { "0": 259.954, "1": 639.71, "0.4643610291016449": 481.564 } }, "y": { "0": { "0": 259.954, "1": 259.954, "0.5": 259.954 }, "1": { "0": 639.71, "1": 639.71, "0.5": 639.71 }, "0.4643610291016449": { "0": 481.564, "1": 481.564, "0.5": 481.564 } } }
+                        },
+                        {
+                            "type": "number",
+                            "attributeName": "x2",
+                            "val_position": { "x": { "0": { "0": 913.594, "1": 913.594, "0.4643610291016449": 913.594 }, "1": { "0": 1472.85, "1": 1472.85, "0.4643610291016449": 1472.85 }, "0.5": { "0": 1124.72, "1": 1124.72, "0.4643610291016449": 1124.72 } }, "y": { "0": { "0": 913.594, "1": 1472.85, "0.5": 1124.72 }, "1": { "0": 913.594, "1": 1472.85, "0.5": 1124.72 }, "0.4643610291016449": { "0": 913.594, "1": 1472.85, "0.5": 1124.72 } } }
+                        },
+                        {
+                            "type": "transform",
+                            "attributeName": "gradientTransform",
+                            "val_position": { "x": { "0": { "1": {} }, "1": { "0": {} }, "0.5": { "0.4643610291016449": {} } }, "y": { "0": { "1": {} }, "1": { "0": {} }, "0.4643610291016449": { "0.5": {} } } }
+                            , "ignore": true
+                        },
+                        {
+                            "type": "number",
+                            "attributeName": "y2",
+                            "val_position": { "x": { "0": { "0": 413.976, "1": 790.955, "0.4643610291016449": 618.165 }, "1": { "0": 413.976, "1": 790.955, "0.4643610291016449": 618.165 }, "0.5": { "0": 413.976, "1": 790.955, "0.4643610291016449": 618.165 } }, "y": { "0": { "0": 413.976, "1": 413.976, "0.5": 413.976 }, "1": { "0": 790.955, "1": 790.955, "0.5": 790.955 }, "0.4643610291016449": { "0": 618.165, "1": 618.165, "0.5": 618.165 } } }
+                        }]
+                },
+                "stop_1__lineargradient_7__defs_3__svg_root": {
+                    "attributes": [
+                        {
+                            "type": "number",
+                            "attributeName": "offset",
+                            "val_position": { "x": { "0": { "0": 0, "1": 0, "0.4643610291016449": 0 }, "1": { "0": 0, "1": 0, "0.4643610291016449": 0 }, "0.5": { "0": 0, "1": 0, "0.4643610291016449": 0 } }, "y": { "0": { "0": 0, "1": 0, "0.5": 0 }, "1": { "0": 0, "1": 0, "0.5": 0 }, "0.4643610291016449": { "0": 0, "1": 0, "0.5": 0 } } }
+                        },
+                        {
+                            "type": "color",
+                            "attributeName": "stop-color",
+                            "val_position": { "x": { "0": { "0": [0.615686274509804, 0, 0], "1": [0.615686274509804, 0, 0], "0.4643610291016449": [0.615686274509804, 0, 0] }, "1": { "0": [0.615686274509804, 0, 0], "1": [0.615686274509804, 0, 0], "0.4643610291016449": [0.615686274509804, 0, 0] }, "0.5": { "0": [0.615686274509804, 0, 0], "1": [0.615686274509804, 0, 0], "0.4643610291016449": [0.615686274509804, 0, 0] } }, "y": { "0": { "0": [0.615686274509804, 0, 0], "1": [0.615686274509804, 0, 0], "0.5": [0.615686274509804, 0, 0] }, "1": { "0": [0.615686274509804, 0, 0], "1": [0.615686274509804, 0, 0], "0.5": [0.615686274509804, 0, 0] }, "0.4643610291016449": { "0": [0.615686274509804, 0, 0], "1": [0.615686274509804, 0, 0], "0.5": [0.615686274509804, 0, 0] } } }
+                        },
+                        {
+                            "type": "style",
+                            "attributeName": "style",
+                            "val_position": { "x": { "0": { "1": {} }, "1": { "0": {} }, "0.5": { "0.4643610291016449": {} } }, "y": { "0": { "1": {} }, "1": { "0": {} }, "0.4643610291016449": { "0.5": {} } } },
+                            "ignore": true
+                        }]
+                },
+                "stop_3__lineargradient_7__defs_3__svg_root": {
+                    "attributes": [
+                        {
+                            "type": "number",
+                            "attributeName": "offset",
+                            "val_position": { "x": { "0": { "0": 1, "1": 1, "0.4643610291016449": 1 }, "1": { "0": 1, "1": 1, "0.4643610291016449": 1 }, "0.5": { "0": 1, "1": 1, "0.4643610291016449": 1 } }, "y": { "0": { "0": 1, "1": 1, "0.5": 1 }, "1": { "0": 1, "1": 1, "0.5": 1 }, "0.4643610291016449": { "0": 1, "1": 1, "0.5": 1 } } }
+                        },
+                        {
+                            "type": "color",
+                            "attributeName": "stop-color",
+                            "val_position": { "x": { "0": { "0": [1, 0.6901960784313725, 0.6901960784313725], "1": [1, 0.6901960784313725, 0.6901960784313725], "0.4643610291016449": [1, 0.6901960784313725, 0.6901960784313725] }, "1": { "0": [1, 0.6901960784313725, 0.6901960784313725], "1": [1, 0.6901960784313725, 0.6901960784313725], "0.4643610291016449": [1, 0.6901960784313725, 0.6901960784313725] }, "0.5": { "0": [1, 0.6901960784313725, 0.6901960784313725], "1": [1, 0.6901960784313725, 0.6901960784313725], "0.4643610291016449": [1, 0.6901960784313725, 0.6901960784313725] } }, "y": { "0": { "0": [1, 0.6901960784313725, 0.6901960784313725], "1": [1, 0.6901960784313725, 0.6901960784313725], "0.5": [1, 0.6901960784313725, 0.6901960784313725] }, "1": { "0": [1, 0.6901960784313725, 0.6901960784313725], "1": [1, 0.6901960784313725, 0.6901960784313725], "0.5": [1, 0.6901960784313725, 0.6901960784313725] }, "0.4643610291016449": { "0": [1, 0.6901960784313725, 0.6901960784313725], "1": [1, 0.6901960784313725, 0.6901960784313725], "0.5": [1, 0.6901960784313725, 0.6901960784313725] } } }
+                        },
+                        {
+                            "type": "style",
+                            "attributeName": "style",
+                            "val_position": { "x": { "0": { "1": {} }, "1": { "0": {} }, "0.5": { "0.4643610291016449": {} } }, "y": { "0": { "1": {} }, "1": { "0": {} }, "0.4643610291016449": { "0.5": {} } } },
+                            "ignore": true
+                        }
+                    ]
+                },
+                "rect_1__clippath_9__defs_3__svg_root": {
+                    "attributes": [
+                        {
+                            "type": "number",
+                            "attributeName": "x",
+                            "val_position": {
+                                "x": {
+                                    "0": {
+                                        "0": 0, "1": 0, "0.4643610291016449": 0
+                                    },
+                                    "1": {
+                                        "0": 0,
+                                        "1": 0,
+                                        "0.4643610291016449": 0
+                                    },
+                                    "0.5": {
+                                        "0": 0, "1": 0, "0.4643610291016449": 0
+                                    }
+                                }, "y": { "0": { "0": 0, "1": 0, "0.5": 0 }, "1": { "0": 0, "1": 0, "0.5": 0 }, "0.4643610291016449": { "0": 0, "1": 0, "0.5": 0 } }
+                            }
+                        },
+                        {
+                            "type": "number",
+                            "attributeName": "y",
+                            "val_position": { "x": { "0": { "0": 0, "1": 0, "0.4643610291016449": 0 }, "1": { "0": 0, "1": 0, "0.4643610291016449": 0 }, "0.5": { "0": 0, "1": 0, "0.4643610291016449": 0 } }, "y": { "0": { "0": 0, "1": 0, "0.5": 0 }, "1": { "0": 0, "1": 0, "0.5": 0 }, "0.4643610291016449": { "0": 0, "1": 0, "0.5": 0 } } }
+                        },
+                        {
+                            "type": "number",
+                            "attributeName": "rx",
+                            "val_position": { "x": { "0": { "0": 0, "1": 0, "0.4643610291016449": 0 }, "1": { "0": 0, "1": 0, "0.4643610291016449": 0 }, "0.5": { "0": 0, "1": 0, "0.4643610291016449": 0 } }, "y": { "0": { "0": 0, "1": 0, "0.5": 0 }, "1": { "0": 0, "1": 0, "0.5": 0 }, "0.4643610291016449": { "0": 0, "1": 0, "0.5": 0 } } }
+                        },
+                        {
+                            "type": "number",
+                            "attributeName": "width",
+                            "val_position": { "x": { "0": { "0": 1440, "1": 1440, "0.4643610291016449": 1440 }, "1": { "0": 1440, "1": 1440, "0.4643610291016449": 1440 }, "0.5": { "0": 1440, "1": 1440, "0.4643610291016449": 1440 } }, "y": { "0": { "0": 1440, "1": 1440, "0.5": 1440 }, "1": { "0": 1440, "1": 1440, "0.5": 1440 }, "0.4643610291016449": { "0": 1440, "1": 1440, "0.5": 1440 } } }
+                        },
+                        {
+                            "type": "number",
+                            "attributeName": "height",
+                            "val_position": { "x": { "0": { "0": 1024, "1": 1024, "0.4643610291016449": 1024 }, "1": { "0": 1024, "1": 1024, "0.4643610291016449": 1024 }, "0.5": { "0": 1024, "1": 1024, "0.4643610291016449": 1024 } }, "y": { "0": { "0": 1024, "1": 1024, "0.5": 1024 }, "1": { "0": 1024, "1": 1024, "0.5": 1024 }, "0.4643610291016449": { "0": 1024, "1": 1024, "0.5": 1024 } } }
+                        },
+                        {
+                            "type": "number",
+                            "attributeName": "fill-opacity",
+                            "val_position": { "x": { "0": { "0": 1, "1": 1, "0.4643610291016449": 1 }, "1": { "0": 1, "1": 1, "0.4643610291016449": 1 }, "0.5": { "0": 1, "1": 1, "0.4643610291016449": 1 } }, "y": { "0": { "0": 1, "1": 1, "0.5": 1 }, "1": { "0": 1, "1": 1, "0.5": 1 }, "0.4643610291016449": { "0": 1, "1": 1, "0.5": 1 } } }
+                        },
+                        {
+                            "type": "number",
+                            "attributeName": "stroke-width",
+                            "val_position": { "x": { "0": { "0": 0, "1": 0, "0.4643610291016449": 0 }, "1": { "0": 0, "1": 0, "0.4643610291016449": 0 }, "0.5": { "0": 0, "1": 0, "0.4643610291016449": 0 } }, "y": { "0": { "0": 0, "1": 0, "0.5": 0 }, "1": { "0": 0, "1": 0, "0.5": 0 }, "0.4643610291016449": { "0": 0, "1": 0, "0.5": 0 } } }
+                        },
+                        {
+                            "type": "color",
+                            "attributeName": "fill",
+                            "val_position": { "x": { "0": { "0": [1, 1, 1], "1": [1, 1, 1], "0.4643610291016449": [1, 1, 1] }, "1": { "0": [1, 1, 1], "1": [1, 1, 1], "0.4643610291016449": [1, 1, 1] }, "0.5": { "0": [1, 1, 1], "1": [1, 1, 1], "0.4643610291016449": [1, 1, 1] } }, "y": { "0": { "0": [1, 1, 1], "1": [1, 1, 1], "0.5": [1, 1, 1] }, "1": { "0": [1, 1, 1], "1": [1, 1, 1], "0.5": [1, 1, 1] }, "0.4643610291016449": { "0": [1, 1, 1], "1": [1, 1, 1], "0.5": [1, 1, 1] } } }
+                        },
+                        {
+                            "type": "color",
+                            "attributeName": "stroke",
+                            "val_position": { "x": { "0": { "0": [1, 1, 1], "1": [1, 1, 1], "0.4643610291016449": [1, 1, 1] }, "1": { "0": [1, 1, 1], "1": [1, 1, 1], "0.4643610291016449": [1, 1, 1] }, "0.5": { "0": [1, 1, 1], "1": [1, 1, 1], "0.4643610291016449": [1, 1, 1] } }, "y": { "0": { "0": [1, 1, 1], "1": [1, 1, 1], "0.5": [1, 1, 1] }, "1": { "0": [1, 1, 1], "1": [1, 1, 1], "0.5": [1, 1, 1] }, "0.4643610291016449": { "0": [1, 1, 1], "1": [1, 1, 1], "0.5": [1, 1, 1] } } }
+                        },
+                        {
+                            "type": "style",
+                            "attributeName": "style",
+                            "val_position": { "x": { "0": { "1": {} }, "1": { "0": {} }, "0.5": { "0.4643610291016449": {} } }, "y": { "0": { "1": {} }, "1": { "0": {} }, "0.4643610291016449": { "0.5": {} } } },
+                            "ignore": true
+                        },
+                        {
+                            "type": "transform",
+                            "attributeName": "transform",
+                            "val_position": { "x": { "0": { "1": {} }, "1": { "0": {} }, "0.5": { "0.4643610291016449": {} } }, "y": { "0": { "1": {} }, "1": { "0": {} }, "0.4643610291016449": { "0.5": {} } } },
+                            "ignore": true
+                        },
+                        {
+                            "type": "number",
+                            "attributeName": "opacity",
+                            "val_position": { "x": { "0": { "0": 1, "1": 1, "0.4643610291016449": 1 }, "1": { "0": 1, "1": 1, "0.4643610291016449": 1 }, "0.5": { "0": 1, "1": 1, "0.4643610291016449": 1 } }, "y": { "0": { "0": 1, "1": 1, "0.5": 1 }, "1": { "0": 1, "1": 1, "0.5": 1 }, "0.4643610291016449": { "0": 1, "1": 1, "0.5": 1 } } }
+                        }]
+                }
+            },
+            "settings": {
+                "smooth": true,
+                "smooth_interval": 963,
+                "smoothp_spring": 0.1,
+                "scrooll": false,
+                "scrooll_speed": 1,
+                "mapping_through_names": false,
+                "adaptive_pth_order": true,
+                "automouse": false
+            }
+        };
+        window.onload = function () {
+            var e = 0, t = 0, n = !1, i = !1,
+                o = document.querySelector(".scrollwrapper > svg"),
+                a = (document.querySelector(".scrollwrapper"),
+                    document.querySelector(".scrollwrapper_overlay")),
+                s = document.querySelector(".scrollwrapper_overlay_content"),
+                r = 50 * (101 - animation_info.settings.scrooll_speed) + 10,
+                l = r + o.clientHeight;
+            s.style.height = l + "px",
+                a.style.height = o.clientHeight + "px",
+                addEventListener("resize", (function (e) {
+                    r = 50 * (101 - animation_info.settings.scrooll_speed) + 10,
+                        l = r + o.clientHeight,
+                        s.style.height = l + "px",
+                        a.style.height = o.clientHeight + "px"
+                })),
+                animation_info.settings.scrooll || (l = o.clientHeight);
+            var m = 0, d = (Date.now(), window._buildCirclePreset(3e3)), c = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            function u(n, o) {
+                if (c.style.display = "none", !(o > 1 || n > 1))
+                    if (animation_info.settings.scrooll && (o = t), e = n, animation_info.settings.smooth)
+                        window._smoothMove(n, o, animation_info.settings, animation_info);
+                    else {
+                        if (i) return;
+                        i = !0;
+                        var a = window._placeObjcets(animation_info, n, o);
+                        requestAnimationFrame((function () { window._moveObjects(a), i = !1 }))
+                    }
+            } c.setAttribute("id", "cur_id_animation_display6996"), animation_info.settings.automouse || (c.style.display = "none"),
+                c.innerHTML = window._cursor_svg, o.appendChild(c), animation_info.settings.scrooll || (a.style.overflow = "hidden"),
+                animation_info.settings.external_move ? (console.log("external_move activated!!!"),
+                    document.addEventListener("mousemove", (e => {
+                        window.parent.postMessage({
+                            type: "mousemove", x: e.clientX, y: e.clientY
+                        }, "*")
+                    }
+                    )),
+                    window.addEventListener("message", (function (e) { "mousemove" === e.data.type && u(e.data.x, e.data.y) }))
+                ) : (a.addEventListener("mousemove", (function (e) {
+                    if (n) window.parent.postMessage({ type: "mousemove", x: e.clientX, y: e.clientY }, "*");
+                    else {
+                        m = Date.now();
+                        var t = o.clientTop, i = o.clientLeft, a = o.getBoundingClientRect(), s = a.height, r = a.width;
+                        u((e.pageX - i) / r, (e.pageY - t) / s)
+                    }
+                })),
+                    window.addEventListener("message", (function (e) {
+                        "external_move_control" !== e.data.type || n || (console.log("external_move_control activated!!!"), n = !0,
+                            document.addEventListener("mousemove",
+                                (e => {
+                                    window.parent.postMessage({ type: "mousemove", x: e.clientX, y: e.clientY }, "*")
+                                })
+                            )),
+                            "mousemove" === e.data.type && n && u(e.data.x, e.data.y)
+                    })));
+            var _ = 0;
+            setInterval((() => {
+                if (Date.now() - m > 4500 && animation_info.settings.automouse) {
+                    _ = (_ + 1) % d.length;
+                    var e = d[_].x, t = d[_].y;
+                    "block" != c.style.display && (c.style.display = "block");
+                    o.getBoundingClientRect();
+                    var n = +o.getAttributeNS(null, "width"), a = +o.getAttributeNS(null, "height"), s = e * n, r = t * a;
+                    if (!Number.isFinite(s) || !Number.isFinite(r)) return; if (c.setAttributeNS(null, "transform", "translate(" + s.toFixed(2) + " " + r.toFixed(2) + ")"), animation_info.settings.smooth) {
+                        if (window._smoothMove(e, t, animation_info.settings, animation_info), i)
+                            return;
+                        i = !0,
+                            requestAnimationFrame((function () {
+                                c.setAttributeNS(null, "transform", "translate(" + s.toFixed(2) + " " + r.toFixed(2) + ")"), i = !1
+                            }
+                            )
+                            )
+                    } else {
+                        if (i)
+                            return;
+                        i = !0;
+                        var l = window._placeObjcets(animation_info, e, t);
+                        requestAnimationFrame((function () { window._moveObjects(l), c.setAttributeNS(null, "transform", "translate(" + s.toFixed(2) + " " + r.toFixed(2) + ")"), i = !1 }))
+                    }
+                }
+            }), 40), animation_info.settings.scrooll && a.addEventListener("scroll", (function (n) {
+                var i = n.target.scrollTop;
+                if (t = i / r, animation_info.settings.smooth)
+                    window._smoothMove(e, t, animation_info.settings, animation_info);
+                else {
+                    var o = window._placeObjcets(animation_info, e, t);
+                    window._moveObjects(o)
+                }
+            }))
+        }</script>
+
+
+    <div>
+        <div style="display: none;
+            position: fixed;
+            top: 30px;
+            width: auto;
+            max-width: 100%;
+            text-align: center;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 99999999;
+        ">
+            <div style="display: inline-block;
+                font-size: 14px;
+                font-weight: bold;
+                border: 1px solid rgb(240, 195, 109);
+                background-color: rgb(249, 237, 190);
+                padding: 0px 10px;
+                border-radius: 2px;
+                box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
+            ">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

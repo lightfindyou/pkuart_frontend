@@ -4,7 +4,7 @@
             <div class="tabs_box">
                 <div class="tab_item" :class="{ 'tab_item_active': activeName === 0 }" @click="handleTabClick(0)">模型性能
                 </div>
-                <div class="tab_item" :class="{ 'tab_item_active': activeName === 1 }" @click="handleTabClick(1)">
+                <!-- <div class="tab_item" :class="{ 'tab_item_active': activeName === 1 }" @click="handleTabClick(1)">
                     <img v-if="activeName === 1" src="@/assets/user/gj_active.png" alt="">
                     <img v-else src="@/assets/user/gj.png" alt="">
                 </div>
@@ -17,7 +17,7 @@
                 <div class="tab_item" :class="{ 'tab_item_active': activeName === 5 }" @click="handleTabClick(5)">其他
                 </div>
                 <div class="tab_item" :class="{ 'tab_item_active': activeName === 6 }" @click="handleTabClick(6)">其他
-                </div>
+                </div> -->
             </div>
             <div class="echarts_box" v-if="activeName === 0">
                 <div class="echarts_box" ref="echarts_box" id="echarts_box"></div>
@@ -55,7 +55,6 @@
 
 <script>
 import * as echarts from 'echarts';
-import axios from 'axios';
 
 export default {
     name: 'RankingListdiv',
@@ -65,18 +64,6 @@ export default {
         }
     },
     async mounted() {
-        try{
-            const url = `http://47.122.63.229:5055/api/checkLogin`
-            await axios.get(url, { withCredentials: true })
-        } catch (error) {
-            if (error.response && error.response.status === 401) {
-                alert('用户未登录，请先登录');
-                this.$router.push('/login');
-                return;
-            }
-            alert('网络异常或服务器错误，请稍后重试');
-            console.error('检查登录异常:', error);
-        }
         if (this.activeName === 0) {
             this.initEcharts();
         }
@@ -323,7 +310,7 @@ export default {
         .tabs_box {
             height: 48px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             margin-top: 65px;
 
             .tab_item {
