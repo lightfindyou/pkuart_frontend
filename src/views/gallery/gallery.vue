@@ -65,6 +65,9 @@
                     </div>
                 </div>
             </div>
+            <div class="loading-container" v-if="loading">
+                <div class="loading-text">加载中...</div>
+            </div>
         </div>
         <GalleryFrom :showGalleryFromItem="showGalleryFromItem" @handleDel="handleDel" v-if="showGalleryFrom">
         </GalleryFrom>
@@ -111,9 +114,17 @@ export default {
             activeName: 'first',
             showGalleryFrom: false,
             showGalleryFromItem: {},
+            loading: false,
+            maxItems: 120,
+            itemsPerLoad: 12,
         }
     },
     mounted() {
+        window.addEventListener('scroll', this.handleScroll);
+        this.loadMoreData();
+    },
+    beforeDestroy() {
+        window.removeEventListener('scroll', this.handleScroll);
     },
     methods: {
         async checklogin() {
@@ -134,6 +145,8 @@ export default {
         handleClick(tab, event) {
             console.log(tab, event);
             this.$store.commit('setSelectedEra', tab.label === '全部' ? '' : tab.label);
+            // 重置列表
+            this.$store.commit('setGalleryImages', []);
             this.$store.dispatch('search', { selectedEra: this.selectedEra, searchText: this.searchText });
         },
         handleDel() {
@@ -150,6 +163,71 @@ export default {
         },
         nextSlide() {
             this.$refs.swiper.$swiper.slideNext();
+        },
+        handleScroll() {
+            // 获取滚动位置
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            
+            // 当滚动到距离底部 200px 时触发加载
+            if (scrollTop + windowHeight >= documentHeight - 200) {
+                if (!this.loading) {
+                    this.loadMoreData();
+                }
+            }
+        },
+        async loadMoreData() {
+            if (this.loading) return;
+            
+            this.loading = true;
+            try {
+                const url = `${API_BASE}/?format=json&era=${this.selectedEra}&search=${this.searchText}`;
+                const res = await axios.get(url, { withCredentials: true });
+                
+                const allArtworks = res.data.artworks.map(item => ({
+                    imgs: `${API_BASE}/${item.path}`,
+                    type: 1,
+                    title: item.名称,
+                    title_en: item.名称,
+                    name: item.作者,
+                    era: item.年代,
+                    id: item.id,
+                    era_group: item.era_group,
+                    format: item.形制,
+                    location: item.收藏地,
+                    materials: item.材料,
+                    texture: item.材质,
+                    labels: item.标签
+                }));
+                
+                // 从返回的随机数据中取前 itemsPerLoad 条
+                const newArtworks = allArtworks.slice(0, this.itemsPerLoad);
+                
+                if (newArtworks.length > 0) {
+                    let currentImages = this.$store.state.galleryImages;
+                    // 追加新数据
+                    currentImages = [...currentImages, ...newArtworks];
+                    
+                    // 如果超过最大数量，删除最早的数据
+                    if (currentImages.length > this.maxItems) {
+                        const removeCount = currentImages.length - this.maxItems;
+                        currentImages = currentImages.slice(removeCount);
+                    }
+                    
+                    this.$store.commit('setGalleryImages', currentImages);
+                }
+            } catch (error) {
+                if (error.response && error.response.status === 401) {
+                    alert('用户未登录，请先登录');
+                    this.$store.commit('resetRouterDomIndex');
+                    this.$router.push('/login');
+                    return;
+                }
+                console.error('加载更多数据异常:', error);
+            } finally {
+                this.loading = false;
+            }
         }
     }
 }
@@ -448,6 +526,7 @@ export default {
                     bottom: 20px;
 
                     img {
+
                         width: 100%;
                         height: 100%;
                     }
@@ -455,6 +534,198 @@ export default {
             }
         }
 
+        .title_name {
+            width: 1200px;
+            margin: 0 auto;
+            margin-top: 65px;
+            font-weight: 400;
+            font-size: 26px;
+            color: #000000;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .texter {
+            width: 1200px;
+            margin: 0 auto;
+            margin-top: 20px;
+            font-weight: 300;
+            font-size: 20px;
+            color: #000000;
+            line-height: 25px;
+            pointer-events: none;
+        }
+
+        .tabs_box {
+            width: 1200px;
+            height: 55px;
+            margin: 0 auto;
+
+            .tabs {
+                width: 1200px;
+                height: 100%;
+                pointer-events: auto;
+
+                /deep/.el-tabs__item {
+                    width: 200px;
+                    text-align: center;
+                    color: #777E90;
+                }
+
+                /deep/.el-tabs__active-bar {
+                    background-color: #9D0000;
+                }
+
+                /deep/.is-active {
+                    color: #9D0000;
+                }
+            }
+
+
+        }
+
+        .tab_list {
+            width: 1200px;
+            margin: 0 auto;
+            columns: 4;
+            column-gap: 8px;
+
+            .item {
+                width: 270px;
+                break-inside: avoid;
+                margin-bottom: 40px;
+                background-color: #ccc;
+                border-radius: 22px 22px 22px 22px;
+                position: relative;
+                cursor: pointer;
+                pointer-events: auto;
+                object-fit: cover;
+                /* 关键属性：保持图片纵横比，裁剪以填充容器 */
+                object-position: center;
+                /* 可选：将图片居中显示 */
+
+                &.item-bg {
+                    background-image: url('@/assets/list/img.png');
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    object-fit: cover;
+                    /* 关键属性：保持图片纵横比，裁剪以填充容器 */
+                    object-position: center;
+                    /* 可选：将图片居中显示 */
+                    //                max-height: 435px;
+                    //                min-height: 296px;
+                }
+
+                &:nth-child(n) {
+                    height: 296px;
+                    object-fit: cover;
+                    object-position: center;
+                }
+
+                &:nth-child(2n) {
+                    height: 435px;
+                    object-fit: cover;
+                    object-position: center;
+                }
+
+                &:nth-child(3n) {
+                    height: 296px;
+                    object-fit: cover;
+                    object-position: center;
+                }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 22px 22px 22px 22px;
+                    object-fit: cover;
+                    object-position: center;
+                    display: block;
+                }
+
+                .bottom {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 270px;
+                    height: 142px;
+                    background: rgba(0, 0, 0, 0.6);
+                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                    border-radius: 22px 22px 22px 22px;
+                    padding: 0 20px 0 15px;
+                    box-sizing: border-box;
+
+                    .titles {
+                        margin-top: 15px;
+                        height: 22px;
+                        font-weight: 400;
+                        font-size: 16px;
+                        color: #FFFFFF;
+                        line-height: 22px;
+                    }
+
+                    .titles_en {
+                        height: 22px;
+                        font-weight: 400;
+                        font-size: 12px;
+                        color: #B4B4B4;
+                        line-height: 22px;
+                        margin-top: 5px;
+                    }
+
+                    .name {
+                        margin-top: 30px;
+                        height: 22px;
+                        font-weight: 400;
+                        font-size: 12px;
+                        color: #D9D9D9;
+                        line-height: 22px;
+                    }
+
+                    .icon {
+                        width: 38px;
+                        height: 38px;
+                        position: absolute;
+                        right: 20px;
+                        bottom: 20px;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    .loading-container {
+        width: 1200px;
+        margin: 20px auto;
+        text-align: center;
+        pointer-events: none;
+
+        .loading-text {
+            font-size: 16px;
+            color: #777E90;
+            padding: 20px 0;
+        }
+    }
+
+    .no-more-container {
+        width: 1200px;
+        margin: 20px auto;
+        text-align: center;
+        pointer-events: none;
+
+        .no-more-text {
+            font-size: 14px;
+            color: #B4B4B4;
+            padding: 20px 0;
+        }
     }
 }
 </style>
