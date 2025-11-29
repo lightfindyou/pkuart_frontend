@@ -50,10 +50,14 @@
                     <el-tab-pane label="近现代" name="xiandai"></el-tab-pane>
                 </el-tabs>
             </div>
-            <div class="tab_list">
-                <div class="item" :class="{ 'item-bg': index < 3 }" v-for="(item, index) in list" :key="index"
+
+            <div class="tab_list" ref="waterfall" :style="{ height: waterfallHeight + 'px' }">
+                <div class="item" v-for="(item, index) in list" :key="index" :style="itemStyles[index]"
                     @click="handleShow(item)">
-                    <img :src="item.imgs" alt="">
+                    <div class="img-wrapper" :class="{ 'item-bg': index < 3 }">
+                        <img :src="item.imgs" alt="">
+                    </div>
+
                     <div class="bottom">
                         <div class="titles">{{ item.title }}</div>
                         <div class="titles_en ens">{{ item.title_en }}</div>
@@ -65,6 +69,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="loading-container" v-if="loading">
                 <div class="loading-text">加载中...</div>
             </div>
@@ -73,6 +78,7 @@
         </GalleryFrom>
     </div>
 </template>
+
 <script>
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
@@ -99,13 +105,11 @@ export default {
         return {
             swiperOption: {
                 spaceBetween: 0,
-                slidesPerView: 'auto', // 使用auto让slide根据内容自适应
-                centeredSlides: true,// 居中的slide是否标记为active，默认是最左active,这样样式即可生效
-                slideToClickedSlide: true,// 点击的slide会居中
+                slidesPerView: 'auto',
+                centeredSlides: true,
+                slideToClickedSlide: true,
                 loop: true,
-                // loop: true,// 循环播放, 可有无限滚动效果，初始加载即是滚动后的效果
                 on: {
-                    // 该方法中的this都指代swiper本身
                     tap: function () {
                         console.log('点击的位置', this.activeIndex);
                     }
@@ -117,16 +121,89 @@ export default {
             loading: false,
             maxItems: 120,
             itemsPerLoad: 12,
+
+            // --- 瀑布流相关变量 ---
+            itemStyles: [],
+            waterfallHeight: 0,
+            config: {
+                containerWidth: 1200, // 总宽
+                columns: 4,           // 列数
+                itemWidth: 270,       // 单个卡片宽度 (来自原 CSS)
+                gapX: 8,             // 横向间距 (来自原 CSS column-gap)
+                gapY: 20,             // 纵向间距 (修改此处数值即可调整垂直间距)
+                // 高度循环模式：对应原 CSS 8步循环 (S=295, L=435)
+                // 顺序: 小, 大, 小, 大, 大, 小, 大, 小
+                heightPattern: [295, 435, 295, 435, 435, 295, 435, 295]
+            }
         }
     },
     mounted() {
         window.addEventListener('scroll', this.handleScroll);
+        // 监听窗口调整以重算布局（如果需要响应式，可开启）
+        window.addEventListener('resize', this.calculateLayout);
         this.loadMoreData();
     },
     beforeDestroy() {
         window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('resize', this.calculateLayout);
+    },
+    watch: {
+        // 监听 Vuex 中的 list 变化，触发重排
+        list: {
+            handler() {
+                this.$nextTick(() => {
+                    this.calculateLayout();
+                });
+            },
+            deep: true
+        }
     },
     methods: {
+        // --- 瀑布流计算核心方法 ---
+        calculateLayout() {
+            if (!this.list || !this.list.length) return;
+
+            const { containerWidth, columns, itemWidth, gapX, gapY, heightPattern } = this.config;
+
+            // 计算左边距偏移量，保证整体居中
+            // 总内容宽 = 4个卡片 + 3个间隙
+            const totalContentWidth = (columns * itemWidth) + ((columns - 1) * gapX);
+            const startOffset = (containerWidth - totalContentWidth) / 2;
+
+            // 记录每一列当前的高度
+            const columnHeights = new Array(columns).fill(0);
+            
+            const newStyles = [];
+
+            this.list.forEach((item, i) => {
+                // 1. 获取当前卡片高度 (循环取值)
+                const itemHeight = heightPattern[i % heightPattern.length];
+
+                // 2. 确定列索引 (顺序排列：0,1,2,3, 0,1,2,3...)
+                const columnIndex = i % columns;
+
+                // 3. 计算坐标
+                const left = startOffset + columnIndex * (itemWidth + gapX);
+                const top = columnHeights[columnIndex];
+
+                // 4. 生成样式
+                newStyles.push({
+                    width: itemWidth + 'px',
+                    height: itemHeight + 'px',
+                    left: left + 'px',
+                    top: top + 'px',
+                    position: 'absolute'
+                });
+
+                // 5. 更新该列高度
+                columnHeights[columnIndex] += itemHeight + gapY;
+            });
+
+            this.itemStyles = newStyles;
+            // 容器高度 = 最高的一列 - 最后一个多余的 gapY
+            this.waterfallHeight = Math.max(...columnHeights) - gapY;
+        },
+
         async checklogin() {
             try {
                 const url = `${API_BASE}/checkLogin`
@@ -145,7 +222,6 @@ export default {
         handleClick(tab, event) {
             console.log(tab, event);
             this.$store.commit('setSelectedEra', tab.label === '全部' ? '' : tab.label);
-            // 重置列表
             this.$store.commit('setGalleryImages', []);
             this.$store.dispatch('search', { selectedEra: this.selectedEra, searchText: this.searchText });
         },
@@ -165,12 +241,9 @@ export default {
             this.$refs.swiper.$swiper.slideNext();
         },
         handleScroll() {
-            // 获取滚动位置
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const windowHeight = window.innerHeight;
             const documentHeight = document.documentElement.scrollHeight;
-            
-            // 当滚动到距离底部 200px 时触发加载
             if (scrollTop + windowHeight >= documentHeight - 200) {
                 if (!this.loading) {
                     this.loadMoreData();
@@ -179,12 +252,10 @@ export default {
         },
         async loadMoreData() {
             if (this.loading) return;
-            
             this.loading = true;
             try {
                 const url = `${API_BASE}/?format=json&era=${this.selectedEra}&search=${this.searchText}`;
                 const res = await axios.get(url, { withCredentials: true });
-                
                 const allArtworks = res.data.artworks.map(item => ({
                     imgs: `${API_BASE}/${item.path}`,
                     type: 1,
@@ -200,21 +271,14 @@ export default {
                     texture: item.材质,
                     labels: item.标签
                 }));
-                
-                // 从返回的随机数据中取前 itemsPerLoad 条
                 const newArtworks = allArtworks.slice(0, this.itemsPerLoad);
-                
                 if (newArtworks.length > 0) {
                     let currentImages = this.$store.state.galleryImages;
-                    // 追加新数据
                     currentImages = [...currentImages, ...newArtworks];
-                    
-                    // 如果超过最大数量，删除最早的数据
                     if (currentImages.length > this.maxItems) {
                         const removeCount = currentImages.length - this.maxItems;
                         currentImages = currentImages.slice(removeCount);
                     }
-                    
                     this.$store.commit('setGalleryImages', currentImages);
                 }
             } catch (error) {
@@ -232,54 +296,37 @@ export default {
     }
 }
 </script>
+
 <style lang="less" scoped>
+// 保留 swiper 相关样式
 .swiper {
     width: 100%;
     height: 100%;
     position: relative;
 }
-
 .swiper-container {
     width: 100%;
     height: 100%;
     overflow: visible;
 }
-
 .swiper-slide {
     width: 1200px !important;
     height: 418px !important;
     text-align: center;
     font-size: 18px;
     background: #fff;
-
-    /* Center slide text vertically */
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
     display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
     justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
     align-items: center;
     transition: 300ms;
     transform: scale(0.8);
-    border-radius: 22px 22px 22px 22px;
+    border-radius: 22px;
     cursor: pointer;
-
-    img {
-        width: 100%;
-        height: 100%;
-    }
+    img { width: 100%; height: 100%; }
 }
-
 .swiper-slide-active,
 .swiper-slide-duplicate-active {
     transform: scale(1);
-    // background-color: aqua;
 }
 
 .gallery {
@@ -289,11 +336,7 @@ export default {
 
     .bg {
         position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 100%;
-        z-index: 1;
+        left: 0; top: 0; height: 100%; width: 100%; z-index: 1;
     }
 
     .content {
@@ -301,179 +344,84 @@ export default {
         z-index: 2;
         pointer-events: none;
         transition: filter 0.3s ease;
-
-        &.content-blur {
-            filter: grayscale(0.4) blur(5px);
-        }
+        &.content-blur { filter: grayscale(0.4) blur(5px); }
     }
 
     .title {
-        margin-top: 70px;
-        font-weight: 500;
-        font-size: 40px;
-        color: #000000;
-        text-align: center;
+        margin-top: 70px; font-weight: 500; font-size: 40px; color: #000; text-align: center;
     }
-
     .title_en {
-        margin-top: 20px;
-        font-weight: 400;
-        font-size: 20px;
-        color: #000000;
-        text-align: center;
-    }
-
-    .title_en.ens {
-        font-family: TimesNewerRoman, 'Times New Roman', Times, serif;
+        margin-top: 20px; font-weight: 400; font-size: 20px; color: #000; text-align: center;
+        &.ens { font-family: TimesNewerRoman, 'Times New Roman', Times, serif; }
     }
 
     .swiper_box {
-        margin-top: 30px;
-        width: 100%;
-        height: 418px;
-        pointer-events: all;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        overflow: hidden;
-
+        margin-top: 30px; width: 100%; height: 418px; pointer-events: all;
+        display: flex; justify-content: center; align-items: center; position: relative; overflow: hidden;
         .swiper_navigation {
-            position: absolute;
-            bottom: 20px;
-            right: 380px;
-            display: flex;
-            gap: 50px;
-            z-index: 10;
-
+            position: absolute; bottom: 20px; right: 380px; display: flex; gap: 50px; z-index: 10;
             .nav_btns {
-                width: 72px;
-                height: 72px;
-                transition: all 0.3s ease;
-                cursor: pointer;
-
-                &:hover {
-                    transform: scale(1.1);
-                }
-
-                &:active {
-                    transform: scale(0.95);
-                }
-
-                img {
-
-                    width: 100%;
-                    height: 100%;
-                }
+                width: 72px; height: 72px; transition: all 0.3s ease; cursor: pointer;
+                &:hover { transform: scale(1.1); }
+                &:active { transform: scale(0.95); }
+                img { width: 100%; height: 100%; }
             }
         }
     }
 
     .title_name {
-        width: 1200px;
-        margin: 0 auto;
-        margin-top: 65px;
-        font-weight: 400;
-        font-size: 26px;
-        color: #000000;
-        text-align: center;
-        pointer-events: none;
+        width: 1200px; margin: 0 auto; margin-top: 65px; font-weight: 400; font-size: 26px; color: #000; text-align: center; pointer-events: none;
     }
-
     .texter {
-        width: 1200px;
-        margin: 0 auto;
-        margin-top: 20px;
-        font-weight: 300;
-        font-size: 20px;
-        color: #000000;
-        line-height: 25px;
-        pointer-events: none;
+        width: 1200px; margin: 0 auto; margin-top: 20px; font-weight: 300; font-size: 20px; color: #000; line-height: 25px; pointer-events: none;
     }
-
     .tabs_box {
-        width: 1200px;
-        height: 55px;
-        margin: 0 auto;
-
+        width: 1200px; height: 55px; margin: 0 auto;
         .tabs {
-            width: 1200px;
-            height: 100%;
-            pointer-events: auto;
-
-            /deep/.el-tabs__item {
-                width: 200px;
-                text-align: center;
-                color: #777E90;
-            }
-
-            /deep/.el-tabs__active-bar {
-                background-color: #9D0000;
-            }
-
-            /deep/.is-active {
-                color: #9D0000;
-            }
+            width: 1200px; height: 100%; pointer-events: auto;
+            /deep/.el-tabs__item { width: 200px; text-align: center; color: #777E90; }
+            /deep/.el-tabs__active-bar { background-color: #9D0000; }
+            /deep/.is-active { color: #9D0000; }
         }
-
-
     }
 
+    // --- 重点修改区域：Tab List ---
     .tab_list {
         width: 1200px;
         margin: 0 auto;
-        columns: 4;
-        column-gap: 8px;
+        position: relative; // 必须 Relative
+        // 删除了 grid 布局属性
 
         .item {
-            width: 270px;
-            break-inside: avoid;
-            margin-bottom: 40px;
+            // 删除了 width（由JS控制），删除了 grid-row 等属性
+            position: absolute; // 必须 Absolute
             background-color: #ccc;
-            border-radius: 22px 22px 22px 22px;
-            position: relative;
+            border-radius: 22px;
             cursor: pointer;
             pointer-events: auto;
-            object-fit: cover;
-            /* 关键属性：保持图片纵横比，裁剪以填充容器 */
-            object-position: center;
-            /* 可选：将图片居中显示 */
+            overflow: hidden; // 防止图片溢出圆角
+            transition: transform 0.3s, box-shadow 0.3s;
 
-            &.item-bg {
-                background-image: url('@/assets/list/img.png');
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
-                object-fit: cover;
-                /* 关键属性：保持图片纵横比，裁剪以填充容器 */
-                object-position: center;
-                /* 可选：将图片居中显示 */
-                //                max-height: 435px;
-                //                min-height: 296px;
+            &:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+                z-index: 5;
             }
 
-            &:nth-child(n) {
-                height: 296px;
-                object-fit: cover;
-                object-position: center;
-            }
-
-            &:nth-child(2n) {
-                height: 435px;
-                object-fit: cover;
-                object-position: center;
-            }
-
-            &:nth-child(3n) {
-                height: 296px;
-                object-fit: cover;
-                object-position: center;
+            .img-wrapper {
+                width: 100%;
+                height: 100%;
+                
+                &.item-bg {
+                    background-image: url('@/assets/list/img.png');
+                    background-size: cover;
+                    background-position: center;
+                }
             }
 
             img {
                 width: 100%;
                 height: 100%;
-                border-radius: 22px 22px 22px 22px;
                 object-fit: cover;
                 object-position: center;
                 display: block;
@@ -481,251 +429,35 @@ export default {
 
             .bottom {
                 position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 270px;
+                bottom: 0; left: 0;
+                width: 100%; // 占满卡片宽度
                 height: 142px;
                 background: rgba(0, 0, 0, 0.6);
                 box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-                border-radius: 22px 22px 22px 22px;
+                border-radius: 0 0 22px 22px; // 底部圆角
                 padding: 0 20px 0 15px;
                 box-sizing: border-box;
 
                 .titles {
-                    margin-top: 15px;
-                    height: 22px;
-                    font-weight: 400;
-                    font-size: 16px;
-                    color: #FFFFFF;
-                    line-height: 22px;
+                    margin-top: 15px; height: 22px; font-weight: 400; font-size: 16px; color: #FFF; line-height: 22px;
                 }
-
                 .titles_en {
-                    height: 22px;
-                    font-weight: 400;
-                    font-size: 12px;
-                    color: #B4B4B4;
-                    line-height: 22px;
-                    margin-top: 5px;
+                    height: 22px; font-weight: 400; font-size: 12px; color: #B4B4B4; line-height: 22px; margin-top: 5px;
                 }
-
                 .name {
-                    margin-top: 30px;
-                    height: 22px;
-                    font-weight: 400;
-                    font-size: 12px;
-                    color: #D9D9D9;
-                    line-height: 22px;
+                    margin-top: 30px; height: 22px; font-weight: 400; font-size: 12px; color: #D9D9D9; line-height: 22px;
                 }
-
                 .icon {
-                    width: 38px;
-                    height: 38px;
-                    position: absolute;
-                    right: 20px;
-                    bottom: 20px;
-
-                    img {
-
-                        width: 100%;
-                        height: 100%;
-                    }
+                    width: 38px; height: 38px; position: absolute; right: 20px; bottom: 20px;
+                    img { width: 100%; height: 100%; }
                 }
             }
         }
-
-        .title_name {
-            width: 1200px;
-            margin: 0 auto;
-            margin-top: 65px;
-            font-weight: 400;
-            font-size: 26px;
-            color: #000000;
-            text-align: center;
-            pointer-events: none;
-        }
-
-        .texter {
-            width: 1200px;
-            margin: 0 auto;
-            margin-top: 20px;
-            font-weight: 300;
-            font-size: 20px;
-            color: #000000;
-            line-height: 25px;
-            pointer-events: none;
-        }
-
-        .tabs_box {
-            width: 1200px;
-            height: 55px;
-            margin: 0 auto;
-
-            .tabs {
-                width: 1200px;
-                height: 100%;
-                pointer-events: auto;
-
-                /deep/.el-tabs__item {
-                    width: 200px;
-                    text-align: center;
-                    color: #777E90;
-                }
-
-                /deep/.el-tabs__active-bar {
-                    background-color: #9D0000;
-                }
-
-                /deep/.is-active {
-                    color: #9D0000;
-                }
-            }
-
-
-        }
-
-        .tab_list {
-            width: 1200px;
-            margin: 0 auto;
-            columns: 4;
-            column-gap: 8px;
-
-            .item {
-                width: 270px;
-                break-inside: avoid;
-                margin-bottom: 40px;
-                background-color: #ccc;
-                border-radius: 22px 22px 22px 22px;
-                position: relative;
-                cursor: pointer;
-                pointer-events: auto;
-                object-fit: cover;
-                /* 关键属性：保持图片纵横比，裁剪以填充容器 */
-                object-position: center;
-                /* 可选：将图片居中显示 */
-
-                &.item-bg {
-                    background-image: url('@/assets/list/img.png');
-                    background-size: cover;
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    object-fit: cover;
-                    /* 关键属性：保持图片纵横比，裁剪以填充容器 */
-                    object-position: center;
-                    /* 可选：将图片居中显示 */
-                    //                max-height: 435px;
-                    //                min-height: 296px;
-                }
-
-                &:nth-child(n) {
-                    height: 296px;
-                    object-fit: cover;
-                    object-position: center;
-                }
-
-                &:nth-child(2n) {
-                    height: 435px;
-                    object-fit: cover;
-                    object-position: center;
-                }
-
-                &:nth-child(3n) {
-                    height: 296px;
-                    object-fit: cover;
-                    object-position: center;
-                }
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 22px 22px 22px 22px;
-                    object-fit: cover;
-                    object-position: center;
-                    display: block;
-                }
-
-                .bottom {
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    width: 270px;
-                    height: 142px;
-                    background: rgba(0, 0, 0, 0.6);
-                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-                    border-radius: 22px 22px 22px 22px;
-                    padding: 0 20px 0 15px;
-                    box-sizing: border-box;
-
-                    .titles {
-                        margin-top: 15px;
-                        height: 22px;
-                        font-weight: 400;
-                        font-size: 16px;
-                        color: #FFFFFF;
-                        line-height: 22px;
-                    }
-
-                    .titles_en {
-                        height: 22px;
-                        font-weight: 400;
-                        font-size: 12px;
-                        color: #B4B4B4;
-                        line-height: 22px;
-                        margin-top: 5px;
-                    }
-
-                    .name {
-                        margin-top: 30px;
-                        height: 22px;
-                        font-weight: 400;
-                        font-size: 12px;
-                        color: #D9D9D9;
-                        line-height: 22px;
-                    }
-
-                    .icon {
-                        width: 38px;
-                        height: 38px;
-                        position: absolute;
-                        right: 20px;
-                        bottom: 20px;
-
-                        img {
-                            width: 100%;
-                            height: 100%;
-                        }
-                    }
-                }
-            }
-
-        }
-
     }
 
     .loading-container {
-        width: 1200px;
-        margin: 20px auto;
-        text-align: center;
-        pointer-events: none;
-
-        .loading-text {
-            font-size: 16px;
-            color: #777E90;
-            padding: 20px 0;
-        }
-    }
-
-    .no-more-container {
-        width: 1200px;
-        margin: 20px auto;
-        text-align: center;
-        pointer-events: none;
-
-        .no-more-text {
-            font-size: 14px;
-            color: #B4B4B4;
-            padding: 20px 0;
-        }
+        width: 1200px; margin: 20px auto; text-align: center; pointer-events: none;
+        .loading-text { font-size: 16px; color: #777E90; padding: 20px 0; }
     }
 }
 </style>
