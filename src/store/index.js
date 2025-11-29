@@ -21,7 +21,7 @@ export default new Vuex.Store({
 		evalId: '',
 		artworkId: '',
 		evalArtworkName: '',
-    userAvatar: require('@/assets/user/tx.png'),
+    userAvatar: require('@/assets/avatar/default.png'),
     galleryImages: [
       {
           title: '缂丝山水图',
@@ -109,7 +109,7 @@ export default new Vuex.Store({
       state.userAvatar= url;
     },
     resetUserAvatar(state) {
-      state.userAvatar= require('@/assets/user/tx.png');
+      state.userAvatar= require('@/assets/avatar/default.png');
     },
     resetRouterDomIndex(state) {
       state.routerDomIndex = 'home';
