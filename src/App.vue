@@ -300,7 +300,7 @@ export default {
       margin: 0px 0 0 0 ;
 
       img {
-        width: 900px;
+        width: 770px;
         height: auto;
         display: block;
       }
