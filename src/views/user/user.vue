@@ -135,7 +135,7 @@ export default {
                     this.$router.push('/login');
                     return;
                 }
-                alert('网络异常或服务器错误，请稍后重试');
+                // alert('网络异常或服务器错误，请稍后重试');
                 console.error('获取用户信息异常:', error);
             }
         },
