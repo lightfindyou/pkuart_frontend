@@ -1134,6 +1134,7 @@ export default {
 
             /deep/.el-textarea__inner {
                 border: none;
+                height: 100%;
             }
 
             /deep/.el-input__count {
