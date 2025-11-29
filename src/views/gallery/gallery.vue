@@ -153,6 +153,8 @@ export default {
             handler() {
                 this.$nextTick(() => {
                     this.calculateLayout();
+                    // 数据更新并重排后，检查是否需要继续加载（解决初始内容不足无法触发滚动的问题）
+                    this.handleScroll();
                 });
             },
             deep: true
