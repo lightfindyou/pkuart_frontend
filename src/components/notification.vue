@@ -26,7 +26,6 @@
 				<div class="versus_name">{{ selectedLeft.name }}</div>
 				<div class="versus_icon">
 					<img src="@/assets/homeFrom/top.png" alt="">
-					<!-- <img src="@/assets/homeFrom/bottom.png" alt=""> -->
 				</div>
 			</div>
 			VS
@@ -38,7 +37,6 @@
 					{{ selectedRight.name }}
 				</div>
 				<div class="versus_icon">
-					<!-- <img src="@/assets/homeFrom/top.png" alt=""> -->
 					<img src="@/assets/homeFrom/bottom.png" alt="">
 				</div>
 			</div>
@@ -96,15 +94,37 @@ export default {
 			selectedRight: { id: 2, name: 'openai-GPT5', image: require('@/assets/AIAvatar/openai.png') },
 		}
 	},
+	watch: {
+		allModelOptions: {
+			handler(newVal) {
+				console.log('allModelOptions changed:', newVal);
+				if (newVal && newVal.length > 0) {
+					// 当模型列表更新时，更新默认选中的模型
+					// 尝试保留当前选择（如果还在列表中），否则使用列表前两个
+					const leftExists = newVal.find(m => m.id === this.selectedLeft.id);
+					const rightExists = newVal.find(m => m.id === this.selectedRight.id);
+
+					if (!leftExists) {
+						this.selectedLeft = newVal[0] || this.selectedLeft;
+					}
+					if (!rightExists) {
+						this.selectedRight = newVal[1] || newVal[0] || this.selectedRight;
+					}
+				}
+			},
+			immediate: true // 初始化时也执行一次
+		}
+	},
 	computed: {
+		...mapState({
+			allModelOptions: state => state.modelOptions,
+		}),
 		filteredOptions() {
+			if (!this.allModelOptions) return [];
 			return this.allModelOptions.filter(option =>
 				option.name.toLowerCase().includes(this.searchText.toLowerCase())
 			);
 		},
-		...mapState({
-			allModelOptions: state => state.modelOptions,
-		}),
 	},
 	methods: {
 		getNotification(index) {
@@ -117,10 +137,20 @@ export default {
 		},
 		async evaluatePic(id) {
 			console.log('评价图片   ' + id);
-			const url = `${API_BASE}/artwork/evaluate`
-			const payload = {
-				artwork_id: id
-			};
+			let url = `${API_BASE}/artwork/evaluate`
+			let payload = {}
+			// type 为 1 时表示“比较两个选定的模型”，需要带上模型参数
+			if (this.type === 1) {
+				payload = {
+					artwork_id: id
+				};
+			}else{
+				payload = {
+					artwork_id: id,
+					modelA_name: this.selectedLeft.name,
+					modelB_name: this.selectedRight.name
+				};
+			}
 			try {
 				const res = await axios.post(url, payload, { headers: { 'Content-Type': 'application/json' }, withCredentials: true  });
 				//处理返回结果
