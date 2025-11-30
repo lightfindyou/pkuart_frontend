@@ -1,19 +1,32 @@
 <template>
-    <div class="tab_list">
-        <div class="item" v-for="(item, index) in list" :key="index" @click="handleShow(item)">
-            <img :src="item.imgs" alt="">
-            <div class="bottom">
-                <div class="titles">{{ item.title }}</div>
-                <div class="titles_en ens">{{ item.title_en }}</div>
-                <div class="name">{{ item.name }}</div>
-                <div class="icon">
-                    <img v-if="item.type === 1" src="@/assets/home/icon1.png" alt="">
-                    <img v-if="item.type === 2" src="@/assets/home/icon2.png" alt="">
+    <div>
+        <div class="tab_list">
+            <div class="item" v-for="(item, index) in list" :key="index" @click="handleShow(item)">
+                <img :src="item.imgs" alt="">
+                <div class="bottom">
+                    <div class="titles">{{ item.title }}</div>
+                    <div class="titles_en ens">{{ item.title_en }}</div>
+                    <div class="name">{{ item.name }}</div>
+                    <div class="icon">
+                        <img v-if="item.type === 1" src="@/assets/home/icon1.png" alt="">
+                        <img v-if="item.type === 2" src="@/assets/home/icon2.png" alt="">
+                    </div>
                 </div>
             </div>
+            <GalleryFrom :showGalleryFromItem="showGalleryFromItem" @handleDel="handleDel" v-if="showGalleryFrom">
+            </GalleryFrom>
         </div>
-        <GalleryFrom :showGalleryFromItem="showGalleryFromItem" @handleDel="handleDel" v-if="showGalleryFrom">
-        </GalleryFrom>
+        <div class="pagination-container" v-if="totalResults > 0">
+            <el-pagination
+                background
+                layout="prev, pager, next"
+                :total="totalResults"
+                :page-size="pageSize"
+                :current-page.sync="currentPage"
+                @current-change="handlePageChange"
+            >
+            </el-pagination>
+        </div>
     </div>
 </template>
 <script>
@@ -53,6 +66,9 @@ export default {
             ],
             showGalleryFrom: false,
             showGalleryFromItem: {},
+            currentPage: 1,
+            pageSize: 6,
+            totalResults: 0,
         }
     },
     mounted() {
@@ -66,6 +82,10 @@ export default {
         handleDel() {
             this.showGalleryFrom = false;
         },
+        handlePageChange(page) {
+            this.currentPage = page;
+            this.fetchCollect();
+        },
         async fetchCollect() {
             const id = localStorage.getItem('user_id');
             if (id) {
@@ -73,25 +93,28 @@ export default {
             }
             console.log('请求收藏列表, id:', id);
             try {
-                const url = `${API_BASE}/getFavorite?user_id=${id}`
+                const url = `${API_BASE}/getFavorite?user_id=${id}&page=${this.currentPage}&size=${this.pageSize}`
                 const res = await axios.get(url, { withCredentials: true })
                 //// 处理返回结果
-                this.list = res.data.artworks.map(item => ({
-                    imgs: `${API_BASE}/${item.path}`, // 图片地址
-                    type: 1,         // 可根据 item 或业务逻辑设置
-                    title: item.名称,
-                    title_en: item.名称,
-                    name: item.作者,
-                    era: item.年代,
-                    id: item.id,
-                    era_group: item.era_group,
-                    format: item.形制,
-                    location: item.收藏地,
-                    materials: item.材料,
-                    texture: item.材质,
-                    labels: item.标签
-                    // 可添加其他需要的字段
-                }));
+                if (res.data && res.data.artworks) {
+                    this.totalResults = res.data.total_results || 0;
+                    this.list = res.data.artworks.map(item => ({
+                        imgs: `${API_BASE}/${item.path}`, // 图片地址
+                        type: 1,         // 可根据 item 或业务逻辑设置
+                        title: item.名称,
+                        title_en: item.名称,
+                        name: item.作者,
+                        era: item.年代,
+                        id: item.id,
+                        era_group: item.era_group,
+                        format: item.形制,
+                        location: item.收藏地,
+                        materials: item.材料,
+                        texture: item.材质,
+                        labels: item.标签
+                        // 可添加其他需要的字段
+                    }));
+                }
             } catch (error) {
                 if (error.response && error.response.status === 401) {
                     return;
@@ -105,6 +128,13 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
 .tab_list {
     display: grid;
     width: 100%;

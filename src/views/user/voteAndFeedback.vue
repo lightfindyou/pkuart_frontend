@@ -1,31 +1,44 @@
 <template>
-    <div class="tab_list" ref="waterfall" :style="{ height: waterfallHeight + 'px' }">
-        <div 
-            class="item" 
-            v-for="(item, index) in rates" 
-            :key="index" 
-            :style="itemStyles[index]"
-            @click="handleShow(item)"
-        >
-            <img :src="item.imgs" alt="">
-            <div class="titles">{{ item.artwork_name }}</div>
-            <div class="model_title">
-                <img src="@/assets/user/cup.png" alt="">
-                <div class="fixed_title">胜出大模型评估</div>
-            </div>
-            <div class="model_context">
-                <div class="model_name">{{ item.winner_name }}</div>
-                <div class="model_output">{{ item.selected_response }} </div>
-            </div>
-            <div class="feedback_box">
-                <div class="feedback">
-                    {{ item.feedback }}
+    <div>
+        <div class="tab_list" ref="waterfall" :style="{ height: waterfallHeight + 'px' }">
+            <div 
+                class="item" 
+                v-for="(item, index) in rates" 
+                :key="index" 
+                :style="itemStyles[index]"
+                @click="handleShow(item)"
+            >
+                <img :src="item.imgs" alt="">
+                <div class="titles">{{ item.artwork_name }}</div>
+                <div class="model_title">
+                    <img src="@/assets/user/cup.png" alt="">
+                    <div class="fixed_title">胜出大模型评估</div>
                 </div>
-                <div class="date">{{ item.date }}</div>
+                <div class="model_context">
+                    <div class="model_name">{{ item.winner_name }}</div>
+                    <div class="model_output">{{ item.selected_response }} </div>
+                </div>
+                <div class="feedback_box">
+                    <div class="feedback">
+                        {{ item.feedback }}
+                    </div>
+                    <div class="date">{{ item.date }}</div>
+                </div>
             </div>
+            <GalleryFrom :showGalleryFromItem="showGalleryFromItem" @handleDel="handleDel" v-if="showGalleryFrom">
+            </GalleryFrom>
         </div>
-        <GalleryFrom :showGalleryFromItem="showGalleryFromItem" @handleDel="handleDel" v-if="showGalleryFrom">
-        </GalleryFrom>
+        <div class="pagination-container" v-if="totalResults > 0">
+            <el-pagination
+                background
+                layout="prev, pager, next"
+                :total="totalResults"
+                :page-size="pageSize"
+                :current-page.sync="currentPage"
+                @current-change="handlePageChange"
+            >
+            </el-pagination>
+        </div>
     </div>
 </template>
 
@@ -73,6 +86,10 @@ export default {
             gap: 15,
             columns: 3,
             itemWidth: 267, // (860 - 15*2) / 3 = 276.67，这里使用固定宽度
+            currentPage: 1,
+            pageSize: 10,
+            totalResults: 0,
+            loading: false,
         }
     },
     mounted() {
@@ -102,16 +119,34 @@ export default {
         handleDel() {
             this.showGalleryFrom = false;
         },
+        handlePageChange(val) {
+            this.currentPage = val;
+            this.fetchRatings();
+        },
         async fetchRatings() {
+            if (this.loading) return;
+            this.loading = true;
             const id = localStorage.getItem('user_id');
             if (id) {
                 this.$store.commit('setUserId', id);
             }
             try {
-                const url = `${API_BASE}/getVote?num=6&user_id=${id}`;
+                const url = `${API_BASE}/getVote?num=${this.pageSize}&user_id=${id}&page=${this.currentPage}`;
                 const res = await axios.get(url, { withCredentials: true })
                 console.log(res.data)
-                this.rates = res.data.map(
+                
+                // 兼容后端返回格式：可能是直接数组，也可能是 { votes: [...] }
+                const voteList = Array.isArray(res.data) ? res.data : (res.data.votes || []);
+                
+                // 更新分页信息
+                if (res.data.total_results !== undefined) {
+                    this.totalResults = res.data.total_results;
+                }
+                if (res.data.size !== undefined) {
+                    this.pageSize = res.data.size;
+                }
+
+                this.rates = voteList.map(
                     item => ({
                         evaluation_id: item.evaluation_id,
                         artwork_id: item.artwork_id,
@@ -126,6 +161,7 @@ export default {
                         loser_name: item.loser_name,
                     })
                 );
+                
                 console.log(this.rates, '===rates');
             } catch (error) {
                 if (error.response && error.response.status === 401) {
@@ -133,6 +169,8 @@ export default {
                 }
                 alert('网络异常或服务器错误，请稍后重试');
                 console.error('获取评价异常:', error);
+            } finally {
+                this.loading = false;
             }
         },
         formatDate(ts) {
@@ -203,6 +241,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.pagination-container {
+    width: 860px;
+    margin: 20px auto;
+    text-align: center;
+}
+
 .tab_list {
     width: 860px;
     position: relative;
