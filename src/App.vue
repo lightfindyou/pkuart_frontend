@@ -37,11 +37,11 @@
           <img src="@/assets/logo/bottomLogo.png" alt=""></img>
         </div>
       </div>
-      <div class="contact" v-if="showFooter">
+      <!-- <div class="contact" v-if="showFooter">
         <div class="contact_img">
           <img src="@/assets/logo/contact.png" alt=""></img>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -300,7 +300,7 @@ export default {
       margin: 0px 0 0 0 ;
 
       img {
-        width: 770px;
+        width: 660px;
         height: auto;
         display: block;
       }
