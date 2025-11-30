@@ -142,15 +142,16 @@ export default {
 			// type 为 1 时表示“比较两个选定的模型”，需要带上模型参数
 			if (this.type === 1) {
 				payload = {
-					artwork_id: id
-				};
-			}else{
-				payload = {
 					artwork_id: id,
 					modelA_name: this.selectedLeft.name,
 					modelB_name: this.selectedRight.name
 				};
+			}else{
+				payload = {
+					artwork_id: id
+				};
 			}
+			console.log('payload   ' + JSON.stringify(payload, null, 2));
 			try {
 				const res = await axios.post(url, payload, { headers: { 'Content-Type': 'application/json' }, withCredentials: true  });
 				//处理返回结果
@@ -186,7 +187,6 @@ export default {
 //					console.log('评价任务状态   ' + JSON.stringify(res.data, null, 2));
 					if (res.data.status === 'processing') {
 						// 任务仍在处理中，继续轮询
-						console.log('评价任务处理中...');
 						this.$store.commit('setAssessA', res.data.progress);
 						this.$store.commit('setAssessB', res.data.progress);
 					} else if (res.data.status === 'completed') {
@@ -225,7 +225,6 @@ export default {
 		//获取评价文本
 		async getEvalucationText(task_id) {
 			const url = `${API_BASE}/task/${task_id}/status`
-			console.log('获取评价任务状态   ' + url);
 			const res = await axios.get(url, { withCredentials: true });
 			return res;
 		},
@@ -250,8 +249,10 @@ export default {
 		selectOption(option) {
 			if (this.currentSide === 'left') {
 				this.selectedLeft = option;
+				console.log('selectedLeft:', this.selectedLeft);
 			} else {
 				this.selectedRight = option;
+				console.log('selectedRight:', this.selectedRight);
 			}
 			this.hideSelector();
 		},
