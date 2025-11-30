@@ -22,6 +22,8 @@ export default new Vuex.Store({
 		artworkId: '',
 		evalArtworkName: '',
     userAvatar: require('@/assets/avatar/default.png'),
+    randomSeed: null,
+    totalResults: 0, // 总结果数
     galleryImages: [
       {
           title: '缂丝山水图',
@@ -105,6 +107,12 @@ export default new Vuex.Store({
     setEvalArtworkName(state, name) {
       state.evalArtworkName = name
     },
+    setRandomSeed(state, seed) {
+      state.randomSeed = seed
+    },
+    setTotalResults(state, total) {
+      state.totalResults = total
+    },
     setUserAvatar(state, url) {
       state.userAvatar= url;
     },
@@ -123,9 +131,19 @@ export default new Vuex.Store({
     },
     async search({ commit }, { selectedEra, searchText }){
       console.log('提交查询请求   ' + selectedEra + '  ' + searchText);
-  const url = `${API_BASE}/?format=json&era=${selectedEra}&search=${searchText}`
+      const url = `${API_BASE}/?format=json&era=${selectedEra}&search=${searchText}&page=1`
       try {
         const res = await axios.get(url, { withCredentials: true })
+        
+        // 保存后端返回的随机种子
+        if (res.data.seed) {
+          commit('setRandomSeed', res.data.seed)
+        }
+        // 保存总结果数
+        if (res.data.total_results !== undefined) {
+          commit('setTotalResults', res.data.total_results)
+        }
+
         //// 处理返回结果
         const artworks = res.data.artworks.map(item => ({
           imgs: `${API_BASE}/${item.path}`, // 图片地址

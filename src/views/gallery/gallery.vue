@@ -121,6 +121,7 @@ export default {
             loading: false,
             maxItems: 120,
             itemsPerLoad: 12,
+            currentPage: 1,
 
             // 预定义的4个单独使用的item
             predefinedItems: [
@@ -283,6 +284,7 @@ export default {
         },
         handleClick(tab, event) {
             console.log(tab, event);
+            this.currentPage = 1;
             this.$store.commit('setSelectedEra', tab.label === '全部' ? '' : tab.label);
             this.$store.commit('setGalleryImages', []);
             this.$store.dispatch('search', { selectedEra: this.selectedEra, searchText: this.searchText });
@@ -314,10 +316,28 @@ export default {
         },
         async loadMoreData() {
             if (this.loading) return;
+            
+            // 检查是否已加载所有数据
+            const totalResults = this.$store.state.totalResults;
+            const currentCount = this.$store.state.galleryImages.length;
+            // 如果已有总数且当前数量已达到或超过总数，不再请求
+            // 注意：首次加载时 totalResults 为 0，currentCount 也可能为 0，需要放行
+            if (totalResults > 0 && currentCount >= totalResults) {
+                return;
+            }
+
             this.loading = true;
             try {
-                const url = `${API_BASE}/?format=json&era=${this.selectedEra}&search=${this.searchText}`;
+                this.currentPage++;
+                const seed = this.$store.state.randomSeed;
+                const url = `${API_BASE}/?format=json&era=${this.selectedEra}&search=${this.searchText}&page=${this.currentPage}&seed=${seed}`;
                 const res = await axios.get(url, { withCredentials: true });
+                
+                // 更新总数
+                if (res.data.total_results !== undefined) {
+                    this.$store.commit('setTotalResults', res.data.total_results);
+                }
+
                 const allArtworks = res.data.artworks.map(item => ({
                     imgs: `${API_BASE}/${item.path}`,
                     type: 1,
@@ -333,15 +353,22 @@ export default {
                     texture: item.材质,
                     labels: item.标签
                 }));
-                const newArtworks = allArtworks.slice(0, this.itemsPerLoad);
+                
+                // 后端已分页，直接使用返回的数据
+                const newArtworks = allArtworks;
+                
                 if (newArtworks.length > 0) {
                     let currentImages = this.$store.state.galleryImages;
                     currentImages = [...currentImages, ...newArtworks];
-                    if (currentImages.length > this.maxItems) {
-                        const removeCount = currentImages.length - this.maxItems;
-                        currentImages = currentImages.slice(removeCount);
-                    }
+                    // 移除前端最大数量限制，以便能加载完所有数据
+                    // if (currentImages.length > this.maxItems) {
+                    //     const removeCount = currentImages.length - this.maxItems;
+                    //     currentImages = currentImages.slice(removeCount);
+                    // }
                     this.$store.commit('setGalleryImages', currentImages);
+                } else {
+                    // 如果返回空数组，说明没有更多数据了
+                    // 可以选择在这里标记已全部加载，防止后续无效请求
                 }
             } catch (error) {
                 if (error.response && error.response.status === 401) {
@@ -351,6 +378,7 @@ export default {
                     return;
                 }
                 console.error('加载更多数据异常:', error);
+                this.currentPage--; // 请求失败时回退页码
             } finally {
                 this.loading = false;
             }
