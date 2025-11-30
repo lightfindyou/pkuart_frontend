@@ -87,7 +87,7 @@ export default {
             columns: 3,
             itemWidth: 267, // (860 - 15*2) / 3 = 276.67，这里使用固定宽度
             currentPage: 1,
-            pageSize: 10,
+            pageSize: 6,
             totalResults: 0,
             loading: false,
         }
