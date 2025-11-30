@@ -96,11 +96,21 @@ export default {
             this.$store.commit('setUserId', id);
         }
         this.userInfo.img = `${API_BASE}/avatar/${id}.png`, // 头像地址
-            this.fetchUserInfo();
+        this.fetchUserInfo();
+
+        // 根据路由参数设置当前 tab
+        const tab = this.$route.query.tab;
+        if (tab !== undefined) {
+            this.itemIndex = parseInt(tab);
+        }
     },
     methods: {
         handleItemIndex(index) {
             this.itemIndex = index;
+            // 更新路由参数，以便刷新或返回时保持状态
+            if (this.$route.query.tab != index) {
+                this.$router.replace({ query: { ...this.$route.query, tab: index } });
+            }
         },
         handleLogout() {
             try {
