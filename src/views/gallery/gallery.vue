@@ -13,16 +13,16 @@
             <div class="swiper_box">
                 <swiper ref="swiper" :options="swiperOption">
                     <swiper-slide>
-                        <img src="@/assets/list/carusel1.png" alt="">
+                        <img src="@/assets/list/carusel1.png" alt="" @click="handleShow(predefinedItems[0])">
                     </swiper-slide>
                     <swiper-slide>
-                        <img src="@/assets/list/carusel2.png" alt="">
+                        <img src="@/assets/list/carusel2.png" alt="" @click="handleShow(predefinedItems[1])">
                     </swiper-slide>
                     <swiper-slide>
-                        <img src="@/assets/list/carusel3.png" alt="">
+                        <img src="@/assets/list/carusel3.png" alt="" @click="handleShow(predefinedItems[2])">
                     </swiper-slide>
                     <swiper-slide>
-                        <img src="@/assets/list/carusel4.png" alt="">
+                        <img src="@/assets/list/carusel4.png" alt="" @click="handleShow(predefinedItems[3])">
                     </swiper-slide>
                 </swiper>
                 <div class="swiper_navigation">
@@ -121,6 +121,66 @@ export default {
             loading: false,
             maxItems: 120,
             itemsPerLoad: 12,
+
+            // 预定义的4个单独使用的item
+            predefinedItems: [
+                {
+                    imgs: `${API_BASE}/images/608a61adaa7c385c8d9441eb.jpg`,
+                    type: 1,
+                    title: '醉八仙图卷',
+                    title_en: '醉八仙图卷',
+                    name: '佚名',
+                    era: '明',
+                    id: '608a61adaa7c385c8d9441eb',
+                    era_group: '明',
+                    format: '未记录',
+                    location: '未记录',
+                    materials: '未记录',
+                    texture: '未知',
+                },
+                {
+                    imgs: `${API_BASE}/images/608a61a0aa7c385c8d943175.jpg`,
+                    type: 1,
+                    title: '关羽擒将图',
+                    title_en: '关羽擒将图',
+                    name: '商喜',
+                    era: '明',
+                    id: '608a61a0aa7c385c8d943175',
+                    era_group: '明',
+                    format: '立轴',
+                    location: '故宫博物院',
+                    materials: '设色',
+                    texture: '绢本',
+                },
+                {
+                    imgs: `${API_BASE}/images/608a619eaa7c385c8d942ed5.jpg`,
+                    type: 1,
+                    title: '雍正帝读书像',
+                    title_en: '雍正帝读书像',
+                    name: '佚名',
+                    era: '清',
+                    id: '608a619eaa7c385c8d942ed5',
+                    era_group: '清',
+                    format: '立轴',
+                    location: '故宫博物院',
+                    materials: '设色',
+                    texture: '绢本',
+                },
+                {
+                    imgs: `${API_BASE}/images/6690d6424de7a973cb15c814.jpg`,
+                    type: 1,
+                    title: '春梅图',
+                    title_en: '春梅图',
+                    name: '吴昌硕',
+                    era: '近现代',
+                    id: '6690d6424de7a973cb15c814',
+                    era_group: '近现代',
+                    format: '立轴',
+                    location: '上海吴昌硕纪念馆',
+                    materials: '设色',
+                    texture: '纸本',
+                }
+            ],
 
             // --- 瀑布流相关变量 ---
             itemStyles: [],
