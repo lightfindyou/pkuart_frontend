@@ -37,11 +37,11 @@
           <img src="@/assets/logo/bottomLogo.png" alt=""></img>
         </div>
       </div>
-      <div class="contact" v-if="showFooter">
+      <!-- <div class="contact" v-if="showFooter">
         <div class="contact_img">
           <img src="@/assets/logo/contact.png" alt=""></img>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -275,7 +275,7 @@ export default {
   // position: absolute;
   // bottom: 0;
   width: 100%;
-  height: 100px;
+  height: 89px;
   padding: 0 2rem;
   box-sizing: border-box;
   border-top: 1px solid #CECECE;
@@ -283,7 +283,7 @@ export default {
 
   .footer-row {
     width: 100%;
-    height: 100px;
+    height: 73px;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
@@ -300,7 +300,7 @@ export default {
       margin: 0px 0 0 0 ;
 
       img {
-        width: 770px;
+        width: 630px;
         height: auto;
         display: block;
       }
