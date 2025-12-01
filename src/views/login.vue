@@ -9,9 +9,9 @@
                 <!--
                 <input type="text" v-model="inviteCode" placeholder="请输入智镜邀请码">
                 -->
-                <input type="text" v-model="inviteCode" >
+                <input type="text" v-model="inviteCode" @keyup.enter="handleLogin">
             </div>
-            <div class="btn" @click="handleLogin">专家验证</div>
+            <div class="btn" @click="handleLogin" tabindex="0" @keydown.enter="handleLogin">专家验证</div>
         </div>
     </div>
 </template>
