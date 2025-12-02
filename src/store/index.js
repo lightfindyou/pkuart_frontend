@@ -25,35 +25,35 @@ export default new Vuex.Store({
         randomSeed: null,
         totalResults: 0, // 总结果数
         galleryImages: [
-            {
-                title: '缂丝山水图',
-                title_en: 'Kesi Landscape Painting',
-                name: '作者：佚名',
-                imgs: require('@/assets/list/2.png'),
-                type: 2,
-            },
-            {
-                title: '缂丝山水图',
-                title_en: 'Kesi Landscape Painting',
-                name: '作者：佚名',
-                imgs: require('@/assets/list/1.png'),
-                type: 1,
-            },
-            {
-                title: '缂丝山水图',
-                title_en: 'Kesi Landscape Painting',
-                name: '作者：佚名',
-                imgs: require('@/assets/list/2.png'),
-                type: 2,
-            },
+            // {
+            //     title: '缂丝山水图',
+            //     title_en: 'Kesi Landscape Painting',
+            //     name: '作者：佚名',
+            //     imgs: require('@/assets/list/2.png'),
+            //     type: 2,
+            // },
+            // {
+            //     title: '缂丝山水图',
+            //     title_en: 'Kesi Landscape Painting',
+            //     name: '作者：佚名',
+            //     imgs: require('@/assets/list/1.png'),
+            //     type: 1,
+            // },
+            // {
+            //     title: '缂丝山水图',
+            //     title_en: 'Kesi Landscape Painting',
+            //     name: '作者：佚名',
+            //     imgs: require('@/assets/list/2.png'),
+            //     type: 2,
+            // },
 
-            {
-                title: '缂丝山水图',
-                title_en: 'Kesi Landscape Painting',
-                name: '作者：佚名',
-                imgs: require('@/assets/list/1.png'),
-                type: 1,
-            },
+            // {
+            //     title: '缂丝山水图',
+            //     title_en: 'Kesi Landscape Painting',
+            //     name: '作者：佚名',
+            //     imgs: require('@/assets/list/1.png'),
+            //     type: 1,
+            // },
 
         ],
         modelOptions: [

@@ -93,7 +93,7 @@ export default {
             userInfo: {
                 name: '用户名/USERNAME',
                 type: '专家',
-                img: require('@/assets/list/img.png'),
+                img: require('@/assets/home/logo3.png'),
             },
             rate: {
                 evaluation_id: '',

@@ -503,7 +503,7 @@ export default {
                 height: 100%;
                 
                 &.item-bg {
-                    background-image: url('@/assets/list/img.png');
+//                    background-image: url('@/assets/list/img.png');
                     background-size: cover;
                     background-position: center;
                 }
