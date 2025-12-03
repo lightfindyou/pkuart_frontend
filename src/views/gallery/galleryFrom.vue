@@ -21,8 +21,8 @@
                         <img src="@/assets/home/ax.png" alt="" v-if="!active"></img>
                         <img src="@/assets/home/ax_active.png" alt="" v-if="active"></img>
                     </div>
-                    <div class="mian_text_title fs">{{ showGalleryFromItem.名称 }}</div>
-                    <div class="mian_text_title_en ens">{{ showGalleryFromItem.名称 }}</div>
+                    <div class="mian_text_title fs">{{ showGalleryFromItem.title }}</div>
+                    <!-- <div class="mian_text_title_en ens">{{ showGalleryFromItem.name }}</div> -->
                     <div class="mian_text_name fs">{{ showGalleryFromItem.name }}</div>
                     <div class="mian_type">
                         <div class="type_item">

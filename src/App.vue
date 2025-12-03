@@ -279,7 +279,7 @@ export default {
     // position: absolute;
     // bottom: 0;
     width: 100%;
-    height: 89px;
+    height: 63px;
     padding: 0 2rem;
     box-sizing: border-box;
     border-top: 1px solid #CECECE;
@@ -287,25 +287,21 @@ export default {
 
     .footer-row {
         width: 100%;
-        height: 73px;
+        height: 63px;
         display: flex;
         flex-direction: row;
-        align-items: flex-end;
+        align-items: center;
         justify-content: center;
-        /* 居中底部 LOGO */
         padding: 0 2rem;
-        box-sizing: border-box;
-        border-top: 1px solid #CECECE;
         box-sizing: border-box;
 
         .img {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0px 0 0 0;
 
             img {
-                width: 630px;
+                width: 580px;
                 height: auto;
                 display: block;
             }
