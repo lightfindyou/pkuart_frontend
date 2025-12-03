@@ -20,21 +20,21 @@
 		</div>
 		<div class="versus fs" v-if="type == 1">
 			<div class="versus_left ht" @click="openSelector('left')">
-				<div class="versus_img">
+				<div class="versus_img" v-if="selectedLeft">
 					<img :src="selectedLeft.image" alt="">
 				</div>
-				<div class="versus_name">{{ selectedLeft.name }}</div>
+				<div class="versus_name">{{ selectedLeft ? selectedLeft.name : '' }}</div>
 				<div class="versus_icon">
 					<img src="@/assets/homeFrom/top.png" alt="">
 				</div>
 			</div>
 			VS
 			<div class="versus_right ht" @click="openSelector('right')">
-				<div class="versus_img">
+				<div class="versus_img" v-if="selectedRight">
 					<img :src="selectedRight.image" alt="">
 				</div>
 				<div class="versus_name">
-					{{ selectedRight.name }}
+					{{ selectedRight ? selectedRight.name : '' }}
 				</div>
 				<div class="versus_icon">
 					<img src="@/assets/homeFrom/bottom.png" alt="">
@@ -90,8 +90,8 @@ export default {
 			showSelector: false,
 			currentSide: '', // 当前选择的是左侧还是右侧
 			searchText: '',
-			selectedLeft: { id: 1, name: 'doubao-seed', image: require('@/assets/AIAvatar/doubao.png') },
-			selectedRight: { id: 2, name: 'openai-GPT5', image: require('@/assets/AIAvatar/openai.png') },
+			selectedLeft: null,
+			selectedRight: null,
 		}
 	},
 	watch: {
@@ -101,14 +101,14 @@ export default {
 				if (newVal && newVal.length > 0) {
 					// 当模型列表更新时，更新默认选中的模型
 					// 尝试保留当前选择（如果还在列表中），否则使用列表前两个
-					const leftExists = newVal.find(m => m.id === this.selectedLeft.id);
-					const rightExists = newVal.find(m => m.id === this.selectedRight.id);
+					const leftExists = this.selectedLeft && newVal.find(m => m.id === this.selectedLeft.id);
+					const rightExists = this.selectedRight && newVal.find(m => m.id === this.selectedRight.id);
 
 					if (!leftExists) {
-						this.selectedLeft = newVal[0] || this.selectedLeft;
+						this.selectedLeft = newVal[0];
 					}
 					if (!rightExists) {
-						this.selectedRight = newVal[1] || newVal[0] || this.selectedRight;
+						this.selectedRight = newVal[1] || newVal[0];
 					}
 				}
 			},
