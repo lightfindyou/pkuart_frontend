@@ -18,10 +18,12 @@
                 </div>
                 <div class="main" @click="showNotification = false">
                     <div class="main_img" @click="handleShow">
-                        <img :src="this.$store.state.showItem.imgs" alt="">
-                        <div class="img_info">
-                            <div class="titles">{{ this.$store.state.showItem.title }}</div>
-                            <div class="name">作者：{{ this.$store.state.showItem.name }}</div>
+                        <div class="img_wrapper">
+                            <img :src="this.$store.state.showItem.imgs" alt="">
+                            <div class="img_info">
+                                <div class="titles">{{ this.$store.state.showItem.title }}</div>
+                                <div class="name">作者：{{ this.$store.state.showItem.name }}</div>
+                            </div>
                         </div>
                     </div>
                     <div class="mian_text">
@@ -559,48 +561,49 @@ export default {
             max-height: calc(70vh - 40px);
             cursor: pointer;
             margin-bottom: 20px;
-            /* 距离下边界 */
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-            position: relative;
+            align-items: flex-end;
+            justify-content: center;
 
-            img {
-                max-width: 30vw;
-                max-height: 60vh;
-                width: auto;
-                height: auto;
-                display: block;
-                object-fit: contain;
-                margin: 0 auto;
-                border-radius: 12px;
-            }
+            .img_wrapper {
+                position: relative;
+                display: inline-block;
 
-            .img_info {
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                background: rgba(0, 0, 0, 0.6);
-                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-                border-radius: 0 0 12px 12px;
-                padding: 12px 15px;
-                box-sizing: border-box;
-
-                .titles {
-                    font-weight: 400;
-                    font-size: 16px;
-                    color: #FFF;
-                    line-height: 22px;
+                img {
+                    max-width: 30vw;
+                    max-height: 60vh;
+                    width: auto;
+                    height: auto;
+                    display: block;
+                    object-fit: contain;
+                    border-radius: 12px;
                 }
 
-                .name {
-                    margin-top: 8px;
-                    font-weight: 400;
-                    font-size: 12px;
-                    color: #D9D9D9;
-                    line-height: 22px;
+                .img_info {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: rgba(0, 0, 0, 0.6);
+                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                    border-radius: 0 0 12px 12px;
+                    padding: 12px 15px;
+                    box-sizing: border-box;
+
+                    .titles {
+                        font-weight: 400;
+                        font-size: 16px;
+                        color: #FFF;
+                        line-height: 22px;
+                    }
+
+                    .name {
+                        margin-top: 8px;
+                        font-weight: 400;
+                        font-size: 12px;
+                        color: #D9D9D9;
+                        line-height: 22px;
+                    }
                 }
             }
         }
