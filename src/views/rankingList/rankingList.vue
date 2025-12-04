@@ -2,7 +2,7 @@
     <div class="rankingList">
         <div class="content">
             <div class="tabs_box">
-                <div class="tab_item" :class="{ 'tab_item_active': activeName === 0 }" @click="handleTabClick(0)">模型性能
+                <div class="tab_item" :class="{ 'tab_item_active': activeName === 0 }" @click="handleTabClick(0)">大模型审美力综合排行
                 </div>
                 <!-- <div class="tab_item" :class="{ 'tab_item_active': activeName === 1 }" @click="handleTabClick(1)">
                     <img v-if="activeName === 1" src="@/assets/user/gj_active.png" alt="">
