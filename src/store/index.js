@@ -24,38 +24,7 @@ export default new Vuex.Store({
         userAvatar: require('@/assets/avatar/default.png'),
         randomSeed: null,
         totalResults: 0, // 总结果数
-        galleryImages: [
-            // {
-            //     title: '缂丝山水图',
-            //     title_en: 'Kesi Landscape Painting',
-            //     name: '作者：佚名',
-            //     imgs: require('@/assets/list/2.png'),
-            //     type: 2,
-            // },
-            // {
-            //     title: '缂丝山水图',
-            //     title_en: 'Kesi Landscape Painting',
-            //     name: '作者：佚名',
-            //     imgs: require('@/assets/list/1.png'),
-            //     type: 1,
-            // },
-            // {
-            //     title: '缂丝山水图',
-            //     title_en: 'Kesi Landscape Painting',
-            //     name: '作者：佚名',
-            //     imgs: require('@/assets/list/2.png'),
-            //     type: 2,
-            // },
-
-            // {
-            //     title: '缂丝山水图',
-            //     title_en: 'Kesi Landscape Painting',
-            //     name: '作者：佚名',
-            //     imgs: require('@/assets/list/1.png'),
-            //     type: 1,
-            // },
-
-        ],
+        galleryImages: [],
         modelOptions: [
             { id: 0, name: 'doubao', image: require('@/assets/AIAvatar/doubao.png') },
             { id: 1, name: 'GPT5', image: require('@/assets/AIAvatar/openai.png') },
