@@ -1,0 +1,425 @@
+{
+    "title": "模型能力排行榜 (新老数据合并V7)",
+    "models": [
+        {
+            "rank": 1,
+            "model_name": "gemini-3-pro-preview-thinking",
+            "raw_score": 0.8309,
+            "standard_error": 0.1224,
+            "confidence_interval_95": [
+                0.591,
+                1.0707
+            ],
+            "elo_score": 1144.3,
+            "elo_ci_95": [
+                1102.7,
+                1186.0
+            ]
+        },
+        {
+            "rank": 2,
+            "model_name": "anthropic/claude-opus-4.5-thinking",
+            "raw_score": 0.5629,
+            "standard_error": 0.1226,
+            "confidence_interval_95": [
+                0.3226,
+                0.8032
+            ],
+            "elo_score": 1097.8,
+            "elo_ci_95": [
+                1056.0,
+                1139.5
+            ]
+        },
+        {
+            "rank": 3,
+            "model_name": "gpt-5.1",
+            "raw_score": 0.5128,
+            "standard_error": 0.1412,
+            "confidence_interval_95": [
+                0.236,
+                0.7896
+            ],
+            "elo_score": 1089.1,
+            "elo_ci_95": [
+                1041.0,
+                1137.2
+            ]
+        },
+        {
+            "rank": 4,
+            "model_name": "gemini-2.5-pro-thinking",
+            "raw_score": 0.4826,
+            "standard_error": 0.1045,
+            "confidence_interval_95": [
+                0.2778,
+                0.6873
+            ],
+            "elo_score": 1083.8,
+            "elo_ci_95": [
+                1048.3,
+                1119.4
+            ]
+        },
+        {
+            "rank": 5,
+            "model_name": "doubao-seed-1-6-251015",
+            "raw_score": 0.4649,
+            "standard_error": 0.1249,
+            "confidence_interval_95": [
+                0.22,
+                0.7098
+            ],
+            "elo_score": 1080.8,
+            "elo_ci_95": [
+                1038.2,
+                1123.3
+            ]
+        },
+        {
+            "rank": 6,
+            "model_name": "google/gemini-2.5-flash",
+            "raw_score": 0.4648,
+            "standard_error": 0.1377,
+            "confidence_interval_95": [
+                0.1949,
+                0.7347
+            ],
+            "elo_score": 1080.7,
+            "elo_ci_95": [
+                1033.9,
+                1127.6
+            ]
+        },
+        {
+            "rank": 7,
+            "model_name": "stepfun-ai/step3",
+            "raw_score": 0.4465,
+            "standard_error": 0.1051,
+            "confidence_interval_95": [
+                0.2404,
+                0.6525
+            ],
+            "elo_score": 1077.6,
+            "elo_ci_95": [
+                1041.8,
+                1113.3
+            ]
+        },
+        {
+            "rank": 8,
+            "model_name": "doubao-seed-1-6-thinking-250615",
+            "raw_score": 0.4359,
+            "standard_error": 0.1051,
+            "confidence_interval_95": [
+                0.2299,
+                0.6419
+            ],
+            "elo_score": 1075.7,
+            "elo_ci_95": [
+                1039.9,
+                1111.5
+            ]
+        },
+        {
+            "rank": 9,
+            "model_name": "tencent/hunyuan-t1-vision-20250619",
+            "raw_score": 0.421,
+            "standard_error": 0.198,
+            "confidence_interval_95": [
+                0.0329,
+                0.8092
+            ],
+            "elo_score": 1073.1,
+            "elo_ci_95": [
+                1005.7,
+                1140.6
+            ]
+        },
+        {
+            "rank": 10,
+            "model_name": "openai/o3-high",
+            "raw_score": 0.32,
+            "standard_error": 0.1441,
+            "confidence_interval_95": [
+                0.0376,
+                0.6024
+            ],
+            "elo_score": 1055.6,
+            "elo_ci_95": [
+                1006.5,
+                1104.7
+            ]
+        },
+        {
+            "rank": 11,
+            "model_name": "Qwen3-VL-235B-A22B-Thinking",
+            "raw_score": 0.2427,
+            "standard_error": 0.127,
+            "confidence_interval_95": [
+                -0.0063,
+                0.4917
+            ],
+            "elo_score": 1042.2,
+            "elo_ci_95": [
+                998.9,
+                1085.4
+            ]
+        },
+        {
+            "rank": 12,
+            "model_name": "gpt-5-high",
+            "raw_score": 0.123,
+            "standard_error": 0.1316,
+            "confidence_interval_95": [
+                -0.135,
+                0.3809
+            ],
+            "elo_score": 1021.4,
+            "elo_ci_95": [
+                976.6,
+                1066.2
+            ]
+        },
+        {
+            "rank": 13,
+            "model_name": "openai/o4-mini-high",
+            "raw_score": 0.0063,
+            "standard_error": 0.1466,
+            "confidence_interval_95": [
+                -0.2809,
+                0.2936
+            ],
+            "elo_score": 1001.1,
+            "elo_ci_95": [
+                951.2,
+                1051.0
+            ]
+        },
+        {
+            "rank": 14,
+            "model_name": "Doubao-1.5-vision-pro-32k",
+            "raw_score": 0.0,
+            "standard_error": 0.0,
+            "confidence_interval_95": [
+                0.0,
+                0.0
+            ],
+            "elo_score": 1000.0,
+            "elo_ci_95": [
+                1000.0,
+                1000.0
+            ]
+        },
+        {
+            "rank": 15,
+            "model_name": "anthropic/claude-3.7-sonnet-thinking",
+            "raw_score": -0.0565,
+            "standard_error": 0.1433,
+            "confidence_interval_95": [
+                -0.3374,
+                0.2244
+            ],
+            "elo_score": 990.2,
+            "elo_ci_95": [
+                941.4,
+                1039.0
+            ]
+        },
+        {
+            "rank": 16,
+            "model_name": "glm-4.5v",
+            "raw_score": -0.0889,
+            "standard_error": 0.122,
+            "confidence_interval_95": [
+                -0.3281,
+                0.1502
+            ],
+            "elo_score": 984.6,
+            "elo_ci_95": [
+                943.0,
+                1026.1
+            ]
+        },
+        {
+            "rank": 17,
+            "model_name": "anthropic/claude-sonnet-4.5-thinking",
+            "raw_score": -0.09,
+            "standard_error": 0.1222,
+            "confidence_interval_95": [
+                -0.3295,
+                0.1496
+            ],
+            "elo_score": 984.4,
+            "elo_ci_95": [
+                942.8,
+                1026.0
+            ]
+        },
+        {
+            "rank": 18,
+            "model_name": "anthropic/claude-opus-4-thinking",
+            "raw_score": -0.1486,
+            "standard_error": 0.1438,
+            "confidence_interval_95": [
+                -0.4304,
+                0.1332
+            ],
+            "elo_score": 974.2,
+            "elo_ci_95": [
+                925.2,
+                1023.1
+            ]
+        },
+        {
+            "rank": 19,
+            "model_name": "anthropic/claude-sonnet-4",
+            "raw_score": -0.1606,
+            "standard_error": 0.1356,
+            "confidence_interval_95": [
+                -0.4263,
+                0.105
+            ],
+            "elo_score": 972.1,
+            "elo_ci_95": [
+                925.9,
+                1018.2
+            ]
+        },
+        {
+            "rank": 20,
+            "model_name": "anthropic/claude-opus-4-20250514-thinking",
+            "raw_score": -0.1793,
+            "standard_error": 0.182,
+            "confidence_interval_95": [
+                -0.5361,
+                0.1775
+            ],
+            "elo_score": 968.8,
+            "elo_ci_95": [
+                906.9,
+                1030.8
+            ]
+        },
+        {
+            "rank": 21,
+            "model_name": "qvq-max-2025-03-25",
+            "raw_score": -0.2147,
+            "standard_error": 0.1521,
+            "confidence_interval_95": [
+                -0.5129,
+                0.0835
+            ],
+            "elo_score": 962.7,
+            "elo_ci_95": [
+                910.9,
+                1014.5
+            ]
+        },
+        {
+            "rank": 22,
+            "model_name": "claude-sonnet-4-20250514-thinking",
+            "raw_score": -0.2615,
+            "standard_error": 0.144,
+            "confidence_interval_95": [
+                -0.5439,
+                0.0208
+            ],
+            "elo_score": 954.6,
+            "elo_ci_95": [
+                905.5,
+                1003.6
+            ]
+        },
+        {
+            "rank": 23,
+            "model_name": "openai/gpt-4.1",
+            "raw_score": -0.295,
+            "standard_error": 0.1377,
+            "confidence_interval_95": [
+                -0.5648,
+                -0.0252
+            ],
+            "elo_score": 948.7,
+            "elo_ci_95": [
+                901.9,
+                995.6
+            ]
+        },
+        {
+            "rank": 24,
+            "model_name": "thudm/glm-4.1v-9b-thinking",
+            "raw_score": -0.3934,
+            "standard_error": 0.1241,
+            "confidence_interval_95": [
+                -0.6367,
+                -0.1501
+            ],
+            "elo_score": 931.7,
+            "elo_ci_95": [
+                889.4,
+                973.9
+            ]
+        },
+        {
+            "rank": 25,
+            "model_name": "x-ai/grok-4",
+            "raw_score": -0.5147,
+            "standard_error": 0.1342,
+            "confidence_interval_95": [
+                -0.7777,
+                -0.2517
+            ],
+            "elo_score": 910.6,
+            "elo_ci_95": [
+                864.9,
+                956.3
+            ]
+        },
+        {
+            "rank": 26,
+            "model_name": "qwen2.5-vl-72b-instruct",
+            "raw_score": -0.6085,
+            "standard_error": 0.1029,
+            "confidence_interval_95": [
+                -0.8102,
+                -0.4069
+            ],
+            "elo_score": 894.3,
+            "elo_ci_95": [
+                859.3,
+                929.3
+            ]
+        },
+        {
+            "rank": 27,
+            "model_name": "x-ai/grok-4.1-fast",
+            "raw_score": -1.0054,
+            "standard_error": 0.1687,
+            "confidence_interval_95": [
+                -1.3359,
+                -0.6748
+            ],
+            "elo_score": 825.3,
+            "elo_ci_95": [
+                767.9,
+                882.8
+            ]
+        },
+        {
+            "rank": 28,
+            "model_name": "meta-llama/llama-4-maverick",
+            "raw_score": -1.0793,
+            "standard_error": 0.1393,
+            "confidence_interval_95": [
+                -1.3522,
+                -0.8064
+            ],
+            "elo_score": 812.5,
+            "elo_ci_95": [
+                765.1,
+                859.9
+            ]
+        }
+    ]
+}

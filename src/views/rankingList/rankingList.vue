@@ -80,20 +80,35 @@ export default {
             //var data = [70, 60, 50, 40, 30, 30, 20, 10, 10, 20];
             //var className = ['Human Expert', 'DeepSeek-R1 0528', 'Doubao-Seed 1.6-Thinking', 'GPT-4.1', 'Gemini-2.0-Flash Thinking', 'Claude-4 Sonnet-Thinking', 'QwQ-32B', 'Doubao-Seed 1.6-Thinking', 'GPT-4.1'];
             
-            var className = [ 'doubao-seed-1-6-thinking-250615', 'tencent hunyuan-t1-vision-20250619', 'google gemini-2.5-flash', 'step-1o-vision-32k',
-                'google gemini-2.5-pro', 'openai o3', 'openai o4-mini-high', 'Doubao-1.5-vision-pro-32k', 'claude-3.7-sonnet:thinking',
-                'claude-opus-4', 'claude-sonnet-4', 'claude-opus-4-20250514-thinking', 'qvq-max-2025-03-25', 'claude-sonnet-4-20250514-thinking',
-                'gpt-4.1', 'glm-4.1v-9b-thinking', 'qwen2.5-vl-72b-instruct', 'x-ai grok-4', 'llama-4-maverick'];
+            var className = [
+                'gemini-3-pro-preview-thinking', 'anthropic/claude-opus-4.5-thinking', 'gpt-5.1',
+                'gemini-2.5-pro-thinking', 'doubao-seed-1-6-251015', 'google/gemini-2.5-flash',
+                'stepfun-ai/step3', 'doubao-seed-1-6-thinking-250615', 'tencent/hunyuan-t1-vision-20250619',
+                'openai/o3-high', 'Qwen3-VL-235B-A22B-Thinking', 'gpt-5-high',
+                'openai/o4-mini-high', 'Doubao-1.5-vision-pro-32k', 'anthropic/claude-3.7-sonnet-thinking',
+                'glm-4.5v', 'anthropic/claude-sonnet-4.5-thinking', 'anthropic/claude-opus-4-thinking',
+                'anthropic/claude-sonnet-4', 'anthropic/claude-opus-4-20250514-thinking', 'qvq-max-2025-03-25',
+                'claude-sonnet-4-20250514-thinking', 'openai/gpt-4.1', 'thudm/glm-4.1v-9b-thinking',
+                'x-ai/grok-4', 'qwen2.5-vl-72b-instruct', 'x-ai/grok-4.1-fast', 'meta-llama/llama-4-maverick'
+            ];
 
-            var data = [ 80.05, 77.49, 76.27, 74.93, 74.3, 72.69, 64.14, 62.94,
-                    62.79, 60.35, 60.34, 58.83, 58.69, 57.34, 57.03, 56.94,
-                    53.68, 51.07, 36.07];
+            var data = [
+                85.00, 81.54, 80.90, 80.50, 80.28, 80.27,
+                80.04, 79.90, 79.71, 78.41, 77.41, 75.87,
+                74.36, 74.28, 73.55, 73.13, 73.12, 72.36,
+                72.21, 71.96, 71.51, 70.91, 70.47, 69.21,
+                67.64, 66.43, 61.30, 60.35
+            ];
 
-            var colorList = ['#E8C469', '#F4A362', '#E76E50', '#284754', '#299D90', '#299D90', '#299D90', '#F4A362', '#E76E50',
-            '#E8C469', '#F4A362', '#E76E50', '#284754', '#299D90', '#299D90', '#299D90', '#F4A362', '#E76E50', '#E8C469',];
+            var colorList = [
+                '#E8C469', '#F4A362', '#E76E50', '#284754', '#299D90', '#299D90', '#299D90',
+                '#F4A362', '#E76E50', '#E8C469', '#F4A362', '#E76E50', '#284754', '#299D90',
+                '#299D90', '#299D90', '#F4A362', '#E76E50', '#E8C469', '#F4A362', '#E76E50',
+                '#284754', '#299D90', '#299D90', '#299D90', '#F4A362', '#E76E50', '#E8C469'
+            ];
 
             // 根据类别数量动态计算容器高度：每行 rowHeight，高度还预留一点上下 padding
-            var calcHeight = className.length * rowHeight + 60; // 60px 额外间距
+            var calcHeight = className.length * rowHeight + 20; // 20px 额外间距
             if (calcHeight < minHeight) calcHeight = minHeight;
             if (calcHeight > maxHeight) calcHeight = maxHeight;
             // 设置容器高度（如果使用了固定高度的 CSS，这里会覆盖）
@@ -192,16 +207,14 @@ export default {
 <style lang="less" scoped>
 .rankingList {
     width: 100%;
-    height: 1220px;
+    min-height: 1220px;
 
     .content {
         width: 1200px;
         margin: 0 auto;
-        min-height: 929px;
 
         .echarts_box {
             width: 100%;
-            height: 929px;
         }
 
         .pm_list {
