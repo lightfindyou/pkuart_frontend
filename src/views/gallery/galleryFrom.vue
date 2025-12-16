@@ -298,13 +298,16 @@ export default {
 
             .mian_text_title {
                 margin-top: 40px;
-                height: 16px;
                 font-weight: 400;
                 font-size: 20px;
                 color: #212121;
-                line-height: 16px;
+                line-height: 24px;
                 text-stroke: 0px #FFF5F5;
                 text-align: center;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding: 0 60px;
             }
 
             .mian_text_title_en {
@@ -319,12 +322,15 @@ export default {
 
             .mian_text_name {
                 margin-top: 12px;
-                height: 16px;
                 font-weight: 400;
                 font-size: 16px;
                 color: #212121;
-                line-height: 16px;
+                line-height: 20px;
                 text-align: center;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding: 0 20px;
             }
 
             .mian_type {
