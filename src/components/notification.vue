@@ -135,9 +135,15 @@ export default {
 			this.type = index
 		},
 		nvtoClick() {
+			this.$store.commit('setAssessA', '');
+			this.$store.commit('setAssessB', '');
 			this.$router.push({
 				path: '/evaluate',
 				query: { tourists: this.isTourist }
+			}).catch(err => {
+				if (err.name !== 'NavigationDuplicated') {
+					throw err;
+				}
 			});
 			console.log('evaluate:' + this.battleItem.id);
 			this.evaluatePic(this.battleItem.id);

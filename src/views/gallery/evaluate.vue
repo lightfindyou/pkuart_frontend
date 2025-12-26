@@ -358,9 +358,11 @@ export default {
             if (idx === -1) {
                 // 未选择则加入
                 this.selectedVoteOptions.push(item);
+                this.textarea += `#${item},`;
             } else {
                 // 已选择则移除
                 this.selectedVoteOptions.splice(idx, 1);
+                this.textarea = this.textarea.replace(`#${item},`, '');
             }
         },
         async submitEval(id) {
