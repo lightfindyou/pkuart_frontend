@@ -20,11 +20,11 @@
                 <img src="@/assets/home/select.png" alt="">
                 <el-input v-model="searchText" @keyup.native.enter="handleSearch" placeholder="请输入内容" />
             </div>
-            <router-link v-if="login" class="logo" to="/user" @click="handleSelect('user')">
+            <div v-if="login" class="logo" @click="handleUserClick" style="cursor: pointer;">
                 <div class="imgs">
                     <img :src="this.$store.state.userAvatar" alt="">
                 </div>
-            </router-link>
+            </div>
             <div class="login" v-else>
                 <div class="btn1 fs" @click="handleLogin">登陆/注册</div>
                 <div class="btn2 fs" @click="handleExpert">专家入口</div>
@@ -47,6 +47,8 @@
 </template>
 <script>
 import { mapState } from 'vuex'
+import axios from 'axios'
+import { API_BASE } from '@/config'
 
 export default {
     computed: {
@@ -110,6 +112,29 @@ export default {
         async handleSearch() {
             this.$store.commit('setSearchText', this.searchText);
             this.$store.dispatch('search', { selectedEra: this.selectedEra, searchText: this.searchText });
+        },
+        async checklogin() {
+            try {
+                const url = `${API_BASE}/checkLogin`
+                await axios.get(url, { withCredentials: true })
+                return true;
+            } catch (error) {
+                if (error.response && error.response.status === 401) {
+                    alert('用户未登录，请先登录');
+                    this.$store.commit('resetRouterDomIndex');
+                    this.$router.push('/login');
+                    return false;
+                }
+                alert('网络异常或服务器错误，请稍后重试');
+                console.error('请求收藏列表异常:', error);
+                return false;
+            }
+        },
+        handleUserClick() {
+            if (this.checklogin()) {
+                this.handleSelect('user');
+                this.$router.push('/user');
+            }
         }
     }
 }

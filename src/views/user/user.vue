@@ -137,7 +137,9 @@ export default {
                 console.log(res.data, '===data');
                 // 处理返回结果
                 const reviewer = res.data.reviewers;
-                this.userInfo.name = reviewer[0].name;
+                if (reviewer && reviewer.length > 0) {
+                    this.userInfo.name = reviewer[0].name;
+                }
             } catch (error) {
                 if (error.response && error.response.status === 401) {
                     // alert('用户未登录，请先登录');

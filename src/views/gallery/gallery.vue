@@ -115,7 +115,7 @@ export default {
             userId: state => state.user_id,
         }),
         isTourist() {
-            return this.selectedEra === '体验区' && !this.userId;
+            return this.selectedEra === '体验区';
         }
     },
     data() {
@@ -319,13 +319,11 @@ export default {
             this.showGalleryFrom = false;
         },
         async handleShow(item) {
-            if (!this.isTourist && !this.userId) {
-                const isLoggedIn = await this.checklogin();
-                if (!isLoggedIn) return;
+            if (this.isTourist || await this.checklogin()) {
+                this.showGalleryFrom = true;
+                this.showGalleryFromItem = item;
+                this.$store.commit('setShowItem', item);
             }
-            this.showGalleryFrom = true;
-            this.showGalleryFromItem = item;
-            this.$store.commit('setShowItem', item);
         },
         prevSlide() {
             this.$refs.swiper.$swiper.slidePrev();
