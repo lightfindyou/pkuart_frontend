@@ -138,7 +138,7 @@ export default {
             loading: false,
             maxItems: 120,
             itemsPerLoad: 12,
-            currentPage: 1,
+            currentPage: 0,
 
             // 预定义的4个单独使用的item
             predefinedItems: [
@@ -217,10 +217,12 @@ export default {
     },
     mounted() {
         this.$store.commit('setSelectedEra', '体验区');
+        this.$nextTick(() => {
+            this.loadMoreData();
+        });
         window.addEventListener('scroll', this.handleScroll);
         // 监听窗口调整以重算布局（如果需要响应式，可开启）
         window.addEventListener('resize', this.calculateLayout);
-        this.loadMoreData();
     },
     beforeDestroy() {
         window.removeEventListener('scroll', this.handleScroll);
@@ -359,7 +361,10 @@ export default {
                     eraParam = '';
                 }
                 let url = `${API_BASE}/?format=json&era=${eraParam}&search=${this.searchText}&page=${this.currentPage}&seed=${seed}`;
-                if (this.isTourist) {
+                
+                // 重新计算 isTourist，确保使用最新状态
+                const isTourist = this.selectedEra === '体验区' && !this.userId;
+                if (isTourist) {
                     url += '&tourists=true';
                 }
                 const res = await axios.get(url, { withCredentials: true });

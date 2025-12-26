@@ -366,9 +366,6 @@ export default {
         async submitEval(id) {
             try {
                 let url = `${API_BASE}/vote`
-                if (this.$route.query.tourists) {
-                    url += '?tourists=true';
-                }
                 const payload = {
                     user_id: id,
                     evaluation_id: this.$store.state.evalId,
@@ -379,8 +376,11 @@ export default {
                     model_b: this.modelB_name,
                     response_a: this.$store.state.assessA,
                     response_b: this.$store.state.assessB,
-
                 };
+                if (this.$route.query.tourists) {
+                    url += '?tourists=true';
+                    payload.tourists = true;
+                }
                 await axios.post(url, payload, { headers: { 'Content-Type': 'application/json' }, withCredentials: true });
                 console.log('commit feedback over', this.textarea);
             } catch (error) {
@@ -396,14 +396,15 @@ export default {
         async submitFeedback(id) {
             try {
                 let url = `${API_BASE}/feedback`
-                if (this.$route.query.tourists) {
-                    url += '?tourists=true';
-                }
                 const payload = {
                     evaluation_id: this.$store.state.evalId,
                     feedback: this.textarea,
                     user_id: id,
                 };
+                if (this.$route.query.tourists) {
+                    url += '?tourists=true';
+                    payload.tourists = true;
+                }
                 await axios.post(url, payload, { headers: { 'Content-Type': 'application/json' }, withCredentials: true });
                 console.log('commit feedback over', this.textarea);
             } catch (error) {

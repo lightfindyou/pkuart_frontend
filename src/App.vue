@@ -76,10 +76,6 @@ export default {
     created() {
         // 根据当前路由设置激活状态
         this.updateActiveState();
-        // 设置默认参数
-        const defaultEra = this.selectedEra || '';
-        const defaultSearch = this.searchText || '';
-        this.$store.dispatch('search', { selectedEra: defaultEra, searchText: defaultSearch });
         // 初始化时获取模型列表
         this.$store.dispatch('fetchModelOptions');
     },

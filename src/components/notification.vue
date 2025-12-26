@@ -161,6 +161,9 @@ export default {
 					artwork_id: id
 				};
 			}
+			if (this.isTourist) {
+				payload.tourists = true;
+			}
 			console.log('payload   ' + JSON.stringify(payload, null, 2));
 			try {
 				const res = await axios.post(url, payload, { headers: { 'Content-Type': 'application/json' }, withCredentials: true  });
@@ -210,8 +213,27 @@ export default {
 						const evalId = res.data.task_id;
 						const artworkId = res.data.artwork_id;
 						const artworkName = res.data.artwork_name;
-						this.$store.commit('setAssessA', evalA && evalA.response ? evalA.response : '未获取到模型A评估结果');
-						this.$store.commit('setAssessB', evalB && evalB.response ? evalB.response : '未获取到模型B评估结果');
+						
+						let responseA = '未获取到模型A评估结果';
+						if (evalA) {
+							if (typeof evalA === 'string') {
+								responseA = evalA;
+							} else if (evalA.response) {
+								responseA = evalA.response;
+							}
+						}
+						
+						let responseB = '未获取到模型B评估结果';
+						if (evalB) {
+							if (typeof evalB === 'string') {
+								responseB = evalB;
+							} else if (evalB.response) {
+								responseB = evalB.response;
+							}
+						}
+
+						this.$store.commit('setAssessA', responseA);
+						this.$store.commit('setAssessB', responseB);
 						this.$store.commit('setEvaluationId', evalId);
 						this.$store.commit('setArtworkId', artworkId);
 						this.$store.commit('setEvalArtworkName', artworkName);
