@@ -12,7 +12,7 @@
             </div>
             <div class="swiper_box">
                 <swiper ref="swiper" :options="swiperOption">
-                    <swiper-slide>
+                    <!-- <swiper-slide>
                         <img src="@/assets/list/carusel1.png" alt="" @click="handleShow(predefinedItems[0])">
                     </swiper-slide>
                     <swiper-slide>
@@ -23,6 +23,18 @@
                     </swiper-slide>
                     <swiper-slide>
                         <img src="@/assets/list/carusel4.png" alt="" @click="handleShow(predefinedItems[3])">
+                    </swiper-slide> -->
+                    <swiper-slide>
+                        <img src="@/assets/list/carusel5.png" alt="" @click="handleShow(predefinedItems[2])">
+                    </swiper-slide>
+                    <swiper-slide>
+                        <img src="@/assets/list/carusel6.png" alt="" @click="handleShow(predefinedItems[1])">
+                    </swiper-slide>
+                    <swiper-slide>
+                        <img src="@/assets/list/carusel7.png" alt="" @click="handleShow(predefinedItems[0])">
+                    </swiper-slide>
+                    <swiper-slide>
+                        <img src="@/assets/list/carusel8.png" alt="" @click="handleShow(predefinedItems[3])">
                     </swiper-slide>
                 </swiper>
                 <div class="swiper_navigation">
