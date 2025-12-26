@@ -5,7 +5,7 @@
                 <div class="select_box fs">
                     <span @click="showNotification = !showNotification">选择审美评估模型</span>
                     <img @click="showNotification = !showNotification" src="@/assets/home/bottom.png" alt="">
-                    <notification :battleItem="showGalleryFromItem" v-if="showNotification"></notification>
+                    <notification :battleItem="showGalleryFromItem" :isTourist="isTourist" v-if="showNotification"></notification>
 
                 </div>
                 <div class="del" @click="handleDel">
@@ -81,6 +81,10 @@ export default {
         showGalleryFromItem: {
             type: Object,
             required: true
+        },
+        isTourist: {
+            type: Boolean,
+            default: false
         }
     },
     data() {
@@ -115,7 +119,10 @@ export default {
             console.log('添加收藏');
             // 发送 POST 请求
             try {
-                const url = `${API_BASE}/addFavorite?artwork_id=${this.showGalleryFromItem.id}&user_id=${id}`
+                let url = `${API_BASE}/addFavorite?artwork_id=${this.showGalleryFromItem.id}&user_id=${id}`
+                if (this.isTourist) {
+                    url += '&tourists=true';
+                }
                 await axios.get(url, { withCredentials: true })
             } catch (error) {
                 if (error.response && error.response.status === 401) {
@@ -130,7 +137,10 @@ export default {
             console.log('删除收藏');
             // 发送 POST 请求
             try {
-                const url = `${API_BASE}/delFavorite?artwork_id=${this.showGalleryFromItem.id}&user_id=${id}`
+                let url = `${API_BASE}/delFavorite?artwork_id=${this.showGalleryFromItem.id}&user_id=${id}`
+                if (this.isTourist) {
+                    url += '&tourists=true';
+                }
                 await axios.get(url, { withCredentials: true })
             } catch (error) {
                 if (error.response && error.response.status === 401) {
@@ -144,7 +154,10 @@ export default {
             const id = this.$store.state.user_id;
             console.log('检查是否收藏, id:', id);
             try {
-                const url = `${API_BASE}/inFavoriteList?artwork_id=${this.showGalleryFromItem.id}&user_id=${id}`
+                let url = `${API_BASE}/inFavoriteList?artwork_id=${this.showGalleryFromItem.id}&user_id=${id}`
+                if (this.isTourist) {
+                    url += '&tourists=true';
+                }
                 const res = await axios.get(url, { withCredentials: true })
                 this.active = res.data.in_favorite_list;
                 // if(this.active) {

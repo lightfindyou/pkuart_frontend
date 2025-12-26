@@ -54,6 +54,7 @@
             </div>
             <div class="tabs_box">
                 <el-tabs class="tabs" v-model="activeName" @tab-click="handleClick">
+                    <el-tab-pane label="体验区" name="experience"></el-tab-pane>
                     <el-tab-pane label="全部" name="first"></el-tab-pane>
                     <el-tab-pane label="唐前" name="second"></el-tab-pane>
                     <el-tab-pane label="宋元" name="third"></el-tab-pane>
@@ -86,7 +87,7 @@
                 <div class="loading-text">加载中...</div>
             </div>
         </div>
-        <GalleryFrom :showGalleryFromItem="showGalleryFromItem" @handleDel="handleDel" v-if="showGalleryFrom">
+        <GalleryFrom :showGalleryFromItem="showGalleryFromItem" :isTourist="isTourist" @handleDel="handleDel" v-if="showGalleryFrom">
         </GalleryFrom>
     </div>
 </template>
@@ -111,7 +112,11 @@ export default {
             list: state => state.galleryImages,
             selectedEra: state => state.selectedEra,
             searchText: state => state.searchText,
+            userId: state => state.user_id,
         }),
+        isTourist() {
+            return this.selectedEra === '体验区' && !this.userId;
+        }
     },
     data() {
         return {
@@ -127,7 +132,7 @@ export default {
                     }
                 }
             },
-            activeName: 'first',
+            activeName: 'experience',
             showGalleryFrom: false,
             showGalleryFromItem: {},
             loading: false,
@@ -211,6 +216,7 @@ export default {
         }
     },
     mounted() {
+        this.$store.commit('setSelectedEra', '体验区');
         window.addEventListener('scroll', this.handleScroll);
         // 监听窗口调整以重算布局（如果需要响应式，可开启）
         window.addEventListener('resize', this.calculateLayout);
@@ -297,15 +303,21 @@ export default {
         handleClick(tab, event) {
             console.log(tab, event);
             this.currentPage = 1;
-            this.$store.commit('setSelectedEra', tab.label === '全部' ? '' : tab.label);
+            const era = tab.label === '全部' ? '' : tab.label;
+            this.$store.commit('setSelectedEra', era);
+            
+            const isTourist = era === '体验区' && !this.userId;
+
             this.$store.commit('setGalleryImages', []);
-            this.$store.dispatch('search', { selectedEra: this.selectedEra, searchText: this.searchText });
+            this.$store.dispatch('search', { selectedEra: era, searchText: this.searchText, tourists: isTourist });
         },
         handleDel() {
             this.showGalleryFrom = false;
         },
         handleShow(item) {
-            this.checklogin();
+            if (!this.isTourist) {
+                this.checklogin();
+            }
             this.showGalleryFrom = true;
             this.showGalleryFromItem = item;
             this.$store.commit('setShowItem', item);
@@ -342,7 +354,14 @@ export default {
             try {
                 this.currentPage++;
                 const seed = this.$store.state.randomSeed;
-                const url = `${API_BASE}/?format=json&era=${this.selectedEra}&search=${this.searchText}&page=${this.currentPage}&seed=${seed}`;
+                let eraParam = this.selectedEra;
+                if (this.selectedEra === '体验区') {
+                    eraParam = '';
+                }
+                let url = `${API_BASE}/?format=json&era=${eraParam}&search=${this.searchText}&page=${this.currentPage}&seed=${seed}`;
+                if (this.isTourist) {
+                    url += '&tourists=true';
+                }
                 const res = await axios.get(url, { withCredentials: true });
                 
                 // 更新总数

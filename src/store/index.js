@@ -102,9 +102,16 @@ export default new Vuex.Store({
             console.log(index, 'index')
             commit('setRouterDomIndex', index)
         },
-        async search({ commit }, { selectedEra, searchText }) {
+        async search({ commit }, { selectedEra, searchText, tourists }) {
             console.log('提交查询请求   ' + selectedEra + '  ' + searchText);
-            const url = `${API_BASE}/?format=json&era=${selectedEra}&search=${searchText}&page=1`
+            let eraParam = selectedEra;
+            if (selectedEra === '体验区') {
+                eraParam = '';
+            }
+            let url = `${API_BASE}/?format=json&era=${eraParam}&search=${searchText}&page=1`
+            if (tourists) {
+                url += '&tourists=true';
+            }
             try {
                 const res = await axios.get(url, { withCredentials: true })
 

@@ -365,7 +365,10 @@ export default {
         },
         async submitEval(id) {
             try {
-                const url = `${API_BASE}/vote`
+                let url = `${API_BASE}/vote`
+                if (this.$route.query.tourists) {
+                    url += '?tourists=true';
+                }
                 const payload = {
                     user_id: id,
                     evaluation_id: this.$store.state.evalId,
@@ -392,7 +395,10 @@ export default {
         },
         async submitFeedback(id) {
             try {
-                const url = `${API_BASE}/feedback`
+                let url = `${API_BASE}/feedback`
+                if (this.$route.query.tourists) {
+                    url += '?tourists=true';
+                }
                 const payload = {
                     evaluation_id: this.$store.state.evalId,
                     feedback: this.textarea,

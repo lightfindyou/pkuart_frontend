@@ -81,6 +81,10 @@ export default {
 		battleItem: {
 			type: Object,
 			required: true
+		},
+		isTourist: {
+			type: Boolean,
+			default: false
 		}
 	},
 	data() {
@@ -131,13 +135,19 @@ export default {
 			this.type = index
 		},
 		nvtoClick() {
-			this.$router.push('/evaluate');
+			this.$router.push({
+				path: '/evaluate',
+				query: { tourists: this.isTourist }
+			});
 			console.log('evaluate:' + this.battleItem.id);
 			this.evaluatePic(this.battleItem.id);
 		},
 		async evaluatePic(id) {
 			console.log('评价图片   ' + id);
 			let url = `${API_BASE}/artwork/evaluate`
+			if (this.isTourist) {
+				url += '?tourists=true';
+			}
 			let payload = {}
 			// type 为 1 时表示“比较两个选定的模型”，需要带上模型参数
 			if (this.type === 1) {
