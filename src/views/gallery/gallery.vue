@@ -126,6 +126,11 @@ export default {
                 centeredSlides: true,
                 slideToClickedSlide: true,
                 loop: true,
+                speed: 1500,
+                autoplay: {
+                    delay: 4000,
+                    disableOnInteraction: false
+                },
                 on: {
                     tap: function () {
                         console.log('点击的位置', this.activeIndex);
