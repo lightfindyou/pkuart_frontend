@@ -291,15 +291,17 @@ export default {
             try {
                 const url = `${API_BASE}/checkLogin`
                 await axios.get(url, { withCredentials: true })
+                return true;
             } catch (error) {
                 if (error.response && error.response.status === 401) {
                     alert('用户未登录，请先登录');
                     this.$store.commit('resetRouterDomIndex');
                     this.$router.push('/login');
-                    return;
+                    return false;
                 }
                 alert('网络异常或服务器错误，请稍后重试');
                 console.error('请求收藏列表异常:', error);
+                return false;
             }
         },
         handleClick(tab, event) {
@@ -316,9 +318,10 @@ export default {
         handleDel() {
             this.showGalleryFrom = false;
         },
-        handleShow(item) {
-            if (!this.isTourist) {
-                this.checklogin();
+        async handleShow(item) {
+            if (!this.isTourist && !this.userId) {
+                const isLoggedIn = await this.checklogin();
+                if (!isLoggedIn) return;
             }
             this.showGalleryFrom = true;
             this.showGalleryFromItem = item;

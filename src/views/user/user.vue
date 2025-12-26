@@ -140,9 +140,9 @@ export default {
                 this.userInfo.name = reviewer[0].name;
             } catch (error) {
                 if (error.response && error.response.status === 401) {
-                    alert('用户未登录，请先登录');
-                    this.$store.commit('resetRouterDomIndex');
-                    this.$router.push('/login');
+                    // alert('用户未登录，请先登录');
+                    // this.$store.commit('resetRouterDomIndex');
+                    // this.$router.push('/login');
                     return;
                 }
                 // alert('网络异常或服务器错误，请稍后重试');

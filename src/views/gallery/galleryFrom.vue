@@ -166,6 +166,9 @@ export default {
                 //     console.log('未收藏');
                 // }
             } catch (error) {
+                if (error.response && error.response.status === 401) {
+                    return;
+                }
                 console.error('Error checking favorite:', error);
             }
         }
