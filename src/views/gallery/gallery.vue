@@ -25,16 +25,16 @@
                         <img src="@/assets/list/carusel4.png" alt="" @click="handleShow(predefinedItems[3])">
                     </swiper-slide> -->
                     <swiper-slide>
-                        <img src="@/assets/list/carusel5.png" alt="" @click="handleShow(predefinedItems[2])">
+                        <img src="@/assets/list/carusel5.png" alt="">
                     </swiper-slide>
                     <swiper-slide>
-                        <img src="@/assets/list/carusel6.png" alt="" @click="handleShow(predefinedItems[1])">
+                        <img src="@/assets/list/carusel6.png" alt="">
                     </swiper-slide>
                     <swiper-slide>
-                        <img src="@/assets/list/carusel7.png" alt="" @click="handleShow(predefinedItems[0])">
+                        <img src="@/assets/list/carusel7.png" alt="">
                     </swiper-slide>
                     <swiper-slide>
-                        <img src="@/assets/list/carusel8.png" alt="" @click="handleShow(predefinedItems[3])">
+                        <img src="@/assets/list/carusel8.png" alt="">
                     </swiper-slide>
                 </swiper>
                 <div class="swiper_navigation">
@@ -116,6 +116,9 @@ export default {
         }),
         isTourist() {
             return this.selectedEra === '体验区';
+        },
+        swiper() {
+            return this.$refs.swiper.$swiper
         }
     },
     data() {
@@ -228,6 +231,11 @@ export default {
         window.addEventListener('scroll', this.handleScroll);
         // 监听窗口调整以重算布局（如果需要响应式，可开启）
         window.addEventListener('resize', this.calculateLayout);
+        
+        // 监听 swiper 点击事件，解决 loop 模式下 duplicate slide 点击无效的问题
+        if (this.swiper) {
+            this.swiper.on('click', this.handleSwiperClick);
+        }
     },
     beforeDestroy() {
         window.removeEventListener('scroll', this.handleScroll);
@@ -290,6 +298,38 @@ export default {
             this.itemStyles = newStyles;
             // 容器高度 = 最高的一列 - 最后一个多余的 gapY
             this.waterfallHeight = Math.max(...columnHeights) - gapY;
+        },
+
+        handleSwiperClick() {
+            const swiper = this.swiper;
+            if (!swiper) return;
+            
+            // 获取点击的 slide 索引
+            const clickedIndex = swiper.clickedIndex;
+            if (clickedIndex === undefined || clickedIndex === null) return;
+            
+            // 获取对应的 slide DOM 元素
+            const slide = swiper.slides[clickedIndex];
+            // 获取真实的 data-swiper-slide-index
+            const realIndexStr = slide.getAttribute('data-swiper-slide-index');
+            
+            // 如果获取不到（比如点击了非 slide 区域），直接返回
+            if (realIndexStr === null) return;
+            
+            const realIndex = parseInt(realIndexStr, 10);
+            
+            // 定义映射关系
+            const itemMap = [
+                this.predefinedItems[2], // index 0
+                this.predefinedItems[1], // index 1
+                this.predefinedItems[0], // index 2
+                this.predefinedItems[3]  // index 3
+            ];
+            
+            const item = itemMap[realIndex];
+            if (item) {
+                this.handleShow(item);
+            }
         },
 
         async checklogin() {
